@@ -1,0 +1,31 @@
+{
+  "name": "gsea-teachers-portal",
+  "version": "1.0.0",
+  "description": "ENAC GSEA English Multi-Semester Faculty Administration & Grading Portal",
+  "main": "index.html",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --minify",
+    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --minify",
+    "dev:css": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --watch",
+    "serve": "python3 -m http.server 8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/powerforcemotiondrive-pixel/GSEA_teachers.git"
+  },
+  "keywords": [
+    "enac",
+    "gsea",
+    "teachers",
+    "portal",
+    "faculty",
+    "grading"
+  ],
+  "author": "Phil PARRIS",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

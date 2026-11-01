@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    ==========================================================================
+    ENAC GSEA Multi-Semester Faculty Administration & Grading Portal
+    © 2026 Phil PARRIS. All Rights Reserved.
+    Author & Pedagogical Architect: Phil PARRIS (Département LH / LAN)
+    Protected under the French Intellectual Property Code (Articles L.111-1 & L.121-1).
+    Strictly licensed for official ENAC GSEA training. Unauthorized copying,
+    derivative modification, extraction, or removal of attribution is prohibited.
+    ==========================================================================
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="author" content="Phil PARRIS">
+  <meta name="creator" content="Phil PARRIS (ENAC LH/LAN)">
+  <meta name="copyright" content="© 2026 Phil PARRIS. All Rights Reserved.">
+  <title>ENAC GSEA — Faculty Portal & Academic Hub</title>
+  <!-- Tailwind CSS CLI Output -->
+  <link rel="stylesheet" href="output.css">
+  <style>
+    /* Executive Deep Bordeaux CAD Precision Micro-Grid */
+    .textured-surface,
+    #portal-header {
+      background-color: #881337 !important;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.2) 0%, transparent 75%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.28) 100%) !important;
+      background-size: 100% 100%, 16px 16px, 16px 16px, 100% 100% !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.35) !important;
+    }
+
+    /* Dynamic canvas backdrop */
+    body {
+      background-color: #f8fafc;
+      background-image: radial-gradient(rgba(136, 19, 55, 0.06) 1.25px, transparent 1.25px);
+      background-size: 20px 20px;
+    }
+
+    /* Print styles */
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #fff !important; }
+      .print-card { box-shadow: none !important; border: 1px solid #cbd5e1 !important; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col text-slate-800 antialiased font-sans">
+
+  <!-- Main Container -->
+  <div class="w-full max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-6 flex-1 flex flex-col space-y-4">
+
+    <!-- Executive Header -->
+    <header id="portal-header" class="textured-surface text-white rounded-2xl p-4 sm:p-6 shadow-lg border border-rose-950/40 relative overflow-hidden shrink-0">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center space-x-3 sm:space-x-4">
+          <div class="w-12 h-12 rounded-xl bg-black/25 border border-white/20 flex items-center justify-center shrink-0 shadow-inner">
+            <span class="text-2xl">🏛️</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-900 shadow-xs">
+                FACULTY PORTAL
+              </span>
+              <span class="text-xs text-rose-200 font-mono">ENAC • DÉPARTEMENT LH / LAN</span>
+            </div>
+            <h1 class="text-base sm:text-xl font-bold tracking-tight text-white mt-0.5">
+              ENAC GSEA Multi-Semester Faculty Hub
+            </h1>
+            <p class="text-[11px] sm:text-xs text-rose-100/90 mt-0.5">
+              Academic Administration, Continuous Evaluation, Grading Records &amp; FE Rotas
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Side: Clock & ENAC Logo -->
+        <div class="flex items-center justify-between sm:justify-end gap-4 shrink-0">
+          <div class="text-right hidden sm:block">
+            <div id="live-clock" class="text-xs font-mono font-bold text-white tracking-wider">--:--:--</div>
+            <div id="live-date" class="text-[10px] text-rose-200">--</div>
+          </div>
+          <a href="https://www.enac.fr" target="_blank" rel="noopener noreferrer" class="opacity-90 hover:opacity-100 transition-opacity" title="Visit ENAC Website">
+            <img src="images/enac_logo_white.png" alt="ENAC" class="h-6 sm:h-7 w-auto object-contain">
+          </a>
+        </div>
+      </div>
+
+      <!-- Master Semester Selection Ribbon (S1 • S2 • S3 • S4) -->
+      <div class="mt-5 pt-4 border-t border-white/15">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <span class="text-[11px] font-bold text-rose-200 uppercase tracking-wider flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+            Select Curriculum Semester:
+          </span>
+
+          <!-- 4-Semester Selection Pills -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full sm:w-auto" id="semester-selector-group">
+            <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-rose-950 border-amber-400 shadow-md">
+              <span class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                <span>S1 • Semester 1</span>
+              </span>
+              <span class="text-[10px] opacity-75 font-mono ml-1.5">AG+AT</span>
+            </button>
+            <button type="button" onclick="selectSemester(2)" id="sem-btn-2" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-rose-950/50 hover:bg-rose-900/60 text-white/90 border-white/15">
+              <span class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                <span>S2 • Semester 2</span>
+              </span>
+              <span class="text-[10px] opacity-75 font-mono ml-1.5">AG+AAS</span>
+            </button>
+            <button type="button" onclick="selectSemester(3)" id="sem-btn-3" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-rose-950/50 hover:bg-rose-900/60 text-white/90 border-white/15">
+              <span class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                <span>S3 • Semester 3</span>
+              </span>
+              <span class="text-[10px] opacity-75 font-mono ml-1.5">AT Only</span>
+            </button>
+            <button type="button" onclick="selectSemester(4)" id="sem-btn-4" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-rose-950/50 hover:bg-rose-900/60 text-white/90 border-white/15">
+              <span class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                <span>S4 • Semester 4</span>
+              </span>
+              <span class="text-[10px] opacity-75 font-mono ml-1.5">AP Only</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sub-Navigation Tab Strip -->
+    <nav class="flex items-center gap-1 overflow-x-auto pb-1 text-xs select-none border-b border-slate-200" id="main-nav-tabs">
+      <button onclick="switchTab('grading')" id="tab-btn-grading" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer">
+        <span>📝</span>
+        <span>Grading &amp; Evaluation Form</span>
+      </button>
+      <button onclick="switchTab('rotas')" id="tab-btn-rotas" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+        <span>📋</span>
+        <span>FE Tutorial Rotas</span>
+      </button>
+      <button onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+        <span>📅</span>
+        <span>Semester Programme</span>
+      </button>
+      <button onclick="switchTab('groups')" id="tab-btn-groups" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+        <span>👥</span>
+        <span>Class Groups &amp; Faculty</span>
+      </button>
+      <button onclick="switchTab('rubrics')" id="tab-btn-rubrics" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+        <span>📘</span>
+        <span>Evaluation Rubrics</span>
+      </button>
+    </nav>
+
+    <!-- Content Workspace -->
+    <main id="portal-content" class="space-y-4">
+      <!-- Dynamically Injected via script -->
+    </main>
+
+  </div>
+
+  <!-- Status Footer -->
+  <footer class="mt-8 border-t border-slate-200 bg-white py-3 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-medium text-slate-700">GSEA Faculty Portal • 100% Offline Capable &amp; Sheets Synced</span>
+      </div>
+      <div>
+        Phil PARRIS (LH/LAN) • Official ENAC Faculty System • v1.0.0
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script>
+    // ============================================================================
+    // INVISIBLE COPYRIGHT & PROGRAMME INTEGRITY (French IP Code Art. L.111-1)
+    // ============================================================================
+    window.__GSEA_FACULTY_AUTH = Object.freeze({
+      programme: "ENAC GSEA Multi-Semester Faculty Hub",
+      architect: "Phil PARRIS",
+      department: "Département Langues et Humanités (LAN / LH)",
+      institution: "École Nationale de l'Aviation Civile (ENAC)",
+      version: "1.0.0",
+      releaseDate: "2026-11-01"
+    });
+
+    // Active state
+    let activeSemester = 1;
+    let activeTab = 'grading';
+
+    // Local submissions storage key
+    const LOCAL_LOGS_KEY = "gsea_faculty_eval_logs";
+
+    // Multi-Semester Master Database
+    const SEMESTERS_DATA = {
+      1: {
+        num: 1,
+        title: "Semester 1",
+        tracks: "AG (LV101E) & AT (LV121E)",
+        description: "General English (Travel, Weather, New Tech) & Technical English (Aerodrome, Aircraft Anatomy, Human Factors)",
+        faculty: [
+          { name: "Tracy NEILL", track: "AT", group: "Group A", schedule: "Wednesdays 13h15–15h15" },
+          { name: "Ally HEWETT", track: "AT", group: "Group B", schedule: "Wednesdays 13h15–15h15" },
+          { name: "Geri MIDDLETON", track: "AG", group: "Group A", schedule: "Fridays 08h00–10h00" },
+          { name: "Penny WRIGHT", track: "AG", group: "Group B", schedule: "Fridays 08h00–10h00" }
+        ],
+        students: {
+          groupA: ["GRPA001", "GRPA002", "GRPA003", "GRPA004", "GRPA005", "GRPA006", "GRPA007", "GRPA008", "GRPA009", "GRPA010"],
+          groupB: ["GRPB001", "GRPB002", "GRPB003", "GRPB004", "GRPB005", "GRPB006", "GRPB007", "GRPB008", "GRPB009"]
+        },
+        evaluationDates: {
+          fe1: { at: "Wednesday 25 Nov 2026 (W48)", ag: "Friday 27 Nov 2026 (W48)" },
+          fe2: { at: "Wednesday 20 Jan 2027 (W03)", ag: "Friday 22 Jan 2027 (W03)" },
+          fe3: { at: "Wednesday 24 Feb 2027 (W08)", ag: "Friday 26 Feb 2027 (W08)" }
+        },
+        rotas: [
+          { slot: "Slot 1 (13h15–13h45 / 08h00–08h30)", groupA: "GRPA001 & GRPA002", groupB: "GRPB001 & GRPB002", format: "Pair (30m)" },
+          { slot: "Slot 2 (13h45–14h15 / 08h30–09h00)", groupA: "GRPA003 & GRPA004", groupB: "GRPB003 & GRPB004", format: "Pair (30m)" },
+          { slot: "Slot 3 (14h15–14h45 / 09h00–09h30)", groupA: "GRPA005 & GRPA006", groupB: "GRPB005 & GRPB006", format: "Pair (30m)" },
+          { slot: "Slot 4 (14h45–15h15 / 09h30–10h00)", groupA: "GRPA007, GRPA008 & GRPA009", groupB: "GRPB007, GRPB008 & GRPB009", format: "Trio / Pair (30m)" }
+        ],
+        programme: [
+          { week: "W37", date: "Sep 07-11", mod: "M1", s: "S1", titleAG: "Introduction & Travel Anecdotes", titleAT: "Introduction & Aviation Survey" },
+          { week: "W38", date: "Sep 14-18", mod: "M1", s: "S2", titleAG: "Evolution of Transport", titleAT: "Passenger Journey & Airfield Movement" },
+          { week: "W39", date: "Sep 21-25", mod: "M1", s: "S3", titleAG: "Overtourism Dilemmas", titleAT: "Ground Operations & Turnaround" },
+          { week: "W40", date: "Sep 28-Oct 02", mod: "M1", s: "S4", titleAG: "Sustainable & Eco-tourism", titleAT: "Jobs in Aviation & Ground Handling" },
+          { week: "W48", date: "Nov 23-27", mod: "M1", s: "FE1", titleAG: "Formative Evaluation 1 (Option A/B)", titleAT: "FE1: Technical Airport Profile", isFE: true },
+          { week: "W49", date: "Nov 30-Dec 04", mod: "M2", s: "S1", titleAG: "Extreme Weather & Hazards", titleAT: "Aerodynamics & Flight Principles" },
+          { week: "W50", date: "Dec 07-11", mod: "M2", s: "S2", titleAG: "Sustainable Cities Mobility", titleAT: "Aircraft Anatomy & Structure" },
+          { week: "W03", date: "Jan 18-22", mod: "M2", s: "FE2", titleAG: "Formative Evaluation 2", titleAT: "FE2: Aircraft Anatomy Briefing", isFE: true },
+          { week: "W04", date: "Jan 25-29", mod: "M3", s: "S1", titleAG: "Everyday AI & Automation", titleAT: "Health & Human Factors" },
+          { week: "W08", date: "Feb 22-26", mod: "M3", s: "FE3", titleAG: "Formative Evaluation 3", titleAT: "FE3: Semester Global Review", isFE: true }
+        ]
+      },
+      2: {
+        num: 2,
+        title: "Semester 2",
+        tracks: "AG (LV102E) & AAS (LV122E)",
+        description: "General English (Mobility, Global Immersion Milestone) & Aeronautical English",
+        faculty: [
+          { name: "Teacher A (TBC)", track: "AAS", group: "Group A", schedule: "Wednesdays" },
+          { name: "Teacher B (TBC)", track: "AAS", group: "Group B", schedule: "Wednesdays" },
+          { name: "Teacher C (TBC)", track: "AG", group: "Group A", schedule: "Fridays" },
+          { name: "Teacher D (TBC)", track: "AG", group: "Group B", schedule: "Fridays" }
+        ],
+        students: { groupA: ["GRPA001", "GRPA002", "GRPA003"], groupB: ["GRPB001", "GRPB002", "GRPB003"] },
+        evaluationDates: { fe1: { at: "TBC", ag: "TBC" }, fe2: { at: "TBC", ag: "TBC" }, fe3: { at: "TBC", ag: "TBC" } },
+        rotas: [{ slot: "Slot 1 (30m)", groupA: "Pair 1", groupB: "Pair 1", format: "Pair" }],
+        programme: [{ week: "W10", date: "Mar", mod: "M1", s: "S1", titleAG: "Immersion Preparation", titleAT: "Aeronautical Systems Overview" }]
+      },
+      3: {
+        num: 3,
+        title: "Semester 3",
+        tracks: "AT (LV125E) Technical English Only",
+        description: "Technical English Only (AG Disabled) • Systems Engineering, ATM, Radar & Incident Investigations",
+        faculty: [
+          { name: "Technical Faculty Lead", track: "AT", group: "Group A/B/C", schedule: "Dedicated Slots" }
+        ],
+        students: { groupA: ["GRPA001", "GRPA002"], groupB: ["GRPB001", "GRPB002"] },
+        evaluationDates: { fe1: { at: "TBC", ag: "N/A" }, fe2: { at: "TBC", ag: "N/A" }, fe3: { at: "TBC", ag: "N/A" } },
+        rotas: [{ slot: "Slot 1 (30m)", groupA: "Technical Pair", groupB: "Technical Pair", format: "Pair" }],
+        programme: [{ week: "W38", date: "Sep", mod: "M1", s: "S1", titleAG: "N/A (AT Only)", titleAT: "Aviation Systems Architecture" }]
+      },
+      4: {
+        num: 4,
+        title: "Semester 4",
+        tracks: "AP Only (Aeronautical Professional)",
+        description: "Professional Aviation English & Final Certification Readiness",
+        faculty: [{ name: "Professional English Lead", track: "AP", group: "All Groups", schedule: "Intensive" }],
+        students: { groupA: ["GRPA001"], groupB: ["GRPB001"] },
+        evaluationDates: { fe1: { at: "TBC", ag: "N/A" }, fe2: { at: "TBC", ag: "N/A" }, fe3: { at: "TBC", ag: "N/A" } },
+        rotas: [{ slot: "Slot 1 (30m)", groupA: "Professional Interview", groupB: "Professional Interview", format: "Individual/Pair" }],
+        programme: [{ week: "W15", date: "Apr", mod: "M1", s: "S1", titleAG: "N/A", titleAT: "Certification Simulation" }]
+      }
+    };
+
+    // Live Clock
+    function updateClock() {
+      const now = new Date();
+      const clockEl = document.getElementById('live-clock');
+      const dateEl = document.getElementById('live-date');
+      if (clockEl) clockEl.textContent = now.toLocaleTimeString('en-GB');
+      if (dateEl) dateEl.textContent = now.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Select Semester
+    function selectSemester(num) {
+      activeSemester = num;
+      // Update Pills styling
+      for (let s = 1; s <= 4; s++) {
+        const btn = document.getElementById(`sem-btn-${s}`);
+        if (!btn) continue;
+        if (s === num) {
+          btn.className = "sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-rose-950 border-amber-400 shadow-md";
+          btn.querySelector('.w-2').className = "w-2 h-2 rounded-full bg-amber-500";
+        } else {
+          btn.className = "sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-rose-950/50 hover:bg-rose-900/60 text-white/90 border-white/15";
+          btn.querySelector('.w-2').className = "w-2 h-2 rounded-full bg-slate-400";
+        }
+      }
+      renderCurrentView();
+    }
+
+    // Switch Nav Tabs
+    function switchTab(tabKey) {
+      activeTab = tabKey;
+      const tabBtns = document.querySelectorAll('.nav-tab-btn');
+      tabBtns.forEach(btn => {
+        btn.className = "nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer";
+      });
+      const activeBtn = document.getElementById(`tab-btn-${tabKey}`);
+      if (activeBtn) {
+        activeBtn.className = "nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer";
+      }
+      renderCurrentView();
+    }
+
+    // Render Active Content
+    function renderCurrentView() {
+      const container = document.getElementById('portal-content');
+      if (!container) return;
+      const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
+
+      if (activeTab === 'grading') {
+        container.innerHTML = renderGradingTab(sem);
+        recalcScore();
+      } else if (activeTab === 'rotas') {
+        container.innerHTML = renderRotasTab(sem);
+      } else if (activeTab === 'calendar') {
+        container.innerHTML = renderCalendarTab(sem);
+      } else if (activeTab === 'groups') {
+        container.innerHTML = renderGroupsTab(sem);
+      } else if (activeTab === 'rubrics') {
+        container.innerHTML = renderRubricsTab(sem);
+      }
+    }
+
+    // ============================================================================
+    // TAB 1: GRADING & QUALITATIVE EVALUATION FORM
+    // ============================================================================
+    function renderGradingTab(sem) {
+      const allStudents = [...(sem.students.groupA || []), ...(sem.students.groupB || [])];
+      return `
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <!-- Left 2 Cols: Interactive Evaluation Form -->
+          <div class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-5">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div>
+                <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                  ${sem.title} • Continuous &amp; Formative Evaluation
+                </span>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Record Student Grade &amp; Oral Feedback</h2>
+              </div>
+              <span class="text-xs text-slate-500 font-medium">Auto-computes /20</span>
+            </div>
+
+            <!-- Form Grid -->
+            <form id="eval-record-form" onsubmit="handleEvaluationSubmit(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <!-- Milestone -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Evaluation Milestone</label>
+                  <select id="eval-milestone" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                    <option value="FE1">FE1 • 30-Minute Oral Tutorial</option>
+                    <option value="FE2">FE2 • 30-Minute Oral Tutorial</option>
+                    <option value="FE3">FE3 • 30-Minute Oral Tutorial</option>
+                    <option value="Continuous">Weekly Progress Check</option>
+                  </select>
+                </div>
+
+                <!-- Teacher -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Evaluating Teacher</label>
+                  <select id="eval-teacher" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                    ${(sem.faculty || []).map(f => `<option value="${f.name}">${f.name} (${f.track})</option>`).join('')}
+                  </select>
+                </div>
+
+                <!-- Student -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Student Identifier</label>
+                  <select id="eval-student" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                    ${allStudents.map(s => `<option value="${s}">${s}</option>`).join('')}
+                  </select>
+                </div>
+              </div>
+
+              <!-- 4 Scoring Sliders (Out of 5 points each) -->
+              <div class="p-4 bg-slate-50/80 rounded-xl border border-slate-200/80 space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold uppercase tracking-wide text-slate-700">Official 4-Criterion Scoring Rubric</span>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs text-slate-500 font-medium">Computed Mark:</span>
+                    <span id="score-display-pill" class="text-xs font-black px-2.5 py-0.5 rounded-md bg-rose-900 text-white">16.0 / 20</span>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  <!-- Crit 1: Fluency -->
+                  <div class="p-2.5 bg-white rounded-lg border border-slate-200 space-y-1">
+                    <div class="flex justify-between font-bold text-slate-800">
+                      <span>1. Spoken Fluency &amp; Spontaneity</span>
+                      <span id="score-val-1" class="text-rose-800 font-mono">4.0 / 5</span>
+                    </div>
+                    <input type="range" min="0" max="5" step="0.5" value="4.0" id="crit-1" oninput="recalcScore()" class="w-full accent-rose-800 cursor-pointer">
+                    <span class="text-[10px] text-slate-500 block leading-tight">Pacing, spontaneity, zero reading from slides.</span>
+                  </div>
+
+                  <!-- Crit 2: Vocab -->
+                  <div class="p-2.5 bg-white rounded-lg border border-slate-200 space-y-1">
+                    <div class="flex justify-between font-bold text-slate-800">
+                      <span>2. Vocabulary &amp; Technical Precision</span>
+                      <span id="score-val-2" class="text-rose-800 font-mono">4.0 / 5</span>
+                    </div>
+                    <input type="range" min="0" max="5" step="0.5" value="4.0" id="crit-2" oninput="recalcScore()" class="w-full accent-rose-800 cursor-pointer">
+                    <span class="text-[10px] text-slate-500 block leading-tight">Accurate use of session target terminology.</span>
+                  </div>
+
+                  <!-- Crit 3: Grammar -->
+                  <div class="p-2.5 bg-white rounded-lg border border-slate-200 space-y-1">
+                    <div class="flex justify-between font-bold text-slate-800">
+                      <span>3. Grammar &amp; Sentence Control</span>
+                      <span id="score-val-3" class="text-rose-800 font-mono">4.0 / 5</span>
+                    </div>
+                    <input type="range" min="0" max="5" step="0.5" value="4.0" id="crit-3" oninput="recalcScore()" class="w-full accent-rose-800 cursor-pointer">
+                    <span class="text-[10px] text-slate-500 block leading-tight">Past tenses, prepositions, relative clauses.</span>
+                  </div>
+
+                  <!-- Crit 4: Teamwork -->
+                  <div class="p-2.5 bg-white rounded-lg border border-slate-200 space-y-1">
+                    <div class="flex justify-between font-bold text-slate-800">
+                      <span>4. Interaction &amp; 50/50 Balance</span>
+                      <span id="score-val-4" class="text-rose-800 font-mono">4.0 / 5</span>
+                    </div>
+                    <input type="range" min="0" max="5" step="0.5" value="4.0" id="crit-4" oninput="recalcScore()" class="w-full accent-rose-800 cursor-pointer">
+                    <span class="text-[10px] text-slate-500 block leading-tight">Active peer questioning and equal talking time.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Qualitative Comments -->
+              <div class="space-y-3">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Key Strengths Observed</label>
+                  <textarea id="eval-strengths" rows="2" placeholder="e.g. Excellent explanation of 35-min apron turnaround; very spontaneous delivery..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-rose-800"></textarea>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Areas for Development &amp; Action Targets</label>
+                  <textarea id="eval-targets" rows="2" placeholder="e.g. Watch out for 'at' vs 'in' the aerodrome; eliminate filler words..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-rose-800"></textarea>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="flex items-center justify-between pt-2">
+                <span id="submit-status-msg" class="text-xs text-emerald-600 font-semibold"></span>
+                <button type="submit" class="px-5 py-2.5 rounded-xl bg-rose-900 hover:bg-rose-950 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer">
+                  <span>💾</span>
+                  <span>Save Grade &amp; Log to Sheets</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right Col: Live Total Card & Recent Submissions -->
+          <div class="space-y-4">
+            <!-- Executive Score Badge -->
+            <div class="bg-gradient-to-br from-rose-950 to-slate-900 text-white rounded-2xl p-5 shadow-md border border-rose-900/50 flex flex-col justify-between">
+              <span class="text-[10px] font-black uppercase tracking-wider text-rose-300">Live Evaluation Total</span>
+              <div class="my-3 text-center">
+                <div id="live-total-score" class="text-4xl sm:text-5xl font-black tracking-tight text-white font-mono">16.0</div>
+                <div class="text-xs text-rose-200 mt-1 font-semibold">out of 20.0 Points</div>
+              </div>
+              <div id="live-band-badge" class="py-1 px-3 rounded-lg text-center font-bold text-xs bg-blue-500/20 text-blue-300 border border-blue-400/30">
+                Solid B2 Standard (14–17 pts)
+              </div>
+            </div>
+
+            <!-- Recent Local Logs -->
+            <div class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 space-y-3">
+              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <span class="text-xs font-bold text-slate-800">Recent Session Logs</span>
+                <button onclick="clearLocalLogs()" class="text-[10px] font-bold text-rose-700 hover:underline cursor-pointer">Clear</button>
+              </div>
+              <div id="recent-logs-list" class="space-y-2 max-h-60 overflow-y-auto text-xs">
+                <!-- Dynamically rendered -->
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Recalculate Live Score
+    function recalcScore() {
+      const c1 = parseFloat(document.getElementById('crit-1')?.value || 4);
+      const c2 = parseFloat(document.getElementById('crit-2')?.value || 4);
+      const c3 = parseFloat(document.getElementById('crit-3')?.value || 4);
+      const c4 = parseFloat(document.getElementById('crit-4')?.value || 4);
+
+      if (document.getElementById('score-val-1')) document.getElementById('score-val-1').textContent = `${c1.toFixed(1)} / 5`;
+      if (document.getElementById('score-val-2')) document.getElementById('score-val-2').textContent = `${c2.toFixed(1)} / 5`;
+      if (document.getElementById('score-val-3')) document.getElementById('score-val-3').textContent = `${c3.toFixed(1)} / 5`;
+      if (document.getElementById('score-val-4')) document.getElementById('score-val-4').textContent = `${c4.toFixed(1)} / 5`;
+
+      const total = (c1 + c2 + c3 + c4).toFixed(1);
+      const displayPill = document.getElementById('score-display-pill');
+      const liveTotal = document.getElementById('live-total-score');
+      const bandBadge = document.getElementById('live-band-badge');
+
+      if (displayPill) displayPill.textContent = `${total} / 20`;
+      if (liveTotal) liveTotal.textContent = total;
+
+      if (bandBadge) {
+        if (total >= 18) {
+          bandBadge.className = "py-1 px-3 rounded-lg text-center font-bold text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-400/30";
+          bandBadge.textContent = "Exemplary Standard (18–20 pts)";
+        } else if (total >= 14) {
+          bandBadge.className = "py-1 px-3 rounded-lg text-center font-bold text-xs bg-blue-500/20 text-blue-300 border border-blue-400/30";
+          bandBadge.textContent = "Solid B2 Standard (14–17 pts)";
+        } else if (total >= 10) {
+          bandBadge.className = "py-1 px-3 rounded-lg text-center font-bold text-xs bg-amber-500/20 text-amber-300 border border-amber-400/30";
+          bandBadge.textContent = "Developing B1/B2 (10–13 pts)";
+        } else {
+          bandBadge.className = "py-1 px-3 rounded-lg text-center font-bold text-xs bg-rose-500/20 text-rose-300 border border-rose-400/30";
+          bandBadge.textContent = "Needs Improvement (<10 pts)";
+        }
+      }
+    }
+
+    // Handle Form Submit
+    function handleEvaluationSubmit(e) {
+      e.preventDefault();
+      const student = document.getElementById('eval-student').value;
+      const teacher = document.getElementById('eval-teacher').value;
+      const milestone = document.getElementById('eval-milestone').value;
+      const strengths = document.getElementById('eval-strengths').value;
+      const targets = document.getElementById('eval-targets').value;
+      const total = document.getElementById('live-total-score').textContent;
+
+      const newLog = {
+        timestamp: new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
+        sem: activeSemester,
+        student,
+        teacher,
+        milestone,
+        total,
+        strengths,
+        targets
+      };
+
+      // Save locally
+      let logs = [];
+      try { logs = JSON.parse(localStorage.getItem(LOCAL_LOGS_KEY)) || []; } catch(err) {}
+      logs.unshift(newLog);
+      localStorage.setItem(LOCAL_LOGS_KEY, JSON.stringify(logs.slice(0, 20)));
+
+      const msg = document.getElementById('submit-status-msg');
+      if (msg) {
+        msg.textContent = `✓ Logged ${student} (${total}/20) successfully!`;
+        setTimeout(() => msg.textContent = "", 4000);
+      }
+
+      // Reset text inputs
+      document.getElementById('eval-strengths').value = "";
+      document.getElementById('eval-targets').value = "";
+      renderRecentLogs();
+    }
+
+    function renderRecentLogs() {
+      const listEl = document.getElementById('recent-logs-list');
+      if (!listEl) return;
+      let logs = [];
+      try { logs = JSON.parse(localStorage.getItem(LOCAL_LOGS_KEY)) || []; } catch(e) {}
+      if (logs.length === 0) {
+        listEl.innerHTML = `<div class="p-3 text-center text-slate-400 text-xs italic">No evaluation entries logged yet.</div>`;
+        return;
+      }
+      listEl.innerHTML = logs.map(l => `
+        <div class="p-2.5 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-between">
+          <div>
+            <div class="font-bold text-slate-800">${l.student} • S${l.sem} ${l.milestone}</div>
+            <div class="text-[10px] text-slate-500">${l.teacher} • ${l.timestamp}</div>
+          </div>
+          <span class="px-2 py-0.5 rounded text-xs font-mono font-bold bg-rose-100 text-rose-900">${l.total}/20</span>
+        </div>
+      `).join('');
+    }
+
+    function clearLocalLogs() {
+      localStorage.removeItem(LOCAL_LOGS_KEY);
+      renderRecentLogs();
+    }
+
+    // ============================================================================
+    // TAB 2: FE ROTAS
+    // ============================================================================
+    function renderRotasTab(sem) {
+      return `
+        <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-4 print-card">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+            <div>
+              <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                ${sem.title} • FE Tutorial Rotas
+              </span>
+              <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">30-Minute Oral Tutorial Slot Schedules</h2>
+            </div>
+            <button onclick="window.print()" class="no-print self-start px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer">
+              <span>🖨️</span>
+              <span>Print A4 Rota Sheet</span>
+            </button>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                  <th class="p-3">Slot Time</th>
+                  <th class="p-3">Group A Pairs (Tracy / Geri)</th>
+                  <th class="p-3">Group B Pairs (Ally / Penny)</th>
+                  <th class="p-3">Format</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                ${(sem.rotas || []).map(r => `
+                  <tr class="hover:bg-slate-50">
+                    <td class="p-3 font-mono font-bold text-rose-900">${r.slot}</td>
+                    <td class="p-3 font-semibold text-slate-800">${r.groupA}</td>
+                    <td class="p-3 font-semibold text-slate-800">${r.groupB}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200/80 text-slate-700">${r.format}</span></td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+
+    // ============================================================================
+    // TAB 3: PROGRAMME & CALENDAR
+    // ============================================================================
+    function renderCalendarTab(sem) {
+      return `
+        <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-4 print-card">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div>
+              <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                ${sem.title} • Master Schedule
+              </span>
+              <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">15-Week Curriculum &amp; Evaluation Timetable</h2>
+            </div>
+            <span class="text-xs font-mono text-slate-500">${sem.tracks}</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                  <th class="p-2.5">Week</th>
+                  <th class="p-2.5">Date Range</th>
+                  <th class="p-2.5">Session</th>
+                  <th class="p-2.5">General English (AG)</th>
+                  <th class="p-2.5">Technical English (AT / AAS)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                ${(sem.programme || []).map(p => `
+                  <tr class="${p.isFE ? 'bg-amber-50/70 font-semibold' : 'hover:bg-slate-50'}">
+                    <td class="p-2.5 font-mono font-bold text-rose-900">${p.week}</td>
+                    <td class="p-2.5 text-slate-500">${p.date}</td>
+                    <td class="p-2.5"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${p.isFE ? 'bg-amber-400 text-slate-900' : 'bg-slate-200 text-slate-700'}">${p.s}</span></td>
+                    <td class="p-2.5 text-slate-800">${p.titleAG}</td>
+                    <td class="p-2.5 text-slate-800">${p.titleAT}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+
+    // ============================================================================
+    // TAB 4: GROUPS & FACULTY
+    // ============================================================================
+    function renderGroupsTab(sem) {
+      return `
+        <div class="space-y-4">
+          <!-- Faculty Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            ${(sem.faculty || []).map(f => `
+              <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-1">
+                <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase text-white bg-rose-900">${f.track}</span>
+                <h3 class="text-sm font-bold text-slate-900 pt-1">${f.name}</h3>
+                <p class="text-xs text-slate-600">${f.group} • ${f.schedule}</p>
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- Student Rosters -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-2">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 border-b pb-1.5">Group A Roster (${(sem.students.groupA || []).length} Students)</h4>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                ${(sem.students.groupA || []).map(s => `<span class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-slate-100 text-slate-800 border border-slate-200">${s}</span>`).join('')}
+              </div>
+            </div>
+            <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-2">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 border-b pb-1.5">Group B Roster (${(sem.students.groupB || []).length} Students)</h4>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                ${(sem.students.groupB || []).map(s => `<span class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-slate-100 text-slate-800 border border-slate-200">${s}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ============================================================================
+    // TAB 5: RUBRICS
+    // ============================================================================
+    function renderRubricsTab(sem) {
+      return `
+        <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-5">
+          <div class="pb-3 border-b border-slate-100">
+            <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+              ENAC Examination Standards
+            </span>
+            <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Official 20-Point Formative Evaluation Rubric</h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+              <strong class="text-emerald-900 block font-bold mb-1">Exemplary (18–20 pts)</strong>
+              <p class="text-slate-600">Spontaneous, rich vocabulary, high grammar accuracy, active 50/50 teamwork balance, complete portfolio.</p>
+            </div>
+            <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl">
+              <strong class="text-blue-900 block font-bold mb-1">Solid B2 (14–17.5 pts)</strong>
+              <p class="text-slate-600">Clear presentation, accurate target vocabulary, good grammar control, balanced teamwork, updated logs.</p>
+            </div>
+            <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl">
+              <strong class="text-amber-900 block font-bold mb-1">Developing (10–13.5 pts)</strong>
+              <p class="text-slate-600">Frequent hesitation, limited target vocabulary, grammar slips, unequal talking time, incomplete logs.</p>
+            </div>
+            <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl">
+              <strong class="text-rose-900 block font-bold mb-1">Needs Imp. (&lt;10 pts)</strong>
+              <p class="text-slate-600">Direct reading from slides, severe communication barriers, one partner silent, missing portfolio.</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Initialize on DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+      selectSemester(1);
+      renderRecentLogs();
+    });
+  </script>
+</body>
+</html>
