@@ -2185,24 +2185,21 @@
                 </div>
               </div>
 
-              <!-- Form -->
+              <!-- Form: Streamlined Precision Cockpit Layout -->
               <form id="absence-record-form" onsubmit="handleAbsenceSubmit(event)" class="space-y-4">
                 
-                <!-- Tactile Pill Selectors Grid (2 Wide Columns) -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- Row 1: The 3 Fast Selectors (Track • Group • Status) -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
                   
-                  <!-- Box 1: Track / Class Type -->
-                  <div class="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2.5 h-full flex flex-col justify-between shadow-2xs">
-                    <div class="flex items-center justify-between">
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700">1. Track / Subject</label>
-                      <span class="text-[10px] text-slate-400 font-mono">Discipline</span>
-                    </div>
-                    <div id="abs-track-pills" class="flex flex-wrap gap-2">
+                  <!-- 1. Track / Subject -->
+                  <div class="md:col-span-3">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">Track / Subject</label>
+                    <div id="abs-track-pills" class="flex gap-1.5">
                       ${tracksList.map(t => `
                         <button 
                           type="button" 
                           onclick="setAbsTrack('${t}')" 
-                          class="abs-track-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsTrack === t ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}"
+                          class="abs-track-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsTrack === t ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
                         >
                           ${t}
                         </button>
@@ -2210,100 +2207,92 @@
                     </div>
                   </div>
 
-                  <!-- Box 2: Class Group (Group A and Group B) -->
-                  <div class="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2.5 h-full flex flex-col justify-between shadow-2xs">
-                    <div class="flex items-center justify-between">
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700">2. Class Group</label>
-                      <span class="text-[10px] text-slate-400 font-mono">Section</span>
+                  <!-- 2. Class Group -->
+                  <div class="md:col-span-4">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">Class Group</label>
+                    <div id="abs-group-pills" class="flex gap-1.5">
+                      <button type="button" onclick="setAbsGroup('A')" class="abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'A' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}">Group A</button>
+                      <button type="button" onclick="setAbsGroup('B')" class="abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'B' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}">Group B</button>
                     </div>
-                    <div id="abs-group-pills" class="grid grid-cols-2 gap-2">
-                      <button type="button" onclick="setAbsGroup('A')" class="abs-group-btn py-2 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'A' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">Group A</button>
-                      <button type="button" onclick="setAbsGroup('B')" class="abs-group-btn py-2 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'B' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">Group B</button>
+                  </div>
+
+                  <!-- 3. Attendance Status (Cockpit Slate with Status Dots) -->
+                  <div class="md:col-span-5">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">Status</label>
+                    <div class="flex items-center gap-1.5">
+                      <button 
+                        type="button" 
+                        onclick="setAbsStatus('Absent')" 
+                        class="abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${activeAbsStatus === 'Absent' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
+                      >
+                        <span class="w-2 h-2 rounded-full ${activeAbsStatus === 'Absent' ? 'bg-rose-500' : 'bg-slate-300'}"></span>
+                        <span>Absent</span>
+                      </button>
+
+                      <button 
+                        type="button" 
+                        onclick="setAbsStatus('Late')" 
+                        class="abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${activeAbsStatus === 'Late' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
+                      >
+                        <span class="w-2 h-2 rounded-full ${activeAbsStatus === 'Late' ? 'bg-amber-400' : 'bg-slate-300'}"></span>
+                        <span>Late</span>
+                      </button>
+
+                      <div id="abs-late-duration-box" class="${activeAbsStatus === 'Late' ? 'flex' : 'hidden'} items-center shrink-0">
+                        <select id="abs-delay-duration" class="h-10 text-xs font-bold px-2 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800">
+                          <option value="5-10 mins">5–10m</option>
+                          <option value="15-20 mins" selected>15–20m</option>
+                          <option value="30+ mins">30m+</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
 
                 </div>
 
-                <!-- Box 4: Status Selector (Large Tactile Pills) -->
-                <div class="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2.5">
-                  <div class="flex items-center justify-between">
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700">4. Incident Status</label>
-                    <span class="text-[10px] text-slate-400">Attendance State</span>
-                  </div>
-                  <div class="flex flex-wrap items-center gap-3">
-                    <button 
-                      type="button" 
-                      onclick="setAbsStatus('Absent')" 
-                      class="flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border transition-all cursor-pointer ${activeAbsStatus === 'Absent' ? 'bg-rose-700 text-white border-rose-700 shadow-xs' : 'bg-white text-slate-700 border-slate-300 hover:bg-rose-50'}"
-                    >
-                      <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs ${activeAbsStatus === 'Absent' ? 'bg-white/20 text-white' : 'bg-rose-100 text-rose-800'}">✕</span>
-                      <span>Absent</span>
-                    </button>
-
-                    <button 
-                      type="button" 
-                      onclick="setAbsStatus('Late')" 
-                      class="flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border transition-all cursor-pointer ${activeAbsStatus === 'Late' ? 'bg-amber-600 text-white border-amber-600 shadow-xs' : 'bg-white text-slate-700 border-slate-300 hover:bg-amber-50'}"
-                    >
-                      <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs ${activeAbsStatus === 'Late' ? 'bg-white/20 text-white' : 'bg-amber-100 text-amber-900'}">◷</span>
-                      <span>Late</span>
-                    </button>
-
-                    <div id="abs-late-duration-box" class="${activeAbsStatus === 'Late' ? 'flex' : 'hidden'} items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs">
-                      <span class="text-[11px] font-bold text-slate-600">Delay:</span>
-                      <select id="abs-delay-duration" class="text-xs font-bold p-1 rounded-lg border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800">
-                        <option value="5-10 mins">5–10 mins</option>
-                        <option value="15-20 mins" selected>15–20 mins</option>
-                        <option value="30+ mins">30+ mins</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Box 5: Candidate Details, Date, and Notes -->
-                <div class="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-3">
-                  <div class="flex items-center justify-between">
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700">
-                      5. Candidate Details &amp; Date <span class="text-rose-700">*</span>
+                <!-- Row 2: Candidate Details, Date, and Notes (Unified Surface) -->
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 pt-3 border-t border-slate-100">
+                  
+                  <!-- Candidate Selector (filtered by group) -->
+                  <div class="sm:col-span-5">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                      Candidate <span class="text-rose-500">*</span>
                     </label>
-                    <span class="text-[10px] text-slate-400">Required</span>
+                    <select id="abs-student-select" class="w-full h-11 text-xs font-bold px-3 rounded-xl border border-slate-300 bg-slate-50/50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800 focus:outline-none shadow-2xs">
+                      <!-- Populated dynamically via updateAbsStudentOptions() -->
+                    </select>
                   </div>
 
-                  <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
-                    <!-- Student Selector (filtered by group) -->
-                    <div class="sm:col-span-6">
-                      <label class="block text-[11px] font-bold text-slate-600 mb-1 leading-normal">Candidate</label>
-                      <select id="abs-student-select" class="w-full h-11 text-xs font-bold px-3 rounded-xl border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800 focus:outline-none box-border leading-normal shadow-2xs">
-                        <!-- Populated dynamically via updateAbsStudentOptions() -->
-                      </select>
-                    </div>
-
-                    <!-- Date Picker -->
-                    <div class="sm:col-span-3">
-                      <label class="block text-[11px] font-bold text-slate-600 mb-1 leading-normal">Incident Date</label>
-                      <input 
-                        type="date" 
-                        id="abs-incident-date" 
-                        value="${new Date().toISOString().split('T')[0]}" 
-                        class="w-full h-11 text-xs font-bold px-3 rounded-xl border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800 focus:outline-none box-border leading-normal shadow-2xs"
-                      >
-                    </div>
-
-                    <!-- Reason / Notes -->
-                    <div class="sm:col-span-3">
-                      <label class="block text-[11px] font-bold text-slate-600 mb-1 leading-normal">Reason / Notes <span class="text-slate-400 font-normal">(optional)</span></label>
-                      <input 
-                        type="text" 
-                        id="abs-incident-notes" 
-                        placeholder="Transport delay, medical..." 
-                        class="w-full h-11 text-xs px-3 rounded-xl border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800 focus:outline-none box-border leading-normal shadow-2xs"
-                      >
-                    </div>
+                  <!-- Date Picker -->
+                  <div class="sm:col-span-3">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                      Date
+                    </label>
+                    <input 
+                      type="date" 
+                      id="abs-incident-date" 
+                      value="${new Date().toISOString().split('T')[0]}" 
+                      class="w-full h-11 text-xs font-bold px-3 rounded-xl border border-slate-300 bg-slate-50/50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800 focus:outline-none shadow-2xs"
+                    >
                   </div>
+
+                  <!-- Reason / Notes -->
+                  <div class="sm:col-span-4">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                      Reason / Notes <span class="text-slate-400 font-normal lowercase">(optional)</span>
+                    </label>
+                    <input 
+                      type="text" 
+                      id="abs-incident-notes" 
+                      placeholder="e.g., Medical, transport delay..." 
+                      class="w-full h-11 text-xs px-3 rounded-xl border border-slate-300 bg-slate-50/50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800 focus:outline-none shadow-2xs"
+                    >
+                  </div>
+
                 </div>
 
-                <!-- Submit Bar -->
-                <div class="flex items-center justify-between pt-1">
+                <!-- Row 3: Submit & Action Bar -->
+                <div class="flex items-center justify-between pt-3 border-t border-slate-100">
                   <span id="abs-submit-msg" class="text-xs text-emerald-600 font-bold"></span>
                   <div class="flex items-center gap-2">
                     <button 
@@ -2316,10 +2305,10 @@
                     <button 
                       type="submit" 
                       id="btn-submit-absence" 
-                      class="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer"
+                      class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer"
                     >
                       <span>💾</span>
-                      <span>Submit Absence Record</span>
+                      <span>Submit Record</span>
                     </button>
                   </div>
                 </div>
@@ -2491,7 +2480,7 @@
       activeAbsTrack = track;
       document.querySelectorAll('.abs-track-btn').forEach(btn => {
         const isActive = btn.textContent.trim() === track;
-        btn.className = "abs-track-btn flex-1 py-1.5 px-2.5 rounded-lg text-xs font-bold transition-all border " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100');
+        btn.className = "abs-track-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
       });
     }
 
@@ -2500,7 +2489,7 @@
       document.querySelectorAll('.abs-group-btn').forEach(btn => {
         const txt = btn.textContent.trim();
         const isActive = txt.endsWith(group) || txt === group;
-        btn.className = "abs-group-btn py-2 px-3 rounded-xl text-xs font-bold transition-all border " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100');
+        btn.className = "abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
       });
       updateAbsStudentOptions();
     }
@@ -2523,16 +2512,19 @@
     function renderGroupsTabPillStates() {
       const container = document.getElementById('absence-record-form');
       if (!container) return;
-      // Re-render button classes for absent / late
-      const buttons = container.querySelectorAll('button[onclick^="setAbsStatus"]');
+      const buttons = container.querySelectorAll('.abs-status-btn');
       buttons.forEach(btn => {
         const isAbsentBtn = btn.getAttribute('onclick').includes("'Absent'");
         if (isAbsentBtn) {
           const isActive = activeAbsStatus === 'Absent';
-          btn.className = "flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border transition-all cursor-pointer " + (isActive ? 'bg-rose-700 text-white border-rose-700 shadow-xs' : 'bg-white text-slate-700 border-slate-300 hover:bg-rose-50');
+          btn.className = "abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
+          const dot = btn.querySelector('.rounded-full');
+          if (dot) dot.className = "w-2 h-2 rounded-full " + (isActive ? 'bg-rose-500' : 'bg-slate-300');
         } else {
           const isActive = activeAbsStatus === 'Late';
-          btn.className = "flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border transition-all cursor-pointer " + (isActive ? 'bg-amber-600 text-white border-amber-600 shadow-xs' : 'bg-white text-slate-700 border-slate-300 hover:bg-amber-50');
+          btn.className = "abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
+          const dot = btn.querySelector('.rounded-full');
+          if (dot) dot.className = "w-2 h-2 rounded-full " + (isActive ? 'bg-amber-400' : 'bg-slate-300');
         }
       });
     }
