@@ -66,12 +66,24 @@
         box-shadow: none !important;
         background: #ffffff !important;
       }
-      .student-bulletin-card {
+      .student-bulletin-card, .absence-report-card {
         page-break-after: always !important;
         break-after: page !important;
         box-shadow: none !important;
         border: 1px solid #cbd5e1 !important;
         padding: 1.5rem !important;
+      }
+      #grade-report-modal, #absence-report-modal {
+        position: static !important;
+        background: transparent !important;
+        padding: 0 !important;
+        overflow: visible !important;
+      }
+      #grade-report-modal > div, #absence-report-modal > div {
+        max-height: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        overflow: visible !important;
       }
     }
   </style>
@@ -2276,6 +2288,15 @@
                   <div class="flex items-center gap-2 shrink-0">
                     <button 
                       type="button" 
+                      onclick="openAbsenceReportModal()" 
+                      class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 flex items-center gap-1.5 shadow-xs cursor-pointer border border-amber-400"
+                      title="Generate Official ENAC Attendance & Absence Dossier (PDF)"
+                    >
+                      <span>🖨️</span>
+                      <span>Absence Report (PDF)</span>
+                    </button>
+                    <button 
+                      type="button" 
                       onclick="resetAbsenceInputs()" 
                       class="px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 font-bold text-xs transition-all cursor-pointer shadow-2xs"
                     >
@@ -2444,6 +2465,15 @@
               <div class="flex flex-wrap items-center gap-2">
                 <button 
                   type="button" 
+                  onclick="openAbsenceReportModal()" 
+                  class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 flex items-center gap-1.5 shadow-xs cursor-pointer border border-amber-400"
+                  title="Generate Official ENAC Attendance & Absence Dossier (PDF)"
+                >
+                  <span>🖨️</span>
+                  <span>Absence Report (PDF)</span>
+                </button>
+                <button 
+                  type="button" 
                   onclick="copyAbsencesForSheets()" 
                   class="px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-2xs transition-all"
                   title="Copy formatted tab-separated values ready to paste (Cmd+V) directly into Google Sheets"
@@ -2518,6 +2548,57 @@
                   <!-- Dynamically rendered via renderAbsenceLogs() -->
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+        <!-- Absence Report Print / PDF Modal -->
+        <div id="absence-report-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+          <div class="bg-white w-full max-w-5xl rounded-2xl shadow-2xl border border-slate-300 max-h-[92vh] flex flex-col overflow-hidden">
+            <!-- Modal Control Header (hidden in print) -->
+            <div class="no-print p-4 sm:p-5 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-slate-800 text-white flex items-center justify-center font-bold text-lg shadow-inner">
+                  🖨️
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-slate-900">Official Attendance &amp; Absence Dossier</h3>
+                  <p class="text-xs text-slate-500">Official ENAC Registry Transcripts, Absence Tallies &amp; Session Incidents</p>
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center gap-2">
+                <!-- Scope Filter -->
+                <select id="abs-report-candidate-filter" onchange="renderAbsenceReportPrintArea()" class="text-xs font-bold p-2 rounded-xl border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-slate-800">
+                  <option value="all">All Candidates (Full Promotion Dossier)</option>
+                  <option value="grpA">Group A Only</option>
+                  <option value="grpB">Group B Only</option>
+                </select>
+
+                <!-- Incident Type Filter -->
+                <select id="abs-report-type-filter" onchange="renderAbsenceReportPrintArea()" class="text-xs font-bold p-2 rounded-xl border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-slate-800">
+                  <option value="all">All Incidents (Absent &amp; Late)</option>
+                  <option value="Absent">🔴 Absent Only</option>
+                  <option value="Late">🟡 Late Only</option>
+                </select>
+
+                <button type="button" onclick="syncAbsencesFromGoogleSheet(true); setTimeout(renderAbsenceReportPrintArea, 1200);" class="px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all flex items-center gap-1.5 cursor-pointer" title="Fetch fresh records from Google Sheet">
+                  <span>🔄</span>
+                  <span>Sync Cloud</span>
+                </button>
+                <button type="button" onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 shadow-xs transition-all flex items-center gap-1.5 cursor-pointer border border-amber-400">
+                  <span>🖨️</span>
+                  <span>Print / Save as PDF</span>
+                </button>
+                <button type="button" onclick="closeAbsenceReportModal()" class="px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-600 transition-all cursor-pointer">
+                  ✕ Close
+                </button>
+              </div>
+            </div>
+
+            <!-- Scrollable Report View / Print Container -->
+            <div id="absence-report-scroll-container" class="p-4 sm:p-8 overflow-y-auto flex-1 bg-slate-100/60">
+              <div id="absence-report-print-area" class="max-w-4xl mx-auto space-y-6">
+                <!-- Injected via renderAbsenceReportPrintArea() -->
+              </div>
             </div>
           </div>
         </div>
@@ -4036,6 +4117,263 @@ const PORTFOLIO_DATA_S1 = {
     document.addEventListener('DOMContentLoaded', () => {
       selectSemester(1);
     });
+  
+    // ============================================================================
+    // ABSENCE DOSSIER & ATTENDANCE REPORT (PRINT / PDF ENGINE)
+    // ============================================================================
+
+    function openAbsenceReportModal() {
+      const modal = document.getElementById("absence-report-modal");
+      if (!modal) return;
+      modal.classList.remove("hidden");
+
+      // Populate candidate selector with groups and candidates
+      const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
+      const filterSelect = document.getElementById("abs-report-candidate-filter");
+      if (filterSelect) {
+        let options = '<option value="all">All Candidates (Full Promotion Dossier)</option>';
+        options += '<option value="grpA">Group A (All Students)</option>';
+        options += '<option value="grpB">Group B (All Students)</option>';
+
+        Object.entries(sem.students || {}).forEach(([grpKey, sIds]) => {
+          const grpLabel = grpKey.includes("A") ? "Group A" : (grpKey.includes("B") ? "Group B" : "Group C");
+          options += '<optgroup label="' + grpLabel + ' (' + sIds.length + ' students)">';
+          sIds.forEach(sId => {
+            options += '<option value="' + sId + '">' + formatStudentName(sId) + ' (' + grpLabel + ')</option>';
+          });
+          options += '</optgroup>';
+        });
+        filterSelect.innerHTML = options;
+      }
+
+      renderAbsenceReportPrintArea();
+    }
+
+    function closeAbsenceReportModal() {
+      const modal = document.getElementById("absence-report-modal");
+      if (modal) modal.classList.add("hidden");
+    }
+
+    function renderAbsenceReportPrintArea() {
+      const container = document.getElementById("absence-report-print-area");
+      if (!container) return;
+
+      const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
+      const candidateFilter = document.getElementById("abs-report-candidate-filter")?.value || "all";
+      const typeFilter = document.getElementById("abs-report-type-filter")?.value || "all";
+
+      let allLogs = [];
+      try { allLogs = JSON.parse(localStorage.getItem(LOCAL_ABSENCES_KEY)) || []; } catch(e) {}
+
+      // Collect eligible candidates
+      const allStudents = [];
+      (sem.students?.groupA || []).forEach(s => allStudents.push({ id: s, name: formatStudentName(s), group: "Group A" }));
+      (sem.students?.groupB || []).forEach(s => allStudents.push({ id: s, name: formatStudentName(s), group: "Group B" }));
+      (sem.students?.groupC || []).forEach(s => allStudents.push({ id: s, name: formatStudentName(s), group: "Group C" }));
+
+      let displayedStudents = allStudents;
+      if (candidateFilter === "grpA") {
+        displayedStudents = allStudents.filter(s => s.group === "Group A");
+      } else if (candidateFilter === "grpB") {
+        displayedStudents = allStudents.filter(s => s.group === "Group B");
+      } else if (candidateFilter !== "all") {
+        displayedStudents = allStudents.filter(s => s.id === candidateFilter);
+      }
+
+      // Filter logs
+      const displayedIds = new Set(displayedStudents.map(s => s.id));
+      const displayedNames = new Set(displayedStudents.map(s => s.name.toLowerCase()));
+
+      let filteredLogs = allLogs.filter(l => {
+        const studentId = l.studentId || l.student;
+        const studentName = (l.studentName || l.student || "").toLowerCase();
+        const matchesStudent = (studentId && displayedIds.has(studentId)) || (studentName && displayedNames.has(studentName));
+        if (!matchesStudent && candidateFilter !== "all") return false;
+        if (typeFilter !== "all" && l.status !== typeFilter) return false;
+        return true;
+      });
+
+      // Compute statistics
+      let totalAbsences = 0;
+      let totalLates = 0;
+
+      filteredLogs.forEach(l => {
+        if (l.status === "Absent") totalAbsences++;
+        else if (l.status === "Late") totalLates++;
+      });
+
+      const todayFormatted = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+      const scopeLabel = candidateFilter === "all" ? "Full Promotion (" + displayedStudents.length + " students)" : (candidateFilter === "grpA" ? "Group A" : (candidateFilter === "grpB" ? "Group B" : displayedStudents[0]?.name || "Individual"));
+
+      container.innerHTML = `
+        <div class="absence-report-card bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+          <!-- Official Institutional Transcript Header -->
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between pb-4 border-b-2 border-slate-800 gap-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-black uppercase tracking-widest text-white bg-slate-800 px-2 py-0.5 rounded">
+                  ENAC • DÉPARTEMENT LH / LAN
+                </span>
+                <span class="text-[11px] font-mono text-slate-500 font-bold">${sem.title} • ${sem.tracks}</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-black text-slate-950 tracking-tight pt-1">
+                Official Attendance &amp; Absence Dossier
+              </h2>
+              <div class="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-700">
+                <span>Promotion: <strong>GSEA26A</strong></span>
+                <span>•</span>
+                <span>Scope: <strong>${scopeLabel}</strong></span>
+                <span>•</span>
+                <span>Certified Date: <strong>${todayFormatted}</strong></span>
+              </div>
+            </div>
+
+            <!-- Executive Summary Metrics -->
+            <div class="shrink-0 flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <div class="text-center px-2">
+                <span class="text-[10px] uppercase font-bold text-slate-500 block">Candidates</span>
+                <span class="text-xl font-black text-slate-900">${displayedStudents.length}</span>
+              </div>
+              <div class="h-8 w-px bg-slate-200"></div>
+              <div class="text-center px-2">
+                <span class="text-[10px] uppercase font-bold text-rose-600 block">Absences</span>
+                <span class="text-xl font-black text-rose-600">${totalAbsences}</span>
+              </div>
+              <div class="h-8 w-px bg-slate-200"></div>
+              <div class="text-center px-2">
+                <span class="text-[10px] uppercase font-bold text-amber-600 block">Latenesses</span>
+                <span class="text-xl font-black text-amber-600">${totalLates}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Promotion Candidate Standing Table -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
+              <h4 class="text-xs font-black uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                <span>👥</span>
+                <span>Candidate Attendance Standings</span>
+              </h4>
+              <span class="text-xs text-slate-500 font-medium">${displayedStudents.length} candidates listed</span>
+            </div>
+            <div class="overflow-x-auto rounded-xl border border-slate-200">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200 uppercase tracking-wider text-[10px]">
+                    <th class="py-2.5 px-3">Student Name</th>
+                    <th class="py-2.5 px-3">Class Group</th>
+                    <th class="py-2.5 px-3 text-center">Absences</th>
+                    <th class="py-2.5 px-3 text-center">Latenesses</th>
+                    <th class="py-2.5 px-3 text-right">Attendance Standing</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 bg-white">
+                  ${displayedStudents.map(st => {
+                    const stLogs = allLogs.filter(l => {
+                      const lId = l.studentId || l.student;
+                      const lName = (l.studentName || l.student || "").toLowerCase();
+                      return lId === st.id || lName === st.name.toLowerCase();
+                    });
+                    const absCount = stLogs.filter(l => l.status === "Absent").length;
+                    const lateCount = stLogs.filter(l => l.status === "Late").length;
+                    let standingBadge = '<span class="px-2 py-0.5 rounded font-bold text-[10px] bg-emerald-100 text-emerald-800 border border-emerald-200">✓ 100% Present</span>';
+                    if (absCount > 2) {
+                      standingBadge = '<span class="px-2 py-0.5 rounded font-bold text-[10px] bg-rose-100 text-rose-800 border border-rose-200">⚠️ Review Required</span>';
+                    } else if (absCount > 0 || lateCount > 1) {
+                      standingBadge = '<span class="px-2 py-0.5 rounded font-bold text-[10px] bg-amber-100 text-amber-800 border border-amber-200">Satisfactory</span>';
+                    }
+
+                    return `
+                      <tr class="hover:bg-slate-50/60 transition-colors">
+                        <td class="py-2.5 px-3 font-bold text-slate-900">${st.name}</td>
+                        <td class="py-2.5 px-3 text-slate-600 font-medium">${st.group}</td>
+                        <td class="py-2.5 px-3 text-center font-mono font-bold ${absCount > 0 ? 'text-rose-600' : 'text-slate-400'}">${absCount}</td>
+                        <td class="py-2.5 px-3 text-center font-mono font-bold ${lateCount > 0 ? 'text-amber-600' : 'text-slate-400'}">${lateCount}</td>
+                        <td class="py-2.5 px-3 text-right">${standingBadge}</td>
+                      </tr>
+                    `;
+                  }).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Chronological Incidents Log Table -->
+          <div class="space-y-3 pt-2">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
+              <h4 class="text-xs font-black uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                <span>📋</span>
+                <span>Chronological Incident Records</span>
+              </h4>
+              <span class="text-xs text-slate-500 font-medium">${filteredLogs.length} incident record(s)</span>
+            </div>
+
+            ${filteredLogs.length === 0 ? `
+              <div class="p-6 text-center text-slate-500 bg-slate-50 rounded-xl border border-dashed border-slate-200 text-xs">
+                No absence or lateness records found for the selected scope.
+              </div>
+            ` : `
+              <div class="overflow-x-auto rounded-xl border border-slate-200">
+                <table class="w-full text-left text-xs border-collapse">
+                  <thead>
+                    <tr class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200 uppercase tracking-wider text-[10px]">
+                      <th class="py-2.5 px-3">Date</th>
+                      <th class="py-2.5 px-3">Candidate</th>
+                      <th class="py-2.5 px-3">Track</th>
+                      <th class="py-2.5 px-3 text-center">Status</th>
+                      <th class="py-2.5 px-3">Reason / Notes</th>
+                      <th class="py-2.5 px-3 text-right">Source</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100 bg-white font-mono text-[11px]">
+                    ${filteredLogs.map(l => {
+                      const isAbsent = l.status === "Absent";
+                      const statusBadge = isAbsent 
+                        ? '<span class="px-2 py-0.5 rounded font-bold bg-rose-100 text-rose-800 border border-rose-200">🔴 Absent</span>'
+                        : '<span class="px-2 py-0.5 rounded font-bold bg-amber-100 text-amber-800 border border-amber-200">🟡 Late</span>';
+                      const sourceBadge = l.source === "sheet"
+                        ? '<span class="text-[10px] text-emerald-700 font-bold font-sans">Verified Google Sheet</span>'
+                        : '<span class="text-[10px] text-slate-500 font-bold font-sans">Local Record</span>';
+                      const stName = formatStudentName(l.studentName || l.student || "");
+
+                      return `
+                        <tr class="hover:bg-slate-50/60 transition-colors">
+                          <td class="py-2.5 px-3 font-bold text-slate-900">${l.date || '--'}</td>
+                          <td class="py-2.5 px-3 font-sans font-bold text-slate-900">${stName} <span class="text-slate-500 text-[10px] font-normal">(${l.group || 'Group A'})</span></td>
+                          <td class="py-2.5 px-3 text-slate-700 font-bold">${l.classType || l.track || 'AT'}</td>
+                          <td class="py-2.5 px-3 text-center">${statusBadge}</td>
+                          <td class="py-2.5 px-3 font-sans text-slate-600 italic">${l.notes || 'No notes provided'}</td>
+                          <td class="py-2.5 px-3 text-right">${sourceBadge}</td>
+                        </tr>
+                      `;
+                    }).join('')}
+                  </tbody>
+                </table>
+              </div>
+            `}
+          </div>
+
+          <!-- Official Certification Footer -->
+          <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-slate-600">
+            <div>
+              <p class="font-bold text-slate-800">École Nationale de l'Aviation Civile</p>
+              <p class="text-[11px] text-slate-500">Document generated in accordance with ENAC Academic Regulations (Règlement des Études).</p>
+            </div>
+            <div class="flex items-center gap-6">
+              <div class="text-center">
+                <div class="h-10 w-36 border-b border-dashed border-slate-400"></div>
+                <span class="text-[10px] text-slate-500 uppercase tracking-wider">Examiner Signature</span>
+              </div>
+              <div class="text-center">
+                <div class="h-10 w-36 border-b border-dashed border-slate-400"></div>
+                <span class="text-[10px] text-slate-500 uppercase tracking-wider">Course Director</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
   </script>
 </body>
 </html>
