@@ -124,77 +124,89 @@
   <div class="w-full max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-6 flex-1 flex flex-col space-y-4">
 
     <!-- Executive Header -->
-    <header id="portal-header" class="textured-surface text-white rounded-2xl p-4 sm:p-6 shadow-lg border border-rose-950/40 relative overflow-hidden shrink-0">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div class="flex items-center space-x-3 sm:space-x-4">
-          <div class="w-12 h-12 rounded-xl bg-black/25 border border-white/20 flex items-center justify-center shrink-0 shadow-inner">
-            <span class="text-2xl">🏛️</span>
+    <header id="portal-header" class="textured-surface text-white rounded-2xl p-3 sm:p-6 shadow-lg border border-rose-950/40 relative overflow-hidden shrink-0">
+      <!-- Top Brand Row: Logo, Title, and ENAC Crest -->
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center space-x-2.5 sm:space-x-4 min-w-0">
+          <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-black/25 border border-white/20 flex items-center justify-center shrink-0 shadow-inner">
+            <span class="text-lg sm:text-2xl">🏛️</span>
           </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-900 shadow-xs">
+          <div class="min-w-0">
+            <div class="flex items-center gap-1.5 sm:gap-2">
+              <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-400 text-slate-900 shadow-xs shrink-0">
                 TEACHERS HUB
               </span>
-              <span class="text-xs text-rose-200 font-mono">ENAC • DÉPARTEMENT LH / LAN</span>
+              <span class="text-[10px] sm:text-xs text-rose-200 font-mono truncate">ENAC • DÉPARTEMENT LH / LAN</span>
             </div>
-            <h1 class="text-base sm:text-xl font-bold tracking-tight text-white mt-0.5">
-              ENAC GSEA Multi-Semester Teachers Hub
+            <h1 class="text-sm sm:text-xl font-bold tracking-tight text-white mt-0.5 truncate">
+              ENAC GSEA Teachers Hub
             </h1>
-            <p class="text-[11px] sm:text-xs text-rose-100/90 mt-0.5">
+            <p class="hidden sm:block text-[11px] sm:text-xs text-rose-100/90 mt-0.5">
               Academic Administration, Continuous Evaluation, Grading Records &amp; FE Rotas
             </p>
           </div>
         </div>
 
         <!-- Right Side: Clock & ENAC Logo -->
-        <div class="flex items-center justify-between sm:justify-end gap-4 shrink-0">
+        <div class="flex items-center gap-3 shrink-0">
           <div class="text-right hidden sm:block">
             <div id="live-clock" class="text-xs font-mono font-bold text-white tracking-wider">--:--:--</div>
             <div id="live-date" class="text-[10px] text-rose-200">--</div>
           </div>
           <a href="https://www.enac.fr" target="_blank" rel="noopener noreferrer" class="opacity-90 hover:opacity-100 transition-opacity" title="Visit ENAC Website">
-            <img src="images/enac_logo_white.png" alt="ENAC" class="h-6 sm:h-7 w-auto object-contain">
+            <img src="images/enac_logo_white.png" alt="ENAC" class="h-5 sm:h-7 w-auto object-contain">
           </a>
         </div>
       </div>
 
       <!-- Master Semester Selection Ribbon (S1 • S2 • S3 • S4) -->
-      <div class="mt-5 pt-4 border-t border-white/15">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-          <span class="text-[11px] font-bold text-rose-200 uppercase tracking-wider flex items-center gap-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-            Select Curriculum Semester:
-          </span>
+      <div class="mt-3 sm:mt-5 pt-2.5 sm:pt-4 border-t border-white/15">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-2.5">
+          <div class="flex items-center justify-between sm:justify-start gap-1.5">
+            <span class="text-[10px] sm:text-[11px] font-bold text-rose-200 uppercase tracking-wider flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+              <span class="hidden sm:inline">Select Curriculum Semester:</span>
+              <span class="sm:hidden">Semester:</span>
+            </span>
+            <!-- Mobile compact track badge -->
+            <span class="sm:hidden text-[9px] font-mono font-bold px-2 py-0.5 rounded-md bg-white/15 text-white/90">
+              AG + AT (Active)
+            </span>
+          </div>
 
           <!-- 4-Semester Selection Pills -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full sm:w-auto" id="semester-selector-group">
-            <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-rose-950 border-amber-400 shadow-md">
-              <span class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-                <span>S1 • Semester 1</span>
+          <div class="grid grid-cols-4 gap-1.5 sm:gap-2 w-full sm:w-auto" id="semester-selector-group">
+            <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-rose-950 border-amber-400 shadow-md">
+              <span class="flex items-center gap-1 sm:gap-1.5">
+                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-500"></span>
+                <span class="sm:hidden">S1</span>
+                <span class="hidden sm:inline">S1 • Semester 1</span>
               </span>
-              <span class="text-[10px] opacity-75 font-mono ml-1.5">AG+AT</span>
+              <span class="hidden sm:inline text-[10px] opacity-75 font-mono ml-1.5">AG+AT</span>
             </button>
-            <button type="button" disabled id="sem-btn-2" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed" title="Semester 2 (Upcoming)">
-              <span class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-slate-600"></span>
-                <span>S2 • Semester 2</span>
+            <button type="button" disabled id="sem-btn-2" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed" title="Semester 2 (Upcoming)">
+              <span class="flex items-center gap-1 sm:gap-1.5">
+                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-600"></span>
+                <span class="sm:hidden">S2</span>
+                <span class="hidden sm:inline">S2 • Semester 2</span>
               </span>
-              <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
+              <span class="hidden sm:inline text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
             </button>
-            <button type="button" disabled id="sem-btn-3" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed" title="Semester 3 (Upcoming)">
-              <span class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-slate-600"></span>
-                <span>S3 • Semester 3</span>
+            <button type="button" disabled id="sem-btn-3" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed" title="Semester 3 (Upcoming)">
+              <span class="flex items-center gap-1 sm:gap-1.5">
+                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-600"></span>
+                <span class="sm:hidden">S3</span>
+                <span class="hidden sm:inline">S3 • Semester 3</span>
               </span>
-              <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
+              <span class="hidden sm:inline text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
             </button>
-            <button type="button" disabled id="sem-btn-4" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed" title="Semester 4 (Upcoming)">
-              <span class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-slate-600"></span>
-                <span>S4 • Semester 4</span>
+            <button type="button" disabled id="sem-btn-4" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed" title="Semester 4 (Upcoming)">
+              <span class="flex items-center gap-1 sm:gap-1.5">
+                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-600"></span>
+                <span class="sm:hidden">S4</span>
+                <span class="hidden sm:inline">S4 • Semester 4</span>
               </span>
-              <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
+              <span class="hidden sm:inline text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
             </button>
           </div>
         </div>
@@ -202,28 +214,28 @@
     </header>
 
     <!-- Sub-Navigation Tab Strip -->
-    <nav class="flex items-center gap-1 overflow-x-auto pb-1 text-xs select-none border-b border-slate-200" id="main-nav-tabs">
-      <button onclick="switchTab('overview')" id="tab-btn-overview" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer">
+    <nav class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs select-none border-b border-slate-200" id="main-nav-tabs" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
+      <button onclick="switchTab('overview')" id="tab-btn-overview" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer">
         <span>🏠</span>
         <span>Overview</span>
       </button>
-      <button onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+      <button onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
         <span>📅</span>
         <span>Programme</span>
       </button>
-      <button onclick="switchTab('rotas')" id="tab-btn-rotas" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+      <button onclick="switchTab('rotas')" id="tab-btn-rotas" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
         <span>⏱️</span>
         <span>Tutorial Rotas</span>
       </button>
-      <button onclick="switchTab('groups')" id="tab-btn-groups" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+      <button onclick="switchTab('groups')" id="tab-btn-groups" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
         <span>👥</span>
-        <span>Groups and Absences</span>
+        <span>Groups &amp; Absences</span>
       </button>
-      <button onclick="switchTab('evaluations')" id="tab-btn-evaluations" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+      <button onclick="switchTab('evaluations')" id="tab-btn-evaluations" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
         <span>📝</span>
         <span>Evaluation</span>
       </button>
-      <button onclick="switchTab('portfolio')" id="tab-btn-portfolio" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+      <button onclick="switchTab('portfolio')" id="tab-btn-portfolio" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
         <span>📊</span>
         <span>Portfolio</span>
       </button>
@@ -665,17 +677,17 @@
         const btn = document.getElementById(`sem-btn-${s}`);
         if (!btn) continue;
         if (s === num) {
-          btn.className = "sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-rose-950 border-amber-400 shadow-md";
-          const dot = btn.querySelector('.w-2');
-          if (dot) dot.className = "w-2 h-2 rounded-full bg-amber-500";
+          btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-rose-950 border-amber-400 shadow-md";
+          const dot = btn.querySelector('.rounded-full');
+          if (dot) dot.className = "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-500";
         } else if (btn.hasAttribute('disabled')) {
-          btn.className = "sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed";
-          const dot = btn.querySelector('.w-2');
-          if (dot) dot.className = "w-2 h-2 rounded-full bg-slate-600";
+          btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed";
+          const dot = btn.querySelector('.rounded-full');
+          if (dot) dot.className = "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-600";
         } else {
-          btn.className = "sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-rose-950/50 hover:bg-rose-900/60 text-white/90 border-white/15";
-          const dot = btn.querySelector('.w-2');
-          if (dot) dot.className = "w-2 h-2 rounded-full bg-slate-400";
+          btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-rose-950/50 hover:bg-rose-900/60 text-white/90 border-white/15";
+          const dot = btn.querySelector('.rounded-full');
+          if (dot) dot.className = "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-400";
         }
       }
       renderCurrentView();
@@ -686,11 +698,11 @@
       activeTab = tabKey;
       const tabBtns = document.querySelectorAll('.nav-tab-btn');
       tabBtns.forEach(btn => {
-        btn.className = "nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer";
+        btn.className = "nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer";
       });
       const activeBtn = document.getElementById(`tab-btn-${tabKey}`);
       if (activeBtn) {
-        activeBtn.className = "nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer";
+        activeBtn.className = "nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer";
       }
       renderCurrentView();
     }
