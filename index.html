@@ -753,7 +753,7 @@
               <div class="lg:col-span-7 p-5 sm:p-7 flex flex-col justify-between space-y-4">
                 <div class="space-y-2">
                   <div class="flex flex-wrap items-center gap-2">
-                    <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded bg-slate-900 text-white shadow-2xs">
+                    <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded bg-slate-800 text-white shadow-2xs">
                       Teachers Dashboard
                     </span>
                     <span class="text-xs text-slate-500 font-mono font-medium">
@@ -806,7 +806,7 @@
             <button 
               type="button" 
               onclick="switchTab('calendar')" 
-              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-900 hover:shadow-xs transition-all text-left cursor-pointer group"
+              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-800 hover:shadow-xs transition-all text-left cursor-pointer group"
             >
               <span class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
                 📅
@@ -822,7 +822,7 @@
             <button 
               type="button" 
               onclick="switchTab('rotas')" 
-              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-900 hover:shadow-xs transition-all text-left cursor-pointer group"
+              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-800 hover:shadow-xs transition-all text-left cursor-pointer group"
             >
               <span class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
                 ⏱️
@@ -838,7 +838,7 @@
             <button 
               type="button" 
               onclick="switchTab('groups')" 
-              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-900 hover:shadow-xs transition-all text-left cursor-pointer group"
+              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-800 hover:shadow-xs transition-all text-left cursor-pointer group"
             >
               <span class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
                 👥
@@ -854,7 +854,7 @@
             <button 
               type="button" 
               onclick="switchTab('evaluations')" 
-              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-900 hover:shadow-xs transition-all text-left cursor-pointer group"
+              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-800 hover:shadow-xs transition-all text-left cursor-pointer group"
             >
               <span class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
                 📝
@@ -870,7 +870,7 @@
             <button 
               type="button" 
               onclick="switchTab('portfolio')" 
-              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-900 hover:shadow-xs transition-all text-left cursor-pointer group"
+              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-800 hover:shadow-xs transition-all text-left cursor-pointer group"
             >
               <span class="w-8 h-8 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
                 📊
@@ -921,13 +921,13 @@
                   ⚪ Local Storage Mode
                 </span>
                 <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Evaluation Total:</span>
-                <span id="score-display-pill" class="text-base font-black px-3.5 py-1 rounded-xl bg-slate-900 text-white font-mono shadow-2xs">
+                <span id="score-display-pill" class="text-base font-black px-3.5 py-1 rounded-xl bg-slate-800 text-white font-mono shadow-2xs border border-slate-700/60">
                   15.5 / 20.0
                 </span>
                 <button 
                   type="button" 
                   onclick="openStudentGradeReportModal()" 
-                  class="ml-1 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-900 text-white hover:bg-black flex items-center gap-1.5 shadow-2xs cursor-pointer"
+                  class="ml-1 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-white flex items-center gap-1.5 shadow-2xs cursor-pointer border border-slate-700/50"
                   title="Generate Official Student Grade Report / PDF Transcript"
                 >
                   <span>🖨️</span>
@@ -957,7 +957,7 @@
                 <button 
                   type="button" 
                   onclick="authenticateTeacherSession()" 
-                  class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-black text-white font-bold transition-all cursor-pointer shadow-2xs"
+                  class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold transition-all cursor-pointer shadow-2xs"
                 >
                   Sign In
                 </button>
@@ -1150,7 +1150,7 @@
               <!-- Submit Button Row -->
               <div class="flex items-center justify-between pt-2">
                 <span id="submit-status-msg" class="text-xs text-emerald-600 font-bold"></span>
-                <button type="submit" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer">
+                <button type="submit" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer">
                   <span>💾</span>
                   <span>Save Evaluation Record</span>
                 </button>
@@ -1165,7 +1165,7 @@
             <!-- Modal Control Header (hidden in print) -->
             <div class="no-print p-4 sm:p-5 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-lg shadow-inner">
+                <div class="w-10 h-10 rounded-xl bg-slate-800 text-white flex items-center justify-center font-bold text-lg shadow-inner">
                   🖨️
                 </div>
                 <div>
@@ -1183,7 +1183,7 @@
                   <span>🔄</span>
                   <span>Sync Cloud</span>
                 </button>
-                <button type="button" onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs transition-all flex items-center gap-1.5 cursor-pointer">
+                <button type="button" onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white shadow-xs transition-all flex items-center gap-1.5 cursor-pointer">
                   <span>🖨️</span>
                   <span>Print / Save as PDF</span>
                 </button>
@@ -1739,7 +1739,7 @@
             <div class="flex flex-col sm:flex-row sm:items-start justify-between pb-4 border-b-2 border-slate-800 gap-4">
               <div class="space-y-1">
                 <div class="flex items-center gap-2">
-                  <span class="text-[10px] font-black uppercase tracking-widest text-white bg-slate-900 px-2 py-0.5 rounded">
+                  <span class="text-[10px] font-black uppercase tracking-widest text-white bg-slate-800 px-2 py-0.5 rounded">
                     ENAC • DÉPARTEMENT LH / LAN
                   </span>
                   <span class="text-[11px] font-mono text-slate-500 font-bold">${sem.title} • ${sem.tracks}</span>
@@ -1946,10 +1946,10 @@
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Track:</span>
               <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-white">
-                <button type="button" onclick="setRotaTrack('ag')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'ag' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                <button type="button" onclick="setRotaTrack('ag')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'ag' ? 'bg-slate-800 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
                   🗣️ General English (AG • LV101E)
                 </button>
-                <button type="button" onclick="setRotaTrack('at')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'at' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                <button type="button" onclick="setRotaTrack('at')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'at' ? 'bg-slate-800 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
                   ✈️ Technical English (AT • LV121E)
                 </button>
               </div>
@@ -2074,10 +2074,10 @@
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Course Track:</span>
               <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-white">
-                <button type="button" onclick="setCalendarTrack('ag')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'ag' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                <button type="button" onclick="setCalendarTrack('ag')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'ag' ? 'bg-slate-800 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
                   🗣️ General English (AG • LV101E)
                 </button>
-                <button type="button" onclick="setCalendarTrack('at')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'at' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                <button type="button" onclick="setCalendarTrack('at')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'at' ? 'bg-slate-800 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
                   ✈️ Technical English (AT • LV121E)
                 </button>
               </div>
@@ -2202,7 +2202,7 @@
                         <button 
                           type="button" 
                           onclick="setAbsTrack('${t}')" 
-                          class="abs-track-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsTrack === t ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
+                          class="abs-track-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsTrack === t ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
                         >
                           ${t}
                         </button>
@@ -2214,8 +2214,8 @@
                   <div class="md:col-span-4">
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">Class Group</label>
                     <div id="abs-group-pills" class="flex gap-1.5">
-                      <button type="button" onclick="setAbsGroup('A')" class="abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'A' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}">Group A</button>
-                      <button type="button" onclick="setAbsGroup('B')" class="abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'B' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}">Group B</button>
+                      <button type="button" onclick="setAbsGroup('A')" class="abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'A' ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}">Group A</button>
+                      <button type="button" onclick="setAbsGroup('B')" class="abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'B' ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}">Group B</button>
                     </div>
                   </div>
 
@@ -2226,7 +2226,7 @@
                       <button 
                         type="button" 
                         onclick="setAbsStatus('Absent')" 
-                        class="abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${activeAbsStatus === 'Absent' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
+                        class="abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${activeAbsStatus === 'Absent' ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
                       >
                         <span class="w-2 h-2 rounded-full ${activeAbsStatus === 'Absent' ? 'bg-rose-500' : 'bg-slate-300'}"></span>
                         <span>Absent</span>
@@ -2235,7 +2235,7 @@
                       <button 
                         type="button" 
                         onclick="setAbsStatus('Late')" 
-                        class="abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${activeAbsStatus === 'Late' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
+                        class="abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${activeAbsStatus === 'Late' ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
                       >
                         <span class="w-2 h-2 rounded-full ${activeAbsStatus === 'Late' ? 'bg-amber-400' : 'bg-slate-300'}"></span>
                         <span>Late</span>
@@ -2308,7 +2308,7 @@
                     <button 
                       type="submit" 
                       id="btn-submit-absence" 
-                      class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer"
+                      class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer"
                     >
                       <span>💾</span>
                       <span>Submit Record</span>
@@ -2474,7 +2474,7 @@
       activeAbsPromo = promo;
       document.querySelectorAll('.abs-promo-btn').forEach(btn => {
         const isActive = btn.textContent.trim() === promo;
-        btn.className = "abs-promo-btn px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all border " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100');
+        btn.className = "abs-promo-btn px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all border " + (isActive ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100');
       });
       updateAbsStudentOptions();
     }
@@ -2483,7 +2483,7 @@
       activeAbsTrack = track;
       document.querySelectorAll('.abs-track-btn').forEach(btn => {
         const isActive = btn.textContent.trim() === track;
-        btn.className = "abs-track-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
+        btn.className = "abs-track-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border " + (isActive ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
       });
     }
 
@@ -2492,7 +2492,7 @@
       document.querySelectorAll('.abs-group-btn').forEach(btn => {
         const txt = btn.textContent.trim();
         const isActive = txt.endsWith(group) || txt === group;
-        btn.className = "abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
+        btn.className = "abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border " + (isActive ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
       });
       updateAbsStudentOptions();
     }
@@ -2520,12 +2520,12 @@
         const isAbsentBtn = btn.getAttribute('onclick').includes("'Absent'");
         if (isAbsentBtn) {
           const isActive = activeAbsStatus === 'Absent';
-          btn.className = "abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
+          btn.className = "abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer " + (isActive ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
           const dot = btn.querySelector('.rounded-full');
           if (dot) dot.className = "w-2 h-2 rounded-full " + (isActive ? 'bg-rose-500' : 'bg-slate-300');
         } else {
           const isActive = activeAbsStatus === 'Late';
-          btn.className = "abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
+          btn.className = "abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer " + (isActive ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
           const dot = btn.querySelector('.rounded-full');
           if (dot) dot.className = "w-2 h-2 rounded-full " + (isActive ? 'bg-amber-400' : 'bg-slate-300');
         }
@@ -3847,7 +3847,7 @@ const PORTFOLIO_DATA_S1 = {
                 <button 
                   type="button" 
                   onclick="setMatrixGroupFilter('${grp}')" 
-                  class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activeMatrixGroupFilter === grp ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
+                  class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activeMatrixGroupFilter === grp ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
                 >
                   ${grp}
                 </button>
@@ -3860,21 +3860,21 @@ const PORTFOLIO_DATA_S1 = {
               <button 
                 type="button" 
                 onclick="setPortfolioModule(1)" 
-                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activePortfolioModule === 1 ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
+                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activePortfolioModule === 1 ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
               >
                 Module 1 (FE1)
               </button>
               <button 
                 type="button" 
                 onclick="setPortfolioModule(2)" 
-                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activePortfolioModule === 2 ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
+                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activePortfolioModule === 2 ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
               >
                 Module 2 (FE2)
               </button>
               <button 
                 type="button" 
                 onclick="setPortfolioModule(3)" 
-                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activePortfolioModule === 3 ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
+                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activePortfolioModule === 3 ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
               >
                 Module 3 (FE3)
               </button>
