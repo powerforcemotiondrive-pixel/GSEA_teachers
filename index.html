@@ -946,54 +946,54 @@
 
             <!-- Form -->
             <form id="eval-record-form" onsubmit="handleEvaluationSubmit(event)" class="space-y-5">
-              <!-- Examiner Authentication & Session Setup (Grouped at the top) -->
-              <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <!-- Evaluating Teacher -->
-                  <div class="flex-1 min-w-[240px]">
-                    <label class="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
-                      <span>👤</span>
-                      <span>Evaluating Teacher (Examiner)</span>
-                    </label>
-                    <select id="eval-teacher" onchange="updateTeacherAuthUI();" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-slate-800">
-                      ${(sem.faculty || []).map(f => `<option value="${f.name}">${f.name} (${f.track})</option>`).join('')}
-                    </select>
-                  </div>
+              <!-- Examiner Authentication & Session Setup (Compact Single-Row Action Bar) -->
+              <div class="flex flex-wrap items-center gap-3 p-2.5 sm:p-3 bg-slate-50 rounded-xl border border-slate-200 w-fit max-w-full">
+                <!-- Teacher Select -->
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-slate-700 whitespace-nowrap flex items-center gap-1.5">
+                    <span>👤</span>
+                    <span>Examiner:</span>
+                  </span>
+                  <select id="eval-teacher" onchange="updateTeacherAuthUI();" class="h-9 text-xs font-bold px-3 rounded-lg border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800 w-52 sm:w-60 cursor-pointer">
+                    ${(sem.faculty || []).map(f => `<option value="${f.name}">${f.name} (${f.track})</option>`).join('')}
+                  </select>
+                </div>
 
-                  <!-- Examiner PIN & Cloud Sync Authentication -->
-                  <div id="teacher-auth-bar" class="sm:self-end flex flex-wrap items-center gap-2 text-xs">
-                    <span id="teacher-auth-status-pill" class="px-2.5 py-2 rounded-xl font-bold bg-white text-slate-700 border border-slate-200 shadow-2xs">
-                      🔒 Local Mode (PIN to sync cloud)
-                    </span>
-                    <div id="teacher-pin-input-group" class="flex items-center gap-1.5">
-                      <input 
-                        type="password" 
-                        id="teacher-pin-input" 
-                        maxlength="4" 
-                        placeholder="4-digit PIN" 
-                        class="w-24 text-center font-mono font-bold p-2 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-slate-800 focus:outline-none"
-                        onkeydown="if(event.key==='Enter'){event.preventDefault();authenticateTeacherSession();}"
-                        title="Enter 4-digit PIN to enable direct Google Sheets cloud sync"
-                      />
-                      <button 
-                        type="button" 
-                        onclick="authenticateTeacherSession()" 
-                        class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition-all cursor-pointer shadow-2xs"
-                        title="Sign in with your Examiner PIN"
-                      >
-                        Sign In
-                      </button>
-                    </div>
-                    <div id="teacher-signed-in-group" class="hidden items-center gap-2">
-                      <span class="text-xs text-emerald-700 font-bold px-2.5 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200">✓ Cloud Sync Active</span>
-                      <button 
-                        type="button" 
-                        onclick="signOutTeacherSession()" 
-                        class="text-slate-500 hover:text-slate-800 font-bold text-xs underline cursor-pointer p-1"
-                      >
-                        Sign Out
-                      </button>
-                    </div>
+                <div class="hidden sm:block h-5 w-px bg-slate-300"></div>
+
+                <!-- Examiner PIN & Cloud Sync -->
+                <div id="teacher-auth-bar" class="flex items-center gap-2 text-xs">
+                  <span id="teacher-auth-status-pill" class="h-9 px-2.5 rounded-lg font-bold bg-white text-slate-700 border border-slate-200 flex items-center shadow-2xs whitespace-nowrap">
+                    🔒 Local Mode
+                  </span>
+                  <div id="teacher-pin-input-group" class="flex items-center gap-1.5">
+                    <input 
+                      type="password" 
+                      id="teacher-pin-input" 
+                      maxlength="4" 
+                      placeholder="PIN" 
+                      class="h-9 w-16 text-center font-mono font-bold px-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-slate-800 focus:outline-none"
+                      onkeydown="if(event.key==='Enter'){event.preventDefault();authenticateTeacherSession();}"
+                      title="4-digit PIN to enable direct Google Sheets cloud sync"
+                    />
+                    <button 
+                      type="button" 
+                      onclick="authenticateTeacherSession()" 
+                      class="h-9 px-3.5 rounded-lg bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 font-bold text-xs transition-all cursor-pointer shadow-2xs border border-amber-400 whitespace-nowrap"
+                      title="Sign in with your Examiner PIN"
+                    >
+                      Sign In
+                    </button>
+                  </div>
+                  <div id="teacher-signed-in-group" class="hidden items-center gap-2">
+                    <span class="text-xs text-emerald-700 font-bold px-2.5 h-9 flex items-center rounded-lg bg-emerald-50 border border-emerald-200 whitespace-nowrap">✓ Cloud Sync Active</span>
+                    <button 
+                      type="button" 
+                      onclick="signOutTeacherSession()" 
+                      class="text-slate-500 hover:text-slate-800 font-bold text-xs underline cursor-pointer p-1"
+                    >
+                      Sign Out
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1310,14 +1310,14 @@
       const isAuthenticated = activeTeacherPin && (activeAuthenticatedTeacher === selectedTeacher || !activeAuthenticatedTeacher);
 
       if (isAuthenticated && pill && inputGroup && signedInGroup) {
-        pill.className = "px-2.5 py-0.5 rounded-full font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+        pill.className = "h-9 px-2.5 rounded-lg font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center whitespace-nowrap text-xs";
         pill.textContent = "✓ Cloud Sync Active: " + selectedTeacher;
         inputGroup.classList.add('hidden');
         signedInGroup.classList.remove('hidden');
         signedInGroup.classList.add('flex');
       } else if (pill && inputGroup && signedInGroup) {
-        pill.className = "px-2.5 py-0.5 rounded-full font-bold bg-slate-100 text-slate-700 border border-slate-300";
-        pill.textContent = "🔒 Local Mode (PIN to sync cloud)";
+        pill.className = "h-9 px-2.5 rounded-lg font-bold bg-white text-slate-700 border border-slate-200 flex items-center shadow-2xs whitespace-nowrap text-xs";
+        pill.textContent = "🔒 Local Mode";
         inputGroup.classList.remove('hidden');
         signedInGroup.classList.add('hidden');
         signedInGroup.classList.remove('flex');
