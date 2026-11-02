@@ -932,39 +932,26 @@
               </div>
             </div>
 
-            <!-- Teacher Quick-Start Instructions Banner -->
-            <div class="bg-gradient-to-r from-amber-50 via-amber-50/50 to-slate-50 p-3 sm:p-3.5 rounded-xl border border-amber-200/80 flex flex-col md:flex-row md:items-center justify-between gap-2.5 text-xs">
-              <div class="flex items-start sm:items-center gap-2">
-                <span class="text-base">💡</span>
-                <div>
-                  <span class="font-bold text-slate-900">Examiner Instructions:</span>
-                  <span class="text-slate-600 ml-1">Follow the 4 steps below to assess oral fluency, record continuous marks, and generate PDF grade transcripts.</span>
-                </div>
-              </div>
-              <div class="flex flex-wrap items-center gap-1.5 text-[11px] font-semibold text-slate-700">
-                <span class="bg-white/90 px-2 py-0.5 rounded border border-amber-200/80 text-slate-800">1. Setup</span>
-                <span>➔</span>
-                <span class="bg-white/90 px-2 py-0.5 rounded border border-amber-200/80 text-slate-800">2. Score Rubrics</span>
-                <span>➔</span>
-                <span class="bg-white/90 px-2 py-0.5 rounded border border-amber-200/80 text-slate-800">3. Spoken Feedback</span>
-                <span>➔</span>
-                <span class="bg-amber-400 text-slate-950 font-bold px-2 py-0.5 rounded border border-amber-400 shadow-2xs">4. Save Record</span>
-              </div>
-            </div>
-
             <!-- Form -->
             <form id="eval-record-form" onsubmit="handleEvaluationSubmit(event)" class="space-y-5">
-              <!-- STEP 1: Evaluation Setup & Candidate Selection -->
-              <div class="p-4 sm:p-5 bg-slate-50/70 rounded-xl border border-slate-200 space-y-3.5">
-                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/70 pb-2">
-                  <div class="flex items-center gap-2">
-                    <span class="w-5 h-5 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center">1</span>
-                    <h3 class="text-xs sm:text-sm font-bold text-slate-900 uppercase tracking-wide">Candidate &amp; Milestone Setup</h3>
+              <!-- Examiner Authentication & Session Setup (Grouped at the top) -->
+              <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <!-- Evaluating Teacher -->
+                  <div class="flex-1 min-w-[240px]">
+                    <label class="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                      <span>👤</span>
+                      <span>Evaluating Teacher (Examiner)</span>
+                    </label>
+                    <select id="eval-teacher" onchange="updateTeacherAuthUI();" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-slate-800">
+                      ${(sem.faculty || []).map(f => `<option value="${f.name}">${f.name} (${f.track})</option>`).join('')}
+                    </select>
                   </div>
-                  <!-- Examiner Auth / PIN Indicator -->
-                  <div id="teacher-auth-bar" class="flex flex-wrap items-center gap-2 text-xs">
-                    <span id="teacher-auth-status-pill" class="px-2.5 py-0.5 rounded-full font-bold bg-slate-100 text-slate-700 border border-slate-300">
-                      🔒 Local Storage Mode
+
+                  <!-- Examiner PIN & Cloud Sync Authentication -->
+                  <div id="teacher-auth-bar" class="sm:self-end flex flex-wrap items-center gap-2 text-xs">
+                    <span id="teacher-auth-status-pill" class="px-2.5 py-2 rounded-xl font-bold bg-white text-slate-700 border border-slate-200 shadow-2xs">
+                      🔒 Local Mode (PIN to sync cloud)
                     </span>
                     <div id="teacher-pin-input-group" class="flex items-center gap-1.5">
                       <input 
@@ -972,75 +959,80 @@
                         id="teacher-pin-input" 
                         maxlength="4" 
                         placeholder="4-digit PIN" 
-                        class="w-24 text-center font-mono font-bold p-1 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-slate-800 focus:outline-none"
-                        onkeydown="if(event.key===Enter\){event.preventDefault();authenticateTeacherSession();}"
-                        title="Optional: Enter 4-digit PIN to enable direct Google Sheets cloud sync"
+                        class="w-24 text-center font-mono font-bold p-2 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-slate-800 focus:outline-none"
+                        onkeydown="if(event.key==='Enter'){event.preventDefault();authenticateTeacherSession();}"
+                        title="Enter 4-digit PIN to enable direct Google Sheets cloud sync"
                       />
                       <button 
                         type="button" 
                         onclick="authenticateTeacherSession()" 
-                        class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition-all cursor-pointer shadow-2xs"
+                        class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition-all cursor-pointer shadow-2xs"
                         title="Sign in with your Examiner PIN"
                       >
                         Sign In
                       </button>
                     </div>
                     <div id="teacher-signed-in-group" class="hidden items-center gap-2">
-                      <span class="text-[11px] text-emerald-700 font-bold">✓ Cloud Sync Active</span>
+                      <span class="text-xs text-emerald-700 font-bold px-2.5 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200">✓ Cloud Sync Active</span>
                       <button 
                         type="button" 
                         onclick="signOutTeacherSession()" 
-                        class="text-slate-500 hover:text-slate-800 font-bold text-xs underline cursor-pointer"
+                        class="text-slate-500 hover:text-slate-800 font-bold text-xs underline cursor-pointer p-1"
                       >
                         Sign Out
                       </button>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <!-- Selectors Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <!-- Milestone -->
-                  <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Evaluation Milestone</label>
-                    <select id="eval-milestone" onchange="handleMilestoneChange(); loadStudentGradeForEditing();" class="w-full text-xs font-bold p-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-slate-800">
-                      <option value="1">Module 1 • FE1 Oral Evaluation</option>
-                      <option value="2">Module 2 • FE2 Oral Evaluation</option>
-                      <option value="3">Module 3 • FE3 Oral Evaluation</option>
-                      <option value="4">Module 4 • Continuous Assessment (/20)</option>
-                    </select>
+              <!-- STEP 1: Candidate & Milestone Setup -->
+              <div class="space-y-3 pt-1">
+                <div class="flex items-center justify-between border-b border-slate-200/70 pb-2">
+                  <div class="flex items-center gap-2">
+                    <span class="w-5 h-5 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center">1</span>
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-900 uppercase tracking-wide">Candidate &amp; Milestone Setup</h3>
                   </div>
-
-                  <!-- Teacher -->
-                  <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Evaluating Teacher</label>
-                    <select id="eval-teacher" onchange="updateTeacherAuthUI();" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-slate-800">
-                      ${(sem.faculty || []).map(f => `<option value="${f.name}">${f.name} (${f.track})</option>`).join('')}
-                    </select>
-                  </div>
-
-                  <!-- Candidate -->
-                  <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Candidate</label>
-                    <select id="eval-student" onchange="loadStudentGradeForEditing();" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-slate-800">
-                      <optgroup label="Group A (${(sem.students.groupA || []).length} students)">
-                        ${(sem.students.groupA || []).map(s => `<option value="${s}">${formatStudentName(s)} (Group A)</option>`).join('')}
-                      </optgroup>
-                      <optgroup label="Group B (${(sem.students.groupB || []).length} students)">
-                        ${(sem.students.groupB || []).map(s => `<option value="${s}">${formatStudentName(s)} (Group B)</option>`).join('')}
-                      </optgroup>
-                    </select>
-                  </div>
+                  <span class="text-xs text-slate-500 font-medium">Select exam milestone and candidate dossier</span>
                 </div>
 
-                <!-- Candidate History Strip -->
-                <div id="candidate-history-strip" class="p-2.5 bg-white rounded-xl border border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
-                  <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
-                    <span>📌</span>
-                    <span>Candidate Evaluation Dossier:</span>
-                  </span>
-                  <div id="candidate-history-pills" class="flex flex-wrap items-center gap-1.5 font-mono">
-                    <!-- Populated dynamically via updateCandidateHistoryStrip() -->
+                <!-- Step 1 Content Card -->
+                <div class="p-4 sm:p-5 bg-slate-50/70 rounded-xl border border-slate-200 space-y-3.5">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Milestone -->
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 mb-1">Evaluation Milestone</label>
+                      <select id="eval-milestone" onchange="handleMilestoneChange(); loadStudentGradeForEditing();" class="w-full text-xs font-bold p-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-slate-800">
+                        <option value="1">Module 1 • FE1 Oral Evaluation</option>
+                        <option value="2">Module 2 • FE2 Oral Evaluation</option>
+                        <option value="3">Module 3 • FE3 Oral Evaluation</option>
+                        <option value="4">Module 4 • Continuous Assessment (/20)</option>
+                      </select>
+                    </div>
+
+                    <!-- Candidate -->
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 mb-1">Candidate</label>
+                      <select id="eval-student" onchange="loadStudentGradeForEditing();" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-slate-800">
+                        <optgroup label="Group A (${(sem.students.groupA || []).length} students)">
+                          ${(sem.students.groupA || []).map(s => `<option value="${s}">${formatStudentName(s)} (Group A)</option>`).join('')}
+                        </optgroup>
+                        <optgroup label="Group B (${(sem.students.groupB || []).length} students)">
+                          ${(sem.students.groupB || []).map(s => `<option value="${s}">${formatStudentName(s)} (Group B)</option>`).join('')}
+                        </optgroup>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Candidate History Strip -->
+                  <div id="candidate-history-strip" class="p-2.5 bg-white rounded-xl border border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+                    <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                      <span>📌</span>
+                      <span>Candidate Evaluation Dossier:</span>
+                    </span>
+                    <div id="candidate-history-pills" class="flex flex-wrap items-center gap-1.5 font-mono">
+                      <!-- Populated dynamically via updateCandidateHistoryStrip() -->
+                    </div>
                   </div>
                 </div>
               </div>
