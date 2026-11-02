@@ -207,14 +207,31 @@
   </div>
 
   <!-- Status Footer -->
-  <footer class="mt-8 border-t border-slate-200 bg-white py-3 text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span class="font-medium text-slate-700">GSEA Teachers Hub • 100% Offline Capable &amp; Sheets Synced</span>
+  <footer class="mt-8 textured-surface bg-[#1e293b] border-t border-slate-900/60 py-3.5 text-xs text-slate-300 shadow-inner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <!-- Left: Status & System Identification -->
+      <div class="flex items-center gap-2.5 min-w-0">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
+          <span class="font-bold text-white tracking-wide">GSEA Teachers Hub</span>
+          <span class="text-slate-500 hidden sm:inline">•</span>
+          <span class="font-medium text-slate-300">Official ENAC Teachers System</span>
+          <span class="text-slate-500 hidden md:inline">•</span>
+          <span class="text-[11px] text-slate-400 font-mono hidden md:inline">100% Offline Capable &amp; Cloud Sync</span>
+        </div>
       </div>
-      <div>
-        Phil PARRIS (LH/LAN) • Official ENAC Teachers System • v1.0.0
+
+      <!-- Right: Author, Version & ENAC Crest -->
+      <div class="flex items-center gap-3 shrink-0">
+        <span class="text-slate-300 text-[11px] sm:text-xs">
+          Phil PARRIS <span class="text-slate-400 font-mono text-[10px] sm:text-[11px]">(LH/LAN)</span>
+        </span>
+        <span class="font-mono text-emerald-400 font-bold bg-black/40 px-2 py-0.5 rounded border border-white/10 text-[10px]">
+          SCORM 1.2 Compatible
+        </span>
+        <a href="https://www.enac.fr" target="_blank" rel="noopener noreferrer" class="opacity-80 hover:opacity-100 transition-opacity" title="Visit ENAC Website">
+          <img src="images/enac_logo_white.png" alt="ENAC" class="h-4.5 sm:h-5 w-auto object-contain">
+        </a>
       </div>
     </div>
   </footer>
