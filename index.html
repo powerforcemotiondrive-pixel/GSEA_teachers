@@ -781,120 +781,95 @@
             </div>
           </div>
 
-          <!-- Section Heading -->
+          <!-- Section Heading: Workspace Links -->
           <div class="flex items-center justify-between pt-1">
-            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
-              <span>🧭</span>
-              <span>Direct Workspace Pathways</span>
+            <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+              <span>🔗</span>
+              <span>Workspace Links</span>
             </h3>
-            <span class="text-xs text-slate-500 font-medium">Select any module below to jump directly to work</span>
           </div>
 
-          <!-- 5 Pathway Cards Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- 5 Compact Pathway Action Tiles -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5">
             <!-- 1. Programme -->
-            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-slate-400 hover:shadow-sm transition-all group">
-              <div class="space-y-2">
-                <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
-                  📅
-                </div>
-                <h4 class="text-sm font-bold text-slate-900 pt-1">Semester Programme</h4>
-                <p class="text-xs text-slate-600 leading-relaxed">
-                  Master 16-week timetable, session calendar, official holiday windows, and session-by-session syllabus topics.
-                </p>
+            <button 
+              type="button" 
+              onclick="switchTab('calendar')" 
+              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-900 hover:shadow-xs transition-all text-left cursor-pointer group"
+            >
+              <span class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
+                📅
+              </span>
+              <div class="min-w-0 flex-1">
+                <div class="text-xs font-bold text-slate-900 group-hover:text-black truncate">Programme</div>
+                <div class="text-[10px] text-slate-500 truncate">16-Week Syllabus</div>
               </div>
-              <div class="pt-4 mt-2 border-t border-slate-100">
-                <button type="button" onclick="switchTab('calendar')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
-                  <span>Open Programme</span>
-                  <span>→</span>
-                </button>
-              </div>
-            </div>
+              <span class="text-slate-400 group-hover:text-slate-900 group-hover:translate-x-0.5 transition-all text-xs font-bold">→</span>
+            </button>
 
             <!-- 2. Tutorial Rotas -->
-            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-slate-400 hover:shadow-sm transition-all group">
-              <div class="space-y-2">
-                <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
-                  ⏱️
-                </div>
-                <h4 class="text-sm font-bold text-slate-900 pt-1">Tutorial Rotas</h4>
-                <p class="text-xs text-slate-600 leading-relaxed">
-                  30-minute oral Formative Evaluation slot schedules (FE1, FE2, FE3), room allocations, and student pairings.
-                </p>
+            <button 
+              type="button" 
+              onclick="switchTab('rotas')" 
+              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-900 hover:shadow-xs transition-all text-left cursor-pointer group"
+            >
+              <span class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
+                ⏱️
+              </span>
+              <div class="min-w-0 flex-1">
+                <div class="text-xs font-bold text-slate-900 group-hover:text-black truncate">Tutorial Rotas</div>
+                <div class="text-[10px] text-slate-500 truncate">FE Exam Schedules</div>
               </div>
-              <div class="pt-4 mt-2 border-t border-slate-100">
-                <button type="button" onclick="switchTab('rotas')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
-                  <span>View Rotas</span>
-                  <span>→</span>
-                </button>
-              </div>
-            </div>
+              <span class="text-slate-400 group-hover:text-slate-900 group-hover:translate-x-0.5 transition-all text-xs font-bold">→</span>
+            </button>
 
             <!-- 3. Groups & Absences -->
-            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-slate-400 hover:shadow-sm transition-all group">
-              <div class="space-y-2">
-                <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
-                  👥
-                </div>
-                <h4 class="text-sm font-bold text-slate-900 pt-1">Groups &amp; Absences</h4>
-                <p class="text-xs text-slate-600 leading-relaxed">
-                  Group A and Group B promotion rosters, assigned teachers, and quick absence logging with CSV exports.
-                </p>
+            <button 
+              type="button" 
+              onclick="switchTab('groups')" 
+              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-900 hover:shadow-xs transition-all text-left cursor-pointer group"
+            >
+              <span class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
+                👥
+              </span>
+              <div class="min-w-0 flex-1">
+                <div class="text-xs font-bold text-slate-900 group-hover:text-black truncate">Groups &amp; Absences</div>
+                <div class="text-[10px] text-slate-500 truncate">Rosters &amp; Logger</div>
               </div>
-              <div class="pt-4 mt-2 border-t border-slate-100">
-                <button type="button" onclick="switchTab('groups')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
-                  <span>Manage Groups</span>
-                  <span>→</span>
-                </button>
-              </div>
-            </div>
+              <span class="text-slate-400 group-hover:text-slate-900 group-hover:translate-x-0.5 transition-all text-xs font-bold">→</span>
+            </button>
 
             <!-- 4. Evaluation -->
-            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-slate-400 hover:shadow-sm transition-all group">
-              <div class="space-y-2">
-                <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
-                  📝
-                </div>
-                <h4 class="text-sm font-bold text-slate-900 pt-1">Student Evaluation</h4>
-                <p class="text-xs text-slate-600 leading-relaxed">
-                  Official 20-point scoring form with 6-criteria dropdown rubrics, Module 1–4 grade records, and examiner notes.
-                </p>
+            <button 
+              type="button" 
+              onclick="switchTab('evaluations')" 
+              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-900 hover:shadow-xs transition-all text-left cursor-pointer group"
+            >
+              <span class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
+                📝
+              </span>
+              <div class="min-w-0 flex-1">
+                <div class="text-xs font-bold text-slate-900 group-hover:text-black truncate">Evaluation</div>
+                <div class="text-[10px] text-slate-500 truncate">20-Pt Scoring &amp; PDF</div>
               </div>
-              <div class="pt-4 mt-2 border-t border-slate-100">
-                <button type="button" onclick="switchTab('evaluations')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
-                  <span>Enter Grades</span>
-                  <span>→</span>
-                </button>
-              </div>
-            </div>
+              <span class="text-slate-400 group-hover:text-slate-900 group-hover:translate-x-0.5 transition-all text-xs font-bold">→</span>
+            </button>
 
             <!-- 5. Portfolio -->
-            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-slate-400 hover:shadow-sm transition-all group lg:col-span-2">
-              <div class="space-y-2">
-                <div class="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
-                  📊
-                </div>
-                <h4 class="text-sm font-bold text-slate-900 pt-1">Portfolio Compliance</h4>
-                <p class="text-xs text-slate-600 leading-relaxed">
-                  Live cohort tracking checklist across AT and AG sessions with 1-click missing reminder copying and compliance CSV export.
-                </p>
+            <button 
+              type="button" 
+              onclick="switchTab('portfolio')" 
+              class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-900 hover:shadow-xs transition-all text-left cursor-pointer group"
+            >
+              <span class="w-8 h-8 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
+                📊
+              </span>
+              <div class="min-w-0 flex-1">
+                <div class="text-xs font-bold text-slate-900 group-hover:text-black truncate">Portfolio</div>
+                <div class="text-[10px] text-slate-500 truncate">Compliance Checklist</div>
               </div>
-              <div class="pt-4 mt-2 border-t border-slate-100">
-                <button type="button" onclick="switchTab('portfolio')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
-                  <span>Check Compliance</span>
-                  <span>→</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom Practical Tips Banner -->
-          <div class="p-4 bg-slate-100/80 rounded-2xl border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-600">
-            <div class="flex items-center gap-2">
-              <span class="text-lg">💡</span>
-              <span><strong>Teacher Quick Note:</strong> All evaluations and absence logs auto-save locally to your browser and can be exported to CSV at any time.</span>
-            </div>
-            <span class="font-mono text-[11px] text-slate-500 whitespace-nowrap">Offline Capable • v1.0.0</span>
+              <span class="text-slate-400 group-hover:text-slate-900 group-hover:translate-x-0.5 transition-all text-xs font-bold">→</span>
+            </button>
           </div>
         </div>
       `;
