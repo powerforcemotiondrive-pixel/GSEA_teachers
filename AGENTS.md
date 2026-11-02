@@ -32,5 +32,6 @@ This repository houses the official **ENAC GSEA English Faculty Administration &
 
 ### F. Student & Faculty Privacy Protocol
 - **Strict Codebase Anonymity**: The Git codebase must NEVER contain real student names or private teacher contact info. Anonymous identifiers (`GRPA001`–`GRPA010`) are used in public files.
+- **Zero Student PII in AI Chat**: Real student names must NEVER be entered, printed, or output in the AI chat conversation or prompt history. All conversational responses, tables, summaries, logs, and examples must strictly and exclusively use anonymous student identifiers (`GRPA001`–`GRPB009`). Real student identities reside exclusively within local `students.private.json` files on the instructor's local machine for offline client-side package injection.
 - **Private Mapping**: Real rosters are maintained in private, git-ignored configuration files (`students.private.json`).
 
