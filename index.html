@@ -1001,6 +1001,17 @@
                 </div>
               </div>
 
+              <!-- Candidate Evaluation History & Quick-Edit Strip -->
+              <div id="candidate-history-strip" class="p-2.5 bg-slate-50/90 rounded-xl border border-slate-200/90 flex flex-wrap items-center justify-between gap-2 text-xs">
+                <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>📌</span>
+                  <span>Candidate Evaluation History:</span>
+                </span>
+                <div id="candidate-history-pills" class="flex flex-wrap items-center gap-1.5 font-mono">
+                  <!-- Populated dynamically via updateCandidateHistoryStrip() -->
+                </div>
+              </div>
+
               <!-- 6 Criteria Dropdown Grid (Modules 1, 2, 3) -->
               <div id="six-criteria-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
                 <!-- Criterion 1 -->
@@ -1189,7 +1200,6 @@
       updateTeacherAuthUI();
       loadStudentGradeForEditing();
       checkGradingBackendStatus();
-      // Pre-fetch cloud records in the background so reports are ready instantly
       loadGradeReportsFromBackend(false);
     }
 
@@ -1323,6 +1333,56 @@
       }
     }
 
+    function updateCandidateHistoryStrip() {
+      const container = document.getElementById('candidate-history-pills');
+      if (!container) return;
+
+      const student = document.getElementById('eval-student')?.value;
+      const currentMilestone = document.getElementById('eval-milestone')?.value || '1';
+
+      let localLogs = [];
+      try { localLogs = JSON.parse(localStorage.getItem(LOCAL_LOGS_KEY)) || []; } catch(e) {}
+      const semLogs = localLogs.filter(l => (l.student === student || l.studentId === student) && Number(l.sem) === Number(activeSemester));
+
+      const cloudGrades = (cachedBackendGrades && cachedBackendGrades.sem === activeSemester && Array.isArray(cachedBackendGrades.grades))
+        ? cachedBackendGrades.grades.filter(g => (g.studentId === student || g.student === student))
+        : [];
+
+      const modules = [1, 2, 3, 4];
+      container.innerHTML = modules.map(modNum => {
+        const existing = semLogs.find(l => Number(l.module) === modNum) || cloudGrades.find(g => Number(g.module) === modNum);
+        const isCurrent = String(modNum) === String(currentMilestone);
+        const modLabel = modNum === 4 ? 'Mod 4 (Cont)' : ('Mod ' + modNum);
+
+        if (existing) {
+          const score = parseFloat(existing.total || 0).toFixed(1);
+          return `
+            <button 
+              type="button" 
+              onclick="selectStudentForGrading('${student}', ${modNum})" 
+              class="px-2.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1 cursor-pointer border ${isCurrent ? 'bg-emerald-700 text-white border-emerald-700 shadow-2xs' : 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100'}"
+              title="Click to edit ${modLabel} evaluation"
+            >
+              <span>${modLabel}:</span>
+              <span>${score}/20</span>
+              <span>✏️</span>
+            </button>
+          `;
+        } else {
+          return `
+            <button 
+              type="button" 
+              onclick="selectStudentForGrading('${student}', ${modNum})" 
+              class="px-2.5 py-1 rounded-lg text-xs font-medium transition-all flex items-center gap-1 cursor-pointer border ${isCurrent ? 'bg-slate-700 text-white border-slate-700 shadow-2xs' : 'bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200'}"
+              title="Click to evaluate ${modLabel}"
+            >
+              <span>${modLabel}: --</span>
+            </button>
+          `;
+        }
+      }).join('');
+    }
+
     function loadStudentGradeForEditing() {
       const student = document.getElementById('eval-student')?.value;
       const milestone = document.getElementById('eval-milestone')?.value || '1';
@@ -1330,7 +1390,12 @@
 
       let logs = [];
       try { logs = JSON.parse(localStorage.getItem(LOCAL_LOGS_KEY)) || []; } catch(e) {}
-      const existingLog = logs.find(l => (l.student === student || l.studentId === student) && Number(l.sem) === Number(activeSemester) && Number(l.module) === Number(moduleNum));
+      let existingLog = logs.find(l => (l.student === student || l.studentId === student) && Number(l.sem) === Number(activeSemester) && Number(l.module) === Number(moduleNum));
+
+      // Fallback to cloud grades cache if localStorage was wiped or empty
+      if (!existingLog && cachedBackendGrades && Array.isArray(cachedBackendGrades.grades)) {
+        existingLog = cachedBackendGrades.grades.find(g => (g.studentId === student || g.student === student) && Number(g.sem) === Number(activeSemester) && Number(g.module) === Number(moduleNum));
+      }
 
       if (existingLog) {
         if (moduleNum === 4) {
@@ -1352,7 +1417,7 @@
 
         const statusMsg = document.getElementById('submit-status-msg');
         if (statusMsg) {
-          statusMsg.innerHTML = '<span class="text-amber-700 font-bold">✏️ Loaded existing record (' + existingLog.total + '/20) for editing</span>';
+          statusMsg.innerHTML = '<span class="text-amber-800 font-bold bg-amber-50 px-2 py-0.5 rounded border border-amber-200">✏️ Loaded existing record (' + existingLog.total + '/20) for editing</span>';
         }
       } else {
         if (moduleNum === 4) {
@@ -1376,6 +1441,30 @@
       }
 
       recalcScore();
+      updateCandidateHistoryStrip();
+    }
+
+    function selectStudentForGrading(studentId, moduleNum) {
+      const select = document.getElementById('eval-student');
+      if (select && studentId) select.value = studentId;
+
+      if (moduleNum) {
+        const mSelect = document.getElementById('eval-milestone');
+        if (mSelect) {
+          mSelect.value = String(moduleNum);
+          handleMilestoneChange();
+        }
+      }
+
+      loadStudentGradeForEditing();
+
+      const formEl = document.getElementById('eval-record-form');
+      if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function editEvaluationFromReport(studentId, moduleNum) {
+      closeStudentGradeReportModal();
+      selectStudentForGrading(studentId, moduleNum);
     }
 
     function handleEvaluationSubmit(e) {
@@ -1454,6 +1543,8 @@
         msg.textContent = "✓ Saved " + formatStudentName(student) + " • " + milestoneLabel + " (" + total.toFixed(1) + "/20) locally!";
       }
 
+      updateCandidateHistoryStrip();
+
       // Live Google Sheets Backend Sync
       if (typeof GRADING_SCRIPT_URL !== 'undefined' && GRADING_SCRIPT_URL && GRADING_SCRIPT_URL.startsWith('http')) {
         if (msg) msg.textContent = "Syncing with Google Sheets...";
@@ -1469,7 +1560,6 @@
           if (data.success) {
             if (msg) msg.textContent = "✓ Synced to Google Sheet & Local Storage (" + total.toFixed(1) + "/20)";
             setTimeout(() => { if (msg) msg.textContent = ""; }, 4000);
-            // Refresh cached grades
             loadGradeReportsFromBackend(true);
           } else {
             if (msg) msg.textContent = "⚠️ Saved locally (" + (data.message || 'Sheet sync pending') + ")";
@@ -1536,6 +1626,7 @@
             });
 
             localStorage.setItem(LOCAL_LOGS_KEY, JSON.stringify(localLogs));
+            updateCandidateHistoryStrip();
           }
         } catch(err) {
           console.warn("Could not fetch cloud grades, relying on local storage:", err);
@@ -1679,7 +1770,18 @@
                     return `
                       <div class="p-4 rounded-xl border border-dashed border-slate-200 bg-slate-50/50 flex items-center justify-between text-xs">
                         <span class="font-bold text-slate-600">${mod.title}</span>
-                        <span class="text-slate-400 font-mono italic">Awaiting Oral Evaluation</span>
+                        <div class="flex items-center gap-2">
+                          <span class="text-slate-400 font-mono italic">Awaiting Oral Evaluation</span>
+                          <button 
+                            type="button" 
+                            onclick="editEvaluationFromReport('${candidate.id}', ${mod.num})" 
+                            class="no-print px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all flex items-center gap-1 cursor-pointer"
+                            title="Start evaluation for this module"
+                          >
+                            <span>➕</span>
+                            <span>Evaluate</span>
+                          </button>
+                        </div>
                       </div>
                     `;
                   }
@@ -1694,10 +1796,19 @@
                           <span class="text-xs sm:text-sm font-black text-slate-900 block">${mod.title}</span>
                           <span class="text-[11px] text-slate-500">Evaluator: <strong>${log.teacher || 'Accredited Faculty'}</strong> • Logged: ${log.timestamp || 'Recorded'}</span>
                         </div>
-                        <div class="text-left sm:text-right">
+                        <div class="text-left sm:text-right flex items-center gap-2">
                           <span class="text-base sm:text-lg font-black font-mono text-rose-950 bg-white px-2.5 py-1 rounded-lg border border-slate-200 shadow-2xs">
                             ${parseFloat(log.total).toFixed(1)} / 20.0
                           </span>
+                          <button 
+                            type="button" 
+                            onclick="editEvaluationFromReport('${candidate.id}', ${mod.num})" 
+                            class="no-print px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 transition-all flex items-center gap-1 cursor-pointer"
+                            title="Edit this evaluation in the form"
+                          >
+                            <span>✏️</span>
+                            <span>Edit</span>
+                          </button>
                         </div>
                       </div>
 
