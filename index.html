@@ -20,40 +20,29 @@
   <!-- Tailwind CSS CLI Output -->
   <link rel="stylesheet" href="output.css">
   <style>
-    /* Executive Deep Bordeaux CAD Precision Micro-Grid */
+    /* Signature Precision CAD Micro-Grid (Semester 1 Deep Cockpit Slate) */
     .textured-surface,
     #portal-header {
-      background-color: #881337 !important;
+      background-color: #1e293b !important;
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.2) 0%, transparent 75%),
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.18) 0%, transparent 75%),
         linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.28) 100%) !important;
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(0, 0, 0, 0.18) 100%) !important;
       background-size: 100% 100%, 16px 16px, 16px 16px, 100% 100% !important;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.35) !important;
     }
 
-    /* Precision Aviation Technical Canvas (Option 1) */
+    /* Precision Aviation Technical Canvas (Semester 1 Clean Slate Backdrop) */
     body {
-      background-color: #edf2f7;
-      background-image: radial-gradient(circle, rgba(71, 85, 105, 0.14) 1px, transparent 1px);
+      background-color: #f1f5f9;
+      background-image: radial-gradient(rgba(0, 0, 0, 0.085) 1.25px, transparent 1.25px);
       background-size: 20px 20px;
     }
 
-    /* Unified Workstation Deck Surface (Option A: Smooth Matte Foundation) */
+    /* Workstation Deck Surface */
     #portal-content {
-      background-color: #f1f5f9;
-      background-image: none !important;
-      border: 1px solid rgba(203, 213, 225, 0.85);
-      border-radius: 1.5rem;
-      padding: 1.25rem;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02), 0 1px 3px 0 rgba(15, 23, 42, 0.04);
       min-height: 520px;
-    }
-    @media (min-width: 640px) {
-      #portal-content {
-        padding: 1.5rem;
-      }
     }
 
     /* Refined Workspace Card Surface Depth & Boundary Definition */
@@ -61,59 +50,28 @@
       box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(203, 213, 225, 0.6) !important;
     }
 
-    /* Print styles */
+    /* Print Formatting Rules */
     @media print {
-      body * {
-        visibility: hidden !important;
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
       }
-      #grade-report-modal,
-      #grade-report-modal * {
-        visibility: visible !important;
+      #portal-header, #main-nav-tabs, footer, .no-print, button {
+        display: none !important;
       }
-      #grade-report-modal {
-        position: absolute !important;
-        left: 0 !important;
-        top: 0 !important;
-        width: 100% !important;
-        height: auto !important;
-        background: transparent !important;
+      #portal-content {
         padding: 0 !important;
         margin: 0 !important;
-        overflow: visible !important;
-        display: block !important;
-        z-index: 99999 !important;
-      }
-      #grade-report-modal > div {
-        max-width: 100% !important;
-        max-height: none !important;
         border: none !important;
         box-shadow: none !important;
-        overflow: visible !important;
-        background: transparent !important;
-      }
-      #grade-report-scroll-container {
-        padding: 0 !important;
-        background: transparent !important;
-        overflow: visible !important;
-      }
-      .no-print {
-        display: none !important;
+        background: #ffffff !important;
       }
       .student-bulletin-card {
         page-break-after: always !important;
-        break-inside: avoid !important;
-        border: 1px solid #94a3b8 !important;
+        break-after: page !important;
         box-shadow: none !important;
-        background: #ffffff !important;
-        margin-bottom: 2rem !important;
+        border: 1px solid #cbd5e1 !important;
         padding: 1.5rem !important;
-      }
-      .student-bulletin-card:last-child {
-        page-break-after: auto !important;
-      }
-      @page {
-        size: A4 portrait;
-        margin: 12mm;
       }
     }
   </style>
@@ -124,7 +82,7 @@
   <div class="w-full max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-6 flex-1 flex flex-col space-y-4">
 
     <!-- Executive Header -->
-    <header id="portal-header" class="textured-surface text-white rounded-2xl p-3 sm:p-6 shadow-lg border border-rose-950/40 relative overflow-hidden shrink-0">
+    <header id="portal-header" class="textured-surface text-white rounded-2xl p-3 sm:p-6 shadow-lg border border-slate-900/60 relative overflow-hidden shrink-0">
       <!-- Top Brand Row: Logo, Title, and ENAC Crest -->
       <div class="flex items-center justify-between gap-3">
         <div class="flex items-center space-x-2.5 sm:space-x-4 min-w-0">
@@ -136,12 +94,12 @@
               <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-400 text-slate-900 shadow-xs shrink-0">
                 TEACHERS HUB
               </span>
-              <span class="text-[10px] sm:text-xs text-rose-200 font-mono truncate">ENAC • DÉPARTEMENT LH / LAN</span>
+              <span class="text-[10px] sm:text-xs text-slate-300 font-mono truncate">ENAC • DÉPARTEMENT LH / LAN</span>
             </div>
             <h1 class="text-sm sm:text-xl font-bold tracking-tight text-white mt-0.5 truncate">
               ENAC GSEA Teachers Hub
             </h1>
-            <p class="hidden sm:block text-[11px] sm:text-xs text-rose-100/90 mt-0.5">
+            <p class="hidden sm:block text-[11px] sm:text-xs text-slate-300/90 mt-0.5">
               Academic Administration, Continuous Evaluation, Grading Records &amp; FE Rotas
             </p>
           </div>
@@ -151,7 +109,7 @@
         <div class="flex items-center gap-3 shrink-0">
           <div class="text-right hidden sm:block">
             <div id="live-clock" class="text-xs font-mono font-bold text-white tracking-wider">--:--:--</div>
-            <div id="live-date" class="text-[10px] text-rose-200">--</div>
+            <div id="live-date" class="text-[10px] text-slate-300">--</div>
           </div>
           <a href="https://www.enac.fr" target="_blank" rel="noopener noreferrer" class="opacity-90 hover:opacity-100 transition-opacity" title="Visit ENAC Website">
             <img src="images/enac_logo_white.png" alt="ENAC" class="h-5 sm:h-7 w-auto object-contain">
@@ -163,7 +121,7 @@
       <div class="mt-3 sm:mt-5 pt-2.5 sm:pt-4 border-t border-white/15">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-2.5">
           <div class="flex items-center justify-between sm:justify-start gap-1.5">
-            <span class="text-[10px] sm:text-[11px] font-bold text-rose-200 uppercase tracking-wider flex items-center gap-1.5">
+            <span class="text-[10px] sm:text-[11px] font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
               <span class="hidden sm:inline">Select Curriculum Semester:</span>
               <span class="sm:hidden">Semester:</span>
@@ -176,7 +134,7 @@
 
           <!-- 4-Semester Selection Pills -->
           <div class="grid grid-cols-4 gap-1.5 sm:gap-2 w-full sm:w-auto" id="semester-selector-group">
-            <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-rose-950 border-amber-400 shadow-md">
+            <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-slate-900 border-amber-400 shadow-md">
               <span class="flex items-center gap-1 sm:gap-1.5">
                 <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-500"></span>
                 <span class="sm:hidden">S1</span>
@@ -184,7 +142,7 @@
               </span>
               <span class="hidden sm:inline text-[10px] opacity-75 font-mono ml-1.5">AG+AT</span>
             </button>
-            <button type="button" disabled id="sem-btn-2" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed" title="Semester 2 (Upcoming)">
+            <button type="button" disabled id="sem-btn-2" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-slate-900/40 text-slate-400 opacity-40 cursor-not-allowed" title="Semester 2 (Upcoming)">
               <span class="flex items-center gap-1 sm:gap-1.5">
                 <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-600"></span>
                 <span class="sm:hidden">S2</span>
@@ -192,7 +150,7 @@
               </span>
               <span class="hidden sm:inline text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
             </button>
-            <button type="button" disabled id="sem-btn-3" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed" title="Semester 3 (Upcoming)">
+            <button type="button" disabled id="sem-btn-3" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-slate-900/40 text-slate-400 opacity-40 cursor-not-allowed" title="Semester 3 (Upcoming)">
               <span class="flex items-center gap-1 sm:gap-1.5">
                 <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-600"></span>
                 <span class="sm:hidden">S3</span>
@@ -200,7 +158,7 @@
               </span>
               <span class="hidden sm:inline text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
             </button>
-            <button type="button" disabled id="sem-btn-4" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed" title="Semester 4 (Upcoming)">
+            <button type="button" disabled id="sem-btn-4" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-slate-900/40 text-slate-400 opacity-40 cursor-not-allowed" title="Semester 4 (Upcoming)">
               <span class="flex items-center gap-1 sm:gap-1.5">
                 <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-600"></span>
                 <span class="sm:hidden">S4</span>
@@ -214,28 +172,28 @@
     </header>
 
     <!-- Sub-Navigation Tab Strip -->
-    <nav class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs select-none border-b border-slate-200" id="main-nav-tabs" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
-      <button onclick="switchTab('overview')" id="tab-btn-overview" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer">
+    <nav class="flex items-center gap-1.5 overflow-x-auto p-1.5 text-xs select-none bg-slate-800 border border-slate-700/80 rounded-2xl shadow-sm text-white" id="main-nav-tabs" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
+      <button onclick="switchTab('overview')" id="tab-btn-overview" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-white/20 text-white shadow-xs cursor-pointer">
         <span>🏠</span>
         <span>Overview</span>
       </button>
-      <button onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+      <button onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
         <span>📅</span>
         <span>Programme</span>
       </button>
-      <button onclick="switchTab('rotas')" id="tab-btn-rotas" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+      <button onclick="switchTab('rotas')" id="tab-btn-rotas" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
         <span>⏱️</span>
         <span>Tutorial Rotas</span>
       </button>
-      <button onclick="switchTab('groups')" id="tab-btn-groups" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+      <button onclick="switchTab('groups')" id="tab-btn-groups" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
         <span>👥</span>
         <span>Groups &amp; Absences</span>
       </button>
-      <button onclick="switchTab('evaluations')" id="tab-btn-evaluations" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+      <button onclick="switchTab('evaluations')" id="tab-btn-evaluations" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
         <span>📝</span>
         <span>Evaluation</span>
       </button>
-      <button onclick="switchTab('portfolio')" id="tab-btn-portfolio" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+      <button onclick="switchTab('portfolio')" id="tab-btn-portfolio" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
         <span>📊</span>
         <span>Portfolio</span>
       </button>
@@ -677,15 +635,15 @@
         const btn = document.getElementById(`sem-btn-${s}`);
         if (!btn) continue;
         if (s === num) {
-          btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-rose-950 border-amber-400 shadow-md";
+          btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-slate-900 border-amber-400 shadow-md";
           const dot = btn.querySelector('.rounded-full');
           if (dot) dot.className = "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-500";
         } else if (btn.hasAttribute('disabled')) {
-          btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed";
+          btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-slate-900/40 text-slate-400 opacity-40 cursor-not-allowed";
           const dot = btn.querySelector('.rounded-full');
           if (dot) dot.className = "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-600";
         } else {
-          btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-rose-950/50 hover:bg-rose-900/60 text-white/90 border-white/15";
+          btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-slate-800/80 hover:bg-slate-700 text-white border-white/20";
           const dot = btn.querySelector('.rounded-full');
           if (dot) dot.className = "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-400";
         }
@@ -698,11 +656,11 @@
       activeTab = tabKey;
       const tabBtns = document.querySelectorAll('.nav-tab-btn');
       tabBtns.forEach(btn => {
-        btn.className = "nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer";
+        btn.className = "nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer";
       });
       const activeBtn = document.getElementById(`tab-btn-${tabKey}`);
       if (activeBtn) {
-        activeBtn.className = "nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer";
+        activeBtn.className = "nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-white/20 text-white shadow-xs cursor-pointer";
       }
       renderCurrentView();
     }
@@ -757,7 +715,7 @@
                   <h3 class="text-base sm:text-lg font-bold mt-0.5">
                     ENAC • Département Langues (LH/LAN)
                   </h3>
-                  <p class="text-xs text-rose-100/90 font-medium">
+                  <p class="text-xs text-slate-300 font-medium">
                     ${sem.title} • ${sem.tracks}
                   </p>
                 </div>
@@ -767,7 +725,7 @@
               <div class="lg:col-span-7 p-5 sm:p-7 flex flex-col justify-between space-y-4">
                 <div class="space-y-2">
                   <div class="flex flex-wrap items-center gap-2">
-                    <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded bg-rose-900 text-white shadow-2xs">
+                    <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded bg-slate-900 text-white shadow-2xs">
                       Teachers Dashboard
                     </span>
                     <span class="text-xs text-slate-500 font-mono font-medium">
@@ -796,10 +754,10 @@
                     <span class="text-xs sm:text-sm font-black text-slate-800 font-mono">${facultyList.length} Teachers</span>
                     <span class="text-[10px] text-slate-500 block">General &amp; Technical</span>
                   </div>
-                  <div class="p-2.5 bg-rose-50/70 rounded-xl border border-rose-200/80 col-span-2 sm:col-span-1">
-                    <span class="text-[10px] uppercase font-bold text-rose-800 block tracking-wider">Next Milestone</span>
-                    <span class="text-xs sm:text-sm font-black text-rose-950 font-mono">FE1 Tutorial</span>
-                    <span class="text-[10px] text-rose-700 block">Week 48 Oral Exam</span>
+                  <div class="p-2.5 bg-amber-50/80 rounded-xl border border-amber-200 col-span-2 sm:col-span-1">
+                    <span class="text-[10px] uppercase font-bold text-amber-800 block tracking-wider">Next Milestone</span>
+                    <span class="text-xs sm:text-sm font-black text-slate-900 font-mono">FE1 Tutorial</span>
+                    <span class="text-[10px] text-amber-700 block">Week 48 Oral Exam</span>
                   </div>
                 </div>
               </div>
@@ -818,7 +776,7 @@
           <!-- 5 Pathway Cards Grid -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <!-- 1. Programme -->
-            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-rose-300 hover:shadow-sm transition-all group">
+            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-slate-400 hover:shadow-sm transition-all group">
               <div class="space-y-2">
                 <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
                   📅
@@ -829,7 +787,7 @@
                 </p>
               </div>
               <div class="pt-4 mt-2 border-t border-slate-100">
-                <button type="button" onclick="switchTab('calendar')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
+                <button type="button" onclick="switchTab('calendar')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
                   <span>Open Programme</span>
                   <span>→</span>
                 </button>
@@ -837,7 +795,7 @@
             </div>
 
             <!-- 2. Tutorial Rotas -->
-            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-rose-300 hover:shadow-sm transition-all group">
+            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-slate-400 hover:shadow-sm transition-all group">
               <div class="space-y-2">
                 <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
                   ⏱️
@@ -848,7 +806,7 @@
                 </p>
               </div>
               <div class="pt-4 mt-2 border-t border-slate-100">
-                <button type="button" onclick="switchTab('rotas')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
+                <button type="button" onclick="switchTab('rotas')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
                   <span>View Rotas</span>
                   <span>→</span>
                 </button>
@@ -856,7 +814,7 @@
             </div>
 
             <!-- 3. Groups & Absences -->
-            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-rose-300 hover:shadow-sm transition-all group">
+            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-slate-400 hover:shadow-sm transition-all group">
               <div class="space-y-2">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
                   👥
@@ -867,7 +825,7 @@
                 </p>
               </div>
               <div class="pt-4 mt-2 border-t border-slate-100">
-                <button type="button" onclick="switchTab('groups')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
+                <button type="button" onclick="switchTab('groups')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
                   <span>Manage Groups</span>
                   <span>→</span>
                 </button>
@@ -875,9 +833,9 @@
             </div>
 
             <!-- 4. Evaluation -->
-            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-rose-300 hover:shadow-sm transition-all group">
+            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-slate-400 hover:shadow-sm transition-all group">
               <div class="space-y-2">
-                <div class="w-10 h-10 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
                   📝
                 </div>
                 <h4 class="text-sm font-bold text-slate-900 pt-1">Student Evaluation</h4>
@@ -886,7 +844,7 @@
                 </p>
               </div>
               <div class="pt-4 mt-2 border-t border-slate-100">
-                <button type="button" onclick="switchTab('evaluations')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
+                <button type="button" onclick="switchTab('evaluations')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
                   <span>Enter Grades</span>
                   <span>→</span>
                 </button>
@@ -894,7 +852,7 @@
             </div>
 
             <!-- 5. Portfolio -->
-            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-rose-300 hover:shadow-sm transition-all group lg:col-span-2">
+            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-slate-400 hover:shadow-sm transition-all group lg:col-span-2">
               <div class="space-y-2">
                 <div class="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
                   📊
@@ -905,7 +863,7 @@
                 </p>
               </div>
               <div class="pt-4 mt-2 border-t border-slate-100">
-                <button type="button" onclick="switchTab('portfolio')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
+                <button type="button" onclick="switchTab('portfolio')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
                   <span>Check Compliance</span>
                   <span>→</span>
                 </button>
@@ -950,7 +908,7 @@
           <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-5">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-3">
               <div>
-                <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
                   ${sem.title} • Evaluations
                 </span>
                 <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Formative &amp; Continuous Evaluation Entry</h2>
@@ -960,13 +918,13 @@
                   ⚪ Local Storage Mode
                 </span>
                 <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Evaluation Total:</span>
-                <span id="score-display-pill" class="text-base font-black px-3.5 py-1 rounded-xl bg-rose-900 text-white font-mono shadow-2xs">
+                <span id="score-display-pill" class="text-base font-black px-3.5 py-1 rounded-xl bg-slate-900 text-white font-mono shadow-2xs">
                   15.5 / 20.0
                 </span>
                 <button 
                   type="button" 
                   onclick="openStudentGradeReportModal()" 
-                  class="ml-1 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-rose-900 text-white hover:bg-rose-950 flex items-center gap-1.5 shadow-2xs cursor-pointer"
+                  class="ml-1 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-900 text-white hover:bg-black flex items-center gap-1.5 shadow-2xs cursor-pointer"
                   title="Generate Official Student Grade Report / PDF Transcript"
                 >
                   <span>🖨️</span>
@@ -990,13 +948,13 @@
                   id="teacher-pin-input" 
                   maxlength="4" 
                   placeholder="4-digit PIN" 
-                  class="w-24 text-center font-mono font-bold p-1.5 rounded-lg border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-rose-800 focus:outline-none"
+                  class="w-24 text-center font-mono font-bold p-1.5 rounded-lg border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800 focus:outline-none"
                   onkeydown="if(event.key==='Enter'){event.preventDefault();authenticateTeacherSession();}"
                 />
                 <button 
                   type="button" 
                   onclick="authenticateTeacherSession()" 
-                  class="px-3 py-1.5 rounded-lg bg-rose-900 hover:bg-rose-950 text-white font-bold transition-all cursor-pointer shadow-2xs"
+                  class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-black text-white font-bold transition-all cursor-pointer shadow-2xs"
                 >
                   Sign In
                 </button>
@@ -1006,7 +964,7 @@
                 <button 
                   type="button" 
                   onclick="signOutTeacherSession()" 
-                  class="text-rose-800 hover:text-rose-950 font-bold text-xs underline cursor-pointer"
+                  class="text-slate-600 hover:text-slate-900 font-bold text-xs underline cursor-pointer"
                 >
                   Sign Out
                 </button>
@@ -1020,7 +978,7 @@
                 <!-- Milestone -->
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Evaluation Milestone</label>
-                  <select id="eval-milestone" onchange="handleMilestoneChange(); loadStudentGradeForEditing();" class="w-full text-xs font-bold p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                  <select id="eval-milestone" onchange="handleMilestoneChange(); loadStudentGradeForEditing();" class="w-full text-xs font-bold p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-slate-800">
                     <option value="1">Module 1 • FE1 Oral Evaluation</option>
                     <option value="2">Module 2 • FE2 Oral Evaluation</option>
                     <option value="3">Module 3 • FE3 Oral Evaluation</option>
@@ -1031,7 +989,7 @@
                 <!-- Teacher -->
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Evaluating Teacher</label>
-                  <select id="eval-teacher" onchange="updateTeacherAuthUI();" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                  <select id="eval-teacher" onchange="updateTeacherAuthUI();" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-slate-800">
                     ${(sem.faculty || []).map(f => `<option value="${f.name}">${f.name} (${f.track})</option>`).join('')}
                   </select>
                 </div>
@@ -1039,7 +997,7 @@
                 <!-- Student -->
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Candidate</label>
-                  <select id="eval-student" onchange="loadStudentGradeForEditing();" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                  <select id="eval-student" onchange="loadStudentGradeForEditing();" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-slate-800">
                     <optgroup label="Group A (${(sem.students.groupA || []).length} students)">
                       ${(sem.students.groupA || []).map(s => `<option value="${s}">${formatStudentName(s)} (Group A)</option>`).join('')}
                     </optgroup>
@@ -1068,9 +1026,9 @@
                   <div class="flex items-center justify-between gap-2">
                     <div>
                       <span class="text-xs font-bold text-slate-900 block">1. Fluency &amp; Coherence</span>
-                      <span class="text-[10px] font-bold text-rose-800">Max 4.0 pts</span>
+                      <span class="text-[10px] font-bold text-amber-700">Max 4.0 pts</span>
                     </div>
-                    <select id="crit-1" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                    <select id="crit-1" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800">
                       <option value="0.0">0.0</option><option value="0.5">0.5</option><option value="1.0">1.0</option>
                       <option value="1.5">1.5</option><option value="2.0">2.0</option><option value="2.5">2.5</option>
                       <option value="3.0" selected>3.0</option><option value="3.5">3.5</option><option value="4.0">4.0</option>
@@ -1084,9 +1042,9 @@
                   <div class="flex items-center justify-between gap-2">
                     <div>
                       <span class="text-xs font-bold text-slate-900 block">2. Pronunciation &amp; Stress</span>
-                      <span class="text-[10px] font-bold text-rose-800">Max 3.0 pts</span>
+                      <span class="text-[10px] font-bold text-amber-700">Max 3.0 pts</span>
                     </div>
-                    <select id="crit-2" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                    <select id="crit-2" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800">
                       <option value="0.0">0.0</option><option value="0.5">0.5</option><option value="1.0">1.0</option>
                       <option value="1.5">1.5</option><option value="2.0">2.0</option><option value="2.5" selected>2.5</option>
                       <option value="3.0">3.0</option>
@@ -1100,9 +1058,9 @@
                   <div class="flex items-center justify-between gap-2">
                     <div>
                       <span class="text-xs font-bold text-slate-900 block">3. Grammar &amp; Sentence Control</span>
-                      <span class="text-[10px] font-bold text-rose-800">Max 4.0 pts</span>
+                      <span class="text-[10px] font-bold text-amber-700">Max 4.0 pts</span>
                     </div>
-                    <select id="crit-3" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                    <select id="crit-3" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800">
                       <option value="0.0">0.0</option><option value="0.5">0.5</option><option value="1.0">1.0</option>
                       <option value="1.5">1.5</option><option value="2.0">2.0</option><option value="2.5">2.5</option>
                       <option value="3.0" selected>3.0</option><option value="3.5">3.5</option><option value="4.0">4.0</option>
@@ -1116,9 +1074,9 @@
                   <div class="flex items-center justify-between gap-2">
                     <div>
                       <span class="text-xs font-bold text-slate-900 block">4. Technical Vocabulary</span>
-                      <span class="text-[10px] font-bold text-rose-800">Max 4.0 pts</span>
+                      <span class="text-[10px] font-bold text-amber-700">Max 4.0 pts</span>
                     </div>
-                    <select id="crit-4" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                    <select id="crit-4" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800">
                       <option value="0.0">0.0</option><option value="0.5">0.5</option><option value="1.0">1.0</option>
                       <option value="1.5">1.5</option><option value="2.0">2.0</option><option value="2.5">2.5</option>
                       <option value="3.0" selected>3.0</option><option value="3.5">3.5</option><option value="4.0">4.0</option>
@@ -1132,9 +1090,9 @@
                   <div class="flex items-center justify-between gap-2">
                     <div>
                       <span class="text-xs font-bold text-slate-900 block">5. Interaction &amp; Teamwork</span>
-                      <span class="text-[10px] font-bold text-rose-800">Max 2.5 pts</span>
+                      <span class="text-[10px] font-bold text-amber-700">Max 2.5 pts</span>
                     </div>
-                    <select id="crit-5" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                    <select id="crit-5" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800">
                       <option value="0.0">0.0</option><option value="0.5">0.5</option><option value="1.0">1.0</option>
                       <option value="1.5">1.5</option><option value="2.0" selected>2.0</option><option value="2.5">2.5</option>
                     </select>
@@ -1147,9 +1105,9 @@
                   <div class="flex items-center justify-between gap-2">
                     <div>
                       <span class="text-xs font-bold text-slate-900 block">6. Portfolio &amp; Self-Critique</span>
-                      <span class="text-[10px] font-bold text-rose-800">Max 2.5 pts</span>
+                      <span class="text-[10px] font-bold text-amber-700">Max 2.5 pts</span>
                     </div>
-                    <select id="crit-6" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                    <select id="crit-6" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800">
                       <option value="0.0">0.0</option><option value="0.5">0.5</option><option value="1.0">1.0</option>
                       <option value="1.5">1.5</option><option value="2.0" selected>2.0</option><option value="2.5">2.5</option>
                     </select>
@@ -1159,15 +1117,15 @@
               </div>
 
               <!-- Module 4 Single Grade Dropdown (/20) -->
-              <div id="mod4-criteria-container" class="hidden p-5 bg-rose-50/50 rounded-xl border border-rose-200 space-y-3">
+              <div id="mod4-criteria-container" class="hidden p-5 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
-                    <span class="text-xs font-black uppercase tracking-wider text-rose-900 block">Module 4 • Continuous Assessment Grade</span>
+                    <span class="text-xs font-black uppercase tracking-wider text-slate-900 block">Module 4 • Continuous Assessment Grade</span>
                     <p class="text-xs text-slate-600 mt-0.5">Overall continuous assessment score out of 20 (0.0 to 20.0 in 0.5 steps).</p>
                   </div>
                   <div class="flex items-center gap-2 bg-white p-2 px-3 rounded-xl border border-slate-300 shadow-2xs">
                     <span class="text-xs font-bold text-slate-700">Module 4 Mark:</span>
-                    <select id="crit-mod4" onchange="recalcScore()" class="text-sm font-black font-mono p-1.5 px-3 rounded-lg border border-slate-300 bg-slate-50 text-rose-950 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                    <select id="crit-mod4" onchange="recalcScore()" class="text-sm font-black font-mono p-1.5 px-3 rounded-lg border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800">
                       ${Array.from({ length: 41 }, (_, i) => (i * 0.5).toFixed(1)).map(v => `<option value="${v}" ${v === '14.0' ? 'selected' : ''}>${v} / 20.0</option>`).join('')}
                     </select>
                   </div>
@@ -1178,18 +1136,18 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Key Strengths &amp; Commendations</label>
-                  <textarea id="eval-strengths" rows="3" placeholder="Spontaneous delivery, accurate specialized terminology, strong teamwork..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800"></textarea>
+                  <textarea id="eval-strengths" rows="3" placeholder="Spontaneous delivery, accurate specialized terminology, strong teamwork..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-slate-800"></textarea>
                 </div>
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Target Areas for Improvement</label>
-                  <textarea id="eval-targets" rows="3" placeholder="Syllable stress on target nouns, modal verbs of obligation..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800"></textarea>
+                  <textarea id="eval-targets" rows="3" placeholder="Syllable stress on target nouns, modal verbs of obligation..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-slate-800"></textarea>
                 </div>
               </div>
 
               <!-- Submit Button Row -->
               <div class="flex items-center justify-between pt-2">
                 <span id="submit-status-msg" class="text-xs text-emerald-600 font-bold"></span>
-                <button type="submit" class="px-5 py-2.5 rounded-xl bg-rose-900 hover:bg-rose-950 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer">
+                <button type="submit" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer">
                   <span>💾</span>
                   <span>Save Evaluation Record</span>
                 </button>
@@ -1204,7 +1162,7 @@
             <!-- Modal Control Header (hidden in print) -->
             <div class="no-print p-4 sm:p-5 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-rose-900 text-white flex items-center justify-center font-bold text-lg shadow-inner">
+                <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-lg shadow-inner">
                   🖨️
                 </div>
                 <div>
@@ -1214,7 +1172,7 @@
               </div>
               <div class="flex flex-wrap items-center gap-2">
                 <!-- Candidate Filter -->
-                <select id="report-candidate-filter" onchange="renderGradeReportPrintArea()" class="text-xs font-bold p-2 rounded-xl border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-rose-800">
+                <select id="report-candidate-filter" onchange="renderGradeReportPrintArea()" class="text-xs font-bold p-2 rounded-xl border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-slate-800">
                   <option value="all">All Candidates (Full Promotion Dossier)</option>
                   <!-- Populated dynamically -->
                 </select>
@@ -1222,7 +1180,7 @@
                   <span>🔄</span>
                   <span>Sync Cloud</span>
                 </button>
-                <button type="button" onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-bold bg-rose-900 hover:bg-rose-950 text-white shadow-xs transition-all flex items-center gap-1.5 cursor-pointer">
+                <button type="button" onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs transition-all flex items-center gap-1.5 cursor-pointer">
                   <span>🖨️</span>
                   <span>Print / Save as PDF</span>
                 </button>
@@ -1798,7 +1756,7 @@
               <!-- Overall Grade Box -->
               <div class="shrink-0 text-left sm:text-right bg-slate-50 sm:bg-transparent p-3 sm:p-0 rounded-xl border sm:border-0 border-slate-200">
                 <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500 block">Semester Average</span>
-                <span class="text-2xl sm:text-3xl font-black font-mono text-rose-950 block">
+                <span class="text-2xl sm:text-3xl font-black font-mono text-slate-900 block">
                   ${avg !== null ? avg + ' / 20.0' : '-- / 20.0'}
                 </span>
                 ${band ? `<span class="inline-block mt-1 text-[10px] font-black px-2 py-0.5 rounded-md border ${band.color}">${band.label}</span>` : ''}
@@ -1846,13 +1804,13 @@
                           <span class="text-[11px] text-slate-500">Evaluator: <strong>${log.teacher || 'Accredited Teacher'}</strong> • Logged: ${log.timestamp || 'Recorded'}</span>
                         </div>
                         <div class="text-left sm:text-right flex items-center gap-2">
-                          <span class="text-base sm:text-lg font-black font-mono text-rose-950 bg-white px-2.5 py-1 rounded-lg border border-slate-200 shadow-2xs">
+                          <span class="text-base sm:text-lg font-black font-mono text-slate-900 bg-white px-2.5 py-1 rounded-lg border border-slate-200 shadow-2xs">
                             ${parseFloat(log.total).toFixed(1)} / 20.0
                           </span>
                           <button 
                             type="button" 
                             onclick="editEvaluationFromReport('${candidate.id}', ${mod.num})" 
-                            class="no-print px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 transition-all flex items-center gap-1 cursor-pointer"
+                            class="no-print px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 transition-all flex items-center gap-1 cursor-pointer"
                             title="Edit this evaluation in the form"
                           >
                             <span>✏️</span>
@@ -1910,8 +1868,8 @@
                         </div>
 
                         <!-- Target Areas for Improvement -->
-                        <div class="p-3 bg-rose-50/70 rounded-xl border border-rose-200/80 space-y-1">
-                          <span class="text-[10px] font-black uppercase tracking-wider text-rose-900 flex items-center gap-1">
+                        <div class="p-3 bg-amber-50/70 rounded-xl border border-amber-200/80 space-y-1">
+                          <span class="text-[10px] font-black uppercase tracking-wider text-amber-900 flex items-center gap-1">
                             <span>🎯</span>
                             <span>Target Areas for Improvement</span>
                           </span>
@@ -1945,7 +1903,7 @@
           <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-4 print-card">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
               <div>
-                <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
                   ${sem.title} • FE Tutorial Rotas
                 </span>
                 <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">30-Minute Oral Tutorial Slot Schedules</h2>
@@ -1968,7 +1926,7 @@
           <!-- Top Header -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-3">
             <div>
-              <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+              <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
                 ${sem.title} • Official FE Tutorial Rotas
               </span>
               <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">30-Minute Oral Tutorial Slot Schedules</h2>
@@ -1985,10 +1943,10 @@
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Track:</span>
               <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-white">
-                <button type="button" onclick="setRotaTrack('ag')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'ag' ? 'bg-rose-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                <button type="button" onclick="setRotaTrack('ag')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'ag' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
                   🗣️ General English (AG • LV101E)
                 </button>
-                <button type="button" onclick="setRotaTrack('at')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'at' ? 'bg-rose-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                <button type="button" onclick="setRotaTrack('at')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'at' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
                   ✈️ Technical English (AT • LV121E)
                 </button>
               </div>
@@ -2012,14 +1970,14 @@
           </div>
 
           <!-- Active Milestone Overview Banner -->
-          <div class="p-4 bg-gradient-to-r from-rose-50/70 to-slate-50 border border-rose-100 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="p-4 bg-gradient-to-r from-slate-50 to-slate-100/60 border border-slate-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <div class="flex items-center gap-2">
                 <span class="px-2.5 py-0.5 rounded text-[11px] font-black uppercase text-white ${activeRotaTrack === 'at' ? 'bg-blue-800' : 'bg-emerald-800'}">
                   ${activeTrack.code}
                 </span>
                 <h3 class="text-sm font-bold text-slate-900">${currentFe.title}</h3>
-                <span class="text-xs font-mono font-bold text-rose-900 bg-rose-100 px-2 py-0.5 rounded">${currentFe.week}</span>
+                <span class="text-xs font-mono font-bold text-slate-800 bg-slate-200 px-2 py-0.5 rounded">${currentFe.week}</span>
               </div>
               <p class="text-xs text-slate-600 mt-1">${currentFe.dateStr} • ${activeTrack.schedule}</p>
             </div>
@@ -2046,7 +2004,7 @@
                   const sB = currentFe.groupB.slots[idx];
                   return `
                     <tr class="hover:bg-slate-50/80 transition-colors">
-                      <td class="py-3 px-3 font-mono font-bold text-rose-950 whitespace-nowrap">
+                      <td class="py-3 px-3 font-mono font-bold text-slate-900 whitespace-nowrap">
                         <span class="text-slate-400 font-normal">Slot ${idx + 1}:</span> ${sA.time}
                       </td>
                       <td class="py-3 px-3">
@@ -2080,7 +2038,7 @@
           <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-4 print-card">
             <div class="flex items-center justify-between pb-3 border-b border-slate-100">
               <div>
-                <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
                   ${sem.title} • Master Schedule
                 </span>
                 <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Curriculum &amp; Evaluation Timetable</h2>
@@ -2098,7 +2056,7 @@
           <!-- Top Header -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-3">
             <div>
-              <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+              <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
                 ${sem.title} • Weekly Course Calendar
               </span>
               <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">15-Week Curriculum &amp; Evaluation Timetable</h2>
@@ -2113,10 +2071,10 @@
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Course Track:</span>
               <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-white">
-                <button type="button" onclick="setCalendarTrack('ag')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'ag' ? 'bg-rose-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                <button type="button" onclick="setCalendarTrack('ag')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'ag' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
                   🗣️ General English (AG • LV101E)
                 </button>
-                <button type="button" onclick="setCalendarTrack('at')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'at' ? 'bg-rose-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                <button type="button" onclick="setCalendarTrack('at')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'at' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
                   ✈️ Technical English (AT • LV121E)
                 </button>
               </div>
@@ -2154,15 +2112,15 @@
                           `;
                         }
                         return `
-                          <tr class="${s.isFe ? 'bg-rose-50/60 font-semibold' : 'hover:bg-slate-50/70'} transition-colors">
-                            <td class="py-2.5 px-3 font-mono font-bold ${s.isFe ? 'text-rose-900' : 'text-slate-700'}">${s.week}</td>
+                          <tr class="${s.isFe ? 'bg-amber-50/70 font-semibold border-l-4 border-amber-500' : 'hover:bg-slate-50/70'} transition-colors">
+                            <td class="py-2.5 px-3 font-mono font-bold ${s.isFe ? 'text-amber-900' : 'text-slate-700'}">${s.week}</td>
                             <td class="py-2.5 px-3 font-medium text-slate-600 whitespace-nowrap">${s.date}</td>
                             <td class="py-2.5 px-3">
-                              <div class="font-bold ${s.isFe ? 'text-rose-950' : 'text-slate-900'}">${s.title}</div>
+                              <div class="font-bold ${s.isFe ? 'text-slate-900' : 'text-slate-900'}">${s.title}</div>
                               ${s.subtitle ? `<div class="text-[10px] text-slate-500 mt-0.5">${s.subtitle}</div>` : ''}
                             </td>
                             <td class="py-2.5 px-3 text-right whitespace-nowrap">
-                              <span class="px-2 py-0.5 rounded text-[10px] font-bold ${s.isFe ? 'bg-rose-100 text-rose-800 border border-rose-200' : 'bg-slate-100 text-slate-700 border border-slate-200'}">
+                              <span class="px-2 py-0.5 rounded text-[10px] font-bold ${s.isFe ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-slate-100 text-slate-700 border border-slate-200'}">
                                 ${s.tag}
                               </span>
                             </td>
@@ -2204,7 +2162,7 @@
             <div class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-3">
                 <div>
-                  <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                  <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
                     ${sem.title} • Attendance &amp; Lateness Tracker
                   </span>
                   <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Record Student Absence or Lateness</h2>
@@ -2244,7 +2202,7 @@
                         <button 
                           type="button" 
                           onclick="setAbsTrack('${t}')" 
-                          class="abs-track-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsTrack === t ? 'bg-rose-900 text-white border-rose-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}"
+                          class="abs-track-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsTrack === t ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}"
                         >
                           ${t}
                         </button>
@@ -2276,7 +2234,7 @@
                     <button 
                       type="button" 
                       onclick="setAbsStatus('Absent')" 
-                      class="flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border transition-all cursor-pointer ${activeAbsStatus === 'Absent' ? 'bg-rose-900 text-white border-rose-900 shadow-xs' : 'bg-white text-slate-700 border-slate-300 hover:bg-rose-50'}"
+                      class="flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border transition-all cursor-pointer ${activeAbsStatus === 'Absent' ? 'bg-rose-700 text-white border-rose-700 shadow-xs' : 'bg-white text-slate-700 border-slate-300 hover:bg-rose-50'}"
                     >
                       <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs ${activeAbsStatus === 'Absent' ? 'bg-white/20 text-white' : 'bg-rose-100 text-rose-800'}">✕</span>
                       <span>Absent</span>
@@ -2293,7 +2251,7 @@
 
                     <div id="abs-late-duration-box" class="${activeAbsStatus === 'Late' ? 'flex' : 'hidden'} items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs">
                       <span class="text-[11px] font-bold text-slate-600">Delay:</span>
-                      <select id="abs-delay-duration" class="text-xs font-bold p-1 rounded-lg border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                      <select id="abs-delay-duration" class="text-xs font-bold p-1 rounded-lg border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800">
                         <option value="5-10 mins">5–10 mins</option>
                         <option value="15-20 mins" selected>15–20 mins</option>
                         <option value="30+ mins">30+ mins</option>
@@ -2315,7 +2273,7 @@
                     <!-- Student Selector (filtered by group) -->
                     <div class="sm:col-span-6">
                       <label class="block text-[11px] font-bold text-slate-600 mb-1 leading-normal">Candidate</label>
-                      <select id="abs-student-select" class="w-full h-11 text-xs font-bold px-3 rounded-xl border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-rose-800 focus:outline-none box-border leading-normal shadow-2xs">
+                      <select id="abs-student-select" class="w-full h-11 text-xs font-bold px-3 rounded-xl border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800 focus:outline-none box-border leading-normal shadow-2xs">
                         <!-- Populated dynamically via updateAbsStudentOptions() -->
                       </select>
                     </div>
@@ -2327,7 +2285,7 @@
                         type="date" 
                         id="abs-incident-date" 
                         value="${new Date().toISOString().split('T')[0]}" 
-                        class="w-full h-11 text-xs font-bold px-3 rounded-xl border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-rose-800 focus:outline-none box-border leading-normal shadow-2xs"
+                        class="w-full h-11 text-xs font-bold px-3 rounded-xl border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800 focus:outline-none box-border leading-normal shadow-2xs"
                       >
                     </div>
 
@@ -2338,7 +2296,7 @@
                         type="text" 
                         id="abs-incident-notes" 
                         placeholder="Transport delay, medical..." 
-                        class="w-full h-11 text-xs px-3 rounded-xl border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-rose-800 focus:outline-none box-border leading-normal shadow-2xs"
+                        class="w-full h-11 text-xs px-3 rounded-xl border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-slate-800 focus:outline-none box-border leading-normal shadow-2xs"
                       >
                     </div>
                   </div>
@@ -2358,7 +2316,7 @@
                     <button 
                       type="submit" 
                       id="btn-submit-absence" 
-                      class="px-6 py-2.5 rounded-xl bg-rose-900 hover:bg-rose-950 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer"
+                      class="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer"
                     >
                       <span>💾</span>
                       <span>Submit Absence Record</span>
@@ -2418,7 +2376,7 @@
           <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 space-y-4">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-3">
               <div>
-                <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
                   Attendance Database
                 </span>
                 <h3 class="text-sm sm:text-base font-bold text-slate-900 mt-1">Live Absence &amp; Lateness Register</h3>
@@ -2448,7 +2406,7 @@
                 <button 
                   type="button" 
                   onclick="clearAbsenceLogs()" 
-                  class="px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-rose-50 hover:text-rose-700 text-slate-500 font-bold text-xs cursor-pointer transition-all"
+                  class="px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 hover:text-slate-900 text-slate-500 font-bold text-xs cursor-pointer transition-all"
                   title="Clear local logs"
                 >
                   Clear
@@ -2464,19 +2422,19 @@
                   type="search" 
                   oninput="renderAbsenceLogs()" 
                   placeholder="Search student, note, date..." 
-                  class="p-2 rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-800 flex-1 min-w-[150px]"
+                  class="p-2 rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-800 flex-1 min-w-[150px]"
                 >
-                <select id="abs-filter-status" onchange="renderAbsenceLogs()" class="p-2 rounded-lg border border-slate-300 bg-white text-slate-800 font-bold focus:ring-2 focus:ring-rose-800">
+                <select id="abs-filter-status" onchange="renderAbsenceLogs()" class="p-2 rounded-lg border border-slate-300 bg-white text-slate-800 font-bold focus:ring-2 focus:ring-slate-800">
                   <option value="all">All Statuses (Absent &amp; Late)</option>
                   <option value="Absent">🔴 Absent Only</option>
                   <option value="Late">🟡 Late Only</option>
                 </select>
-                <select id="abs-filter-group" onchange="renderAbsenceLogs()" class="p-2 rounded-lg border border-slate-300 bg-white text-slate-800 font-bold focus:ring-2 focus:ring-rose-800">
+                <select id="abs-filter-group" onchange="renderAbsenceLogs()" class="p-2 rounded-lg border border-slate-300 bg-white text-slate-800 font-bold focus:ring-2 focus:ring-slate-800">
                   <option value="all">All Groups</option>
                   <option value="A">Group A</option>
                   <option value="B">Group B</option>
                 </select>
-                <select id="abs-filter-date" onchange="renderAbsenceLogs()" class="p-2 rounded-lg border border-slate-300 bg-white text-slate-800 font-bold focus:ring-2 focus:ring-rose-800">
+                <select id="abs-filter-date" onchange="renderAbsenceLogs()" class="p-2 rounded-lg border border-slate-300 bg-white text-slate-800 font-bold focus:ring-2 focus:ring-slate-800">
                   <option value="all">All Dates</option>
                   <option value="today">Today Only</option>
                   <option value="this_month">This Month</option>
@@ -2533,7 +2491,7 @@
       activeAbsTrack = track;
       document.querySelectorAll('.abs-track-btn').forEach(btn => {
         const isActive = btn.textContent.trim() === track;
-        btn.className = "abs-track-btn flex-1 py-1.5 px-2.5 rounded-lg text-xs font-bold transition-all border " + (isActive ? 'bg-rose-900 text-white border-rose-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100');
+        btn.className = "abs-track-btn flex-1 py-1.5 px-2.5 rounded-lg text-xs font-bold transition-all border " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100');
       });
     }
 
@@ -2571,7 +2529,7 @@
         const isAbsentBtn = btn.getAttribute('onclick').includes("'Absent'");
         if (isAbsentBtn) {
           const isActive = activeAbsStatus === 'Absent';
-          btn.className = "flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border transition-all cursor-pointer " + (isActive ? 'bg-rose-900 text-white border-rose-900 shadow-xs' : 'bg-white text-slate-700 border-slate-300 hover:bg-rose-50');
+          btn.className = "flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border transition-all cursor-pointer " + (isActive ? 'bg-rose-700 text-white border-rose-700 shadow-xs' : 'bg-white text-slate-700 border-slate-300 hover:bg-rose-50');
         } else {
           const isActive = activeAbsStatus === 'Late';
           btn.className = "flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border transition-all cursor-pointer " + (isActive ? 'bg-amber-600 text-white border-amber-600 shadow-xs' : 'bg-white text-slate-700 border-slate-300 hover:bg-amber-50');
@@ -3824,14 +3782,14 @@ const PORTFOLIO_DATA_S1 = {
               ⏳
             </div>
             <div class="max-w-md mx-auto space-y-1.5">
-              <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2.5 py-0.5 rounded border border-rose-200">
+              <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded border border-slate-200">
                 ${sem.title} • ${sem.tracks}
               </span>
               <h3 class="text-base sm:text-lg font-bold text-slate-900 pt-1">Awaiting Student Portfolio Submissions</h3>
               <p class="text-xs text-slate-500 leading-relaxed">
                 When students submit their reflection logs via Google Forms, run the automated chat command with your CSV:
               </p>
-              <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-mono text-xs font-bold text-rose-950 inline-block mt-2">
+              <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-mono text-xs font-bold text-slate-900 inline-block mt-2">
                 Semester ${sem.num} Teachers Portfolio Update
               </div>
               <p class="text-[11px] text-slate-400 pt-2">
@@ -3911,21 +3869,21 @@ const PORTFOLIO_DATA_S1 = {
               <button 
                 type="button" 
                 onclick="setPortfolioModule(1)" 
-                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activePortfolioModule === 1 ? 'bg-rose-900 text-white border-rose-900 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
+                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activePortfolioModule === 1 ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
               >
                 Module 1 (FE1)
               </button>
               <button 
                 type="button" 
                 onclick="setPortfolioModule(2)" 
-                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activePortfolioModule === 2 ? 'bg-rose-900 text-white border-rose-900 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
+                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activePortfolioModule === 2 ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
               >
                 Module 2 (FE2)
               </button>
               <button 
                 type="button" 
                 onclick="setPortfolioModule(3)" 
-                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activePortfolioModule === 3 ? 'bg-rose-900 text-white border-rose-900 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
+                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activePortfolioModule === 3 ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
               >
                 Module 3 (FE3)
               </button>
@@ -3955,7 +3913,7 @@ const PORTFOLIO_DATA_S1 = {
                         : `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">Partial (${st.loggedCount}/${totalExpected})</span>`);
 
                     return `
-                      <tr class="hover:bg-rose-50/30 transition-colors">
+                      <tr class="hover:bg-slate-50/70 transition-colors">
                         <td class="py-2.5 px-3 whitespace-nowrap">
                           <span class="font-mono font-bold text-slate-900">${st.name}</span>
                           <span class="text-[10px] ml-1.5 px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">${st.group}</span>
@@ -3991,7 +3949,7 @@ const PORTFOLIO_DATA_S1 = {
                             <button 
                               type="button" 
                               onclick="copyIndividualMissingReminder('${st.id}')" 
-                              class="text-rose-800 hover:text-rose-950 font-bold text-xs underline cursor-pointer"
+                              class="text-slate-600 hover:text-slate-900 font-bold text-xs underline cursor-pointer"
                               title="Copy reminder for ${st.name}"
                             >
                               📋 Copy Reminder
