@@ -133,29 +133,25 @@
 
     <!-- Sub-Navigation Tab Strip -->
     <nav class="flex items-center gap-1 overflow-x-auto pb-1 text-xs select-none border-b border-slate-200" id="main-nav-tabs">
-      <button onclick="switchTab('grading')" id="tab-btn-grading" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer">
-        <span>📝</span>
-        <span>Grading &amp; Evaluation Form</span>
-      </button>
-      <button onclick="switchTab('rotas')" id="tab-btn-rotas" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
-        <span>📋</span>
-        <span>FE Tutorial Rotas</span>
-      </button>
-      <button onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+      <button onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer">
         <span>📅</span>
         <span>Semester Programme</span>
+      </button>
+      <button onclick="switchTab('rotas')" id="tab-btn-rotas" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+        <span>⏱️</span>
+        <span>FE Rotas</span>
       </button>
       <button onclick="switchTab('groups')" id="tab-btn-groups" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
         <span>👥</span>
         <span>Groups and Absences</span>
       </button>
-      <button onclick="switchTab('rubrics')" id="tab-btn-rubrics" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
-        <span>📘</span>
-        <span>Evaluation Rubrics</span>
+      <button onclick="switchTab('evaluations')" id="tab-btn-evaluations" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+        <span>📝</span>
+        <span>Evaluations</span>
       </button>
       <button onclick="switchTab('portfolio')" id="tab-btn-portfolio" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
         <span>📊</span>
-        <span>Student Portfolio &amp; Reflections</span>
+        <span>Portfolio Track</span>
       </button>
     </nav>
 
@@ -216,7 +212,7 @@
 
     // Active state
     let activeSemester = 1;
-    let activeTab = 'grading';
+    let activeTab = 'calendar';
     let activeRotaTrack = 'ag'; // 'ag' or 'at'
     let activeRotaFe = 1;       // 1, 2, or 3
     let activeCalendarTrack = 'ag'; // 'ag' or 'at'
@@ -606,19 +602,16 @@
       if (!container) return;
       const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
 
-      if (activeTab === 'grading') {
-        container.innerHTML = renderGradingTab(sem);
-        recalcScore();
-        updateActiveStudentSnapshot();
+      if (activeTab === 'calendar') {
+        container.innerHTML = renderCalendarTab(sem);
       } else if (activeTab === 'rotas') {
         container.innerHTML = renderRotasTab(sem);
-      } else if (activeTab === 'calendar') {
-        container.innerHTML = renderCalendarTab(sem);
       } else if (activeTab === 'groups') {
         container.innerHTML = renderGroupsTab(sem);
         renderAbsenceLogs();
-      } else if (activeTab === 'rubrics') {
-        container.innerHTML = renderRubricsTab(sem);
+      } else if (activeTab === 'evaluations' || activeTab === 'grading' || activeTab === 'rubrics') {
+        container.innerHTML = renderEvaluationsTab(sem);
+        initEvaluationsEvents();
       } else if (activeTab === 'portfolio') {
         container.innerHTML = renderPortfolioTab(sem);
         initPortfolioEvents();
@@ -626,35 +619,52 @@
     }
 
     // ============================================================================
-    // TAB 1: GRADING & QUALITATIVE EVALUATION FORM
+    // TAB 4: EVALUATIONS (MERGED GRADING & RUBRICS)
     // ============================================================================
-    function renderGradingTab(sem) {
-      const allStudents = [...(sem.students.groupA || []), ...(sem.students.groupB || [])];
+    function generateScoreOptions(maxVal, defaultVal) {
+      let opts = '';
+      const step = 0.5;
+      const count = Math.round(maxVal / step);
+      for (let i = 0; i <= count; i++) {
+        const val = (i * step).toFixed(1);
+        const isSelected = (parseFloat(val) === parseFloat(defaultVal)) ? 'selected' : '';
+        opts += `<option value="${val}" ${isSelected}>${val}</option>`;
+      }
+      return opts;
+    }
+
+    function renderEvaluationsTab(sem) {
       return `
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-          <!-- Left 2 Cols: Interactive Evaluation Form -->
-          <div class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-5">
-            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="space-y-5">
+          <!-- Evaluation Form Card -->
+          <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
               <div>
                 <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
-                  ${sem.title} • Continuous &amp; Formative Evaluation
+                  ${sem.title} • Evaluations
                 </span>
-                <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Record Student Grade &amp; Oral Feedback</h2>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Formative &amp; Continuous Evaluation Entry</h2>
               </div>
-              <span class="text-xs text-slate-500 font-medium">Auto-computes /20</span>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Evaluation Total:</span>
+                <span id="score-display-pill" class="text-base font-black px-3.5 py-1 rounded-xl bg-rose-900 text-white font-mono shadow-2xs">
+                  15.5 / 20.0
+                </span>
+              </div>
             </div>
 
-            <!-- Form Grid -->
+            <!-- Form -->
             <form id="eval-record-form" onsubmit="handleEvaluationSubmit(event)" class="space-y-4">
+              <!-- Selectors Row -->
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <!-- Milestone -->
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Evaluation Milestone</label>
-                  <select id="eval-milestone" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
-                    <option value="FE1">FE1 • 30-Minute Oral Tutorial</option>
-                    <option value="FE2">FE2 • 30-Minute Oral Tutorial</option>
-                    <option value="FE3">FE3 • 30-Minute Oral Tutorial</option>
-                    <option value="Continuous">Weekly Progress Check</option>
+                  <select id="eval-milestone" onchange="handleMilestoneChange()" class="w-full text-xs font-bold p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                    <option value="1">Module 1 • FE1 Oral Evaluation</option>
+                    <option value="2">Module 2 • FE2 Oral Evaluation</option>
+                    <option value="3">Module 3 • FE3 Oral Evaluation</option>
+                    <option value="4">Module 4 • Continuous Assessment (/20)</option>
                   </select>
                 </div>
 
@@ -668,8 +678,8 @@
 
                 <!-- Student -->
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Student Identifier</label>
-                  <select id="eval-student" onchange="updateActiveStudentSnapshot()" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Candidate</label>
+                  <select id="eval-student" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
                     <optgroup label="Group A (${(sem.students.groupA || []).length} students)">
                       ${(sem.students.groupA || []).map(s => `<option value="${s}">${formatStudentName(s)} (Group A)</option>`).join('')}
                     </optgroup>
@@ -680,387 +690,446 @@
                 </div>
               </div>
 
-              <!-- 4 Scoring Sliders (Out of 5 points each) -->
-              <div class="p-4 bg-slate-50/80 rounded-xl border border-slate-200/80 space-y-3">
-                <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold uppercase tracking-wide text-slate-700">Official 4-Criterion Scoring Rubric</span>
-                  <div class="flex items-center gap-1.5">
-                    <span class="text-xs text-slate-500 font-medium">Computed Mark:</span>
-                    <span id="score-display-pill" class="text-xs font-black px-2.5 py-0.5 rounded-md bg-rose-900 text-white">16.0 / 20</span>
+              <!-- 6 Criteria Dropdown Grid (Modules 1, 2, 3) -->
+              <div id="six-criteria-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                <!-- Criterion 1 -->
+                <div class="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <div>
+                      <span class="text-xs font-bold text-slate-900 block">1. Fluency &amp; Coherence</span>
+                      <span class="text-[10px] font-bold text-rose-800">Max 4.0 pts</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <select id="crit-1" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                        ${generateScoreOptions(4.0, 3.0)}
+                      </select>
+                      <span class="text-xs font-bold text-slate-400">/ 4</span>
+                    </div>
                   </div>
+                  <p class="text-[11px] text-slate-600 leading-snug">Natural delivery flow without artificial reading pauses. Ideas linked smoothly with connecting words. <strong>Strictly no reading from notes or slides!</strong></p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                  <!-- Crit 1: Fluency -->
-                  <div class="p-2.5 bg-white rounded-lg border border-slate-200 space-y-1">
-                    <div class="flex justify-between font-bold text-slate-800">
-                      <span>1. Spoken Fluency &amp; Spontaneity</span>
-                      <span id="score-val-1" class="text-rose-800 font-mono">4.0 / 5</span>
+                <!-- Criterion 2 -->
+                <div class="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <div>
+                      <span class="text-xs font-bold text-slate-900 block">2. Pronunciation &amp; Clarity</span>
+                      <span class="text-[10px] font-bold text-rose-800">Max 3.0 pts</span>
                     </div>
-                    <input type="range" min="0" max="5" step="0.5" value="4.0" id="crit-1" oninput="recalcScore()" class="w-full accent-rose-800 cursor-pointer">
-                    <span class="text-[10px] text-slate-500 block leading-tight">Pacing, spontaneity, zero reading from slides.</span>
+                    <div class="flex items-center gap-1">
+                      <select id="crit-2" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                        ${generateScoreOptions(3.0, 2.5)}
+                      </select>
+                      <span class="text-xs font-bold text-slate-400">/ 3</span>
+                    </div>
                   </div>
+                  <p class="text-[11px] text-slate-600 leading-snug">Intelligible pronunciation and correct syllable stress placed on specialized terms (<em>au-THOR-i-ty, co-OR-di-na-tor, tech-NI-cian, ca-PA-ci-ty</em>).</p>
+                </div>
 
-                  <!-- Crit 2: Vocab -->
-                  <div class="p-2.5 bg-white rounded-lg border border-slate-200 space-y-1">
-                    <div class="flex justify-between font-bold text-slate-800">
-                      <span>2. Vocabulary &amp; Technical Precision</span>
-                      <span id="score-val-2" class="text-rose-800 font-mono">4.0 / 5</span>
+                <!-- Criterion 3 -->
+                <div class="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <div>
+                      <span class="text-xs font-bold text-slate-900 block">3. Grammar &amp; Sentence Control</span>
+                      <span class="text-[10px] font-bold text-rose-800">Max 4.0 pts</span>
                     </div>
-                    <input type="range" min="0" max="5" step="0.5" value="4.0" id="crit-2" oninput="recalcScore()" class="w-full accent-rose-800 cursor-pointer">
-                    <span class="text-[10px] text-slate-500 block leading-tight">Accurate use of session target terminology.</span>
+                    <div class="flex items-center gap-1">
+                      <select id="crit-3" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                        ${generateScoreOptions(4.0, 3.0)}
+                      </select>
+                      <span class="text-xs font-bold text-slate-400">/ 4</span>
+                    </div>
                   </div>
+                  <p class="text-[11px] text-slate-600 leading-snug">Accurate modal verbs of obligation (<em>must, should, are required to</em>), past passive voice for incidents, and responsibility formulas (<em>responsible for + -ing</em>).</p>
+                </div>
 
-                  <!-- Crit 3: Grammar -->
-                  <div class="p-2.5 bg-white rounded-lg border border-slate-200 space-y-1">
-                    <div class="flex justify-between font-bold text-slate-800">
-                      <span>3. Grammar &amp; Sentence Control</span>
-                      <span id="score-val-3" class="text-rose-800 font-mono">4.0 / 5</span>
+                <!-- Criterion 4 -->
+                <div class="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <div>
+                      <span class="text-xs font-bold text-slate-900 block">4. Vocabulary &amp; Precision</span>
+                      <span class="text-[10px] font-bold text-rose-800">Max 4.0 pts</span>
                     </div>
-                    <input type="range" min="0" max="5" step="0.5" value="4.0" id="crit-3" oninput="recalcScore()" class="w-full accent-rose-800 cursor-pointer">
-                    <span class="text-[10px] text-slate-500 block leading-tight">Past tenses, prepositions, relative clauses.</span>
+                    <div class="flex items-center gap-1">
+                      <select id="crit-4" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                        ${generateScoreOptions(4.0, 3.0)}
+                      </select>
+                      <span class="text-xs font-bold text-slate-400">/ 4</span>
+                    </div>
                   </div>
+                  <p class="text-[11px] text-slate-600 leading-snug">Active, accurate deployment of at least <strong>6 to 8 specialized technical terms</strong> from Sessions 1–4.</p>
+                </div>
 
-                  <!-- Crit 4: Teamwork -->
-                  <div class="p-2.5 bg-white rounded-lg border border-slate-200 space-y-1">
-                    <div class="flex justify-between font-bold text-slate-800">
-                      <span>4. Interaction &amp; 50/50 Balance</span>
-                      <span id="score-val-4" class="text-rose-800 font-mono">4.0 / 5</span>
+                <!-- Criterion 5 -->
+                <div class="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <div>
+                      <span class="text-xs font-bold text-slate-900 block">5. Interaction &amp; Teamwork</span>
+                      <span class="text-[10px] font-bold text-rose-800">Max 2.5 pts</span>
                     </div>
-                    <input type="range" min="0" max="5" step="0.5" value="4.0" id="crit-4" oninput="recalcScore()" class="w-full accent-rose-800 cursor-pointer">
-                    <span class="text-[10px] text-slate-500 block leading-tight">Active peer questioning and equal talking time.</span>
+                    <div class="flex items-center gap-1">
+                      <select id="crit-5" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                        ${generateScoreOptions(2.5, 2.0)}
+                      </select>
+                      <span class="text-xs font-bold text-slate-400">/ 2.5</span>
+                    </div>
+                  </div>
+                  <p class="text-[11px] text-slate-600 leading-snug">Equal 50/50 talking-time balance between partners, smooth handovers, and spontaneous, thoughtful responses during teacher Q&amp;A.</p>
+                </div>
+
+                <!-- Criterion 6 -->
+                <div class="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <div>
+                      <span class="text-xs font-bold text-slate-900 block">6. Portfolio &amp; Self-Critique</span>
+                      <span class="text-[10px] font-bold text-rose-800">Max 2.5 pts</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <select id="crit-6" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                        ${generateScoreOptions(2.5, 2.0)}
+                      </select>
+                      <span class="text-xs font-bold text-slate-400">/ 2.5</span>
+                    </div>
+                  </div>
+                  <p class="text-[11px] text-slate-600 leading-snug">Updated personal vocabulary log with module terms, and mature self-critique of strong and weak points. <em>(Note: TOEIC testing does not factor into this grade).</em></p>
+                </div>
+              </div>
+
+              <!-- Module 4 Single Grade Container (Module 4) -->
+              <div id="mod4-criteria-container" class="hidden p-5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <span class="text-sm font-bold text-slate-900 block">Module 4 Continuous Assessment Grade</span>
+                    <p class="text-xs text-slate-600 mt-1 max-w-xl leading-relaxed">Overall continuous evaluation mark (0–20 pts) covering Module 4 class participation, technical coursework, and semester portfolio completion.</p>
+                  </div>
+                  <div class="flex items-center gap-2 bg-white p-2 px-3 rounded-xl border border-slate-300 shadow-2xs">
+                    <label class="text-xs font-bold text-slate-700">Mark:</label>
+                    <select id="crit-mod4" onchange="recalcScore()" class="text-sm font-black font-mono p-1.5 px-3 rounded-lg border border-slate-300 bg-slate-50 text-rose-950 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                      ${generateScoreOptions(20.0, 14.0)}
+                    </select>
+                    <span class="text-xs font-bold text-slate-500 font-mono">/ 20.0</span>
                   </div>
                 </div>
               </div>
 
               <!-- Qualitative Comments -->
-              <div class="space-y-3">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Key Strengths Observed</label>
-                  <textarea id="eval-strengths" rows="2" placeholder="e.g. Excellent explanation of 35-min apron turnaround; very spontaneous delivery..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-rose-800"></textarea>
+                  <textarea id="eval-strengths" rows="3" placeholder="Spontaneous delivery, accurate specialized terminology, strong teamwork..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800"></textarea>
                 </div>
-
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Areas for Development &amp; Action Targets</label>
-                  <textarea id="eval-targets" rows="2" placeholder="e.g. Watch out for 'at' vs 'in' the aerodrome; eliminate filler words..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-rose-800"></textarea>
+                  <textarea id="eval-targets" rows="3" placeholder="Syllable stress on target nouns, modal verbs of obligation..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800"></textarea>
                 </div>
               </div>
 
-              <!-- Submit Button -->
+              <!-- Submit Button Row -->
               <div class="flex items-center justify-between pt-2">
-                <span id="submit-status-msg" class="text-xs text-emerald-600 font-semibold"></span>
+                <span id="submit-status-msg" class="text-xs text-emerald-600 font-bold"></span>
                 <button type="submit" class="px-5 py-2.5 rounded-xl bg-rose-900 hover:bg-rose-950 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer">
                   <span>💾</span>
-                  <span>Save Grade &amp; Log to Sheets</span>
+                  <span>Save Evaluation Record</span>
                 </button>
               </div>
             </form>
           </div>
 
-          <!-- Right Col: Live Total Card & Recent Submissions -->
-          <div class="space-y-4">
-            <!-- Executive Score Badge -->
-            <div class="bg-gradient-to-br from-rose-950 to-slate-900 text-white rounded-2xl p-5 shadow-md border border-rose-900/50 flex flex-col justify-between">
-              <span class="text-[10px] font-black uppercase tracking-wider text-rose-300">Live Evaluation Total</span>
-              <div class="my-3 text-center">
-                <div id="live-total-score" class="text-4xl sm:text-5xl font-black tracking-tight text-white font-mono">16.0</div>
-                <div class="text-xs text-rose-200 mt-1 font-semibold">out of 20.0 Points</div>
+          <!-- Cumulative Student Grade Records Table -->
+          <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                  <span>📊</span>
+                  <span>Cumulative Semester Grade Records (Modules 1–4)</span>
+                </h3>
+                <p class="text-xs text-slate-500 mt-0.5">Summary of all continuous and formative evaluation marks logged for this promotion.</p>
               </div>
-              <div id="live-band-badge" class="py-1 px-3 rounded-lg text-center font-bold text-xs bg-blue-500/20 text-blue-300 border border-blue-400/30">
-                Solid B2 Standard (14–17 pts)
-              </div>
-            </div>
-
-            <!-- Recent Local Logs -->
-            <div class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 space-y-3">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <span class="text-xs font-bold text-slate-800">Recent Session Logs</span>
-                <button onclick="clearLocalLogs()" class="text-[10px] font-bold text-rose-700 hover:underline cursor-pointer">Clear</button>
-              </div>
-              <div id="recent-logs-list" class="space-y-2 max-h-48 overflow-y-auto text-xs">
-                <!-- Dynamically rendered -->
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="exportAllGradesCSV()" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 flex items-center gap-1.5 cursor-pointer">
+                  <span>📥</span>
+                  <span>Export Grades CSV</span>
+                </button>
+                <button type="button" onclick="clearLocalLogs()" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 flex items-center gap-1.5 cursor-pointer">
+                  <span>🗑️</span>
+                  <span>Clear Logs</span>
+                </button>
               </div>
             </div>
 
-            <!-- Active Student Portfolio Dossier Card -->
-            <div id="student-dossier-card" class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 space-y-2.5">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <div class="flex items-center gap-1.5">
-                  <span class="text-xs">👤</span>
-                  <span class="text-xs font-bold text-slate-800">Portfolio Snapshot</span>
-                </div>
-                <span id="dossier-student-badge" class="font-mono text-[10px] font-black uppercase px-2 py-0.5 rounded bg-rose-900 text-white">GRPA001</span>
-              </div>
-              <div id="dossier-content" class="space-y-2 text-xs">
-                <!-- Dynamically injected via updateActiveStudentSnapshot() -->
-              </div>
-            </div>
-
-            <!-- Official B2 Grade Band Quick Guide Card -->
-            <div class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 space-y-2.5">
-              <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
-                <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                  <span>🎯</span>
-                  <span>ENAC Formative Grade Scale</span>
-                </span>
-                <span class="text-[10px] font-mono text-slate-400">CEFR B2 Target</span>
-              </div>
-              <div class="space-y-1.5 text-[11px]">
-                <div class="p-2 rounded-lg bg-emerald-50/80 border border-emerald-200/80 flex items-center justify-between">
-                  <div>
-                    <strong class="font-bold text-emerald-950 block">Exemplary (18–20 pts)</strong>
-                    <span class="text-slate-500 text-[10px]">Spontaneous delivery, rich vocabulary, 50/50 balance</span>
-                  </div>
-                  <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-emerald-200 text-emerald-900 font-mono ml-2 shrink-0">C1</span>
-                </div>
-                <div class="p-2 rounded-lg bg-blue-50/80 border border-blue-200/80 flex items-center justify-between">
-                  <div>
-                    <strong class="font-bold text-blue-950 block">Solid B2 Standard (14–17.5 pts)</strong>
-                    <span class="text-slate-500 text-[10px]">Clear presentation, accurate terminology, good teamwork</span>
-                  </div>
-                  <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-blue-200 text-blue-900 font-mono ml-2 shrink-0">B2</span>
-                </div>
-                <div class="p-2 rounded-lg bg-amber-50/80 border border-amber-200/80 flex items-center justify-between">
-                  <div>
-                    <strong class="font-bold text-amber-950 block">Developing (10–13.5 pts)</strong>
-                    <span class="text-slate-500 text-[10px]">Hesitations, limited vocabulary, grammar slips</span>
-                  </div>
-                  <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-amber-200 text-amber-900 font-mono ml-2 shrink-0">B1+</span>
-                </div>
-                <div class="p-2 rounded-lg bg-rose-50/80 border border-rose-200/80 flex items-center justify-between">
-                  <div>
-                    <strong class="font-bold text-rose-950 block">Needs Improvement (&lt;10 pts)</strong>
-                    <span class="text-slate-500 text-[10px]">Direct reading from slides, severe hesitation</span>
-                  </div>
-                  <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-rose-200 text-rose-900 font-mono ml-2 shrink-0">&lt;B1</span>
-                </div>
-              </div>
+            <div id="cohort-grades-table-container">
+              <!-- Dynamically rendered via renderCohortGradesTable() -->
             </div>
           </div>
         </div>
       `;
     }
 
-    // Recalculate Live Score
+    function initEvaluationsEvents() {
+      handleMilestoneChange();
+      recalcScore();
+      renderCohortGradesTable();
+    }
+
+    function handleMilestoneChange() {
+      const milestoneSelect = document.getElementById('eval-milestone');
+      if (!milestoneSelect) return;
+      const milestone = milestoneSelect.value;
+      const criteriaContainer = document.getElementById('six-criteria-container');
+      const mod4Container = document.getElementById('mod4-criteria-container');
+
+      if (milestone === '4') {
+        if (criteriaContainer) criteriaContainer.classList.add('hidden');
+        if (mod4Container) mod4Container.classList.remove('hidden');
+      } else {
+        if (criteriaContainer) criteriaContainer.classList.remove('hidden');
+        if (mod4Container) mod4Container.classList.add('hidden');
+      }
+      recalcScore();
+    }
+
     function recalcScore() {
-      const c1 = parseFloat(document.getElementById('crit-1')?.value || 3.5);
-      const c2 = parseFloat(document.getElementById('crit-2')?.value || 2.5);
-      const c3 = parseFloat(document.getElementById('crit-3')?.value || 3.0);
-      const c4 = parseFloat(document.getElementById('crit-4')?.value || 3.5);
-      const c5 = parseFloat(document.getElementById('crit-5')?.value || 2.0);
-      const c6 = parseFloat(document.getElementById('crit-6')?.value || 2.0);
+      const milestone = document.getElementById('eval-milestone')?.value || '1';
+      let total = 0;
 
-      if (document.getElementById('score-val-1')) document.getElementById('score-val-1').textContent = `${c1.toFixed(1)} / 4`;
-      if (document.getElementById('score-val-2')) document.getElementById('score-val-2').textContent = `${c2.toFixed(1)} / 3`;
-      if (document.getElementById('score-val-3')) document.getElementById('score-val-3').textContent = `${c3.toFixed(1)} / 4`;
-      if (document.getElementById('score-val-4')) document.getElementById('score-val-4').textContent = `${c4.toFixed(1)} / 4`;
-      if (document.getElementById('score-val-5')) document.getElementById('score-val-5').textContent = `${c5.toFixed(2)} / 2.5`;
-      if (document.getElementById('score-val-6')) document.getElementById('score-val-6').textContent = `${c6.toFixed(2)} / 2.5`;
+      if (milestone === '4') {
+        total = parseFloat(document.getElementById('crit-mod4')?.value || 14.0);
+      } else {
+        const c1 = parseFloat(document.getElementById('crit-1')?.value || 3.0);
+        const c2 = parseFloat(document.getElementById('crit-2')?.value || 2.5);
+        const c3 = parseFloat(document.getElementById('crit-3')?.value || 3.0);
+        const c4 = parseFloat(document.getElementById('crit-4')?.value || 3.0);
+        const c5 = parseFloat(document.getElementById('crit-5')?.value || 2.0);
+        const c6 = parseFloat(document.getElementById('crit-6')?.value || 2.0);
+        total = c1 + c2 + c3 + c4 + c5 + c6;
+      }
 
-      const total = (c1 + c2 + c3 + c4 + c5 + c6).toFixed(1);
+      const formattedTotal = total.toFixed(1);
       const displayPill = document.getElementById('score-display-pill');
-      const liveTotal = document.getElementById('live-total-score');
-      const bandBadge = document.getElementById('live-band-badge');
-
-      if (displayPill) displayPill.textContent = `${total} / 20`;
-      if (liveTotal) liveTotal.textContent = total;
-
-      if (bandBadge) {
-        if (total >= 18) {
-          bandBadge.className = "py-1 px-3 rounded-lg text-center font-bold text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-400/30";
-          bandBadge.textContent = "Exemplary Standard (18–20 pts)";
-        } else if (total >= 14) {
-          bandBadge.className = "py-1 px-3 rounded-lg text-center font-bold text-xs bg-blue-500/20 text-blue-300 border border-blue-400/30";
-          bandBadge.textContent = "Solid B2 Standard (14–17.5 pts)";
-        } else if (total >= 10) {
-          bandBadge.className = "py-1 px-3 rounded-lg text-center font-bold text-xs bg-amber-500/20 text-amber-300 border border-amber-400/30";
-          bandBadge.textContent = "Developing (10–13.5 pts)";
-        } else {
-          bandBadge.className = "py-1 px-3 rounded-lg text-center font-bold text-xs bg-rose-500/20 text-rose-300 border border-rose-400/30";
-          bandBadge.textContent = "Needs Improvement (<10 pts)";
-        }
+      if (displayPill) {
+        displayPill.textContent = `${formattedTotal} / 20.0`;
       }
     }
 
-    // Update Active Student Portfolio Snapshot in Grading Tab
-    function updateActiveStudentSnapshot() {
-      const studentSelect = document.getElementById('eval-student');
-      const dossierBadge = document.getElementById('dossier-student-badge');
-      const dossierContent = document.getElementById('dossier-content');
-      if (!studentSelect || !dossierContent) return;
-
-      const studentId = studentSelect.value;
-      if (dossierBadge) dossierBadge.textContent = formatStudentName(studentId);
-
-      const pData = getPortfolioDataForSemester(activeSemester);
-      if (!pData || !pData.studentRecords || pData.studentRecords.length === 0) {
-        dossierContent.innerHTML = `
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80 text-center text-slate-500 text-xs">
-            Awaiting student portfolio submissions for Semester ${activeSemester}.
-          </div>
-        `;
-        return;
-      }
-
-      // Find student submissions
-      const studentEntries = pData.studentRecords.filter(r => r.id === studentId);
-      const atSessions = new Set(studentEntries.filter(r => r.track === 'AT').map(r => String(r.session)));
-      const agSessions = new Set(studentEntries.filter(r => r.track === 'AG').map(r => String(r.session)));
-      const isDualTrack = activeSemester === 1 || activeSemester === 2;
-      const expectedPerTrack = 4;
-      const totalExpected = isDualTrack ? 8 : 4;
-      const totalLogged = atSessions.size + agSessions.size;
-
-      let sessionChecklistHtml = `
-        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2">
-          <div class="flex items-center justify-between text-[11px]">
-            <span class="font-bold text-slate-700">Portfolio Sessions Logged:</span>
-            <span class="font-mono font-bold text-xs ${totalLogged >= (totalExpected * 0.75) ? 'text-emerald-700' : (totalLogged > 0 ? 'text-amber-700' : 'text-rose-700')}">
-              ${totalLogged} / ${totalExpected} Complete
-            </span>
-          </div>
-          <div class="space-y-1 text-[10px]">
-            <div class="flex items-center justify-between">
-              <span class="font-semibold text-slate-600">${activeSemester === 2 ? 'AAS Track:' : 'AT Track:'}</span>
-              <div class="flex items-center gap-1 font-mono font-bold">
-                ${[1, 2, 3, 4].map(sNum => atSessions.has(String(sNum))
-                  ? `<span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200" title="AT S${sNum} Completed">● S${sNum}</span>`
-                  : `<span class="px-1.5 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200" title="AT S${sNum} Missing">○ S${sNum}</span>`
-                ).join('')}
-              </div>
-            </div>
-            ${isDualTrack ? `
-              <div class="flex items-center justify-between pt-0.5 border-t border-slate-200/50">
-                <span class="font-semibold text-slate-600">AG Track:</span>
-                <div class="flex items-center gap-1 font-mono font-bold">
-                  ${[1, 2, 3, 4].map(sNum => agSessions.has(String(sNum))
-                    ? `<span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200" title="AG S${sNum} Completed">● S${sNum}</span>`
-                    : `<span class="px-1.5 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200" title="AG S${sNum} Missing">○ S${sNum}</span>`
-                  ).join('')}
-                </div>
-              </div>
-            ` : ''}
-          </div>
-          ${totalLogged === 0 ? `
-            <div class="p-1.5 bg-rose-50 rounded-lg border border-rose-200 text-rose-800 text-[10px] leading-tight font-medium">
-              ⚠️ <strong>Zero Submissions:</strong> Student has logged no portfolio entries. Award 0 / 2.5 pts for Criterion 6 unless justified.
-            </div>
-          ` : (totalLogged < totalExpected ? `
-            <div class="p-1.5 bg-amber-50 rounded-lg border border-amber-200 text-amber-900 text-[10px] leading-tight font-medium">
-              ⚠️ <strong>Partial Portfolio:</strong> ${totalExpected - totalLogged} session(s) missing. Review missing entries when scoring Criterion 6.
-            </div>
-          ` : `
-            <div class="p-1.5 bg-emerald-50 rounded-lg border border-emerald-200 text-emerald-800 text-[10px] leading-tight font-medium">
-              ✅ <strong>Complete Portfolio:</strong> All module sessions successfully logged.
-            </div>
-          `)}
-        </div>
-      `;
-
-      if (studentEntries.length === 0) {
-        dossierContent.innerHTML = sessionChecklistHtml;
-        return;
-      }
-
-      const latest = studentEntries[studentEntries.length - 1];
-      const feColor = latest.feScore !== null 
-        ? (latest.feScore <= 3 ? 'bg-rose-100 text-rose-800 border-rose-200' 
-           : (latest.feScore <= 6 ? 'bg-amber-100 text-amber-800 border-amber-200' : 'bg-emerald-100 text-emerald-800 border-emerald-200'))
-        : 'bg-slate-100 text-slate-500 border-slate-200';
-      const feLabel = latest.feScore !== null ? `${latest.feScore} / 10` : '--';
-      const shortVocab = latest.vocab && latest.vocab.length > 90 ? latest.vocab.substring(0, 87) + '...' : (latest.vocab || '');
-      const shortNeeds = latest.needs && latest.needs.length > 120 ? latest.needs.substring(0, 117) + '...' : (latest.needs || '');
-
-      dossierContent.innerHTML = `
-        <div class="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-200/80">
-          <div>
-            <span class="text-[10px] text-slate-500 block uppercase font-bold">FE Self-Readiness:</span>
-            <span class="font-bold text-slate-800 text-[11px]">${latest.track} Track (${studentEntries.length} reflection${studentEntries.length > 1 ? 's' : ''})</span>
-          </div>
-          <span class="px-2.5 py-0.5 rounded-full font-bold border text-xs ${feColor}">${feLabel}</span>
-        </div>
-
-        <div class="p-2.5 rounded-xl bg-rose-50/40 border border-rose-200/80 space-y-1">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-rose-900 block">🎯 Self-Identified Weakness:</span>
-          <p class="text-slate-700 leading-snug text-xs">${shortNeeds || 'None specified'}</p>
-        </div>
-
-        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-600 block">📚 Target Vocabulary Logged:</span>
-          <p class="text-slate-700 leading-snug text-[11px]">${shortVocab || 'None logged'}</p>
-        </div>
-
-        ${latest.toeicPrep ? `
-          <div class="p-2 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] text-slate-600">
-            <strong class="text-slate-700">TOEIC Prep:</strong> ${latest.toeicPrep.length > 70 ? latest.toeicPrep.substring(0, 67) + '...' : latest.toeicPrep}
-          </div>
-        ` : ''}
-        ${sessionChecklistHtml}
-      `;
-    }
-
-    // Handle Form Submit
     function handleEvaluationSubmit(e) {
       e.preventDefault();
-      const student = document.getElementById('eval-student').value;
-      const teacher = document.getElementById('eval-teacher').value;
-      const milestone = document.getElementById('eval-milestone').value;
-      const strengths = document.getElementById('eval-strengths').value;
-      const targets = document.getElementById('eval-targets').value;
-      const total = document.getElementById('live-total-score').textContent;
+      const student = document.getElementById('eval-student')?.value;
+      const teacher = document.getElementById('eval-teacher')?.value;
+      const milestone = document.getElementById('eval-milestone')?.value || '1';
+      const strengths = document.getElementById('eval-strengths')?.value || '';
+      const targets = document.getElementById('eval-targets')?.value || '';
+
+      const isMod4 = milestone === '4';
+      let total = 0;
+      let scores = {};
+
+      if (isMod4) {
+        total = parseFloat(document.getElementById('crit-mod4')?.value || 14.0);
+        scores = { mod4: total };
+      } else {
+        const c1 = parseFloat(document.getElementById('crit-1')?.value || 3.0);
+        const c2 = parseFloat(document.getElementById('crit-2')?.value || 2.5);
+        const c3 = parseFloat(document.getElementById('crit-3')?.value || 3.0);
+        const c4 = parseFloat(document.getElementById('crit-4')?.value || 3.0);
+        const c5 = parseFloat(document.getElementById('crit-5')?.value || 2.0);
+        const c6 = parseFloat(document.getElementById('crit-6')?.value || 2.0);
+        total = c1 + c2 + c3 + c4 + c5 + c6;
+        scores = { c1, c2, c3, c4, c5, c6 };
+      }
+
+      const moduleNum = parseInt(milestone, 10);
+      const milestoneLabel = isMod4 ? 'Module 4 (Continuous)' : `Module ${moduleNum} (FE${moduleNum})`;
+
+      let logs = [];
+      try { logs = JSON.parse(localStorage.getItem(LOCAL_LOGS_KEY)) || []; } catch(err) {}
+
+      // Replace previous entry for same student, semester, and module
+      logs = logs.filter(l => !(l.student === student && Number(l.sem) === Number(activeSemester) && Number(l.module) === Number(moduleNum)));
 
       const newLog = {
-        timestamp: new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
+        id: Date.now().toString(),
+        timestamp: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + ' ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
         sem: activeSemester,
         student,
         teacher,
-        milestone,
-        total,
+        module: moduleNum,
+        milestone: milestoneLabel,
+        scores,
+        total: total.toFixed(1),
         strengths,
         targets
       };
 
-      // Save locally
-      let logs = [];
-      try { logs = JSON.parse(localStorage.getItem(LOCAL_LOGS_KEY)) || []; } catch(err) {}
       logs.unshift(newLog);
-      localStorage.setItem(LOCAL_LOGS_KEY, JSON.stringify(logs.slice(0, 20)));
+      localStorage.setItem(LOCAL_LOGS_KEY, JSON.stringify(logs));
 
       const msg = document.getElementById('submit-status-msg');
       if (msg) {
-        msg.textContent = `✓ Logged ${formatStudentName(student)} (${total}/20) successfully!`;
-        setTimeout(() => msg.textContent = "", 4000);
+        msg.textContent = `✓ Logged ${formatStudentName(student)} • ${milestoneLabel} (${total.toFixed(1)}/20) successfully!`;
+        setTimeout(() => { if (msg) msg.textContent = ""; }, 4000);
       }
 
-      // Reset text inputs
-      document.getElementById('eval-strengths').value = "";
-      document.getElementById('eval-targets').value = "";
-      renderRecentLogs();
+      // Clear text areas
+      const stEl = document.getElementById('eval-strengths');
+      const tgEl = document.getElementById('eval-targets');
+      if (stEl) stEl.value = "";
+      if (tgEl) tgEl.value = "";
+
+      renderCohortGradesTable();
     }
 
-    function renderRecentLogs() {
-      const listEl = document.getElementById('recent-logs-list');
-      if (!listEl) return;
+    function renderCohortGradesTable() {
+      const container = document.getElementById('cohort-grades-table-container');
+      if (!container) return;
+
+      const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
       let logs = [];
       try { logs = JSON.parse(localStorage.getItem(LOCAL_LOGS_KEY)) || []; } catch(e) {}
-      if (logs.length === 0) {
-        listEl.innerHTML = `<div class="p-3 text-center text-slate-400 text-xs italic">No evaluation entries logged yet.</div>`;
-        return;
-      }
-      listEl.innerHTML = logs.map(l => `
-        <div class="p-2.5 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-between">
-          <div>
-            <div class="font-bold text-slate-800">${formatStudentName(l.student)} • S${l.sem} ${l.milestone}</div>
-            <div class="text-[10px] text-slate-500">${l.teacher} • ${l.timestamp}</div>
-          </div>
-          <span class="px-2 py-0.5 rounded text-xs font-mono font-bold bg-rose-100 text-rose-900">${l.total}/20</span>
+      const semLogs = logs.filter(l => Number(l.sem) === Number(activeSemester));
+
+      const studentList = [];
+      Object.entries(sem.students || {}).forEach(([grpKey, sIds]) => {
+        const grpLabel = grpKey.includes('A') ? 'Group A' : (grpKey.includes('B') ? 'Group B' : (grpKey.includes('C') ? 'Group C' : 'Group D'));
+        sIds.forEach(sId => {
+          const sLogs = semLogs.filter(l => l.student === sId);
+          const m1 = sLogs.find(l => Number(l.module) === 1);
+          const m2 = sLogs.find(l => Number(l.module) === 2);
+          const m3 = sLogs.find(l => Number(l.module) === 3);
+          const m4 = sLogs.find(l => Number(l.module) === 4);
+
+          const scoredVals = [m1, m2, m3, m4].filter(Boolean).map(m => parseFloat(m.total));
+          const avg = scoredVals.length ? (scoredVals.reduce((a, b) => a + b, 0) / scoredVals.length).toFixed(1) : null;
+
+          studentList.push({
+            id: sId,
+            name: formatStudentName(sId),
+            group: grpLabel,
+            m1: m1 ? m1.total : null,
+            m2: m2 ? m2.total : null,
+            m3: m3 ? m3.total : null,
+            m4: m4 ? m4.total : null,
+            avg
+          });
+        });
+      });
+
+      container.innerHTML = `
+        <div class="overflow-x-auto rounded-xl border border-slate-200">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-slate-50/90 text-slate-700 font-bold border-b border-slate-200 uppercase tracking-wider text-[10px]">
+                <th class="py-3 px-3">Student &amp; Group</th>
+                <th class="py-3 px-3 text-center">Mod 1 (FE1)</th>
+                <th class="py-3 px-3 text-center">Mod 2 (FE2)</th>
+                <th class="py-3 px-3 text-center">Mod 3 (FE3)</th>
+                <th class="py-3 px-3 text-center">Mod 4 (Continuous)</th>
+                <th class="py-3 px-3 text-center">Semester Average</th>
+                <th class="py-3 px-3 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 bg-white">
+              ${studentList.map(st => `
+                <tr class="hover:bg-rose-50/30 transition-colors">
+                  <td class="py-2.5 px-3 whitespace-nowrap">
+                    <span class="font-mono font-bold text-slate-900">${st.name}</span>
+                    <span class="text-[10px] ml-1.5 px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">${st.group}</span>
+                  </td>
+                  <td class="py-2.5 px-3 text-center whitespace-nowrap">
+                    ${st.m1 !== null
+                      ? `<span class="px-2 py-0.5 rounded font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${st.m1} / 20</span>`
+                      : '<span class="text-slate-400 font-mono">--</span>'}
+                  </td>
+                  <td class="py-2.5 px-3 text-center whitespace-nowrap">
+                    ${st.m2 !== null
+                      ? `<span class="px-2 py-0.5 rounded font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${st.m2} / 20</span>`
+                      : '<span class="text-slate-400 font-mono">--</span>'}
+                  </td>
+                  <td class="py-2.5 px-3 text-center whitespace-nowrap">
+                    ${st.m3 !== null
+                      ? `<span class="px-2 py-0.5 rounded font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${st.m3} / 20</span>`
+                      : '<span class="text-slate-400 font-mono">--</span>'}
+                  </td>
+                  <td class="py-2.5 px-3 text-center whitespace-nowrap">
+                    ${st.m4 !== null
+                      ? `<span class="px-2 py-0.5 rounded font-mono font-bold bg-blue-50 text-blue-800 border border-blue-200">${st.m4} / 20</span>`
+                      : '<span class="text-slate-400 font-mono">--</span>'}
+                  </td>
+                  <td class="py-2.5 px-3 text-center whitespace-nowrap">
+                    ${st.avg !== null
+                      ? `<span class="px-2.5 py-1 rounded-lg font-mono font-black text-rose-950 bg-rose-50 border border-rose-200">${st.avg} / 20</span>`
+                      : '<span class="text-slate-400 font-mono">--</span>'}
+                  </td>
+                  <td class="py-2.5 px-3 text-right whitespace-nowrap">
+                    <button type="button" onclick="selectStudentForGrading('${st.id}')" class="text-rose-800 hover:text-rose-950 font-bold text-xs underline cursor-pointer">
+                      ✏️ Grade
+                    </button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
         </div>
-      `).join('');
+      `;
+    }
+
+    function selectStudentForGrading(studentId) {
+      const select = document.getElementById('eval-student');
+      if (select) {
+        select.value = studentId;
+        select.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    function exportAllGradesCSV() {
+      const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
+      let logs = [];
+      try { logs = JSON.parse(localStorage.getItem(LOCAL_LOGS_KEY)) || []; } catch(e) {}
+      const semLogs = logs.filter(l => Number(l.sem) === Number(activeSemester));
+
+      let csv = "Student ID,Student Name,Group,Module 1 (FE1),Module 2 (FE2),Module 3 (FE3),Module 4 (Continuous),Semester Average,Latest Strengths,Latest Targets\n";
+
+      Object.entries(sem.students || {}).forEach(([grpKey, sIds]) => {
+        const grpLabel = grpKey.includes('A') ? 'Group A' : (grpKey.includes('B') ? 'Group B' : (grpKey.includes('C') ? 'Group C' : 'Group D'));
+        sIds.forEach(sId => {
+          const sLogs = semLogs.filter(l => l.student === sId);
+          const m1 = sLogs.find(l => Number(l.module) === 1);
+          const m2 = sLogs.find(l => Number(l.module) === 2);
+          const m3 = sLogs.find(l => Number(l.module) === 3);
+          const m4 = sLogs.find(l => Number(l.module) === 4);
+
+          const m1Val = m1 ? m1.total : '';
+          const m2Val = m2 ? m2.total : '';
+          const m3Val = m3 ? m3.total : '';
+          const m4Val = m4 ? m4.total : '';
+
+          const scoredVals = [m1Val, m2Val, m3Val, m4Val].filter(v => v !== '').map(Number);
+          const avg = scoredVals.length ? (scoredVals.reduce((a, b) => a + b, 0) / scoredVals.length).toFixed(1) : '';
+
+          const latestLog = sLogs[0];
+          const strengths = latestLog ? (latestLog.strengths || '').replace(/"/g, '""') : '';
+          const targets = latestLog ? (latestLog.targets || '').replace(/"/g, '""') : '';
+          const sName = formatStudentName(sId).replace(/"/g, '""');
+
+          csv += `"${sId}","${sName}","${grpLabel}",${m1Val},${m2Val},${m3Val},${m4Val},${avg},"${strengths}","${targets}"\n`;
+        });
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `GSEA_Semester_${activeSemester}_Grades_${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     }
 
     function clearLocalLogs() {
-      localStorage.removeItem(LOCAL_LOGS_KEY);
-      renderRecentLogs();
+      if (confirm("Are you sure you want to clear all logged evaluation marks for this session? This action cannot be undone.")) {
+        localStorage.removeItem(LOCAL_LOGS_KEY);
+        renderCohortGradesTable();
+      }
     }
 
     // ============================================================================
@@ -1727,97 +1796,6 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-    }
-
-    // ============================================================================
-    // TAB 5: RUBRICS
-    // ============================================================================
-    function renderRubricsTab(sem) {
-      return `
-        <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-5">
-          <div class="pb-3 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div>
-              <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
-                ENAC Examination Standards
-              </span>
-              <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Official 20-Point Formative Evaluation Rubric</h2>
-            </div>
-            <span class="px-3 py-1 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs font-mono self-start sm:self-auto border border-slate-200">
-              Total: 20 Points • B2 CEFR Standard
-            </span>
-          </div>
-
-          <!-- Official Rubric Table (6 Criteria) -->
-          <div class="overflow-x-auto rounded-xl border border-slate-200">
-            <table class="w-full text-left border-collapse text-xs">
-              <thead>
-                <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200 uppercase tracking-wider text-[10px]">
-                  <th class="p-3 w-1/4">Criterion</th>
-                  <th class="p-3 w-16 text-center">Max Pts</th>
-                  <th class="p-3">Examiner Expectations (B2/C1 CEFR • Spoken English)</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100 bg-white">
-                <tr class="hover:bg-slate-50/60">
-                  <td class="p-3 font-bold text-slate-900">1. Fluency &amp; Coherence</td>
-                  <td class="p-3 text-center font-bold font-mono text-white rounded bg-rose-900">4.0</td>
-                  <td class="p-3 text-slate-600">Natural delivery flow without artificial reading pauses. Ideas linked smoothly with connecting words. <strong>Strictly no reading from notes or slides!</strong></td>
-                </tr>
-                <tr class="hover:bg-slate-50/60">
-                  <td class="p-3 font-bold text-slate-900">2. Pronunciation &amp; Clarity</td>
-                  <td class="p-3 text-center font-bold font-mono text-white rounded bg-rose-900">3.0</td>
-                  <td class="p-3 text-slate-600">Intelligible pronunciation and correct syllable stress placed on specialized terms (<em>au-THOR-i-ty, co-OR-di-na-tor, tech-NI-cian, ca-PA-ci-ty, de-i-cing</em>).</td>
-                </tr>
-                <tr class="hover:bg-slate-50/60">
-                  <td class="p-3 font-bold text-slate-900">3. Grammar &amp; Sentence Control</td>
-                  <td class="p-3 text-center font-bold font-mono text-white rounded bg-rose-900">4.0</td>
-                  <td class="p-3 text-slate-600">Accurate modal verbs of obligation (<em>must, should, are required to</em>), past passive voice for incidents, and responsibility formulas (<em>responsible for + -ing</em>).</td>
-                </tr>
-                <tr class="hover:bg-slate-50/60">
-                  <td class="p-3 font-bold text-slate-900">4. Vocabulary &amp; Technical Precision</td>
-                  <td class="p-3 text-center font-bold font-mono text-white rounded bg-rose-900">4.0</td>
-                  <td class="p-3 text-slate-600">Active, accurate deployment of at least <strong>6 to 8 specialized technical terms</strong> from Sessions 1–4.</td>
-                </tr>
-                <tr class="hover:bg-slate-50/60">
-                  <td class="p-3 font-bold text-slate-900">5. Interaction &amp; Teamwork</td>
-                  <td class="p-3 text-center font-bold font-mono text-white rounded bg-rose-900">2.5</td>
-                  <td class="p-3 text-slate-600">Equal 50/50 talking-time balance between partners, smooth handovers, and spontaneous, thoughtful responses during teacher Q&amp;A.</td>
-                </tr>
-                <tr class="hover:bg-slate-50/60">
-                  <td class="p-3 font-bold text-slate-900">6. Portfolio &amp; Self-Critique</td>
-                  <td class="p-3 text-center font-bold font-mono text-white rounded bg-rose-900">2.5</td>
-                  <td class="p-3 text-slate-600">Updated personal vocabulary log with module terms, and mature self-critique of strong and weak points. <em>(Note: TOEIC testing does not factor into this grade).</em></td>
-                </tr>
-                <tr class="bg-slate-50 font-bold border-t-2 border-slate-300">
-                  <td class="p-3 uppercase text-slate-800">Total Score</td>
-                  <td class="p-3 text-center font-mono text-white rounded bg-slate-900">20.0</td>
-                  <td class="p-3 text-slate-700">Official Semester Formative Evaluation Continuous Mark.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Official Performance Bands -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
-            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
-              <strong class="text-emerald-900 block font-bold mb-1">Exemplary (18–20 pts)</strong>
-              <p class="text-slate-600">Spontaneous, rich vocabulary, high grammar accuracy, active 50/50 teamwork balance, complete portfolio.</p>
-            </div>
-            <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl">
-              <strong class="text-blue-900 block font-bold mb-1">Solid B2 (14–17.5 pts)</strong>
-              <p class="text-slate-600">Clear presentation, accurate target vocabulary, good grammar control, balanced teamwork, updated logs.</p>
-            </div>
-            <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl">
-              <strong class="text-amber-900 block font-bold mb-1">Developing (10–13.5 pts)</strong>
-              <p class="text-slate-600">Frequent hesitation, limited target vocabulary, grammar slips, unequal talking time, incomplete logs.</p>
-            </div>
-            <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl">
-              <strong class="text-rose-900 block font-bold mb-1">Needs Imp. (&lt;10 pts)</strong>
-              <p class="text-slate-600">Direct reading from slides, severe communication barriers, one partner silent, missing portfolio.</p>
-            </div>
-          </div>
-        </div>
-      `;
     }
 
     // ============================================================================
