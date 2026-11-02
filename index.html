@@ -335,6 +335,7 @@
       if (activeTab === 'grading') {
         container.innerHTML = renderGradingTab(sem);
         recalcScore();
+        updateActiveStudentSnapshot();
       } else if (activeTab === 'rotas') {
         container.innerHTML = renderRotasTab(sem);
       } else if (activeTab === 'calendar') {
@@ -393,7 +394,7 @@
                 <!-- Student -->
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Student Identifier</label>
-                  <select id="eval-student" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                  <select id="eval-student" onchange="updateActiveStudentSnapshot()" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
                     ${allStudents.map(s => `<option value="${s}">${s}</option>`).join('')}
                   </select>
                 </div>
@@ -496,8 +497,63 @@
                 <span class="text-xs font-bold text-slate-800">Recent Session Logs</span>
                 <button onclick="clearLocalLogs()" class="text-[10px] font-bold text-rose-700 hover:underline cursor-pointer">Clear</button>
               </div>
-              <div id="recent-logs-list" class="space-y-2 max-h-60 overflow-y-auto text-xs">
+              <div id="recent-logs-list" class="space-y-2 max-h-48 overflow-y-auto text-xs">
                 <!-- Dynamically rendered -->
+              </div>
+            </div>
+
+            <!-- Active Student Portfolio Dossier Card -->
+            <div id="student-dossier-card" class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 space-y-2.5">
+              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-xs">👤</span>
+                  <span class="text-xs font-bold text-slate-800">Active Student Dossier</span>
+                </div>
+                <span id="dossier-student-badge" class="font-mono text-[10px] font-black uppercase px-2 py-0.5 rounded bg-rose-900 text-white">GRPA001</span>
+              </div>
+              <div id="dossier-content" class="space-y-2 text-xs">
+                <!-- Dynamically injected via updateActiveStudentSnapshot() -->
+              </div>
+            </div>
+
+            <!-- Official B2 Grade Band Quick Guide Card -->
+            <div class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 space-y-2.5">
+              <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                  <span>🎯</span>
+                  <span>ENAC Formative Grade Scale</span>
+                </span>
+                <span class="text-[10px] font-mono text-slate-400">CEFR B2 Target</span>
+              </div>
+              <div class="space-y-1.5 text-[11px]">
+                <div class="p-2 rounded-lg bg-emerald-50/80 border border-emerald-200/80 flex items-center justify-between">
+                  <div>
+                    <strong class="font-bold text-emerald-950 block">Exemplary (18–20 pts)</strong>
+                    <span class="text-slate-500 text-[10px]">Spontaneous delivery, rich vocabulary, 50/50 balance</span>
+                  </div>
+                  <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-emerald-200 text-emerald-900 font-mono ml-2 shrink-0">C1</span>
+                </div>
+                <div class="p-2 rounded-lg bg-blue-50/80 border border-blue-200/80 flex items-center justify-between">
+                  <div>
+                    <strong class="font-bold text-blue-950 block">Solid B2 Standard (14–17.5 pts)</strong>
+                    <span class="text-slate-500 text-[10px]">Clear presentation, accurate terminology, good teamwork</span>
+                  </div>
+                  <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-blue-200 text-blue-900 font-mono ml-2 shrink-0">B2</span>
+                </div>
+                <div class="p-2 rounded-lg bg-amber-50/80 border border-amber-200/80 flex items-center justify-between">
+                  <div>
+                    <strong class="font-bold text-amber-950 block">Developing (10–13.5 pts)</strong>
+                    <span class="text-slate-500 text-[10px]">Hesitations, limited vocabulary, grammar slips</span>
+                  </div>
+                  <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-amber-200 text-amber-900 font-mono ml-2 shrink-0">B1+</span>
+                </div>
+                <div class="p-2 rounded-lg bg-rose-50/80 border border-rose-200/80 flex items-center justify-between">
+                  <div>
+                    <strong class="font-bold text-rose-950 block">Needs Improvement (&lt;10 pts)</strong>
+                    <span class="text-slate-500 text-[10px]">Direct reading from slides, severe hesitation</span>
+                  </div>
+                  <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-rose-200 text-rose-900 font-mono ml-2 shrink-0">&lt;B1</span>
+                </div>
               </div>
             </div>
           </div>
@@ -540,6 +596,73 @@
           bandBadge.textContent = "Needs Improvement (<10 pts)";
         }
       }
+    }
+
+    // Update Active Student Portfolio Snapshot in Grading Tab
+    function updateActiveStudentSnapshot() {
+      const studentSelect = document.getElementById('eval-student');
+      const dossierBadge = document.getElementById('dossier-student-badge');
+      const dossierContent = document.getElementById('dossier-content');
+      if (!studentSelect || !dossierContent) return;
+
+      const studentId = studentSelect.value;
+      if (dossierBadge) dossierBadge.textContent = studentId;
+
+      const pData = getPortfolioDataForSemester(activeSemester);
+      if (!pData || !pData.studentRecords || pData.studentRecords.length === 0) {
+        dossierContent.innerHTML = `
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80 text-center text-slate-500 text-xs">
+            Awaiting student portfolio submissions for Semester ${activeSemester}.
+          </div>
+        `;
+        return;
+      }
+
+      // Find student submissions
+      const studentEntries = pData.studentRecords.filter(r => r.id === studentId);
+      if (studentEntries.length === 0) {
+        dossierContent.innerHTML = `
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80 text-center text-slate-500 text-xs">
+            No portfolio entries logged yet for <strong>${studentId}</strong>.
+          </div>
+        `;
+        return;
+      }
+
+      const latest = studentEntries[studentEntries.length - 1];
+      const feColor = latest.feScore !== null 
+        ? (latest.feScore <= 3 ? 'bg-rose-100 text-rose-800 border-rose-200' 
+           : (latest.feScore <= 6 ? 'bg-amber-100 text-amber-800 border-amber-200' : 'bg-emerald-100 text-emerald-800 border-emerald-200'))
+        : 'bg-slate-100 text-slate-500 border-slate-200';
+      const feLabel = latest.feScore !== null ? `${latest.feScore} / 10` : '--';
+      const shortVocab = latest.vocab && latest.vocab.length > 90 ? latest.vocab.substring(0, 87) + '...' : (latest.vocab || '');
+      const shortNeeds = latest.needs && latest.needs.length > 120 ? latest.needs.substring(0, 117) + '...' : (latest.needs || '');
+
+      dossierContent.innerHTML = `
+        <div class="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-200/80">
+          <div>
+            <span class="text-[10px] text-slate-500 block uppercase font-bold">FE Self-Readiness:</span>
+            <span class="font-bold text-slate-800 text-[11px]">${latest.track} Track (${studentEntries.length} reflection${studentEntries.length > 1 ? 's' : ''})</span>
+          </div>
+          <span class="px-2.5 py-0.5 rounded-full font-bold border text-xs ${feColor}">${feLabel}</span>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-rose-50/40 border border-rose-200/80 space-y-1">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-rose-900 block">🎯 Self-Identified Weakness:</span>
+          <p class="text-slate-700 leading-snug text-xs">${shortNeeds || 'None specified'}</p>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-600 block">📚 Target Vocabulary Logged:</span>
+          <p class="text-slate-700 leading-snug text-[11px]">${shortVocab || 'None logged'}</p>
+        </div>
+
+        ${latest.toeicPrep ? `
+          <div class="p-2 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] text-slate-600">
+            <strong class="text-slate-700">TOEIC Prep:</strong> ${latest.toeicPrep.length > 70 ? latest.toeicPrep.substring(0, 67) + '...' : latest.toeicPrep}
+          </div>
+        ` : ''}
+      `;
     }
 
     // Handle Form Submit
