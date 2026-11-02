@@ -513,7 +513,7 @@
               <div class="flex items-center justify-between pb-2 border-b border-slate-100">
                 <div class="flex items-center gap-1.5">
                   <span class="text-xs">👤</span>
-                  <span class="text-xs font-bold text-slate-800">Active Student Dossier</span>
+                  <span class="text-xs font-bold text-slate-800">Portfolio Snapshot</span>
                 </div>
                 <span id="dossier-student-badge" class="font-mono text-[10px] font-black uppercase px-2 py-0.5 rounded bg-rose-900 text-white">GRPA001</span>
               </div>
@@ -1411,6 +1411,17 @@ const PORTFOLIO_DATA_S1 = {
       return null;
     }
 
+    // HTML sanitizer to prevent quotes or brackets from breaking DOM attributes
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
     function renderPortfolioTab(sem) {
       const pData = getPortfolioDataForSemester(sem.num);
 
@@ -1574,7 +1585,7 @@ const PORTFOLIO_DATA_S1 = {
                     const shortNeeds = r.needs.length > 90 ? r.needs.substring(0, 87) + '...' : r.needs;
 
                     return `
-                      <tr class="portfolio-row hover:bg-rose-50/30 transition-colors cursor-pointer" onclick="toggleStudentDrawer(${idx})" data-student="${r.id}" data-track="${r.track}" data-group="${r.group}" data-fe="${r.feScore || 0}" data-search="${(r.id + ' ' + r.track + ' ' + r.module + ' ' + r.vocab + ' ' + r.needs + ' ' + r.content).toLowerCase()}">
+                      <tr class="portfolio-row hover:bg-rose-50/30 transition-colors cursor-pointer" onclick="toggleStudentDrawer(${idx})" data-idx="${idx}">
                         <td class="py-2.5 px-3 whitespace-nowrap">
                           <span class="font-mono font-bold text-slate-900">${r.id}</span>
                           <span class="text-[10px] ml-1.5 px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">${r.group}</span>
@@ -1585,11 +1596,11 @@ const PORTFOLIO_DATA_S1 = {
                           </span>
                           <span class="text-slate-500 text-[11px] ml-1">S${r.session}</span>
                         </td>
-                        <td class="py-2.5 px-3 max-w-xs text-slate-700 font-medium" title="${r.vocab.replace(/"/g, '&quot;')}">
-                          ${shortVocab || '<span class="text-slate-400 italic">None logged</span>'}
+                        <td class="py-2.5 px-3 max-w-xs text-slate-700 font-medium" title="${escapeHtml(r.vocab)}">
+                          ${escapeHtml(shortVocab) || '<span class="text-slate-400 italic">None logged</span>'}
                         </td>
-                        <td class="py-2.5 px-3 max-w-xs text-slate-600" title="${r.needs.replace(/"/g, '&quot;')}">
-                          ${shortNeeds || '<span class="text-slate-400 italic">General practice</span>'}
+                        <td class="py-2.5 px-3 max-w-xs text-slate-600" title="${escapeHtml(r.needs)}">
+                          ${escapeHtml(shortNeeds) || '<span class="text-slate-400 italic">General practice</span>'}
                         </td>
                         <td class="py-2.5 px-3 text-center whitespace-nowrap">
                           <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold border ${feColor}">
@@ -1612,7 +1623,7 @@ const PORTFOLIO_DATA_S1 = {
                             <div class="flex items-center gap-2">
                               <span class="font-mono font-black text-slate-900 text-sm">${r.id}</span>
                               <span class="text-xs px-2 py-0.5 rounded bg-rose-900 text-white font-bold">${r.group}</span>
-                              <span class="text-xs text-slate-500">${r.track} • Module: ${r.module} (Session ${r.session})</span>
+                              <span class="text-xs text-slate-500">${r.track} • Module: ${escapeHtml(r.module)} (Session ${r.session})</span>
                             </div>
                             <span class="text-[11px] text-slate-400 font-mono">Submitted: ${r.timestamp}</span>
                           </div>
@@ -1622,11 +1633,11 @@ const PORTFOLIO_DATA_S1 = {
                             <div class="space-y-3">
                               <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-1">
                                 <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">📚 Key Vocabulary Logged:</span>
-                                <p class="text-slate-800 leading-relaxed font-medium whitespace-pre-wrap">${r.vocab}</p>
+                                <p class="text-slate-800 leading-relaxed font-medium whitespace-pre-wrap">${escapeHtml(r.vocab)}</p>
                               </div>
                               <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-1">
                                 <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">📖 Lesson Content Review (What I Learnt):</span>
-                                <p class="text-slate-700 leading-relaxed whitespace-pre-wrap">${r.content}</p>
+                                <p class="text-slate-700 leading-relaxed whitespace-pre-wrap">${escapeHtml(r.content)}</p>
                               </div>
                             </div>
 
@@ -1634,15 +1645,15 @@ const PORTFOLIO_DATA_S1 = {
                             <div class="space-y-3">
                               <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-1">
                                 <span class="text-[10px] font-bold uppercase tracking-wider text-rose-800 block">🎯 Target Improvement Area (What I Need to Work On):</span>
-                                <p class="text-slate-700 leading-relaxed whitespace-pre-wrap">${r.needs}</p>
+                                <p class="text-slate-700 leading-relaxed whitespace-pre-wrap">${escapeHtml(r.needs)}</p>
                               </div>
                               <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-1">
                                 <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">💡 Formative Evaluation Impact (Self-Rating: ${feLabel}):</span>
-                                <p class="text-slate-700 leading-relaxed whitespace-pre-wrap">${r.helpFe}</p>
+                                <p class="text-slate-700 leading-relaxed whitespace-pre-wrap">${escapeHtml(r.helpFe)}</p>
                               </div>
                               <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-1">
                                 <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">📝 Weekly TOEIC Prep (Self-Rating: ${toeicLabel}):</span>
-                                <p class="text-slate-600 leading-relaxed whitespace-pre-wrap">${r.toeicPrep}</p>
+                                <p class="text-slate-600 leading-relaxed whitespace-pre-wrap">${escapeHtml(r.toeicPrep)}</p>
                               </div>
                             </div>
                           </div>
@@ -1793,23 +1804,34 @@ const PORTFOLIO_DATA_S1 = {
     function applyPortfolioFilters() {
       const searchInput = document.getElementById('portfolio-search-input');
       const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+      const pData = getPortfolioDataForSemester(activeSemester);
+      const records = pData ? (pData.studentRecords || []) : [];
       const rows = document.querySelectorAll('.portfolio-row');
       let visibleCount = 0;
 
       rows.forEach((row, idx) => {
-        const student = row.getAttribute('data-student') || '';
-        const track = row.getAttribute('data-track') || '';
-        const group = row.getAttribute('data-group') || '';
-        const feScore = parseFloat(row.getAttribute('data-fe') || '0');
-        const searchContent = row.getAttribute('data-search') || '';
+        const r = records[idx];
         const drawer = document.getElementById(`student-drawer-${idx}`);
+        if (!r) {
+          row.style.display = 'none';
+          if (drawer) drawer.classList.add('hidden');
+          return;
+        }
+
+        const student = r.id || '';
+        const track = r.track || '';
+        const group = r.group || '';
+        const feScore = r.feScore !== null ? r.feScore : 0;
 
         let match = true;
 
         if (activePortfolioTrackFilter !== 'all' && track !== activePortfolioTrackFilter) match = false;
         if (activePortfolioGroupFilter !== 'all' && group !== activePortfolioGroupFilter) match = false;
         if (activePortfolioPriorityFilter && (feScore === 0 || feScore > 3)) match = false;
-        if (query && !searchContent.includes(query)) match = false;
+        if (query) {
+          const searchContent = (student + ' ' + track + ' ' + group + ' ' + (r.module || '') + ' ' + (r.vocab || '') + ' ' + (r.needs || '') + ' ' + (r.content || '')).toLowerCase();
+          if (!searchContent.includes(query)) match = false;
+        }
 
         if (match) {
           row.style.display = '';
