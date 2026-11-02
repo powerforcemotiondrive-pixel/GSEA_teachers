@@ -242,6 +242,10 @@
     // Local submissions storage keys
     const LOCAL_LOGS_KEY = "gsea_faculty_eval_logs";
     const LOCAL_ABSENCES_KEY = "gsea_faculty_absences_log";
+    // Google Apps Script Web App for Continuous Grading & Evaluations
+    const GRADING_SCRIPT_URL = "";
+    let activeTeacherPin = sessionStorage.getItem("gsea_teacher_session_pin") || "";
+    let activeAuthenticatedTeacher = sessionStorage.getItem("gsea_authenticated_teacher") || "";
 
     // Multi-Semester Master Database
     const SEMESTERS_DATA = {
@@ -851,10 +855,51 @@
                 <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Formative &amp; Continuous Evaluation Entry</h2>
               </div>
               <div class="flex items-center gap-2">
+                <span id="backend-status-badge" class="text-[10px] font-bold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 border border-slate-200">
+                  ⚪ Local Storage Mode
+                </span>
                 <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Evaluation Total:</span>
                 <span id="score-display-pill" class="text-base font-black px-3.5 py-1 rounded-xl bg-rose-900 text-white font-mono shadow-2xs">
                   15.5 / 20.0
                 </span>
+              </div>
+            </div>
+
+            <!-- Teacher Session PIN Authentication Bar -->
+            <div id="teacher-auth-bar" class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
+              <div class="flex items-center gap-2">
+                <span class="text-sm">🔑</span>
+                <span class="font-bold text-slate-700">Examiner Session PIN:</span>
+                <span id="teacher-auth-status-pill" class="px-2.5 py-0.5 rounded-full font-bold bg-amber-100 text-amber-800 border border-amber-300">
+                  🔒 Enter 4-digit PIN for session
+                </span>
+              </div>
+              <div id="teacher-pin-input-group" class="flex items-center gap-2">
+                <input 
+                  type="password" 
+                  id="teacher-pin-input" 
+                  maxlength="4" 
+                  placeholder="4-digit PIN" 
+                  class="w-24 text-center font-mono font-bold p-1.5 rounded-lg border border-slate-300 bg-white text-slate-900 focus:ring-2 focus:ring-rose-800 focus:outline-none"
+                  onkeydown="if(event.key==='Enter'){event.preventDefault();authenticateTeacherSession();}"
+                />
+                <button 
+                  type="button" 
+                  onclick="authenticateTeacherSession()" 
+                  class="px-3 py-1.5 rounded-lg bg-rose-900 hover:bg-rose-950 text-white font-bold transition-all cursor-pointer shadow-2xs"
+                >
+                  Sign In
+                </button>
+              </div>
+              <div id="teacher-signed-in-group" class="hidden items-center gap-2">
+                <span class="text-[11px] text-emerald-700 font-bold">✓ Session Active</span>
+                <button 
+                  type="button" 
+                  onclick="signOutTeacherSession()" 
+                  class="text-rose-800 hover:text-rose-950 font-bold text-xs underline cursor-pointer"
+                >
+                  Sign Out
+                </button>
               </div>
             </div>
 
@@ -865,7 +910,7 @@
                 <!-- Milestone -->
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Evaluation Milestone</label>
-                  <select id="eval-milestone" onchange="handleMilestoneChange()" class="w-full text-xs font-bold p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                  <select id="eval-milestone" onchange="handleMilestoneChange(); loadStudentGradeForEditing();" class="w-full text-xs font-bold p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
                     <option value="1">Module 1 • FE1 Oral Evaluation</option>
                     <option value="2">Module 2 • FE2 Oral Evaluation</option>
                     <option value="3">Module 3 • FE3 Oral Evaluation</option>
@@ -876,7 +921,7 @@
                 <!-- Teacher -->
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Evaluating Teacher</label>
-                  <select id="eval-teacher" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                  <select id="eval-teacher" onchange="updateTeacherAuthUI();" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
                     ${(sem.faculty || []).map(f => `<option value="${f.name}">${f.name} (${f.track})</option>`).join('')}
                   </select>
                 </div>
@@ -884,7 +929,7 @@
                 <!-- Student -->
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Candidate</label>
-                  <select id="eval-student" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
+                  <select id="eval-student" onchange="loadStudentGradeForEditing();" class="w-full text-xs font-medium p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800">
                     <optgroup label="Group A (${(sem.students.groupA || []).length} students)">
                       ${(sem.students.groupA || []).map(s => `<option value="${s}">${formatStudentName(s)} (Group A)</option>`).join('')}
                     </optgroup>
@@ -904,31 +949,29 @@
                       <span class="text-xs font-bold text-slate-900 block">1. Fluency &amp; Coherence</span>
                       <span class="text-[10px] font-bold text-rose-800">Max 4.0 pts</span>
                     </div>
-                    <div class="flex items-center gap-1">
-                      <select id="crit-1" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
-                        ${generateScoreOptions(4.0, 3.0)}
-                      </select>
-                      <span class="text-xs font-bold text-slate-400">/ 4</span>
-                    </div>
+                    <select id="crit-1" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                      <option value="0.0">0.0</option><option value="0.5">0.5</option><option value="1.0">1.0</option>
+                      <option value="1.5">1.5</option><option value="2.0">2.0</option><option value="2.5">2.5</option>
+                      <option value="3.0" selected>3.0</option><option value="3.5">3.5</option><option value="4.0">4.0</option>
+                    </select>
                   </div>
-                  <p class="text-[11px] text-slate-600 leading-snug">Natural delivery flow without artificial reading pauses. Ideas linked smoothly with connecting words. <strong>Strictly no reading from notes or slides!</strong></p>
+                  <p class="text-[11px] text-slate-500 leading-tight">Spontaneous delivery flow, connecting words, transition markers. Strictly no reading from slides.</p>
                 </div>
 
                 <!-- Criterion 2 -->
                 <div class="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2">
                   <div class="flex items-center justify-between gap-2">
                     <div>
-                      <span class="text-xs font-bold text-slate-900 block">2. Pronunciation &amp; Clarity</span>
+                      <span class="text-xs font-bold text-slate-900 block">2. Pronunciation &amp; Stress</span>
                       <span class="text-[10px] font-bold text-rose-800">Max 3.0 pts</span>
                     </div>
-                    <div class="flex items-center gap-1">
-                      <select id="crit-2" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
-                        ${generateScoreOptions(3.0, 2.5)}
-                      </select>
-                      <span class="text-xs font-bold text-slate-400">/ 3</span>
-                    </div>
+                    <select id="crit-2" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                      <option value="0.0">0.0</option><option value="0.5">0.5</option><option value="1.0">1.0</option>
+                      <option value="1.5">1.5</option><option value="2.0">2.0</option><option value="2.5" selected>2.5</option>
+                      <option value="3.0">3.0</option>
+                    </select>
                   </div>
-                  <p class="text-[11px] text-slate-600 leading-snug">Intelligible pronunciation and correct syllable stress placed on specialized terms (<em>au-THOR-i-ty, co-OR-di-na-tor, tech-NI-cian, ca-PA-ci-ty</em>).</p>
+                  <p class="text-[11px] text-slate-500 leading-tight">Intelligible pronunciation, rhythm, and correct syllable stress placed on specialized terms.</p>
                 </div>
 
                 <!-- Criterion 3 -->
@@ -938,31 +981,29 @@
                       <span class="text-xs font-bold text-slate-900 block">3. Grammar &amp; Sentence Control</span>
                       <span class="text-[10px] font-bold text-rose-800">Max 4.0 pts</span>
                     </div>
-                    <div class="flex items-center gap-1">
-                      <select id="crit-3" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
-                        ${generateScoreOptions(4.0, 3.0)}
-                      </select>
-                      <span class="text-xs font-bold text-slate-400">/ 4</span>
-                    </div>
+                    <select id="crit-3" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                      <option value="0.0">0.0</option><option value="0.5">0.5</option><option value="1.0">1.0</option>
+                      <option value="1.5">1.5</option><option value="2.0">2.0</option><option value="2.5">2.5</option>
+                      <option value="3.0" selected>3.0</option><option value="3.5">3.5</option><option value="4.0">4.0</option>
+                    </select>
                   </div>
-                  <p class="text-[11px] text-slate-600 leading-snug">Accurate modal verbs of obligation (<em>must, should, are required to</em>), past passive voice for incidents, and responsibility formulas (<em>responsible for + -ing</em>).</p>
+                  <p class="text-[11px] text-slate-500 leading-tight">Accurate modal verbs of obligation, past passive voice for incidents, cause &amp; effect structures.</p>
                 </div>
 
                 <!-- Criterion 4 -->
                 <div class="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2">
                   <div class="flex items-center justify-between gap-2">
                     <div>
-                      <span class="text-xs font-bold text-slate-900 block">4. Vocabulary &amp; Precision</span>
+                      <span class="text-xs font-bold text-slate-900 block">4. Technical Vocabulary</span>
                       <span class="text-[10px] font-bold text-rose-800">Max 4.0 pts</span>
                     </div>
-                    <div class="flex items-center gap-1">
-                      <select id="crit-4" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
-                        ${generateScoreOptions(4.0, 3.0)}
-                      </select>
-                      <span class="text-xs font-bold text-slate-400">/ 4</span>
-                    </div>
+                    <select id="crit-4" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                      <option value="0.0">0.0</option><option value="0.5">0.5</option><option value="1.0">1.0</option>
+                      <option value="1.5">1.5</option><option value="2.0">2.0</option><option value="2.5">2.5</option>
+                      <option value="3.0" selected>3.0</option><option value="3.5">3.5</option><option value="4.0">4.0</option>
+                    </select>
                   </div>
-                  <p class="text-[11px] text-slate-600 leading-snug">Active, accurate deployment of at least <strong>6 to 8 specialized technical terms</strong> from Sessions 1–4.</p>
+                  <p class="text-[11px] text-slate-500 leading-tight">Active deployment of 6 to 8 specialized topic terms from Sessions 1–4 with accurate operational definitions.</p>
                 </div>
 
                 <!-- Criterion 5 -->
@@ -972,14 +1013,12 @@
                       <span class="text-xs font-bold text-slate-900 block">5. Interaction &amp; Teamwork</span>
                       <span class="text-[10px] font-bold text-rose-800">Max 2.5 pts</span>
                     </div>
-                    <div class="flex items-center gap-1">
-                      <select id="crit-5" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
-                        ${generateScoreOptions(2.5, 2.0)}
-                      </select>
-                      <span class="text-xs font-bold text-slate-400">/ 2.5</span>
-                    </div>
+                    <select id="crit-5" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                      <option value="0.0">0.0</option><option value="0.5">0.5</option><option value="1.0">1.0</option>
+                      <option value="1.5">1.5</option><option value="2.0" selected>2.0</option><option value="2.5">2.5</option>
+                    </select>
                   </div>
-                  <p class="text-[11px] text-slate-600 leading-snug">Equal 50/50 talking-time balance between partners, smooth handovers, and spontaneous, thoughtful responses during teacher Q&amp;A.</p>
+                  <p class="text-[11px] text-slate-500 leading-tight">Equal 50/50 talking-time balance between partners, smooth handovers, and spontaneous Q&amp;A response.</p>
                 </div>
 
                 <!-- Criterion 6 -->
@@ -989,42 +1028,39 @@
                       <span class="text-xs font-bold text-slate-900 block">6. Portfolio &amp; Self-Critique</span>
                       <span class="text-[10px] font-bold text-rose-800">Max 2.5 pts</span>
                     </div>
-                    <div class="flex items-center gap-1">
-                      <select id="crit-6" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
-                        ${generateScoreOptions(2.5, 2.0)}
-                      </select>
-                      <span class="text-xs font-bold text-slate-400">/ 2.5</span>
-                    </div>
+                    <select id="crit-6" onchange="recalcScore()" class="text-xs font-bold font-mono p-1.5 px-2 rounded-lg border border-slate-300 bg-white text-rose-950 focus:ring-2 focus:ring-rose-800">
+                      <option value="0.0">0.0</option><option value="0.5">0.5</option><option value="1.0">1.0</option>
+                      <option value="1.5">1.5</option><option value="2.0" selected>2.0</option><option value="2.5">2.5</option>
+                    </select>
                   </div>
-                  <p class="text-[11px] text-slate-600 leading-snug">Updated personal vocabulary log with module terms, and mature self-critique of strong and weak points. <em>(Note: TOEIC testing does not factor into this grade).</em></p>
+                  <p class="text-[11px] text-slate-500 leading-tight">Up-to-date vocabulary log on digital portal, completed session entries, and honest diagnostic self-critique.</p>
                 </div>
               </div>
 
-              <!-- Module 4 Single Grade Container (Module 4) -->
-              <div id="mod4-criteria-container" class="hidden p-5 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-3">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <!-- Module 4 Single Grade Dropdown (/20) -->
+              <div id="mod4-criteria-container" class="hidden p-5 bg-rose-50/50 rounded-xl border border-rose-200 space-y-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
-                    <span class="text-sm font-bold text-slate-900 block">Module 4 Continuous Assessment Grade</span>
-                    <p class="text-xs text-slate-600 mt-1 max-w-xl leading-relaxed">Overall continuous evaluation mark (0–20 pts) covering Module 4 class participation, technical coursework, and semester portfolio completion.</p>
+                    <span class="text-xs font-black uppercase tracking-wider text-rose-900 block">Module 4 • Continuous Assessment Grade</span>
+                    <p class="text-xs text-slate-600 mt-0.5">Overall continuous assessment score out of 20 (0.0 to 20.0 in 0.5 steps).</p>
                   </div>
                   <div class="flex items-center gap-2 bg-white p-2 px-3 rounded-xl border border-slate-300 shadow-2xs">
-                    <label class="text-xs font-bold text-slate-700">Mark:</label>
+                    <span class="text-xs font-bold text-slate-700">Module 4 Mark:</span>
                     <select id="crit-mod4" onchange="recalcScore()" class="text-sm font-black font-mono p-1.5 px-3 rounded-lg border border-slate-300 bg-slate-50 text-rose-950 focus:bg-white focus:ring-2 focus:ring-rose-800">
-                      ${generateScoreOptions(20.0, 14.0)}
+                      ${Array.from({ length: 41 }, (_, i) => (i * 0.5).toFixed(1)).map(v => `<option value="${v}" ${v === '14.0' ? 'selected' : ''}>${v} / 20.0</option>`).join('')}
                     </select>
-                    <span class="text-xs font-bold text-slate-500 font-mono">/ 20.0</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Qualitative Comments -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Feedback Text Areas -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Key Strengths Observed</label>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Key Strengths &amp; Commendations</label>
                   <textarea id="eval-strengths" rows="3" placeholder="Spontaneous delivery, accurate specialized terminology, strong teamwork..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800"></textarea>
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Areas for Development &amp; Action Targets</label>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Target Areas for Improvement</label>
                   <textarea id="eval-targets" rows="3" placeholder="Syllable stress on target nouns, modal verbs of obligation..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800"></textarea>
                 </div>
               </div>
@@ -1074,6 +1110,100 @@
       handleMilestoneChange();
       recalcScore();
       renderCohortGradesTable();
+      updateTeacherAuthUI();
+      loadStudentGradeForEditing();
+      checkGradingBackendStatus();
+    }
+
+    function updateTeacherAuthUI() {
+      const teacherSelect = document.getElementById('eval-teacher');
+      const selectedTeacher = teacherSelect ? teacherSelect.value : '';
+
+      const pill = document.getElementById('teacher-auth-status-pill');
+      const inputGroup = document.getElementById('teacher-pin-input-group');
+      const signedInGroup = document.getElementById('teacher-signed-in-group');
+      const pinInput = document.getElementById('teacher-pin-input');
+
+      const isAuthenticated = activeTeacherPin && (activeAuthenticatedTeacher === selectedTeacher || !activeAuthenticatedTeacher);
+
+      if (isAuthenticated && pill && inputGroup && signedInGroup) {
+        pill.className = "px-2.5 py-0.5 rounded-full font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+        pill.textContent = "✓ Signed in: " + selectedTeacher;
+        inputGroup.classList.add('hidden');
+        signedInGroup.classList.remove('hidden');
+        signedInGroup.classList.add('flex');
+      } else if (pill && inputGroup && signedInGroup) {
+        pill.className = "px-2.5 py-0.5 rounded-full font-bold bg-amber-100 text-amber-800 border border-amber-300";
+        pill.textContent = "🔒 Enter 4-digit PIN for " + selectedTeacher;
+        inputGroup.classList.remove('hidden');
+        signedInGroup.classList.add('hidden');
+        signedInGroup.classList.remove('flex');
+        if (pinInput) pinInput.value = '';
+      }
+    }
+
+    async function authenticateTeacherSession() {
+      const teacherSelect = document.getElementById('eval-teacher');
+      const teacher = teacherSelect ? teacherSelect.value : '';
+      const pinInput = document.getElementById('teacher-pin-input');
+      const pin = pinInput ? pinInput.value.trim() : '';
+
+      if (!/^\d{4}$/.test(pin)) {
+        alert("Please enter a valid 4-digit numeric PIN.");
+        if (pinInput) pinInput.focus();
+        return;
+      }
+
+      // Pre-flight check against Apps Script backend if configured
+      if (typeof GRADING_SCRIPT_URL !== 'undefined' && GRADING_SCRIPT_URL && GRADING_SCRIPT_URL.startsWith('http')) {
+        const pill = document.getElementById('teacher-auth-status-pill');
+        if (pill) pill.textContent = "Verifying PIN...";
+        try {
+          const res = await fetch(GRADING_SCRIPT_URL + "?action=authTeacher&teacher=" + encodeURIComponent(teacher) + "&pin=" + encodeURIComponent(pin) + "&_t=" + Date.now());
+          const data = await res.json();
+          if (!data.valid && !data.success) {
+            alert(data.message || "Incorrect Teacher PIN for " + teacher);
+            updateTeacherAuthUI();
+            return;
+          }
+        } catch (e) {
+          console.warn("Backend auth ping failed, proceeding in offline mode:", e);
+        }
+      }
+
+      activeTeacherPin = pin;
+      activeAuthenticatedTeacher = teacher;
+      sessionStorage.setItem('gsea_teacher_session_pin', pin);
+      sessionStorage.setItem('gsea_authenticated_teacher', teacher);
+
+      updateTeacherAuthUI();
+    }
+
+    function signOutTeacherSession() {
+      activeTeacherPin = '';
+      activeAuthenticatedTeacher = '';
+      sessionStorage.removeItem('gsea_teacher_session_pin');
+      sessionStorage.removeItem('gsea_authenticated_teacher');
+      updateTeacherAuthUI();
+    }
+
+    async function checkGradingBackendStatus() {
+      const badge = document.getElementById('backend-status-badge');
+      if (!badge) return;
+
+      if (typeof GRADING_SCRIPT_URL !== 'undefined' && GRADING_SCRIPT_URL && GRADING_SCRIPT_URL.startsWith('http')) {
+        try {
+          const res = await fetch(GRADING_SCRIPT_URL + "?action=ping&_t=" + Date.now());
+          const data = await res.json();
+          if (data.success) {
+            badge.className = "text-[10px] font-bold px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-300";
+            badge.innerHTML = "🟢 Google Sheet Live";
+            return;
+          }
+        } catch (e) {}
+      }
+      badge.className = "text-[10px] font-bold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 border border-slate-200";
+      badge.innerHTML = "⚪ Local Storage Mode";
     }
 
     function handleMilestoneChange() {
@@ -1112,8 +1242,64 @@
       const formattedTotal = total.toFixed(1);
       const displayPill = document.getElementById('score-display-pill');
       if (displayPill) {
-        displayPill.textContent = `${formattedTotal} / 20.0`;
+        displayPill.textContent = formattedTotal + " / 20.0";
       }
+    }
+
+    function loadStudentGradeForEditing() {
+      const student = document.getElementById('eval-student')?.value;
+      const milestone = document.getElementById('eval-milestone')?.value || '1';
+      const moduleNum = parseInt(milestone, 10);
+
+      let logs = [];
+      try { logs = JSON.parse(localStorage.getItem(LOCAL_LOGS_KEY)) || []; } catch(e) {}
+      const existingLog = logs.find(l => l.student === student && Number(l.sem) === Number(activeSemester) && Number(l.module) === Number(moduleNum));
+
+      if (existingLog) {
+        if (moduleNum === 4) {
+          const mod4Select = document.getElementById('crit-mod4');
+          if (mod4Select && existingLog.total) mod4Select.value = parseFloat(existingLog.total).toFixed(1);
+        } else {
+          const sc = existingLog.scores || {};
+          if (sc.c1 !== undefined && document.getElementById('crit-1')) document.getElementById('crit-1').value = sc.c1;
+          if (sc.c2 !== undefined && document.getElementById('crit-2')) document.getElementById('crit-2').value = sc.c2;
+          if (sc.c3 !== undefined && document.getElementById('crit-3')) document.getElementById('crit-3').value = sc.c3;
+          if (sc.c4 !== undefined && document.getElementById('crit-4')) document.getElementById('crit-4').value = sc.c4;
+          if (sc.c5 !== undefined && document.getElementById('crit-5')) document.getElementById('crit-5').value = sc.c5;
+          if (sc.c6 !== undefined && document.getElementById('crit-6')) document.getElementById('crit-6').value = sc.c6;
+        }
+        const stEl = document.getElementById('eval-strengths');
+        const tgEl = document.getElementById('eval-targets');
+        if (stEl) stEl.value = existingLog.strengths || '';
+        if (tgEl) tgEl.value = existingLog.targets || '';
+
+        const statusMsg = document.getElementById('submit-status-msg');
+        if (statusMsg) {
+          statusMsg.innerHTML = '<span class="text-amber-700 font-bold">✏️ Loaded existing record (' + existingLog.total + '/20) for editing</span>';
+        }
+      } else {
+        // Reset to defaults
+        if (moduleNum === 4) {
+          const mod4Select = document.getElementById('crit-mod4');
+          if (mod4Select) mod4Select.value = '14.0';
+        } else {
+          if (document.getElementById('crit-1')) document.getElementById('crit-1').value = '3.0';
+          if (document.getElementById('crit-2')) document.getElementById('crit-2').value = '2.5';
+          if (document.getElementById('crit-3')) document.getElementById('crit-3').value = '3.0';
+          if (document.getElementById('crit-4')) document.getElementById('crit-4').value = '3.0';
+          if (document.getElementById('crit-5')) document.getElementById('crit-5').value = '2.0';
+          if (document.getElementById('crit-6')) document.getElementById('crit-6').value = '2.0';
+        }
+        const stEl = document.getElementById('eval-strengths');
+        const tgEl = document.getElementById('eval-targets');
+        if (stEl) stEl.value = '';
+        if (tgEl) tgEl.value = '';
+
+        const statusMsg = document.getElementById('submit-status-msg');
+        if (statusMsg) statusMsg.textContent = '';
+      }
+
+      recalcScore();
     }
 
     function handleEvaluationSubmit(e) {
@@ -1123,6 +1309,17 @@
       const milestone = document.getElementById('eval-milestone')?.value || '1';
       const strengths = document.getElementById('eval-strengths')?.value || '';
       const targets = document.getElementById('eval-targets')?.value || '';
+
+      // Check teacher session authentication
+      if (!activeTeacherPin || (activeAuthenticatedTeacher && activeAuthenticatedTeacher !== teacher)) {
+        alert("Please authenticate with your 4-digit Teacher PIN before saving grades for " + teacher + ".");
+        const pinInput = document.getElementById('teacher-pin-input');
+        if (pinInput) {
+          pinInput.focus();
+          pinInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
 
       const isMod4 = milestone === '4';
       let total = 0;
@@ -1143,19 +1340,28 @@
       }
 
       const moduleNum = parseInt(milestone, 10);
-      const milestoneLabel = isMod4 ? 'Module 4 (Continuous)' : `Module ${moduleNum} (FE${moduleNum})`;
+      const milestoneLabel = isMod4 ? 'Module 4 (Continuous)' : 'Module ' + moduleNum + ' (FE' + moduleNum + ')';
 
       let logs = [];
       try { logs = JSON.parse(localStorage.getItem(LOCAL_LOGS_KEY)) || []; } catch(err) {}
 
-      // Replace previous entry for same student, semester, and module
+      // In-place update: Replace previous entry for same student, semester, and module
       logs = logs.filter(l => !(l.student === student && Number(l.sem) === Number(activeSemester) && Number(l.module) === Number(moduleNum)));
+
+      const semData = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
+      let studentGroup = "Group A";
+      if ((semData.students?.groupB || []).includes(student)) studentGroup = "Group B";
+      else if ((semData.students?.groupC || []).includes(student)) studentGroup = "Group C";
+      else if ((semData.students?.groupD || []).includes(student)) studentGroup = "Group D";
 
       const newLog = {
         id: Date.now().toString(),
         timestamp: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + ' ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
         sem: activeSemester,
         student,
+        studentId: student,
+        studentName: formatStudentName(student),
+        group: studentGroup,
         teacher,
         module: moduleNum,
         milestone: milestoneLabel,
@@ -1170,15 +1376,35 @@
 
       const msg = document.getElementById('submit-status-msg');
       if (msg) {
-        msg.textContent = `✓ Logged ${formatStudentName(student)} • ${milestoneLabel} (${total.toFixed(1)}/20) successfully!`;
-        setTimeout(() => { if (msg) msg.textContent = ""; }, 4000);
+        msg.textContent = "✓ Saved " + formatStudentName(student) + " • " + milestoneLabel + " (" + total.toFixed(1) + "/20) locally!";
       }
 
-      // Clear text areas
-      const stEl = document.getElementById('eval-strengths');
-      const tgEl = document.getElementById('eval-targets');
-      if (stEl) stEl.value = "";
-      if (tgEl) tgEl.value = "";
+      // Live Google Sheets Backend Sync
+      if (typeof GRADING_SCRIPT_URL !== 'undefined' && GRADING_SCRIPT_URL && GRADING_SCRIPT_URL.startsWith('http')) {
+        if (msg) msg.textContent = "Syncing with Google Sheets...";
+        fetch(GRADING_SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            action: "saveGrade",
+            teacherPin: activeTeacherPin,
+            ...newLog
+          })
+        }).then(res => res.json()).then(data => {
+          if (data.success) {
+            if (msg) msg.textContent = "✓ Synced to Google Sheet & Local Storage (" + total.toFixed(1) + "/20)";
+            setTimeout(() => { if (msg) msg.textContent = ""; }, 4000);
+          } else {
+            if (msg) msg.textContent = "⚠️ Saved locally (" + (data.message || 'Sheet sync pending') + ")";
+          }
+        }).catch(err => {
+          console.warn("Backend sync offline, saved locally:", err);
+          if (msg) msg.textContent = "✓ Saved locally (Offline mode: " + total.toFixed(1) + "/20)";
+          setTimeout(() => { if (msg) msg.textContent = ""; }, 4000);
+        });
+      } else {
+        setTimeout(() => { if (msg) msg.textContent = ""; }, 4000);
+      }
 
       renderCohortGradesTable();
     }
@@ -1241,22 +1467,22 @@
                   </td>
                   <td class="py-2.5 px-3 text-center whitespace-nowrap">
                     ${st.m1 !== null
-                      ? `<span class="px-2 py-0.5 rounded font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${st.m1} / 20</span>`
+                      ? `<button type="button" onclick="selectStudentForGrading('${st.id}', 1)" class="px-2 py-0.5 rounded font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 cursor-pointer" title="Click to edit Module 1">${st.m1} / 20 ✏️</button>`
                       : '<span class="text-slate-400 font-mono">--</span>'}
                   </td>
                   <td class="py-2.5 px-3 text-center whitespace-nowrap">
                     ${st.m2 !== null
-                      ? `<span class="px-2 py-0.5 rounded font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${st.m2} / 20</span>`
+                      ? `<button type="button" onclick="selectStudentForGrading('${st.id}', 2)" class="px-2 py-0.5 rounded font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 cursor-pointer" title="Click to edit Module 2">${st.m2} / 20 ✏️</button>`
                       : '<span class="text-slate-400 font-mono">--</span>'}
                   </td>
                   <td class="py-2.5 px-3 text-center whitespace-nowrap">
                     ${st.m3 !== null
-                      ? `<span class="px-2 py-0.5 rounded font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">${st.m3} / 20</span>`
+                      ? `<button type="button" onclick="selectStudentForGrading('${st.id}', 3)" class="px-2 py-0.5 rounded font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 cursor-pointer" title="Click to edit Module 3">${st.m3} / 20 ✏️</button>`
                       : '<span class="text-slate-400 font-mono">--</span>'}
                   </td>
                   <td class="py-2.5 px-3 text-center whitespace-nowrap">
                     ${st.m4 !== null
-                      ? `<span class="px-2 py-0.5 rounded font-mono font-bold bg-blue-50 text-blue-800 border border-blue-200">${st.m4} / 20</span>`
+                      ? `<button type="button" onclick="selectStudentForGrading('${st.id}', 4)" class="px-2 py-0.5 rounded font-mono font-bold bg-blue-50 text-blue-800 border border-blue-200 hover:bg-blue-100 cursor-pointer" title="Click to edit Module 4">${st.m4} / 20 ✏️</button>`
                       : '<span class="text-slate-400 font-mono">--</span>'}
                   </td>
                   <td class="py-2.5 px-3 text-center whitespace-nowrap">
@@ -1266,7 +1492,7 @@
                   </td>
                   <td class="py-2.5 px-3 text-right whitespace-nowrap">
                     <button type="button" onclick="selectStudentForGrading('${st.id}')" class="text-rose-800 hover:text-rose-950 font-bold text-xs underline cursor-pointer">
-                      ✏️ Grade
+                      ✏️ Edit
                     </button>
                   </td>
                 </tr>
@@ -1277,12 +1503,22 @@
       `;
     }
 
-    function selectStudentForGrading(studentId) {
+    function selectStudentForGrading(studentId, moduleNum) {
       const select = document.getElementById('eval-student');
-      if (select) {
-        select.value = studentId;
-        select.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (select) select.value = studentId;
+
+      if (moduleNum) {
+        const mSelect = document.getElementById('eval-milestone');
+        if (mSelect) {
+          mSelect.value = String(moduleNum);
+          handleMilestoneChange();
+        }
       }
+
+      loadStudentGradeForEditing();
+
+      const formEl = document.getElementById('eval-record-form');
+      if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     function exportAllGradesCSV() {
@@ -1302,20 +1538,13 @@
           const m3 = sLogs.find(l => Number(l.module) === 3);
           const m4 = sLogs.find(l => Number(l.module) === 4);
 
-          const m1Val = m1 ? m1.total : '';
-          const m2Val = m2 ? m2.total : '';
-          const m3Val = m3 ? m3.total : '';
-          const m4Val = m4 ? m4.total : '';
+          const scoredVals = [m1, m2, m3, m4].filter(Boolean).map(m => parseFloat(m.total));
+          const avg = scoredVals.length ? (scoredVals.reduce((a, b) => a + b, 0) / scoredVals.length).toFixed(1) : "N/A";
 
-          const scoredVals = [m1Val, m2Val, m3Val, m4Val].filter(v => v !== '').map(Number);
-          const avg = scoredVals.length ? (scoredVals.reduce((a, b) => a + b, 0) / scoredVals.length).toFixed(1) : '';
+          const latestStrengths = (m3?.strengths || m2?.strengths || m1?.strengths || m4?.strengths || "").replace(/"/g, '""');
+          const latestTargets = (m3?.targets || m2?.targets || m1?.targets || m4?.targets || "").replace(/"/g, '""');
 
-          const latestLog = sLogs[0];
-          const strengths = latestLog ? (latestLog.strengths || '').replace(/"/g, '""') : '';
-          const targets = latestLog ? (latestLog.targets || '').replace(/"/g, '""') : '';
-          const sName = formatStudentName(sId).replace(/"/g, '""');
-
-          csv += `"${sId}","${sName}","${grpLabel}",${m1Val},${m2Val},${m3Val},${m4Val},${avg},"${strengths}","${targets}"\n`;
+          csv += `"${sId}","${formatStudentName(sId)}","${grpLabel}",${m1 ? m1.total : ""},${m2 ? m2.total : ""},${m3 ? m3.total : ""},${m4 ? m4.total : ""},"${avg}","${latestStrengths}","${latestTargets}"\n`;
         });
       });
 
@@ -1323,7 +1552,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `GSEA_Semester_${activeSemester}_Grades_${new Date().toISOString().split('T')[0]}.csv`;
+      a.download = `GSEA_Semester_${activeSemester}_Grades_Export.csv`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -1336,7 +1565,6 @@
         renderCohortGradesTable();
       }
     }
-
     // ============================================================================
     // TAB 2: FE ROTAS
     // ============================================================================
