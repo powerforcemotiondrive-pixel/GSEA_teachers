@@ -2157,38 +2157,41 @@
 
       return `
         <div class="space-y-5">
-          <!-- Top Section: 2 Columns (Absence Logger + Rosters/Teachers) -->
+          <!-- Top Section: 2 Columns (Absence Logger + Teachers) -->
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
             <!-- Left 2 Cols: Absence / Lateness Record Form -->
-            <div class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-4">
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-3">
-                <div>
-                  <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-                    ${sem.title} • Attendance &amp; Lateness Tracker
-                  </span>
-                  <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Record Student Absence or Lateness</h2>
-                  <p class="text-xs text-slate-500 mt-0.5">Rapid 5-second exception logger. Automatically streams to Google Forms &amp; linked Google Sheet.</p>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span id="abs-backend-status-badge" class="text-[10px] font-bold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 border border-slate-200 flex items-center gap-1.5 shadow-2xs">
-                    <span class="w-2 h-2 rounded-full bg-slate-400"></span>
-                    <span>Local Storage Mode</span>
-                  </span>
-                  <button 
-                    type="button" 
-                    onclick="syncAbsencesFromGoogleSheet(true)" 
-                    class="px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-2xs transition-all"
-                    title="Fetch latest entries from Google Sheet"
-                  >
-                    <span id="abs-sync-spinner">🔄</span>
-                    <span>Sync Cloud</span>
-                  </button>
-                </div>
-              </div>
-
+            <div class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200">
               <!-- Form: Streamlined Precision Cockpit Layout -->
               <form id="absence-record-form" onsubmit="handleAbsenceSubmit(event)" class="space-y-4">
                 
+                <!-- Card Header: Title on Left, Clear & Submit on Right -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-3">
+                  <div>
+                    <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                      ${sem.title} • Attendance Tracker
+                    </span>
+                    <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Record Student Absence or Lateness</h2>
+                  </div>
+                  <div class="flex items-center gap-2 shrink-0">
+                    <span id="abs-submit-msg" class="text-xs text-emerald-600 font-bold"></span>
+                    <button 
+                      type="button" 
+                      onclick="resetAbsenceInputs()" 
+                      class="px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 font-bold text-xs transition-all cursor-pointer shadow-2xs"
+                    >
+                      Clear
+                    </button>
+                    <button 
+                      type="submit" 
+                      id="btn-submit-absence" 
+                      class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer border border-slate-700/50"
+                    >
+                      <span>💾</span>
+                      <span>Submit Record</span>
+                    </button>
+                  </div>
+                </div>
+
                 <!-- Row 1: The 3 Fast Selectors (Track • Group • Status) -->
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
                   
@@ -2292,34 +2295,11 @@
 
                 </div>
 
-                <!-- Row 3: Submit & Action Bar -->
-                <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-                  <span id="abs-submit-msg" class="text-xs text-emerald-600 font-bold"></span>
-                  <div class="flex items-center gap-2">
-                    <button 
-                      type="button" 
-                      onclick="resetAbsenceInputs()" 
-                      class="px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 font-bold text-xs transition-all cursor-pointer shadow-2xs"
-                    >
-                      Clear
-                    </button>
-                    <button 
-                      type="submit" 
-                      id="btn-submit-absence" 
-                      class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer"
-                    >
-                      <span>💾</span>
-                      <span>Submit Record</span>
-                    </button>
-                  </div>
-                </div>
-
               </form>
             </div>
 
-            <!-- Right Col: Assigned Teachers & Rosters -->
-            <div class="space-y-4">
-              <!-- Teachers Card -->
+            <!-- Right Col: Assigned Teachers -->
+            <div>
               <div class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 space-y-3">
                 <div class="flex items-center justify-between pb-2 border-b border-slate-100">
                   <span class="text-xs font-bold text-slate-800">Assigned Teachers</span>
@@ -2335,28 +2315,6 @@
                       <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase text-white ${f.track === 'AT' ? 'bg-blue-800' : 'bg-emerald-800'}">${f.track}</span>
                     </div>
                   `).join('')}
-                </div>
-              </div>
-
-              <!-- Student Groups Summary -->
-              <div class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 space-y-3">
-                <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                  <span class="text-xs font-bold text-slate-800">Class Roster Summary</span>
-                  <span class="text-[10px] font-mono text-slate-400">${((sem.students.groupA || []).length + (sem.students.groupB || []).length)} students</span>
-                </div>
-                <div class="space-y-2 text-xs">
-                  <div>
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Group A (${(sem.students.groupA || []).length} students):</span>
-                    <div class="flex flex-wrap gap-1">
-                      ${(sem.students.groupA || []).map(s => `<span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200" title="${s}">${formatStudentName(s)}</span>`).join('')}
-                    </div>
-                  </div>
-                  <div class="pt-1 border-t border-slate-100">
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Group B (${(sem.students.groupB || []).length} students):</span>
-                    <div class="flex flex-wrap gap-1">
-                      ${(sem.students.groupB || []).map(s => `<span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200" title="${s}">${formatStudentName(s)}</span>`).join('')}
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
