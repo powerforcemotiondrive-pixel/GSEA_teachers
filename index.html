@@ -136,7 +136,7 @@
           <div class="grid grid-cols-4 gap-1.5 sm:gap-2 w-full sm:w-auto" id="semester-selector-group">
             <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-slate-900 border-amber-400 shadow-md">
               <span class="flex items-center gap-1 sm:gap-1.5">
-                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-500"></span>
+                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400"></span>
                 <span class="sm:hidden">S1</span>
                 <span class="hidden sm:inline">S1 • Semester 1</span>
               </span>
@@ -652,7 +652,7 @@
         if (s === num) {
           btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-slate-900 border-amber-400 shadow-md";
           const dot = btn.querySelector('.rounded-full');
-          if (dot) dot.className = "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-500";
+          if (dot) dot.className = "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400";
         } else if (btn.hasAttribute('disabled')) {
           btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-slate-900/40 text-slate-400 opacity-40 cursor-not-allowed";
           const dot = btn.querySelector('.rounded-full');
@@ -917,13 +917,13 @@
               </div>
               <div class="flex flex-wrap items-center gap-2.5">
                 <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Evaluation Total:</span>
-                <span id="score-display-pill" class="text-base font-black px-3.5 py-1 rounded-xl bg-amber-400 text-slate-950 font-mono shadow-xs border border-amber-500/60">
+                <span id="score-display-pill" class="text-base font-black px-3.5 py-1 rounded-xl bg-amber-400 text-slate-950 font-mono shadow-xs border border-amber-400">
                   15.5 / 20.0
                 </span>
                 <button 
                   type="button" 
                   onclick="openStudentGradeReportModal()" 
-                  class="ml-1 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-amber-500 hover:bg-amber-600 active:bg-amber-700 text-slate-950 flex items-center gap-1.5 shadow-xs cursor-pointer border border-amber-600/40"
+                  class="ml-1 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 flex items-center gap-1.5 shadow-xs cursor-pointer border border-amber-400"
                   title="Generate Official Student Grade Report / PDF Transcript"
                 >
                   <span>🖨️</span>
@@ -948,7 +948,7 @@
                 <span>➔</span>
                 <span class="bg-white/90 px-2 py-0.5 rounded border border-amber-200/80 text-slate-800">3. Spoken Feedback</span>
                 <span>➔</span>
-                <span class="bg-amber-400 text-slate-950 font-bold px-2 py-0.5 rounded border border-amber-500 shadow-2xs">4. Save Record</span>
+                <span class="bg-amber-400 text-slate-950 font-bold px-2 py-0.5 rounded border border-amber-400 shadow-2xs">4. Save Record</span>
               </div>
             </div>
 
@@ -1206,7 +1206,7 @@
                   <div>
                     <div class="flex items-center gap-2">
                       <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total:</span>
-                      <span id="score-display-pill-bottom" class="text-base font-black px-3.5 py-1 rounded-xl bg-amber-400 text-slate-950 font-mono shadow-xs border border-amber-500">
+                      <span id="score-display-pill-bottom" class="text-base font-black px-3.5 py-1 rounded-xl bg-amber-400 text-slate-950 font-mono shadow-xs border border-amber-400">
                         15.5 / 20.0
                       </span>
                       <span id="score-grade-band" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-800 text-amber-300 border border-slate-700">
@@ -1229,7 +1229,7 @@
                   </button>
                   <button 
                     type="submit" 
-                    class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-500 active:bg-amber-600 text-slate-950 font-black text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer border border-amber-500"
+                    class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 font-black text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer border border-amber-400"
                   >
                     <span>💾</span>
                     <span>Save Evaluation Record</span>
@@ -1264,7 +1264,7 @@
                   <span>🔄</span>
                   <span>Sync Cloud</span>
                 </button>
-                <button type="button" onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white shadow-xs transition-all flex items-center gap-1.5 cursor-pointer">
+                <button type="button" onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 shadow-xs transition-all flex items-center gap-1.5 cursor-pointer border border-amber-400">
                   <span>🖨️</span>
                   <span>Print / Save as PDF</span>
                 </button>
@@ -2293,7 +2293,7 @@
                     <button 
                       type="submit" 
                       id="btn-submit-absence" 
-                      class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer border border-slate-700/50"
+                      class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer border border-amber-400"
                     >
                       <span>💾</span>
                       <span>Submit Record</span>
