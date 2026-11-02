@@ -12,9 +12,9 @@
   </metadata>
   <organizations default="GSEA_FACULTY_ORG">
     <organization identifier="GSEA_FACULTY_ORG">
-      <title>ENAC GSEA Multi-Semester Faculty Hub &amp; Academic Administration</title>
+      <title>ENAC GSEA Multi-Semester Teachers Hub &amp; Academic Administration</title>
       <item identifier="ITEM_GSEA_TEACHERS_HUB" identifierref="RES_GSEA_TEACHERS">
-        <title>GSEA Faculty Hub &amp; Grading Dashboard</title>
+        <title>GSEA Teachers Hub &amp; Grading Dashboard</title>
         <adlcp:masteryscore>80</adlcp:masteryscore>
       </item>
     </organization>

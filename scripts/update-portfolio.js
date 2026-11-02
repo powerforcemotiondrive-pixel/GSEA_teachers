@@ -187,7 +187,7 @@ studentRecords.sort((a, b) => {
 const avgFeScore = feScores.length ? (feScores.reduce((a, b) => a + b, 0) / feScores.length).toFixed(1) : "4.1";
 const avgToeicScore = toeicScores.length ? (toeicScores.reduce((a, b) => a + b, 0) / toeicScores.length).toFixed(1) : "8.0";
 
-// Structured Cohort Summary Dataset for Faculty Hub
+// Structured Cohort Summary Dataset for Teachers Hub
 const portfolioData = {
   semester: sem,
   lastUpdated: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }),

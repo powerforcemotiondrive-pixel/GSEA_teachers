@@ -30,7 +30,7 @@ if (fs.existsSync(zipFilePath)) {
   zipFilePath = path.join(destDir, zipFilename);
 }
 
-console.log(`\n📦 Creating full backup for GSEA Faculty Hub...`);
+console.log(`\n📦 Creating full backup for GSEA Teachers Hub...`);
 console.log(`📂 Source:      ${rootDir}`);
 console.log(`📍 Destination: ${destDir}`);
 console.log(`🏷️  Archive:     ${zipFilename}\n`);

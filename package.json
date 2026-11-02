@@ -1,7 +1,7 @@
 {
   "name": "gsea-teachers-portal",
   "version": "1.0.0",
-  "description": "ENAC GSEA English Multi-Semester Faculty Administration & Grading Portal",
+  "description": "ENAC GSEA English Multi-Semester Teachers Hub & Grading Portal",
   "main": "index.html",
   "scripts": {
     "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --minify",

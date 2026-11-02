@@ -9,7 +9,7 @@ const zipOutput = path.join(distDir, 'GSEA_Teachers_SCORM.zip');
 const stagingDir = path.join(distDir, '_scorm_stage');
 const privateMapPath = path.join(rootDir, 'students.private.json');
 
-console.log('📦 Starting GSEA Faculty Hub SCORM Packaging...\n');
+console.log('📦 Starting GSEA Teachers Hub SCORM Packaging...\n');
 
 // 1. Ensure dist directory exists
 if (!fs.existsSync(distDir)) {

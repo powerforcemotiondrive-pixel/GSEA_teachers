@@ -3,7 +3,7 @@
 <head>
   <!--
     ==========================================================================
-    ENAC GSEA Multi-Semester Faculty Administration & Grading Portal
+    ENAC GSEA Multi-Semester Teachers Hub & Grading Portal
     © 2026 Phil PARRIS. All Rights Reserved.
     Author & Pedagogical Architect: Phil PARRIS (Département LH / LAN)
     Protected under the French Intellectual Property Code (Articles L.111-1 & L.121-1).
@@ -16,7 +16,7 @@
   <meta name="author" content="Phil PARRIS">
   <meta name="creator" content="Phil PARRIS (ENAC LH/LAN)">
   <meta name="copyright" content="© 2026 Phil PARRIS. All Rights Reserved.">
-  <title>ENAC GSEA — Faculty Portal & Academic Hub</title>
+  <title>ENAC GSEA — Teachers Hub & Academic Portal</title>
   <!-- Tailwind CSS CLI Output -->
   <link rel="stylesheet" href="output.css">
   <style>
@@ -63,12 +63,12 @@
           <div>
             <div class="flex items-center gap-2">
               <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-900 shadow-xs">
-                FACULTY PORTAL
+                TEACHERS HUB
               </span>
               <span class="text-xs text-rose-200 font-mono">ENAC • DÉPARTEMENT LH / LAN</span>
             </div>
             <h1 class="text-base sm:text-xl font-bold tracking-tight text-white mt-0.5">
-              ENAC GSEA Multi-Semester Faculty Hub
+              ENAC GSEA Multi-Semester Teachers Hub
             </h1>
             <p class="text-[11px] sm:text-xs text-rose-100/90 mt-0.5">
               Academic Administration, Continuous Evaluation, Grading Records &amp; FE Rotas
@@ -171,10 +171,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2">
       <div class="flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span class="font-medium text-slate-700">GSEA Faculty Portal • 100% Offline Capable &amp; Sheets Synced</span>
+        <span class="font-medium text-slate-700">GSEA Teachers Hub • 100% Offline Capable &amp; Sheets Synced</span>
       </div>
       <div>
-        Phil PARRIS (LH/LAN) • Official ENAC Faculty System • v1.0.0
+        Phil PARRIS (LH/LAN) • Official ENAC Teachers System • v1.0.0
       </div>
     </div>
   </footer>
@@ -185,7 +185,7 @@
     // INVISIBLE COPYRIGHT & PROGRAMME INTEGRITY (French IP Code Art. L.111-1)
     // ============================================================================
     window.__GSEA_FACULTY_AUTH = Object.freeze({
-      programme: "ENAC GSEA Multi-Semester Faculty Hub",
+      programme: "ENAC GSEA Multi-Semester Teachers Hub",
       architect: "Phil PARRIS",
       department: "Département Langues et Humanités (LAN / LH)",
       institution: "École Nationale de l'Aviation Civile (ENAC)",
@@ -1179,13 +1179,11 @@
                       </td>
                       <td class="py-3 px-3">
                         <div class="flex items-center gap-1.5 flex-wrap">
-                          <span class="px-1.5 py-0.5 rounded text-[10px] font-bold uppercase ${sA.type === 'trio' ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-slate-100 text-slate-700 border border-slate-200'}">${sA.type}</span>
                           ${sA.students.map(st => `<span class="px-2 py-0.5 rounded font-mono font-bold bg-slate-50 border border-slate-200 text-slate-800" title="${formatStudentName(st)}">${getStudentShortName(st)}</span>`).join('')}
                         </div>
                       </td>
                       <td class="py-3 px-3">
                         <div class="flex items-center gap-1.5 flex-wrap">
-                          <span class="px-1.5 py-0.5 rounded text-[10px] font-bold uppercase ${sB.type === 'trio' ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-slate-100 text-slate-700 border border-slate-200'}">${sB.type}</span>
                           ${sB.students.map(st => `<span class="px-2 py-0.5 rounded font-mono font-bold bg-slate-50 border border-slate-200 text-slate-800" title="${formatStudentName(st)}">${getStudentShortName(st)}</span>`).join('')}
                         </div>
                       </td>
@@ -1195,11 +1193,6 @@
                 }).join('')}
               </tbody>
             </table>
-          </div>
-
-          <!-- Academic Rotation Note -->
-          <div class="p-3 bg-amber-50/60 border border-amber-200/80 rounded-xl text-xs text-amber-900 leading-relaxed">
-            <strong>Dynamic Peer Rotations:</strong> Group A rotates across 2 pairs + 2 trios (10 students), and Group B rotates across 3 pairs + 1 trio (9 students). Pairings and early/late slot timings rotate dynamically between FE1, FE2, and FE3 to ensure maximum diversity of spoken interaction.
           </div>
         </div>
       `;

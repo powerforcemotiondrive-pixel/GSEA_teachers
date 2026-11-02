@@ -12,7 +12,7 @@ const dmgFilename = 'GSEA_Teachers_Mac.dmg';
 const dmgPath = path.join(distDir, dmgFilename);
 const privateMapPath = path.join(rootDir, 'students.private.json');
 
-console.log('💿 Starting GSEA Faculty Hub Offline Disk Image Packaging...\n');
+console.log('💿 Starting GSEA Teachers Hub Offline Disk Image Packaging...\n');
 
 if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
