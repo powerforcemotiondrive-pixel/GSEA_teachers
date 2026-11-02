@@ -133,7 +133,11 @@
 
     <!-- Sub-Navigation Tab Strip -->
     <nav class="flex items-center gap-1 overflow-x-auto pb-1 text-xs select-none border-b border-slate-200" id="main-nav-tabs">
-      <button onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer">
+      <button onclick="switchTab('overview')" id="tab-btn-overview" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer">
+        <span>🏠</span>
+        <span>Overview</span>
+      </button>
+      <button onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
         <span>📅</span>
         <span>Programme</span>
       </button>
@@ -212,7 +216,7 @@
 
     // Active state
     let activeSemester = 1;
-    let activeTab = 'calendar';
+    let activeTab = 'overview';
     let activeRotaTrack = 'ag'; // 'ag' or 'at'
     let activeRotaFe = 1;       // 1, 2, or 3
     let activeCalendarTrack = 'ag'; // 'ag' or 'at'
@@ -602,7 +606,9 @@
       if (!container) return;
       const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
 
-      if (activeTab === 'calendar') {
+      if (activeTab === 'overview') {
+        container.innerHTML = renderOverviewTab(sem);
+      } else if (activeTab === 'calendar') {
         container.innerHTML = renderCalendarTab(sem);
       } else if (activeTab === 'rotas') {
         container.innerHTML = renderRotasTab(sem);
@@ -616,6 +622,200 @@
         container.innerHTML = renderPortfolioTab(sem);
         initPortfolioEvents();
       }
+    }
+
+    // ============================================================================
+    // TAB 0: OVERVIEW & WELCOME LANDING PAGE
+    // ============================================================================
+    function renderOverviewTab(sem) {
+      const allStudentsCount = ((sem.students?.groupA || []).length) + ((sem.students?.groupB || []).length);
+      const facultyList = sem.faculty || [];
+
+      return `
+        <div class="space-y-6">
+          <!-- Hero Banner with Photography -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-xs border border-slate-200">
+            <div class="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+              <!-- Left Visual / Photography Column -->
+              <div class="lg:col-span-5 relative min-h-[220px] sm:min-h-[260px] bg-slate-900">
+                <img 
+                  src="images/course_admin.jpg" 
+                  alt="ENAC English Course Administration" 
+                  class="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent flex flex-col justify-end p-5 text-white">
+                  <span class="text-[10px] font-black uppercase tracking-wider text-amber-300 font-mono">
+                    Official Teaching Platform
+                  </span>
+                  <h3 class="text-base sm:text-lg font-bold mt-0.5">
+                    ENAC • Département Langues (LH/LAN)
+                  </h3>
+                  <p class="text-xs text-rose-100/90 font-medium">
+                    ${sem.title} • ${sem.tracks}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Right Executive Overview Column -->
+              <div class="lg:col-span-7 p-5 sm:p-7 flex flex-col justify-between space-y-4">
+                <div class="space-y-2">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded bg-rose-900 text-white shadow-2xs">
+                      Faculty Dashboard
+                    </span>
+                    <span class="text-xs text-slate-500 font-mono font-medium">
+                      Active Promotion: <strong>GSEA26A</strong>
+                    </span>
+                  </div>
+
+                  <h2 class="text-lg sm:text-2xl font-bold tracking-tight text-slate-900">
+                    Welcome to the GSEA English Teachers Hub
+                  </h2>
+
+                  <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    This central dashboard unifies course scheduling, 30-minute oral tutorial rotas, attendance management, official continuous assessment scoring, and live student portfolio compliance tracking for <strong>${sem.title}</strong>.
+                  </p>
+                </div>
+
+                <!-- Quick Snapshot Metrics -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2 border-t border-slate-100 text-xs">
+                  <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200/80">
+                    <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Promotion</span>
+                    <span class="text-xs sm:text-sm font-black text-slate-800 font-mono">GSEA26A</span>
+                    <span class="text-[10px] text-slate-500 block">${allStudentsCount} Students (A/B)</span>
+                  </div>
+                  <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200/80">
+                    <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Teaching Faculty</span>
+                    <span class="text-xs sm:text-sm font-black text-slate-800 font-mono">${facultyList.length} Teachers</span>
+                    <span class="text-[10px] text-slate-500 block">General &amp; Technical</span>
+                  </div>
+                  <div class="p-2.5 bg-rose-50/70 rounded-xl border border-rose-200/80 col-span-2 sm:col-span-1">
+                    <span class="text-[10px] uppercase font-bold text-rose-800 block tracking-wider">Next Milestone</span>
+                    <span class="text-xs sm:text-sm font-black text-rose-950 font-mono">FE1 Tutorial</span>
+                    <span class="text-[10px] text-rose-700 block">Week 48 Oral Exam</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section Heading -->
+          <div class="flex items-center justify-between pt-1">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+              <span>🧭</span>
+              <span>Direct Workspace Pathways</span>
+            </h3>
+            <span class="text-xs text-slate-500 font-medium">Select any module below to jump directly to work</span>
+          </div>
+
+          <!-- 5 Pathway Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- 1. Programme -->
+            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-rose-300 hover:shadow-sm transition-all group">
+              <div class="space-y-2">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+                  📅
+                </div>
+                <h4 class="text-sm font-bold text-slate-900 pt-1">Semester Programme</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Master 16-week timetable, session calendar, official holiday windows, and session-by-session syllabus topics.
+                </p>
+              </div>
+              <div class="pt-4 mt-2 border-t border-slate-100">
+                <button type="button" onclick="switchTab('calendar')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
+                  <span>Open Programme</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. Tutorial Rotas -->
+            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-rose-300 hover:shadow-sm transition-all group">
+              <div class="space-y-2">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+                  ⏱️
+                </div>
+                <h4 class="text-sm font-bold text-slate-900 pt-1">Tutorial Rotas</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  30-minute oral Formative Evaluation slot schedules (FE1, FE2, FE3), room allocations, and student pairings.
+                </p>
+              </div>
+              <div class="pt-4 mt-2 border-t border-slate-100">
+                <button type="button" onclick="switchTab('rotas')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
+                  <span>View Rotas</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Groups & Absences -->
+            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-rose-300 hover:shadow-sm transition-all group">
+              <div class="space-y-2">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+                  👥
+                </div>
+                <h4 class="text-sm font-bold text-slate-900 pt-1">Groups &amp; Absences</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Group A and Group B promotion rosters, assigned faculty contacts, and quick absence logging with CSV exports.
+                </p>
+              </div>
+              <div class="pt-4 mt-2 border-t border-slate-100">
+                <button type="button" onclick="switchTab('groups')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
+                  <span>Manage Groups</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 4. Evaluation -->
+            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-rose-300 hover:shadow-sm transition-all group">
+              <div class="space-y-2">
+                <div class="w-10 h-10 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+                  📝
+                </div>
+                <h4 class="text-sm font-bold text-slate-900 pt-1">Student Evaluation</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Official 20-point scoring form with 6-criteria dropdown rubrics, Module 1–4 grade records, and examiner notes.
+                </p>
+              </div>
+              <div class="pt-4 mt-2 border-t border-slate-100">
+                <button type="button" onclick="switchTab('evaluations')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
+                  <span>Enter Grades</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 5. Portfolio -->
+            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 flex flex-col justify-between hover:border-rose-300 hover:shadow-sm transition-all group lg:col-span-2">
+              <div class="space-y-2">
+                <div class="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+                  📊
+                </div>
+                <h4 class="text-sm font-bold text-slate-900 pt-1">Portfolio Compliance</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Live cohort tracking checklist across AT and AG sessions with 1-click missing reminder copying and compliance CSV export.
+                </p>
+              </div>
+              <div class="pt-4 mt-2 border-t border-slate-100">
+                <button type="button" onclick="switchTab('portfolio')" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-900 text-slate-700 hover:text-white font-bold text-xs transition-colors flex items-center justify-between cursor-pointer">
+                  <span>Check Compliance</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Practical Tips Banner -->
+          <div class="p-4 bg-slate-100/80 rounded-2xl border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-600">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">💡</span>
+              <span><strong>Teacher Quick Note:</strong> All evaluations and absence logs auto-save locally to your browser and can be exported to CSV at any time.</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-500 whitespace-nowrap">Offline Capable • v1.0.0</span>
+          </div>
+        </div>
+      `;
     }
 
     // ============================================================================
