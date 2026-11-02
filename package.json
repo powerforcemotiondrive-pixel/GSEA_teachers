@@ -6,6 +6,15 @@
   "scripts": {
     "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --minify",
     "build": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --minify",
+    "package": "node scripts/package-scorm.js && node scripts/package-iso.js",
+    "package:scorm": "node scripts/package-scorm.js",
+    "package:iso": "node scripts/package-iso.js",
+    "backup": "node scripts/backup.js",
+    "portfolio:s1": "node scripts/update-portfolio.js 1 && npm run package",
+    "portfolio:s2": "node scripts/update-portfolio.js 2 && npm run package",
+    "portfolio:s3": "node scripts/update-portfolio.js 3 && npm run package",
+    "portfolio:s4": "node scripts/update-portfolio.js 4 && npm run package",
+    "portfolio:update": "node scripts/update-portfolio.js",
     "dev:css": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --watch",
     "serve": "python3 -m http.server 8080"
   },
@@ -19,7 +28,8 @@
     "teachers",
     "portal",
     "faculty",
-    "grading"
+    "grading",
+    "scorm"
   ],
   "author": "Phil PARRIS",
   "license": "ISC",

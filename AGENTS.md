@@ -33,3 +33,4 @@ This repository houses the official **ENAC GSEA English Faculty Administration &
 ### F. Student & Faculty Privacy Protocol
 - **Strict Codebase Anonymity**: The Git codebase must NEVER contain real student names or private teacher contact info. Anonymous identifiers (`GRPA001`–`GRPA010`) are used in public files.
 - **Private Mapping**: Real rosters are maintained in private, git-ignored configuration files (`students.private.json`).
+
