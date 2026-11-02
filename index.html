@@ -2202,35 +2202,21 @@
               <!-- Form -->
               <form id="absence-record-form" onsubmit="handleAbsenceSubmit(event)" class="space-y-4">
                 
-                <!-- 4 Tactile Pill Selectors Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <!-- Tactile Pill Selectors Grid (2 Wide Columns) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   
-                  <!-- Box 1: Promotion -->
+                  <!-- Box 1: Track / Class Type -->
                   <div class="p-3 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2">
                     <div class="flex items-center justify-between">
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700">1. Promotion</label>
-                      <span class="text-[10px] text-slate-400 font-mono">Cohort</span>
-                    </div>
-                    <div id="abs-promo-pills" class="grid grid-cols-2 gap-1.5">
-                      <button type="button" onclick="setAbsPromo('GSEA26A')" class="abs-promo-btn px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${activeAbsPromo === 'GSEA26A' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">GSEA26A</button>
-                      <button type="button" onclick="setAbsPromo('GSEA25B')" class="abs-promo-btn px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${activeAbsPromo === 'GSEA25B' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">GSEA25B</button>
-                      <button type="button" onclick="setAbsPromo('GSEA25A')" class="abs-promo-btn px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${activeAbsPromo === 'GSEA25A' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">GSEA25A</button>
-                      <button type="button" onclick="setAbsPromo('GSEA24B')" class="abs-promo-btn px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${activeAbsPromo === 'GSEA24B' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">GSEA24B</button>
-                    </div>
-                  </div>
-
-                  <!-- Box 2: Track / Class Type -->
-                  <div class="p-3 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2">
-                    <div class="flex items-center justify-between">
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700">2. Track / Subject</label>
+                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700">1. Track / Subject</label>
                       <span class="text-[10px] text-slate-400 font-mono">Discipline</span>
                     </div>
-                    <div id="abs-track-pills" class="flex flex-wrap gap-1.5">
+                    <div id="abs-track-pills" class="flex flex-wrap gap-2">
                       ${tracksList.map(t => `
                         <button 
                           type="button" 
                           onclick="setAbsTrack('${t}')" 
-                          class="abs-track-btn flex-1 py-1.5 px-2.5 rounded-lg text-xs font-bold transition-all border ${activeAbsTrack === t ? 'bg-rose-900 text-white border-rose-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}"
+                          class="abs-track-btn flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsTrack === t ? 'bg-rose-900 text-white border-rose-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}"
                         >
                           ${t}
                         </button>
@@ -2238,17 +2224,15 @@
                     </div>
                   </div>
 
-                  <!-- Box 3: Group -->
+                  <!-- Box 2: Class Group (Group A and Group B) -->
                   <div class="p-3 bg-slate-50/90 rounded-xl border border-slate-200/90 space-y-2">
                     <div class="flex items-center justify-between">
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700">3. Class Group</label>
+                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700">2. Class Group</label>
                       <span class="text-[10px] text-slate-400 font-mono">Section</span>
                     </div>
-                    <div id="abs-group-pills" class="grid grid-cols-4 gap-1">
-                      <button type="button" onclick="setAbsGroup('A')" class="abs-group-btn py-1.5 px-2 rounded-lg text-xs font-bold transition-all border ${activeAbsGroup === 'A' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">A</button>
-                      <button type="button" onclick="setAbsGroup('B')" class="abs-group-btn py-1.5 px-2 rounded-lg text-xs font-bold transition-all border ${activeAbsGroup === 'B' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">B</button>
-                      <button type="button" onclick="setAbsGroup('C')" class="abs-group-btn py-1.5 px-2 rounded-lg text-xs font-bold transition-all border ${activeAbsGroup === 'C' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">C</button>
-                      <button type="button" onclick="setAbsGroup('D')" class="abs-group-btn py-1.5 px-2 rounded-lg text-xs font-bold transition-all border ${activeAbsGroup === 'D' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">D</button>
+                    <div id="abs-group-pills" class="grid grid-cols-2 gap-2">
+                      <button type="button" onclick="setAbsGroup('A')" class="abs-group-btn py-2 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'A' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">Group A</button>
+                      <button type="button" onclick="setAbsGroup('B')" class="abs-group-btn py-2 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'B' ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'}">Group B</button>
                     </div>
                   </div>
 
@@ -2463,8 +2447,6 @@
                   <option value="all">All Groups</option>
                   <option value="A">Group A</option>
                   <option value="B">Group B</option>
-                  <option value="C">Group C</option>
-                  <option value="D">Group D</option>
                 </select>
                 <select id="abs-filter-date" onchange="renderAbsenceLogs()" class="p-2 rounded-lg border border-slate-300 bg-white text-slate-800 font-bold focus:ring-2 focus:ring-rose-800">
                   <option value="all">All Dates</option>
@@ -2530,8 +2512,9 @@
     function setAbsGroup(group) {
       activeAbsGroup = group;
       document.querySelectorAll('.abs-group-btn').forEach(btn => {
-        const isActive = btn.textContent.trim() === group;
-        btn.className = "abs-group-btn py-1.5 px-2 rounded-lg text-xs font-bold transition-all border " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100');
+        const txt = btn.textContent.trim();
+        const isActive = txt.endsWith(group) || txt === group;
+        btn.className = "abs-group-btn py-2 px-3 rounded-xl text-xs font-bold transition-all border " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100');
       });
       updateAbsStudentOptions();
     }
