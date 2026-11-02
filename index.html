@@ -105,26 +105,26 @@
               </span>
               <span class="text-[10px] opacity-75 font-mono ml-1.5">AG+AT</span>
             </button>
-            <button type="button" onclick="selectSemester(2)" id="sem-btn-2" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-rose-950/50 hover:bg-rose-900/60 text-white/90 border-white/15">
+            <button type="button" disabled id="sem-btn-2" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed" title="Semester 2 (Upcoming)">
               <span class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                <span class="w-2 h-2 rounded-full bg-slate-600"></span>
                 <span>S2 • Semester 2</span>
               </span>
-              <span class="text-[10px] opacity-75 font-mono ml-1.5">AG+AAS</span>
+              <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
             </button>
-            <button type="button" onclick="selectSemester(3)" id="sem-btn-3" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-rose-950/50 hover:bg-rose-900/60 text-white/90 border-white/15">
+            <button type="button" disabled id="sem-btn-3" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed" title="Semester 3 (Upcoming)">
               <span class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                <span class="w-2 h-2 rounded-full bg-slate-600"></span>
                 <span>S3 • Semester 3</span>
               </span>
-              <span class="text-[10px] opacity-75 font-mono ml-1.5">AT Only</span>
+              <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
             </button>
-            <button type="button" onclick="selectSemester(4)" id="sem-btn-4" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-rose-950/50 hover:bg-rose-900/60 text-white/90 border-white/15">
+            <button type="button" disabled id="sem-btn-4" class="sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed" title="Semester 4 (Upcoming)">
               <span class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                <span class="w-2 h-2 rounded-full bg-slate-600"></span>
                 <span>S4 • Semester 4</span>
               </span>
-              <span class="text-[10px] opacity-75 font-mono ml-1.5">AP Only</span>
+              <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
             </button>
           </div>
         </div>
@@ -303,10 +303,16 @@
         if (!btn) continue;
         if (s === num) {
           btn.className = "sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-rose-950 border-amber-400 shadow-md";
-          btn.querySelector('.w-2').className = "w-2 h-2 rounded-full bg-amber-500";
+          const dot = btn.querySelector('.w-2');
+          if (dot) dot.className = "w-2 h-2 rounded-full bg-amber-500";
+        } else if (btn.hasAttribute('disabled')) {
+          btn.className = "sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-rose-950/20 text-white/40 opacity-40 cursor-not-allowed";
+          const dot = btn.querySelector('.w-2');
+          if (dot) dot.className = "w-2 h-2 rounded-full bg-slate-600";
         } else {
           btn.className = "sem-btn flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-rose-950/50 hover:bg-rose-900/60 text-white/90 border-white/15";
-          btn.querySelector('.w-2').className = "w-2 h-2 rounded-full bg-slate-400";
+          const dot = btn.querySelector('.w-2');
+          if (dot) dot.className = "w-2 h-2 rounded-full bg-slate-400";
         }
       }
       renderCurrentView();
