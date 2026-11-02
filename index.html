@@ -135,11 +135,11 @@
     <nav class="flex items-center gap-1 overflow-x-auto pb-1 text-xs select-none border-b border-slate-200" id="main-nav-tabs">
       <button onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-rose-900 text-white shadow-xs cursor-pointer">
         <span>📅</span>
-        <span>Semester Programme</span>
+        <span>Programme</span>
       </button>
       <button onclick="switchTab('rotas')" id="tab-btn-rotas" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
         <span>⏱️</span>
-        <span>FE Rotas</span>
+        <span>Tutorial Rotas</span>
       </button>
       <button onclick="switchTab('groups')" id="tab-btn-groups" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
         <span>👥</span>
@@ -147,11 +147,11 @@
       </button>
       <button onclick="switchTab('evaluations')" id="tab-btn-evaluations" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
         <span>📝</span>
-        <span>Evaluations</span>
+        <span>Evaluation</span>
       </button>
       <button onclick="switchTab('portfolio')" id="tab-btn-portfolio" class="nav-tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
         <span>📊</span>
-        <span>Portfolio Track</span>
+        <span>Portfolio</span>
       </button>
     </nav>
 
@@ -2507,7 +2507,7 @@ const PORTFOLIO_DATA_S1 = {
                 Semester ${sem.num} Teachers Portfolio Update
               </div>
               <p class="text-[11px] text-slate-400 pt-2">
-                The pipeline will automatically parse student entries, compute cohort metrics, and populate this matrix.
+                The pipeline will automatically parse student entries and populate this compliance matrix.
               </p>
             </div>
           </div>
@@ -2515,617 +2515,198 @@ const PORTFOLIO_DATA_S1 = {
       }
 
       const records = pData.studentRecords || [];
-      const tb = pData.trackBreakdown || {};
-      const trackSummary = sem.num === 1 ? `${tb.at || 0} AT • ${tb.ag || 0} AG`
-                         : (sem.num === 2 ? `${tb.aas || 0} AAS • ${tb.ag || 0} AG`
-                         : (sem.num === 3 ? `${tb.at || 0} AT` : `${tb.ap || 0} AP`));
+      const isDualTrack = sem.num === 1 || sem.num === 2;
+      const atLabel = sem.num === 2 ? 'AAS' : (sem.num === 4 ? 'AP' : 'AT');
+      const atTitle = sem.num === 2 ? 'Aero English (AAS)' : (sem.num === 4 ? 'Aero Professional (AP)' : 'Technical English (AT)');
+      const totalExpected = isDualTrack ? 8 : 4;
+
+      // Compute student compliance matrix
+      const studentMatrix = [];
+      Object.entries(sem.students || {}).forEach(([grpKey, sIds]) => {
+        const grpLabel = grpKey.includes('A') ? 'Group A' : (grpKey.includes('B') ? 'Group B' : (grpKey.includes('C') ? 'Group C' : 'Group D'));
+        sIds.forEach(sId => {
+          const sEntries = records.filter(r => r.id === sId);
+          const atSet = new Set(sEntries.filter(r => r.track && r.track.toUpperCase() === atLabel).map(r => String(r.session)));
+          const agSet = new Set(sEntries.filter(r => r.track && r.track.toUpperCase() === 'AG').map(r => String(r.session)));
+          const loggedCount = atSet.size + (isDualTrack ? agSet.size : 0);
+          const isComplete = loggedCount >= totalExpected;
+          const isZero = loggedCount === 0;
+
+          studentMatrix.push({
+            id: sId,
+            name: formatStudentName(sId),
+            group: grpLabel,
+            atSet,
+            agSet,
+            loggedCount,
+            isComplete,
+            isZero
+          });
+        });
+      });
+
+      // Filter student matrix
+      const filteredMatrix = studentMatrix.filter(st => {
+        if (activeMatrixGroupFilter !== 'all' && st.group !== activeMatrixGroupFilter) return false;
+        if (activeMatrixStatusFilter === 'incomplete' && st.isComplete) return false;
+        if (activeMatrixStatusFilter === 'complete' && !st.isComplete) return false;
+        return true;
+      });
+
+      const completeCount = studentMatrix.filter(st => st.isComplete).length;
+      const partialCount = studentMatrix.filter(st => !st.isComplete && !st.isZero).length;
+      const zeroCount = studentMatrix.filter(st => st.isZero).length;
 
       return `
-        <div class="space-y-5">
-          <!-- Executive Metrics Banner -->
-          <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
-              <div>
-                <span class="text-[10px] font-black uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
-                  ${sem.title} • Student Portfolio Pulse &amp; Reflection Matrix
-                </span>
-                <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Cohort Reflections, Spoken Traps &amp; Exam Readiness</h2>
-                <p class="text-xs text-slate-500">Last synchronized: ${pData.lastUpdated} • Anonymous student IDs with zero PII</p>
+        <div class="space-y-4">
+          <!-- Compliance Controls & One-Click Actions Bar -->
+          <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-xs border border-slate-200 space-y-3.5">
+            <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+              <!-- Session Reminder Selector & Actions -->
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-xs font-bold text-slate-700">Missing Session Reminder:</span>
+                <select id="matrix-missing-session-select" class="text-xs p-2 rounded-xl border border-slate-300 bg-slate-50 font-medium text-slate-800 focus:bg-white focus:ring-2 focus:ring-rose-800 focus:outline-none">
+                  <option value="${atLabel}_1">${atTitle} • Session 1</option>
+                  <option value="${atLabel}_2">${atTitle} • Session 2</option>
+                  <option value="${atLabel}_3">${atTitle} • Session 3</option>
+                  <option value="${atLabel}_4">${atTitle} • Session 4</option>
+                  ${isDualTrack ? `
+                    <option value="AG_1">General English (AG) • Session 1</option>
+                    <option value="AG_2">General English (AG) • Session 2</option>
+                    <option value="AG_3">General English (AG) • Session 3</option>
+                    <option value="AG_4">General English (AG) • Session 4</option>
+                  ` : ''}
+                </select>
+
+                <button 
+                  type="button" 
+                  onclick="copyMissingPortfolioStudents()" 
+                  class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-rose-900 text-white hover:bg-rose-950 flex items-center gap-1.5 shadow-2xs cursor-pointer"
+                >
+                  <span>📋</span>
+                  <span>Copy Missing for Reminder</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  onclick="exportPortfolioComplianceCSV()" 
+                  class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>📥</span>
+                  <span>Export Compliance CSV</span>
+                </button>
               </div>
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold border border-slate-200">
-                  🎯 ${pData.metrics.targetFeLevel || 'CEFR B2'}
-                </span>
-                <span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-rose-50 text-rose-900 font-bold border border-rose-200">
-                  📅 ${pData.metrics.feWindow || 'FE Oral Exam'}
-                </span>
+
+              <!-- Quick Stats Counters -->
+              <div class="flex items-center gap-2 text-xs font-medium">
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">${completeCount} Complete</span>
+                <span class="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200 font-bold">${partialCount} Partial</span>
+                <span class="px-2.5 py-1 rounded-lg bg-rose-50 text-rose-800 border border-rose-200 font-bold">${zeroCount} Missing</span>
               </div>
             </div>
 
-            <!-- 4 Metric Cards -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Total Submissions</span>
-                <div class="flex items-baseline gap-2 mt-1">
-                  <span class="text-xl sm:text-2xl font-black text-slate-900">${pData.totalSubmissions}</span>
-                  <span class="text-[11px] font-medium text-slate-500 font-mono">${trackSummary}</span>
-                </div>
+            <!-- Group & Status Filters -->
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-slate-100 text-xs">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="text-slate-500 font-semibold mr-1">Group:</span>
+                <button type="button" onclick="setMatrixGroupFilter('all')" class="px-2.5 py-1 rounded-lg font-bold border transition-all ${activeMatrixGroupFilter === 'all' ? 'bg-slate-800 text-white border-slate-800' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}">All Groups</button>
+                <button type="button" onclick="setMatrixGroupFilter('Group A')" class="px-2.5 py-1 rounded-lg font-bold border transition-all ${activeMatrixGroupFilter === 'Group A' ? 'bg-slate-800 text-white border-slate-800' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}">Grp A</button>
+                <button type="button" onclick="setMatrixGroupFilter('Group B')" class="px-2.5 py-1 rounded-lg font-bold border transition-all ${activeMatrixGroupFilter === 'Group B' ? 'bg-slate-800 text-white border-slate-800' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}">Grp B</button>
               </div>
 
-              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Avg FE Readiness</span>
-                <div class="flex items-baseline gap-2 mt-1">
-                  <span class="text-xl sm:text-2xl font-black text-rose-900">${pData.metrics.avgFeConfidence} <span class="text-xs font-normal text-slate-400">/ 10</span></span>
-                  <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${parseFloat(pData.metrics.avgFeConfidence) >= 6 ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
-                    ${parseFloat(pData.metrics.avgFeConfidence) >= 6 ? 'Solid' : 'Developing'}
-                  </span>
-                </div>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="text-slate-500 font-semibold mr-1">Status:</span>
+                <button type="button" onclick="setMatrixStatusFilter('all')" class="px-2.5 py-1 rounded-lg font-bold border transition-all ${activeMatrixStatusFilter === 'all' ? 'bg-rose-900 text-white border-rose-900' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}">All (${studentMatrix.length})</button>
+                <button type="button" onclick="setMatrixStatusFilter('incomplete')" class="px-2.5 py-1 rounded-lg font-bold border transition-all ${activeMatrixStatusFilter === 'incomplete' ? 'bg-rose-900 text-white border-rose-900' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}">⚠️ Incomplete (${partialCount + zeroCount})</button>
+                <button type="button" onclick="setMatrixStatusFilter('complete')" class="px-2.5 py-1 rounded-lg font-bold border transition-all ${activeMatrixStatusFilter === 'complete' ? 'bg-rose-900 text-white border-rose-900' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}">✅ Complete (${completeCount})</button>
               </div>
-
-              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Avg TOEIC Confidence</span>
-                <div class="flex items-baseline gap-2 mt-1">
-                  <span class="text-xl sm:text-2xl font-black text-slate-900">${pData.metrics.avgToeicConfidence} <span class="text-xs font-normal text-slate-400">/ 10</span></span>
-                  <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">Target 785+</span>
-                </div>
-              </div>
-
-              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Identified Traps</span>
-                <div class="flex items-baseline gap-2 mt-1">
-                  <span class="text-xl sm:text-2xl font-black text-slate-900">${(pData.grammarTrapsCaught || []).length}</span>
-                  <span class="text-[11px] font-medium text-slate-500">Spoken Pitfalls</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- View Switcher -->
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-slate-200 shadow-2xs">
-            <div class="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl">
-              <button 
-                type="button" 
-                onclick="setPortfolioViewMode('matrix')" 
-                class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${activePortfolioViewMode === 'matrix' ? 'bg-rose-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900 cursor-pointer'}"
-              >
-                📊 Session Compliance Matrix
-              </button>
-              <button 
-                type="button" 
-                onclick="setPortfolioViewMode('feed')" 
-                class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${activePortfolioViewMode === 'feed' ? 'bg-rose-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900 cursor-pointer'}"
-              >
-                📋 Detailed Submissions Feed
-              </button>
-            </div>
-            <div class="text-[11px] font-medium text-slate-500">
-              ${activePortfolioViewMode === 'matrix' ? 'Cohort checklist across Module 1 sessions' : 'Individual reflection submissions with student notes'}
             </div>
           </div>
 
-          ${activePortfolioViewMode === 'matrix' ? (() => {
-            const isDualTrack = sem.num === 1 || sem.num === 2;
-            const atLabel = sem.num === 2 ? 'AAS' : (sem.num === 4 ? 'AP' : 'AT');
-            const atTitle = sem.num === 2 ? 'Aero English (AAS)' : (sem.num === 4 ? 'Aero Professional (AP)' : 'Technical English (AT)');
-            const totalExpected = isDualTrack ? 8 : 4;
+          <!-- Session Compliance Matrix Table -->
+          <div class="bg-white rounded-2xl shadow-xs border border-slate-200 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="bg-slate-50/90 text-slate-700 font-bold border-b border-slate-200 uppercase tracking-wider text-[10px]">
+                    <th class="py-3 px-3">Student &amp; Group</th>
+                    <th class="py-3 px-3 text-center">${atLabel} Track (S1–S4)</th>
+                    ${isDualTrack ? '<th class="py-3 px-3 text-center">AG Track (S1–S4)</th>' : ''}
+                    <th class="py-3 px-3 text-center">Progress</th>
+                    <th class="py-3 px-3 text-center">Status</th>
+                    <th class="py-3 px-3 text-right">Reminder</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  ${filteredMatrix.map(st => {
+                    const statusBadge = st.isComplete
+                      ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">Complete (8/8)</span>'
+                      : (st.isZero
+                        ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-200">No Entries (0/8)</span>'
+                        : `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">Partial (${st.loggedCount}/${totalExpected})</span>`);
 
-            // Compute student matrix list
-            const studentMatrix = [];
-            Object.entries(sem.students || {}).forEach(([grpKey, sIds]) => {
-              const grpLabel = grpKey.includes('A') ? 'Group A' : (grpKey.includes('B') ? 'Group B' : (grpKey.includes('C') ? 'Group C' : 'Group D'));
-              sIds.forEach(sId => {
-                const sEntries = records.filter(r => r.id === sId);
-                const atSet = new Set(sEntries.filter(r => r.track && r.track.toUpperCase() === atLabel).map(r => String(r.session)));
-                const agSet = new Set(sEntries.filter(r => r.track && r.track.toUpperCase() === 'AG').map(r => String(r.session)));
-                const loggedCount = atSet.size + (isDualTrack ? agSet.size : 0);
-                const isComplete = loggedCount >= totalExpected;
-                const isZero = loggedCount === 0;
-
-                studentMatrix.push({
-                  id: sId,
-                  name: formatStudentName(sId),
-                  group: grpLabel,
-                  atSet,
-                  agSet,
-                  loggedCount,
-                  isComplete,
-                  isZero
-                });
-              });
-            });
-
-            // Filter student matrix
-            const filteredMatrix = studentMatrix.filter(st => {
-              if (activeMatrixGroupFilter !== 'all' && st.group !== activeMatrixGroupFilter) return false;
-              if (activeMatrixStatusFilter === 'incomplete' && st.isComplete) return false;
-              if (activeMatrixStatusFilter === 'complete' && !st.isComplete) return false;
-              return true;
-            });
-
-            const completeCount = studentMatrix.filter(st => st.isComplete).length;
-            const partialCount = studentMatrix.filter(st => !st.isComplete && !st.isZero).length;
-            const zeroCount = studentMatrix.filter(st => st.isZero).length;
-
-            return `
-              <!-- Matrix Controls & One-Click Reminder Actions -->
-              <div class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 space-y-3.5">
-                <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
-                  <!-- Session Reminder Selector & Actions -->
-                  <div class="flex flex-wrap items-center gap-2">
-                    <span class="text-xs font-bold text-slate-700">Missing Session Reminder:</span>
-                    <select id="matrix-missing-session-select" class="text-xs p-2 rounded-xl border border-slate-300 bg-slate-50 font-medium text-slate-800 focus:bg-white focus:ring-2 focus:ring-rose-800 focus:outline-none">
-                      <option value="${atLabel}_1">${atTitle} • Session 1</option>
-                      <option value="${atLabel}_2">${atTitle} • Session 2</option>
-                      <option value="${atLabel}_3">${atTitle} • Session 3</option>
-                      <option value="${atLabel}_4">${atTitle} • Session 4</option>
-                      ${isDualTrack ? `
-                        <option value="AG_1">General English (AG) • Session 1</option>
-                        <option value="AG_2">General English (AG) • Session 2</option>
-                        <option value="AG_3">General English (AG) • Session 3</option>
-                        <option value="AG_4">General English (AG) • Session 4</option>
-                      ` : ''}
-                    </select>
-
-                    <button 
-                      type="button" 
-                      onclick="copyMissingPortfolioStudents()" 
-                      class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-rose-900 text-white hover:bg-rose-950 flex items-center gap-1.5 shadow-2xs cursor-pointer"
-                    >
-                      <span>📋</span>
-                      <span>Copy Missing for Reminder</span>
-                    </button>
-
-                    <button 
-                      type="button" 
-                      onclick="exportPortfolioComplianceCSV()" 
-                      class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <span>📥</span>
-                      <span>Export Compliance CSV</span>
-                    </button>
-                  </div>
-
-                  <!-- Quick Stats Counters -->
-                  <div class="flex items-center gap-2 text-xs font-medium">
-                    <span class="px-2 py-0.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">${completeCount} Complete</span>
-                    <span class="px-2 py-0.5 rounded-lg bg-amber-50 text-amber-800 border border-amber-200 font-bold">${partialCount} Partial</span>
-                    <span class="px-2 py-0.5 rounded-lg bg-rose-50 text-rose-800 border border-rose-200 font-bold">${zeroCount} Missing</span>
-                  </div>
-                </div>
-
-                <!-- Matrix Filters -->
-                <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 text-xs">
-                  <div class="flex flex-wrap items-center gap-1.5">
-                    <span class="text-slate-500 font-semibold mr-1">Group:</span>
-                    <button type="button" onclick="setMatrixGroupFilter('all')" class="px-2.5 py-1 rounded-lg font-bold border transition-all ${activeMatrixGroupFilter === 'all' ? 'bg-slate-800 text-white border-slate-800' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}">All Groups</button>
-                    <button type="button" onclick="setMatrixGroupFilter('Group A')" class="px-2.5 py-1 rounded-lg font-bold border transition-all ${activeMatrixGroupFilter === 'Group A' ? 'bg-slate-800 text-white border-slate-800' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}">Grp A</button>
-                    <button type="button" onclick="setMatrixGroupFilter('Group B')" class="px-2.5 py-1 rounded-lg font-bold border transition-all ${activeMatrixGroupFilter === 'Group B' ? 'bg-slate-800 text-white border-slate-800' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}">Grp B</button>
-                  </div>
-
-                  <div class="flex flex-wrap items-center gap-1.5">
-                    <span class="text-slate-500 font-semibold mr-1">Compliance:</span>
-                    <button type="button" onclick="setMatrixStatusFilter('all')" class="px-2.5 py-1 rounded-lg font-bold border transition-all ${activeMatrixStatusFilter === 'all' ? 'bg-rose-900 text-white border-rose-900' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}">All (${studentMatrix.length})</button>
-                    <button type="button" onclick="setMatrixStatusFilter('incomplete')" class="px-2.5 py-1 rounded-lg font-bold border transition-all ${activeMatrixStatusFilter === 'incomplete' ? 'bg-rose-900 text-white border-rose-900' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}">⚠️ Incomplete (${partialCount + zeroCount})</button>
-                    <button type="button" onclick="setMatrixStatusFilter('complete')" class="px-2.5 py-1 rounded-lg font-bold border transition-all ${activeMatrixStatusFilter === 'complete' ? 'bg-rose-900 text-white border-rose-900' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}">✅ Complete (${completeCount})</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Session Compliance Matrix Table -->
-              <div class="bg-white rounded-2xl shadow-xs border border-slate-200 overflow-hidden">
-                <div class="overflow-x-auto">
-                  <table class="w-full text-left text-xs border-collapse">
-                    <thead>
-                      <tr class="bg-slate-50/90 text-slate-700 font-bold border-b border-slate-200 uppercase tracking-wider text-[10px]">
-                        <th class="py-3 px-3">Student &amp; Group</th>
-                        <th class="py-3 px-3 text-center">${atLabel} Track (S1–S4)</th>
-                        ${isDualTrack ? '<th class="py-3 px-3 text-center">AG Track (S1–S4)</th>' : ''}
-                        <th class="py-3 px-3 text-center">Progress</th>
-                        <th class="py-3 px-3 text-center">Status</th>
-                        <th class="py-3 px-3 text-right">Reminder</th>
-                      </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-100">
-                      ${filteredMatrix.map(st => {
-                        const statusBadge = st.isComplete
-                          ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">Complete (8/8)</span>'
-                          : (st.isZero
-                            ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-200">No Entries (0/8)</span>'
-                            : `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">Partial (${st.loggedCount}/${totalExpected})</span>`);
-
-                        return `
-                          <tr class="hover:bg-rose-50/30 transition-colors">
-                            <td class="py-2.5 px-3 whitespace-nowrap">
-                              <span class="font-mono font-bold text-slate-900">${st.name}</span>
-                              <span class="text-[10px] ml-1.5 px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">${st.group}</span>
-                            </td>
-                            <td class="py-2.5 px-3 text-center whitespace-nowrap">
-                              <div class="inline-flex items-center gap-1 font-mono font-bold text-[10px]">
-                                ${[1, 2, 3, 4].map(sNum => st.atSet.has(String(sNum))
-                                  ? `<span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200" title="${atLabel} S${sNum} Logged">● S${sNum}</span>`
-                                  : `<span class="px-1.5 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200" title="${atLabel} S${sNum} Missing">○ S${sNum}</span>`
-                                ).join('')}
-                              </div>
-                            </td>
-                            ${isDualTrack ? `
-                              <td class="py-2.5 px-3 text-center whitespace-nowrap">
-                                <div class="inline-flex items-center gap-1 font-mono font-bold text-[10px]">
-                                  ${[1, 2, 3, 4].map(sNum => st.agSet.has(String(sNum))
-                                    ? `<span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200" title="AG S${sNum} Logged">● S${sNum}</span>`
-                                    : `<span class="px-1.5 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200" title="AG S${sNum} Missing">○ S${sNum}</span>`
-                                  ).join('')}
-                                </div>
-                              </td>
-                            ` : ''}
-                            <td class="py-2.5 px-3 text-center whitespace-nowrap font-mono font-bold text-xs ${st.isComplete ? 'text-emerald-700' : (st.isZero ? 'text-rose-700' : 'text-amber-700')}">
-                              ${st.loggedCount} / ${totalExpected}
-                            </td>
-                            <td class="py-2.5 px-3 text-center whitespace-nowrap">
-                              ${statusBadge}
-                            </td>
-                            <td class="py-2.5 px-3 text-right whitespace-nowrap">
-                              ${st.isComplete ? `
-                                <span class="text-[11px] text-emerald-600 font-medium">✓ Up to date</span>
-                              ` : `
-                                <button 
-                                  type="button" 
-                                  onclick="copyIndividualMissingReminder('${st.id}')" 
-                                  class="text-rose-800 hover:text-rose-950 font-bold text-xs underline cursor-pointer"
-                                  title="Copy reminder for ${st.name}"
-                                >
-                                  📋 Copy Reminder
-                                </button>
-                              `}
-                            </td>
-                          </tr>
-                        `;
-                      }).join('')}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            `;
-          })() : `
-            <!-- Interactive Search & Filtering Controls for Feed View -->
-            <div class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 space-y-3">
-              <div class="flex flex-col md:flex-row gap-3 items-center justify-between">
-                <!-- Live Search Input -->
-                <div class="relative w-full md:w-96">
-                  <input 
-                    type="text" 
-                    id="portfolio-search-input" 
-                    oninput="applyPortfolioFilters()" 
-                    placeholder="Search student ID, keyword, idiom, grammar rule..." 
-                    class="w-full text-xs p-2.5 pl-8 rounded-xl border border-slate-300 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-rose-800 focus:outline-none"
-                  >
-                  <span class="absolute left-2.5 top-2.5 text-xs text-slate-400">🔍</span>
-                </div>
-
-                <!-- Filter Pills -->
-                <div class="flex flex-wrap items-center gap-1.5 w-full md:w-auto text-xs">
-                  <!-- Track Filter -->
-                  <button type="button" onclick="setPortfolioTrackFilter('all')" id="p-filter-track-all" class="p-filter-btn px-2.5 py-1 rounded-lg font-bold border transition-all bg-rose-900 text-white border-rose-900 cursor-pointer">All Tracks</button>
-                  <button type="button" onclick="setPortfolioTrackFilter('AT')" id="p-filter-track-AT" class="p-filter-btn px-2.5 py-1 rounded-lg font-bold border transition-all bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer">✈️ AT</button>
-                  <button type="button" onclick="setPortfolioTrackFilter('AG')" id="p-filter-track-AG" class="p-filter-btn px-2.5 py-1 rounded-lg font-bold border transition-all bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer">🗣️ AG</button>
-
-                  <span class="h-4 w-px bg-slate-200 mx-1"></span>
-
-                  <!-- Group Filter -->
-                  <button type="button" onclick="setPortfolioGroupFilter('all')" id="p-filter-grp-all" class="p-grp-btn px-2.5 py-1 rounded-lg font-bold border transition-all bg-slate-800 text-white border-slate-800 cursor-pointer">All Groups</button>
-                  <button type="button" onclick="setPortfolioGroupFilter('Group A')" id="p-filter-grp-A" class="p-grp-btn px-2.5 py-1 rounded-lg font-bold border transition-all bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer">Grp A</button>
-                  <button type="button" onclick="setPortfolioGroupFilter('Group B')" id="p-filter-grp-B" class="p-grp-btn px-2.5 py-1 rounded-lg font-bold border transition-all bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer">Grp B</button>
-
-                  <span class="h-4 w-px bg-slate-200 mx-1"></span>
-
-                  <!-- Priority FE Support Button -->
-                  <button type="button" onclick="togglePortfolioPriorityFilter()" id="p-filter-priority" class="px-2.5 py-1 rounded-lg font-bold border transition-all bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer">
-                    ⚠️ Priority Support (FE ≤ 3)
-                  </button>
-                </div>
-              </div>
-              <div id="portfolio-results-count" class="text-[11px] text-slate-500">
-                Showing ${records.length} of ${records.length} student entries
-              </div>
-            </div>
-
-            <!-- Student Reflection Matrix Table (Feed View) -->
-            <div class="bg-white rounded-2xl shadow-xs border border-slate-200 overflow-hidden">
-              <div class="overflow-x-auto">
-                <table class="w-full text-left text-xs border-collapse" id="portfolio-table">
-                  <thead>
-                    <tr class="bg-slate-50/90 text-slate-700 font-bold border-b border-slate-200 uppercase tracking-wider text-[10px]">
-                      <th class="py-3 px-3">Student &amp; Group</th>
-                      <th class="py-3 px-3">Track &amp; Session</th>
-                      <th class="py-3 px-3">Target Vocabulary Logged</th>
-                      <th class="py-3 px-3">Self-Identified Need</th>
-                      <th class="py-3 px-3 text-center">FE Ready</th>
-                      <th class="py-3 px-3 text-center">TOEIC</th>
-                      <th class="py-3 px-3 text-right">Details</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-slate-100">
-                    ${records.map((r, idx) => {
-                      const feColor = r.feScore !== null 
-                        ? (r.feScore <= 3 ? 'bg-rose-100 text-rose-800 border-rose-200' 
-                           : (r.feScore <= 6 ? 'bg-amber-100 text-amber-800 border-amber-200' : 'bg-emerald-100 text-emerald-800 border-emerald-200'))
-                        : 'bg-slate-100 text-slate-500 border-slate-200';
-                      const feLabel = r.feScore !== null ? `${r.feScore} / 10` : '--';
-                      const toeicLabel = r.toeicScore !== null ? `${r.toeicScore} / 10` : '--';
-                      const shortVocab = r.vocab.length > 90 ? r.vocab.substring(0, 87) + '...' : r.vocab;
-                      const shortNeeds = r.needs.length > 90 ? r.needs.substring(0, 87) + '...' : r.needs;
-
-                      return `
-                        <tr class="portfolio-row hover:bg-rose-50/30 transition-colors cursor-pointer" onclick="toggleStudentDrawer(${idx})" data-idx="${idx}">
-                          <td class="py-2.5 px-3 whitespace-nowrap">
-                            <span class="font-mono font-bold text-slate-900">${formatStudentName(r.id)}</span>
-                            <span class="text-[10px] ml-1.5 px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">${r.group}</span>
-                          </td>
-                          <td class="py-2.5 px-3 whitespace-nowrap">
-                            <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase text-white ${r.track === 'AT' ? 'bg-blue-800' : 'bg-emerald-800'}">
-                              ${r.track}
-                            </span>
-                            <span class="text-slate-500 text-[11px] ml-1">S${r.session}</span>
-                          </td>
-                          <td class="py-2.5 px-3 max-w-xs text-slate-700 font-medium" title="${escapeHtml(r.vocab)}">
-                            ${escapeHtml(shortVocab) || '<span class="text-slate-400 italic">None logged</span>'}
-                          </td>
-                          <td class="py-2.5 px-3 max-w-xs text-slate-600" title="${escapeHtml(r.needs)}">
-                            ${escapeHtml(shortNeeds) || '<span class="text-slate-400 italic">General practice</span>'}
-                          </td>
+                    return `
+                      <tr class="hover:bg-rose-50/30 transition-colors">
+                        <td class="py-2.5 px-3 whitespace-nowrap">
+                          <span class="font-mono font-bold text-slate-900">${st.name}</span>
+                          <span class="text-[10px] ml-1.5 px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">${st.group}</span>
+                        </td>
+                        <td class="py-2.5 px-3 text-center whitespace-nowrap">
+                          <div class="inline-flex items-center gap-1 font-mono font-bold text-[10px]">
+                            ${[1, 2, 3, 4].map(sNum => st.atSet.has(String(sNum))
+                              ? `<span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200" title="${atLabel} S${sNum} Logged">● S${sNum}</span>`
+                              : `<span class="px-1.5 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200" title="${atLabel} S${sNum} Missing">○ S${sNum}</span>`
+                            ).join('')}
+                          </div>
+                        </td>
+                        ${isDualTrack ? `
                           <td class="py-2.5 px-3 text-center whitespace-nowrap">
-                            <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold border ${feColor}">
-                              ${feLabel}
-                            </span>
+                            <div class="inline-flex items-center gap-1 font-mono font-bold text-[10px]">
+                              ${[1, 2, 3, 4].map(sNum => st.agSet.has(String(sNum))
+                                ? `<span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200" title="AG S${sNum} Logged">● S${sNum}</span>`
+                                : `<span class="px-1.5 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200" title="AG S${sNum} Missing">○ S${sNum}</span>`
+                              ).join('')}
+                            </div>
                           </td>
-                          <td class="py-2.5 px-3 text-center whitespace-nowrap font-mono text-[11px] text-slate-600">
-                            ${toeicLabel}
-                          </td>
-                          <td class="py-2.5 px-3 text-right whitespace-nowrap">
-                            <button type="button" class="text-rose-800 hover:text-rose-950 font-bold text-xs underline">
-                              View ▾
+                        ` : ''}
+                        <td class="py-2.5 px-3 text-center whitespace-nowrap font-mono font-bold text-xs ${st.isComplete ? 'text-emerald-700' : (st.isZero ? 'text-rose-700' : 'text-amber-700')}">
+                          ${st.loggedCount} / ${totalExpected}
+                        </td>
+                        <td class="py-2.5 px-3 text-center whitespace-nowrap">
+                          ${statusBadge}
+                        </td>
+                        <td class="py-2.5 px-3 text-right whitespace-nowrap">
+                          ${st.isComplete ? `
+                            <span class="text-[11px] text-emerald-600 font-medium">✓ Up to date</span>
+                          ` : `
+                            <button 
+                              type="button" 
+                              onclick="copyIndividualMissingReminder('${st.id}')" 
+                              class="text-rose-800 hover:text-rose-950 font-bold text-xs underline cursor-pointer"
+                              title="Copy reminder for ${st.name}"
+                            >
+                              📋 Copy Reminder
                             </button>
-                          </td>
-                        </tr>
-                        <!-- Expandable Student Drawer Row -->
-                        <tr id="student-drawer-${idx}" class="student-drawer hidden bg-slate-50/90 border-b border-slate-200">
-                          <td colspan="7" class="p-4 sm:p-5 space-y-3">
-                            <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-                              <div class="flex items-center gap-2">
-                                <span class="font-mono font-black text-slate-900 text-sm">${r.id}</span>
-                                <span class="text-xs px-2 py-0.5 rounded bg-rose-900 text-white font-bold">${r.group}</span>
-                                <span class="text-xs text-slate-500">${r.track} • Module: ${escapeHtml(r.module)} (Session ${r.session})</span>
-                              </div>
-                              <span class="text-[11px] text-slate-400 font-mono">Submitted: ${r.timestamp}</span>
-                            </div>
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                              <!-- Left Col: Content & Vocabulary -->
-                              <div class="space-y-3">
-                                <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-1">
-                                  <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">📚 Key Vocabulary Logged:</span>
-                                  <p class="text-slate-800 leading-relaxed font-medium whitespace-pre-wrap">${escapeHtml(r.vocab)}</p>
-                                </div>
-                                <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-1">
-                                  <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">📖 Lesson Content Review (What I Learnt):</span>
-                                  <p class="text-slate-700 leading-relaxed whitespace-pre-wrap">${escapeHtml(r.content)}</p>
-                                </div>
-                              </div>
-
-                              <!-- Right Col: Growth Needs, FE Impact & TOEIC -->
-                              <div class="space-y-3">
-                                <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-1">
-                                  <span class="text-[10px] font-bold uppercase tracking-wider text-rose-800 block">🎯 Target Improvement Area (What I Need to Work On):</span>
-                                  <p class="text-slate-700 leading-relaxed whitespace-pre-wrap">${escapeHtml(r.needs)}</p>
-                                </div>
-                                <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-1">
-                                  <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">💡 Formative Evaluation Impact (Self-Rating: ${feLabel}):</span>
-                                  <p class="text-slate-700 leading-relaxed whitespace-pre-wrap">${escapeHtml(r.helpFe)}</p>
-                                </div>
-                                <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-2xs space-y-1">
-                                  <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">📝 Weekly TOEIC Prep (Self-Rating: ${toeicLabel}):</span>
-                                  <p class="text-slate-600 leading-relaxed whitespace-pre-wrap">${escapeHtml(r.toeicPrep)}</p>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      `;
-                    }).join('')}
-                  </tbody>
-                </table>
-              </div>
+                          `}
+                        </td>
+                      </tr>
+                    `;
+                  }).join('')}
+                </tbody>
+              </table>
             </div>
-          `}
-          <!-- Thematic Synthesis: Buzzwords & Grammar Traps -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-            <!-- Top Buzzwords -->
-            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 space-y-3">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <h3 class="text-sm font-bold text-slate-900 flex items-center gap-1.5">
-                  <span>💡</span>
-                  <span>Top 12 Operational Buzzwords</span>
-                </h3>
-                <span class="text-[11px] text-slate-500 font-medium">Consensus Definitions</span>
-              </div>
-              <div class="space-y-2 max-h-96 overflow-y-auto pr-1">
-                ${(pData.topBuzzwords || []).map(b => `
-                  <div class="p-2.5 rounded-xl border border-slate-200/80 bg-slate-50/50 hover:bg-white transition-colors space-y-1">
-                    <div class="flex items-center justify-between">
-                      <span class="font-bold text-slate-900 text-xs">${b.term}</span>
-                      <span class="text-[10px] font-black uppercase px-1.5 py-0.5 rounded text-white ${b.track === 'at' ? 'bg-blue-800' : 'bg-emerald-800'}">${b.track}</span>
-                    </div>
-                    <p class="text-[11px] text-slate-600 leading-tight">${b.definition}</p>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-
-            <!-- Top Grammar & Pronunciation Traps -->
-            <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 space-y-3">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <h3 class="text-sm font-bold text-slate-900 flex items-center gap-1.5">
-                  <span>⚠️</span>
-                  <span>Spoken Traps &amp; Golden Rules</span>
-                </h3>
-                <span class="text-[11px] text-slate-500 font-medium">Spoken Accuracy</span>
-              </div>
-              <div class="space-y-2 max-h-96 overflow-y-auto pr-1">
-                ${(pData.grammarTrapsCaught || []).map(g => `
-                  <div class="p-2.5 rounded-xl border border-rose-200 bg-rose-50/30 space-y-1">
-                    <div class="flex items-center justify-between">
-                      <span class="font-bold text-rose-950 text-xs">${g.title}</span>
-                      <span class="text-[10px] font-black uppercase px-1.5 py-0.5 rounded text-white ${g.track === 'at' ? 'bg-blue-800' : 'bg-emerald-800'}">${g.track}</span>
-                    </div>
-                    <p class="text-[11px] text-slate-700 leading-tight">${g.rule}</p>
-                    <div class="p-1.5 bg-white rounded border border-rose-200 text-[10px] font-medium text-emerald-900">
-                      ${g.correctExample}
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          </div>
-
-          <!-- Verbatim Student Quotes & Actionable Advice -->
-          <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 space-y-4">
-            <div class="pb-2 border-b border-slate-100">
-              <h3 class="text-sm font-bold text-slate-900 flex items-center gap-1.5">
-                <span>🗣️</span>
-                <span>Authentic Student Voices &amp; Formative Evaluation Advice</span>
-              </h3>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-              ${(pData.verbatimQuotes || []).map(q => `
-                <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
-                  <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-black uppercase px-1.5 py-0.5 rounded text-white ${q.track === 'at' ? 'bg-blue-800' : 'bg-emerald-800'}">${q.track}</span>
-                    <span class="text-[11px] text-slate-500 font-medium">${q.topic}</span>
-                  </div>
-                  <p class="text-xs text-slate-700 italic leading-relaxed">"${q.quote}"</p>
-                  <div class="text-[10px] font-bold text-rose-900 pt-1">
-                    💡 Teacher Takeaway: ${q.takeaway}
-                  </div>
-                </div>
-              `).join('')}
-            </div>
-
-            <!-- Actionable FE Advice for Faculty -->
-            ${pData.cohortReflections && pData.cohortReflections.feAdvice ? `
-              <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 flex items-start gap-2.5 text-xs text-amber-950">
-                <span class="text-base shrink-0">📌</span>
-                <div>
-                  <strong class="font-bold block">Faculty Priority for Formative Evaluation (Week 48):</strong>
-                  <p class="mt-0.5 leading-relaxed text-amber-900">${pData.cohortReflections.feAdvice}</p>
-                </div>
-              </div>
-            ` : ''}
           </div>
         </div>
       `;
     }
 
-    // Toggle row drawer
-    function toggleStudentDrawer(idx) {
-      const drawer = document.getElementById(`student-drawer-${idx}`);
-      if (!drawer) return;
-      drawer.classList.toggle('hidden');
-    }
-
-    // Client-side filtering logic
-    function setPortfolioTrackFilter(track) {
-      activePortfolioTrackFilter = track;
-      document.querySelectorAll('.p-filter-btn').forEach(btn => {
-        btn.className = "p-filter-btn px-2.5 py-1 rounded-lg font-bold border transition-all bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer";
-      });
-      const activeBtn = document.getElementById(`p-filter-track-${track}`);
-      if (activeBtn) {
-        activeBtn.className = "p-filter-btn px-2.5 py-1 rounded-lg font-bold border transition-all bg-rose-900 text-white border-rose-900 cursor-pointer";
-      }
-      applyPortfolioFilters();
-    }
-
-    function setPortfolioGroupFilter(group) {
-      activePortfolioGroupFilter = group;
-      document.querySelectorAll('.p-grp-btn').forEach(btn => {
-        btn.className = "p-grp-btn px-2.5 py-1 rounded-lg font-bold border transition-all bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer";
-      });
-      const key = group === 'all' ? 'all' : (group.includes('A') ? 'A' : 'B');
-      const activeBtn = document.getElementById(`p-filter-grp-${key}`);
-      if (activeBtn) {
-        activeBtn.className = "p-grp-btn px-2.5 py-1 rounded-lg font-bold border transition-all bg-slate-800 text-white border-slate-800 cursor-pointer";
-      }
-      applyPortfolioFilters();
-    }
-
-    function togglePortfolioPriorityFilter() {
-      activePortfolioPriorityFilter = !activePortfolioPriorityFilter;
-      const btn = document.getElementById('p-filter-priority');
-      if (btn) {
-        if (activePortfolioPriorityFilter) {
-          btn.className = "px-2.5 py-1 rounded-lg font-bold border transition-all bg-rose-900 text-white border-rose-900 cursor-pointer shadow-xs";
-        } else {
-          btn.className = "px-2.5 py-1 rounded-lg font-bold border transition-all bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer";
-        }
-      }
-      applyPortfolioFilters();
-    }
-
-    function applyPortfolioFilters() {
-      const searchInput = document.getElementById('portfolio-search-input');
-      const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
-      const pData = getPortfolioDataForSemester(activeSemester);
-      const records = pData ? (pData.studentRecords || []) : [];
-      const rows = document.querySelectorAll('.portfolio-row');
-      let visibleCount = 0;
-
-      rows.forEach((row, idx) => {
-        const r = records[idx];
-        const drawer = document.getElementById(`student-drawer-${idx}`);
-        if (!r) {
-          row.style.display = 'none';
-          if (drawer) drawer.classList.add('hidden');
-          return;
-        }
-
-        const student = r.id || '';
-        const track = r.track || '';
-        const group = r.group || '';
-        const feScore = r.feScore !== null ? r.feScore : 0;
-
-        let match = true;
-
-        if (activePortfolioTrackFilter !== 'all' && track !== activePortfolioTrackFilter) match = false;
-        if (activePortfolioGroupFilter !== 'all' && group !== activePortfolioGroupFilter) match = false;
-        if (activePortfolioPriorityFilter && (feScore === 0 || feScore > 3)) match = false;
-        if (query) {
-          const searchContent = (student + ' ' + track + ' ' + group + ' ' + (r.module || '') + ' ' + (r.vocab || '') + ' ' + (r.needs || '') + ' ' + (r.content || '')).toLowerCase();
-          if (!searchContent.includes(query)) match = false;
-        }
-
-        if (match) {
-          row.style.display = '';
-          visibleCount++;
-        } else {
-          row.style.display = 'none';
-          if (drawer) drawer.classList.add('hidden');
-        }
-      });
-
-      const countEl = document.getElementById('portfolio-results-count');
-      if (countEl) {
-        countEl.textContent = `Showing ${visibleCount} of ${rows.length} student entries`;
-      }
-    }
-
     function initPortfolioEvents() {
-      applyPortfolioFilters();
+      // Compliance matrix is rendered reactively via renderPortfolioTab
     }
 
     // Initialize on DOM load
     document.addEventListener('DOMContentLoaded', () => {
       selectSemester(1);
-      renderRecentLogs();
     });
   </script>
 </body>
