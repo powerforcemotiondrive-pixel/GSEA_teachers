@@ -3670,7 +3670,7 @@ const PORTFOLIO_DATA_S1 = {
     const PORTFOLIO_DATA_S4 = null;
     /* --- PORTFOLIO_DATA_S4_END --- */
 
-    let activeMatrixGroupFilter = 'all';
+    let activeMatrixGroupFilter = 'Group A';
     let activePortfolioModule = 1;
 
     function setMatrixGroupFilter(grp) {
@@ -3824,31 +3824,27 @@ const PORTFOLIO_DATA_S1 = {
 
       // Filter student matrix by group
       const filteredMatrix = studentMatrix.filter(st => {
-        if (activeMatrixGroupFilter !== "all" && st.group !== activeMatrixGroupFilter) return false;
+        if (activeMatrixGroupFilter && st.group !== activeMatrixGroupFilter) return false;
         return true;
       });
 
       const groupsAvailable = Object.keys(sem.students || {}).map(k => k.includes("A") ? "Group A" : (k.includes("B") ? "Group B" : (k.includes("C") ? "Group C" : "Group D")));
+      if (!groupsAvailable.includes(activeMatrixGroupFilter)) {
+        activeMatrixGroupFilter = groupsAvailable[0] || 'Group A';
+      }
 
       return `
         <div class="space-y-4">
           <!-- Minimalist Control Bar: Group Selector & Module Selector -->
           <div class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 flex flex-wrap items-center justify-between gap-3">
-            <!-- Group Selector -->
+            <!-- Group Selector (Streamlined Group A / Group B) -->
             <div class="flex items-center gap-1.5 text-xs">
               <span class="text-slate-500 font-semibold mr-1">Group:</span>
-              <button 
-                type="button" 
-                onclick="setMatrixGroupFilter('all')" 
-                class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activeMatrixGroupFilter === 'all' ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
-              >
-                All Groups
-              </button>
               ${groupsAvailable.map(grp => `
                 <button 
                   type="button" 
                   onclick="setMatrixGroupFilter('${grp}')" 
-                  class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activeMatrixGroupFilter === grp ? 'bg-slate-800 text-white border-slate-800 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
+                  class="px-3 py-1.5 rounded-xl font-bold border transition-all ${activeMatrixGroupFilter === grp ? 'bg-slate-900 text-white border-slate-900 shadow-2xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 cursor-pointer'}"
                 >
                   ${grp}
                 </button>
