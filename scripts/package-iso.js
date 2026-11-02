@@ -10,6 +10,7 @@ const isoFilename = 'GSEA_Teachers_Offline.iso';
 const isoPath = path.join(distDir, isoFilename);
 const dmgFilename = 'GSEA_Teachers_Mac.dmg';
 const dmgPath = path.join(distDir, dmgFilename);
+const privateMapPath = path.join(rootDir, 'students.private.json');
 
 console.log('💿 Starting GSEA Faculty Hub Offline Disk Image Packaging...\n');
 
@@ -62,6 +63,36 @@ for (const item of stageItems) {
       fs.copyFileSync(src, dest);
     }
   }
+}
+
+// 3b. Perform student name injection on staged index.html
+if (fs.existsSync(privateMapPath)) {
+  try {
+    const raw = fs.readFileSync(privateMapPath, 'utf8');
+    const studentMap = JSON.parse(raw);
+    const cleanMap = {};
+    for (const [k, v] of Object.entries(studentMap)) {
+      if (!k.startsWith('_')) cleanMap[k] = v;
+    }
+    const count = Object.keys(cleanMap).length;
+    if (count > 0) {
+      const stagedIndex = path.join(stagingDir, 'index.html');
+      let indexContent = fs.readFileSync(stagedIndex, 'utf8');
+      const mapRegex = /\/\* --- STUDENT_NAMES_MAP_START --- \*\/[\s\S]*?\/\* --- STUDENT_NAMES_MAP_END --- \*\//;
+      if (mapRegex.test(indexContent)) {
+        indexContent = indexContent.replace(
+          mapRegex,
+          `/* --- STUDENT_NAMES_MAP_START --- */\n    const PRIVATE_STUDENT_NAMES = ${JSON.stringify(cleanMap, null, 2)};\n    /* --- STUDENT_NAMES_MAP_END --- */`
+        );
+        fs.writeFileSync(stagedIndex, indexContent, 'utf8');
+        console.log(`🔒 Injected real student names into staged offline disk images (${count} student mappings).`);
+      }
+    }
+  } catch (err) {
+    console.warn('⚠️ Warning: Failed to parse students.private.json:', err.message);
+  }
+} else {
+  console.log('ℹ️ Notice: students.private.json not present. Offline images will use anonymous IDs.');
 }
 
 // 4. Create Universal Hybrid ISO
@@ -118,4 +149,3 @@ console.log('✅ Offline Packages created successfully!');
 console.log(`📍 Universal ISO: ./${isoFilename}`);
 console.log(`📍 Native Mac DMG: ./${dmgFilename}`);
 console.log('🔒 Both are 100% write-protected and mount as read-only virtual drives.\n');
-
