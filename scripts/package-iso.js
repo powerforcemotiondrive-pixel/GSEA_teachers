@@ -125,7 +125,7 @@ if (fs.existsSync(tempDmg)) fs.unlinkSync(tempDmg);
 
 try {
   execSync(`hdiutil create -srcfolder "${stagingDir}" -volname "${isoVolName}" -fs HFS+ -fsargs "-c c=64,a=16,e=16" -format UDRW "${tempDmg}" -quiet`);
-  execSync(`hdiutil convert "${tempDmg}" -format UDZO -imagekey zlib-level=9 -o "${dmgPath}" -quiet`);
+  execSync(`hdiutil convert "${tempDmg}" -format UDZO -imagekey zlib-level=9 -ov -o "${dmgPath}" -quiet`);
   if (fs.existsSync(tempDmg)) fs.unlinkSync(tempDmg);
 
   // Copy to root folder
