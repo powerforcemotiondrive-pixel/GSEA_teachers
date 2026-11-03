@@ -108,12 +108,9 @@
               </span>
               <span class="text-[10px] sm:text-xs text-slate-300 font-mono truncate">ENAC • DÉPARTEMENT LH / LAN</span>
             </div>
-            <h1 class="text-sm sm:text-xl font-bold tracking-tight text-white mt-0.5 truncate">
-              ENAC GSEA Teachers Hub
+            <h1 id="header-main-title" class="text-sm sm:text-xl font-bold tracking-tight text-white mt-0.5 truncate">
+              ENAC GSEA Teachers Hub Semester 1
             </h1>
-            <p class="hidden sm:block text-[11px] sm:text-xs text-slate-300/90 mt-0.5">
-              Academic Administration, Continuous Evaluation, Grading Records &amp; FE Rotas
-            </p>
           </div>
         </div>
 
@@ -146,7 +143,7 @@
 
           <!-- 4-Semester Selection Pills -->
           <div class="grid grid-cols-4 gap-1.5 sm:gap-2 w-full sm:w-auto" id="semester-selector-group">
-            <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-slate-900 border-amber-400 shadow-md">
+            <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-slate-900 border-amber-400 shadow-md" title="Switch to Semester 1">
               <span class="flex items-center gap-1 sm:gap-1.5">
                 <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400"></span>
                 <span class="sm:hidden">S1</span>
@@ -154,29 +151,29 @@
               </span>
               <span class="hidden sm:inline text-[10px] opacity-75 font-mono ml-1.5">AG+AT</span>
             </button>
-            <button type="button" disabled id="sem-btn-2" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-slate-900/40 text-slate-400 opacity-40 cursor-not-allowed" title="Semester 2 (Upcoming)">
+            <button type="button" onclick="selectSemester(2)" id="sem-btn-2" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-slate-800/80 hover:bg-slate-700 text-white border-white/20" title="Switch to Semester 2">
               <span class="flex items-center gap-1 sm:gap-1.5">
-                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-600"></span>
+                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-400"></span>
                 <span class="sm:hidden">S2</span>
                 <span class="hidden sm:inline">S2 • Semester 2</span>
               </span>
-              <span class="hidden sm:inline text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
+              <span class="hidden sm:inline text-[10px] opacity-75 font-mono ml-1.5">AG+AAS</span>
             </button>
-            <button type="button" disabled id="sem-btn-3" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-slate-900/40 text-slate-400 opacity-40 cursor-not-allowed" title="Semester 3 (Upcoming)">
+            <button type="button" onclick="selectSemester(3)" id="sem-btn-3" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-slate-800/80 hover:bg-slate-700 text-white border-white/20" title="Switch to Semester 3">
               <span class="flex items-center gap-1 sm:gap-1.5">
-                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-600"></span>
+                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-400"></span>
                 <span class="sm:hidden">S3</span>
                 <span class="hidden sm:inline">S3 • Semester 3</span>
               </span>
-              <span class="hidden sm:inline text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
+              <span class="hidden sm:inline text-[10px] opacity-75 font-mono ml-1.5">AT</span>
             </button>
-            <button type="button" disabled id="sem-btn-4" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-slate-900/40 text-slate-400 opacity-40 cursor-not-allowed" title="Semester 4 (Upcoming)">
+            <button type="button" onclick="selectSemester(4)" id="sem-btn-4" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-slate-800/80 hover:bg-slate-700 text-white border-white/20" title="Switch to Semester 4">
               <span class="flex items-center gap-1 sm:gap-1.5">
-                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-600"></span>
+                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-400"></span>
                 <span class="sm:hidden">S4</span>
                 <span class="hidden sm:inline">S4 • Semester 4</span>
               </span>
-              <span class="hidden sm:inline text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-white/40 ml-1.5">Upcoming</span>
+              <span class="hidden sm:inline text-[10px] opacity-75 font-mono ml-1.5">AP</span>
             </button>
           </div>
         </div>
@@ -657,6 +654,11 @@
     // Select Semester
     function selectSemester(num) {
       activeSemester = num;
+      // Update dynamic header title
+      const mainTitle = document.getElementById('header-main-title');
+      if (mainTitle) {
+        mainTitle.textContent = `ENAC GSEA Teachers Hub Semester ${num}`;
+      }
       // Update Pills styling
       for (let s = 1; s <= 4; s++) {
         const btn = document.getElementById(`sem-btn-${s}`);
@@ -708,6 +710,12 @@
       const container = document.getElementById('portal-content');
       if (!container) return;
       const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
+
+      // Keep dynamic header title synchronized with active semester
+      const mainTitle = document.getElementById('header-main-title');
+      if (mainTitle) {
+        mainTitle.textContent = `ENAC GSEA Teachers Hub Semester ${activeSemester}`;
+      }
 
       if (activeTab === 'overview') {
         container.innerHTML = renderOverviewTab(sem);
@@ -914,45 +922,45 @@
                     <span>📌</span>
                     <span>Week 46 • Notice</span>
                   </span>
-                  <span class="text-[10px] text-amber-700 font-bold uppercase tracking-wider">Teaching Note</span>
+                  <span class="text-[10px] font-mono text-amber-800/80 font-bold">Pedagogical Note</span>
                 </div>
-                <h4 class="text-xs sm:text-sm font-black text-slate-900 leading-snug">
-                  Oral Fluency &amp; Active Listening
+                <h4 class="text-xs sm:text-sm font-bold text-slate-950 leading-snug">
+                  Public Holiday &amp; Session 3 Prep
                 </h4>
-                <p class="text-[11px] text-slate-600 leading-relaxed">
-                  Week 46: Focus on past continuous narratives and peer listening. Formative Evaluation 1 is in 2 weeks.
+                <p class="text-[11px] sm:text-xs text-slate-700 leading-relaxed">
+                  Week 46 public holiday (11 Nov) — remind everyone to complete Session 3 study prep on eCampus.
                 </p>
               </div>
-              <div class="pt-1.5 border-t border-amber-200/60 flex items-center justify-between text-[10px] text-amber-900/80 font-mono">
-                <span>ENAC GSEA English</span>
-                <span class="font-bold text-amber-800">Teaching Note</span>
+              <div class="pt-1.5 border-t border-amber-200/60 flex items-center justify-between text-[10px] text-amber-900/80 font-medium">
+                <span>Teaching Note</span>
+                <span class="font-mono font-bold">Promotion GSEA26A</span>
               </div>
             </div>
 
-            <!-- Box 2: BBC Article 1 -->
-            <div class="group p-3.5 sm:p-4 bg-white/95 border border-slate-200/90 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 hover:border-slate-300 hover:shadow-xs transition-all duration-150">
+            <!-- Box 2: BBC News (Aviation Safety • Technical AT Track) -->
+            <div class="p-3.5 sm:p-4 bg-white border border-slate-200 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 group hover:border-slate-300 transition-all">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
-                  <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#bb1919] text-white font-mono">
+                  <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#b80000] text-white font-mono">
                     BBC NEWS
                   </span>
                   <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Aviation Safety (AT)</span>
                 </div>
                 <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-2">
-                  Airlines Face New Flight Deck Audio Rules
+                  Florida Private Jet Crash: NTSB Investigates In-Flight Breakup
                 </h4>
                 <p class="text-[11px] text-slate-500 leading-relaxed line-clamp-2">
-                  Global civil aviation authorities review cockpit voice recorder duration requirements to bolster safety protocols.
+                  Federal authorities probe severe turbulence and structural factors in fatal charter flight.
                 </p>
               </div>
               <div class="pt-1.5 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                <span class="text-[10px] text-slate-400 font-mono">News Article</span>
+                <span class="text-[10px] text-slate-400 font-mono">Incident Analysis</span>
                 <a 
                   href="https://www.bbc.com/news/articles/cm9wz01dx8xro" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                  title="Read article on BBC News ↗"
+                  title="Read article on BBC News (https://www.bbc.com/news/articles/cm9wz01dx8xro) ↗"
                 >
                   <span>Read on BBC News</span>
                   <span class="text-[10px]">↗</span>
@@ -960,8 +968,8 @@
               </div>
             </div>
 
-            <!-- Box 3: BBC Article 2 -->
-            <div class="group p-3.5 sm:p-4 bg-white/95 border border-slate-200/90 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 hover:border-slate-300 hover:shadow-xs transition-all duration-150">
+            <!-- Box 3: BBC Travel (Travel & Leisure • General AG Track) -->
+            <div class="p-3.5 sm:p-4 bg-white border border-slate-200 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 group hover:border-slate-300 transition-all">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
                   <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#004f71] text-white font-mono">
@@ -983,7 +991,7 @@
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                  title="Read feature on BBC Travel ↗"
+                  title="Read feature on BBC Travel (https://www.bbc.com/travel/article/20261028-the-peruvian-hotel-with-a-terrifying-check-in) ↗"
                 >
                   <span>Read on BBC Travel</span>
                   <span class="text-[10px]">↗</span>
@@ -1005,19 +1013,21 @@
           <!-- Weekly Film Recommendations Strip (Compact Single Row) -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             
-            <!-- Film Card -->
+            <!-- Film 1: Le Corset (Iron Boy) -->
             <div class="group p-3.5 sm:p-4 bg-white/95 border border-slate-200/90 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 hover:border-slate-300 hover:shadow-xs transition-all duration-150">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
                   <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-900 text-amber-300 font-mono">
                     🇫🇷 FRENCH CINEMA
                   </span>
-                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Curated Cinema</span>
+                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Animation / Drama</span>
                 </div>
                 <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-1">
                   Le Corset (Iron Boy) (2026)
                 </h4>
-                <p class="text-[10px] text-slate-500 font-mono">Dir. Louis Clichy • Beauce, France</p>
+                <p class="text-[10px] text-slate-500 font-mono">
+                  Dir. Louis Clichy • Beauce, France
+                </p>
                 <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
                   An 11-year-old boy in rural Beauce navigates scoliosis and medical isolation, finding his voice and connection through music.
                 </p>
@@ -1027,11 +1037,11 @@
                   IMDb
                 </span>
                 <a 
-                  href="https://www.imdb.com/title/tt36639956/" 
+                  href="https://www.imdb.com/title/tt36639956/?ref_=nv_sr_srsg_0_tt_7_nm_1_in_0_q_le%20corset" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                  title="View on IMDb ↗"
+                  title="View Le Corset on IMDb ↗"
                 >
                   <span>View on IMDb</span>
                   <span class="text-[10px]">↗</span>
@@ -1039,19 +1049,21 @@
               </div>
             </div>
 
-            <!-- Film Card -->
+            <!-- Film 2: Primetime -->
             <div class="group p-3.5 sm:p-4 bg-white/95 border border-slate-200/90 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 hover:border-slate-300 hover:shadow-xs transition-all duration-150">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
                   <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-900 text-amber-300 font-mono">
                     🇺🇸 AMERICAN CINEMA
                   </span>
-                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Curated Cinema</span>
+                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">A24 • Thriller</span>
                 </div>
                 <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-1">
                   Primetime (2026)
                 </h4>
-                <p class="text-[10px] text-slate-500 font-mono">Dir. Lance Oppenheim • Starring Robert Pattinson</p>
+                <p class="text-[10px] text-slate-500 font-mono">
+                  Dir. Lance Oppenheim • Starring Robert Pattinson
+                </p>
                 <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
                   A psychological dramatization exploring 2000s television sting operations and the blurred ethical boundaries of media spectacle.
                 </p>
@@ -1061,11 +1073,11 @@
                   IMDb
                 </span>
                 <a 
-                  href="https://www.imdb.com/title/tt34206385/" 
+                  href="https://www.imdb.com/title/tt34206385/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_primetime" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                  title="View on IMDb ↗"
+                  title="View Primetime on IMDb ↗"
                 >
                   <span>View on IMDb</span>
                   <span class="text-[10px]">↗</span>
@@ -1073,19 +1085,21 @@
               </div>
             </div>
 
-            <!-- Film Card -->
+            <!-- Film 3: Hope (호프) -->
             <div class="group p-3.5 sm:p-4 bg-white/95 border border-slate-200/90 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 hover:border-slate-300 hover:shadow-xs transition-all duration-150">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
                   <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-900 text-amber-300 font-mono">
                     🇰🇷 INTERNATIONAL CINEMA
                   </span>
-                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Curated Cinema</span>
+                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Sci-Fi / Mystery</span>
                 </div>
                 <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-1">
                   Hope (호프) (2026)
                 </h4>
-                <p class="text-[10px] text-slate-500 font-mono">Dir. Na Hong-jin • International Cast</p>
+                <p class="text-[10px] text-slate-500 font-mono">
+                  Dir. Na Hong-jin • International Cast
+                </p>
                 <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
                   An isolated coastal community confronts an inexplicable phenomenon, bridging Korean auteur filmmaking with a global ensemble.
                 </p>
@@ -1095,11 +1109,11 @@
                   IMDb
                 </span>
                 <a 
-                  href="https://www.imdb.com/title/tt27369017/" 
+                  href="https://www.imdb.com/title/tt27369017/?ref_=nv_sr_srsg_0_tt_2_nm_6_in_0_q_hope" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                  title="View on IMDb ↗"
+                  title="View Hope on IMDb ↗"
                 >
                   <span>View on IMDb</span>
                   <span class="text-[10px]">↗</span>
