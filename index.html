@@ -50,14 +50,43 @@
       box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(203, 213, 225, 0.6) !important;
     }
 
+    /* Modal Drawer & Backdrop transitions */
+    #teacher-modal-drawer {
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #teacher-modal-backdrop {
+      transition: opacity 0.28s ease;
+    }
+
     /* Print Formatting Rules */
     @media print {
       body {
         background: #ffffff !important;
         color: #000000 !important;
       }
-      #portal-header, #main-nav-tabs, footer, .no-print, button {
+      #portal-header, #main-nav-tabs, footer, .no-print, button, #teacher-drawer-header, #teacher-drawer-footer, #teacher-modal-backdrop {
         display: none !important;
+      }
+      body:has(#teacher-resource-modal:not(.hidden)) #portal-content {
+        display: none !important;
+      }
+      #teacher-resource-modal,
+      #teacher-resource-modal > div,
+      #teacher-modal-drawer,
+      #teacher-drawer-body {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+        transform: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: #ffffff !important;
       }
       #portal-content {
         padding: 0 !important;
@@ -181,7 +210,7 @@
     </header>
 
     <!-- Sub-Navigation Tab Strip -->
-    <nav class="hidden items-center gap-1.5 overflow-x-auto p-1.5 text-xs select-none bg-slate-800 border border-slate-700/80 rounded-2xl shadow-sm text-white" id="main-nav-tabs" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
+    <nav class="flex items-center gap-1.5 overflow-x-auto p-1.5 text-xs select-none bg-slate-800 border border-slate-700/80 rounded-2xl shadow-sm text-white" id="main-nav-tabs" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
       <button onclick="switchTab('overview')" id="tab-btn-overview" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-white/20 text-white shadow-xs cursor-pointer">
         <span>🏠</span>
         <span>Overview</span>
@@ -242,6 +271,101 @@
       </div>
     </div>
   </footer>
+
+  <!-- Slide-Over Teacher Modal Drawer (In-Deck Hub) -->
+  <div id="teacher-resource-modal" class="fixed inset-0 z-40 overflow-hidden hidden" aria-labelledby="teacher-modal-title" role="dialog" aria-modal="true">
+    <!-- Backdrop Overlay -->
+    <div id="teacher-modal-backdrop" onclick="closeTeacherDrawer()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs opacity-0 transition-opacity duration-300"></div>
+
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
+      <div id="teacher-modal-drawer" class="w-screen max-w-4xl lg:max-w-5xl h-full bg-slate-50 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out border-l border-slate-700/60">
+        
+        <!-- Drawer Header -->
+        <header id="teacher-drawer-header" class="textured-surface bg-[#1e293b] text-white px-4 py-3.5 sm:px-6 sm:py-4 flex flex-col gap-2.5 border-b border-slate-700/80 shrink-0 shadow-sm">
+          <div class="flex items-center justify-between gap-3">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2.5 min-w-0">
+              <span id="teacher-modal-tag" class="bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded font-mono shadow-2xs w-fit shrink-0">
+                Semester 1 • Section
+              </span>
+              <h2 id="teacher-modal-title" class="text-sm sm:text-base font-bold text-white truncate">
+                Section Details
+              </h2>
+            </div>
+            
+            <div class="flex items-center space-x-2 shrink-0">
+              <!-- Print Button -->
+              <button 
+                type="button" 
+                onclick="window.print()" 
+                class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white/10 hover:bg-white/20 text-white flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
+                title="Print this section"
+              >
+                <span>🖨️</span>
+                <span class="hidden sm:inline">Print</span>
+              </button>
+
+              <!-- Close Modal Button -->
+              <button 
+                id="teacher-modal-close-btn" 
+                type="button" 
+                onclick="closeTeacherDrawer()" 
+                aria-label="Close drawer" 
+                class="text-white/80 hover:text-white bg-black/25 hover:bg-black/40 p-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer"
+              >
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Drawer Navigation Tab Strip -->
+          <nav id="teacher-drawer-nav" class="flex items-center gap-1 overflow-x-auto pb-0.5 text-xs select-none" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
+            <button onclick="switchTab('calendar')" id="drawer-nav-calendar" class="drawer-nav-tab flex items-center gap-1 px-3 py-1.5 rounded-lg font-bold text-white/75 hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+              <span>📅</span>
+              <span>Programme</span>
+            </button>
+            <button onclick="switchTab('rotas')" id="drawer-nav-rotas" class="drawer-nav-tab flex items-center gap-1 px-3 py-1.5 rounded-lg font-bold text-white/75 hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+              <span>⏱️</span>
+              <span>Tutorial Rotas</span>
+            </button>
+            <button onclick="switchTab('groups')" id="drawer-nav-groups" class="drawer-nav-tab flex items-center gap-1 px-3 py-1.5 rounded-lg font-bold text-white/75 hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+              <span>👥</span>
+              <span>Groups &amp; Absences</span>
+            </button>
+            <button onclick="switchTab('evaluations')" id="drawer-nav-evaluations" class="drawer-nav-tab flex items-center gap-1 px-3 py-1.5 rounded-lg font-bold text-white/75 hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+              <span>📝</span>
+              <span>Evaluation</span>
+            </button>
+            <button onclick="switchTab('portfolio')" id="drawer-nav-portfolio" class="drawer-nav-tab flex items-center gap-1 px-3 py-1.5 rounded-lg font-bold text-white/75 hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+              <span>📊</span>
+              <span>Portfolio</span>
+            </button>
+          </nav>
+        </header>
+
+        <!-- Drawer Content Body -->
+        <div id="teacher-drawer-body" class="overflow-y-auto flex-1 p-4 sm:p-6 space-y-5 bg-slate-50/70">
+          <!-- Dynamically Injected Tab Content -->
+        </div>
+
+        <!-- Drawer Footer -->
+        <footer id="teacher-drawer-footer" class="textured-surface bg-[#1e293b] border-t border-slate-700/80 px-4 py-2.5 sm:px-6 flex items-center justify-between text-xs text-slate-300 shrink-0">
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span class="text-[11px] font-mono text-slate-300">GSEA Teachers Portal</span>
+          </div>
+          <button 
+            type="button" 
+            onclick="closeTeacherDrawer()" 
+            class="text-[11px] font-bold text-amber-300 hover:text-amber-200 transition-colors cursor-pointer flex items-center gap-1"
+          >
+            <span>Close Drawer</span>
+            <span>✕</span>
+          </button>
+        </footer>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Application Logic -->
   <script>
@@ -680,35 +804,112 @@
       renderCurrentView();
     }
 
-    // Switch Nav Tabs
+    // Switch Nav Tabs or Open Slide-Over Drawer
     function switchTab(tabKey) {
-      activeTab = tabKey;
-      const tabBtns = document.querySelectorAll('.nav-tab-btn');
-      tabBtns.forEach(btn => {
-        btn.className = "nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer";
-      });
-      const activeBtn = document.getElementById(`tab-btn-${tabKey}`);
-      if (activeBtn) {
-        activeBtn.className = "nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-white/20 text-white shadow-xs cursor-pointer";
+      if (tabKey === 'overview') {
+        closeTeacherDrawer();
+      } else {
+        openTeacherDrawer(tabKey);
       }
+    }
+
+    // Open Slide-Over Teacher Modal Drawer
+    function openTeacherDrawer(tabKey) {
+      activeTab = tabKey;
+
+      const modalEl = document.getElementById('teacher-resource-modal');
+      const backdropEl = document.getElementById('teacher-modal-backdrop');
+      const drawerEl = document.getElementById('teacher-modal-drawer');
+
+      if (!modalEl || !backdropEl || !drawerEl) return;
+
       renderCurrentView();
+
+      modalEl.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      void modalEl.offsetWidth; // Trigger reflow for smooth transition
+
+      backdropEl.classList.remove('opacity-0');
+      backdropEl.classList.add('opacity-100');
+      drawerEl.classList.remove('translate-x-full');
+    }
+
+    // Close Slide-Over Teacher Modal Drawer
+    function closeTeacherDrawer() {
+      const modalEl = document.getElementById('teacher-resource-modal');
+      const backdropEl = document.getElementById('teacher-modal-backdrop');
+      const drawerEl = document.getElementById('teacher-modal-drawer');
+
+      if (!modalEl || modalEl.classList.contains('hidden')) return;
+
+      activeTab = 'overview';
+      updateMainNavPills('overview');
+
+      backdropEl.classList.remove('opacity-100');
+      backdropEl.classList.add('opacity-0');
+      drawerEl.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+
+      setTimeout(() => {
+        modalEl.classList.add('hidden');
+      }, 300);
+    }
+
+    function updateMainNavPills(tabKey) {
+      const keys = ['overview', 'calendar', 'rotas', 'groups', 'evaluations', 'portfolio'];
+      keys.forEach(k => {
+        const btn = document.getElementById(`tab-btn-${k}`);
+        if (!btn) return;
+        if (k === tabKey || (k === 'evaluations' && (tabKey === 'grading' || tabKey === 'rubrics'))) {
+          btn.className = "nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all bg-white/20 text-white shadow-xs cursor-pointer";
+        } else {
+          btn.className = "nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer";
+        }
+      });
+    }
+
+    function updateDrawerNavTabs(tabKey) {
+      const keys = ['calendar', 'rotas', 'groups', 'evaluations', 'portfolio'];
+      keys.forEach(k => {
+        const btn = document.getElementById(`drawer-nav-${k}`);
+        if (!btn) return;
+        if (k === tabKey || (k === 'evaluations' && (tabKey === 'grading' || tabKey === 'rubrics'))) {
+          btn.className = "drawer-nav-tab flex items-center gap-1 px-3 py-1.5 rounded-lg font-bold transition-all bg-white/20 text-white shadow-xs cursor-pointer";
+        } else {
+          btn.className = "drawer-nav-tab flex items-center gap-1 px-3 py-1.5 rounded-lg font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer";
+        }
+      });
+    }
+
+    function updateDrawerHeader(tabKey, sem) {
+      const tagEl = document.getElementById('teacher-modal-tag');
+      const titleEl = document.getElementById('teacher-modal-title');
+      if (!tagEl || !titleEl) return;
+
+      const semNum = sem.num || activeSemester || 1;
+      const semTitle = sem.title || `Semester ${semNum}`;
+
+      if (tabKey === 'calendar') {
+        tagEl.textContent = `${semTitle.toUpperCase()} • CURRICULUM TIMETABLE`;
+        titleEl.textContent = "Weekly Course Programme & Calendar";
+      } else if (tabKey === 'rotas') {
+        tagEl.textContent = `${semTitle.toUpperCase()} • FE ORAL ROTAS`;
+        titleEl.textContent = "Formative Evaluation Tutorial Rotas";
+      } else if (tabKey === 'groups') {
+        tagEl.textContent = `${semTitle.toUpperCase()} • CLASS ROSTERS & ATTENDANCE`;
+        titleEl.textContent = "Student Groups & Absence Logger";
+      } else if (tabKey === 'evaluations' || tabKey === 'grading' || tabKey === 'rubrics') {
+        tagEl.textContent = `${semTitle.toUpperCase()} • CONTINUOUS EVALUATION`;
+        titleEl.textContent = "Evaluation Grading & Criteria Rubrics";
+      } else if (tabKey === 'portfolio') {
+        tagEl.textContent = `${semTitle.toUpperCase()} • PORTFOLIO PULSE`;
+        titleEl.textContent = "Student Reflections & Keyword Analytics";
+      }
     }
 
     // Render Active Content
     function renderCurrentView() {
-      const navTabs = document.getElementById('main-nav-tabs');
-      if (navTabs) {
-        if (activeTab === 'overview') {
-          navTabs.classList.add('hidden');
-          navTabs.classList.remove('flex');
-        } else {
-          navTabs.classList.remove('hidden');
-          navTabs.classList.add('flex');
-        }
-      }
-
       const container = document.getElementById('portal-content');
-      if (!container) return;
       const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
 
       // Keep dynamic header title synchronized with active semester
@@ -717,23 +918,58 @@
         mainTitle.textContent = `ENAC GSEA Teachers Hub Semester ${activeSemester}`;
       }
 
-      if (activeTab === 'overview') {
+      // Background cockpit workspace ALWAYS displays Overview
+      if (container) {
         container.innerHTML = renderOverviewTab(sem);
-      } else if (activeTab === 'calendar') {
-        container.innerHTML = renderCalendarTab(sem);
-      } else if (activeTab === 'rotas') {
-        container.innerHTML = renderRotasTab(sem);
-      } else if (activeTab === 'groups') {
-        container.innerHTML = renderGroupsTab(sem);
-        initGroupsTab();
-      } else if (activeTab === 'evaluations' || activeTab === 'grading' || activeTab === 'rubrics') {
-        container.innerHTML = renderEvaluationsTab(sem);
-        initEvaluationsEvents();
-      } else if (activeTab === 'portfolio') {
-        container.innerHTML = renderPortfolioTab(sem);
-        initPortfolioEvents();
       }
+
+      // If drawer is open, render active tab inside drawer body
+      const drawerBody = document.getElementById('teacher-drawer-body');
+      if (activeTab !== 'overview' && drawerBody) {
+        if (activeTab === 'calendar') {
+          drawerBody.innerHTML = renderCalendarTab(sem);
+        } else if (activeTab === 'rotas') {
+          drawerBody.innerHTML = renderRotasTab(sem);
+        } else if (activeTab === 'groups') {
+          drawerBody.innerHTML = renderGroupsTab(sem);
+          initGroupsTab();
+        } else if (activeTab === 'evaluations' || activeTab === 'grading' || activeTab === 'rubrics') {
+          drawerBody.innerHTML = renderEvaluationsTab(sem);
+          initEvaluationsEvents();
+        } else if (activeTab === 'portfolio') {
+          drawerBody.innerHTML = renderPortfolioTab(sem);
+          initPortfolioEvents();
+        }
+        updateDrawerHeader(activeTab, sem);
+        updateDrawerNavTabs(activeTab);
+      }
+      updateMainNavPills(activeTab);
     }
+
+    // Global Keyboard Escape Key Handler for Drawers & Modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const reportModal = document.getElementById('portfolio-report-modal');
+        if (reportModal && !reportModal.classList.contains('hidden')) {
+          closePortfolioReportModal();
+          return;
+        }
+        const gradeModal = document.getElementById('grade-report-modal');
+        if (gradeModal && !gradeModal.classList.contains('hidden')) {
+          closeStudentGradeReportModal();
+          return;
+        }
+        const absModal = document.getElementById('absence-report-modal');
+        if (absModal && !absModal.classList.contains('hidden')) {
+          closeAbsenceReportModal();
+          return;
+        }
+        const teacherModal = document.getElementById('teacher-resource-modal');
+        if (teacherModal && !teacherModal.classList.contains('hidden')) {
+          closeTeacherDrawer();
+        }
+      }
+    });
 
     // ============================================================================
     // TAB 0: OVERVIEW & WELCOME LANDING PAGE
