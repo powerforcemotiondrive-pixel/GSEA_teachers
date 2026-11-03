@@ -4523,6 +4523,206 @@ const PORTFOLIO_DATA_S1 = {
         .replace(/'/g, "&#039;");
     }
 
+    function renderPortfolioInsightsCard(pData, sem) {
+      if (!pData || !pData.totalSubmissions) return "";
+
+      if (activePortfolioModule !== 1) {
+        return `
+          <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200 text-center space-y-1.5">
+            <div class="inline-flex items-center gap-2 text-xs font-bold text-slate-700 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
+              <span>⏳</span>
+              <span>Module ${activePortfolioModule} Reflections Pending</span>
+            </div>
+            <p class="text-xs text-slate-500 max-w-md mx-auto pt-1">
+              Students have not yet submitted reflection logs for Module ${activePortfolioModule} (FE${activePortfolioModule}). Switch to <strong>Module 1 (FE1)</strong> above to view the active cohort pulse.
+            </p>
+          </div>
+        `;
+      }
+
+      const feConfidence = pData.metrics?.avgFeConfidence || "4.1";
+      const targetLevel = pData.metrics?.targetFeLevel || "CEFR B2";
+      const submissions = pData.totalSubmissions || 21;
+
+      return `
+        <!-- Cohort Insights & Reflections Summary Card (Bento Grid) -->
+        <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-xs border border-slate-200 space-y-3.5">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2.5">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-xl bg-amber-100 border border-amber-200 text-amber-900 flex items-center justify-center text-sm shadow-2xs font-bold">
+                💡
+              </div>
+              <div>
+                <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-2">
+                  Cohort Insights &amp; Reflections
+                  <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                    Module 1 Pulse
+                  </span>
+                </h3>
+                <p class="text-[11px] text-slate-500">
+                  Synthesized from ${submissions} student reflection logs • Readiness Self-Assessment: <strong class="text-slate-800">${feConfidence}/10</strong> • Target: <strong class="text-slate-800">${targetLevel}</strong>
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">
+                ${sem.title} • ${sem.tracks}
+              </span>
+            </div>
+          </div>
+
+          <!-- 3-Column Bento Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 items-stretch">
+            <!-- Col 1: Top Vocabulary & Idioms -->
+            <div class="bg-slate-50/70 hover:bg-slate-50 rounded-xl p-3.5 border border-slate-200/90 transition-colors flex flex-col justify-between">
+              <div class="space-y-2.5">
+                <div class="flex items-center justify-between border-b border-slate-200/80 pb-2">
+                  <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                    <span>✈️</span>
+                    <span>Key Vocabulary &amp; Terms</span>
+                  </span>
+                  <span class="text-[9.5px] font-bold text-slate-600 bg-white px-2 py-0.5 rounded border border-slate-200">
+                    Aeronautical &amp; Travel
+                  </span>
+                </div>
+                <div class="space-y-2 text-xs">
+                  <div>
+                    <div class="font-bold text-slate-900 flex items-center justify-between">
+                      <span>Airside vs. Landside</span>
+                      <span class="text-[9.5px] font-mono font-bold text-emerald-700 bg-emerald-50 px-1 rounded">AT</span>
+                    </div>
+                    <p class="text-[11px] text-slate-600 leading-snug">Public pre-security concourses vs. secured operations &amp; aircraft movement areas.</p>
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-900 flex items-center justify-between">
+                      <span>Apron / Ramp &amp; Stands</span>
+                      <span class="text-[9.5px] font-mono font-bold text-emerald-700 bg-emerald-50 px-1 rounded">AT</span>
+                    </div>
+                    <p class="text-[11px] text-slate-600 leading-snug">Designated aircraft parking, turnaround, and ground servicing positions.</p>
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-900 flex items-center justify-between">
+                      <span>TRC &amp; AODB</span>
+                      <span class="text-[9.5px] font-mono font-bold text-emerald-700 bg-emerald-50 px-1 rounded">AT</span>
+                    </div>
+                    <p class="text-[11px] text-slate-600 leading-snug">Turnaround Coordinator supervising ramp tasks; Airport Operational Database for gate/stand ops.</p>
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-900 flex items-center justify-between">
+                      <span>GPU vs. APU</span>
+                      <span class="text-[9.5px] font-mono font-bold text-emerald-700 bg-emerald-50 px-1 rounded">AT</span>
+                    </div>
+                    <p class="text-[11px] text-slate-600 leading-snug">Ground Power Unit (mobile generator) vs. Auxiliary Power Unit (tail gas turbine).</p>
+                  </div>
+                  <div class="pt-1.5 border-t border-slate-200/60">
+                    <div class="font-bold text-slate-900 flex items-center justify-between">
+                      <span>Idioms: Flying Start • Word of Mouth</span>
+                      <span class="text-[9.5px] font-mono font-bold text-sky-700 bg-sky-50 px-1 rounded">AG</span>
+                    </div>
+                    <p class="text-[11px] text-slate-600 leading-snug">Starting successfully from day one; informal information passed person-to-person.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col 2: Common Spoken & Grammar Traps -->
+            <div class="bg-slate-50/70 hover:bg-slate-50 rounded-xl p-3.5 border border-slate-200/90 transition-colors flex flex-col justify-between">
+              <div class="space-y-2.5">
+                <div class="flex items-center justify-between border-b border-slate-200/80 pb-2">
+                  <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                    <span>⚠️</span>
+                    <span>Spoken &amp; Grammar Traps</span>
+                  </span>
+                  <span class="text-[9.5px] font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                    ❌ vs ✅ Golden Rules
+                  </span>
+                </div>
+                <div class="space-y-2 text-xs">
+                  <div>
+                    <span class="font-bold text-slate-900 block">Uncountable Nouns</span>
+                    <p class="text-[11px] text-slate-600 leading-snug">
+                      <span class="text-rose-600 font-semibold line-through">luggages</span>, <span class="text-rose-600 font-semibold line-through">trainings</span> → <span class="text-emerald-700 font-bold">pieces of luggage</span>, <span class="text-emerald-700 font-bold">training sessions</span>.
+                    </p>
+                  </div>
+                  <div>
+                    <span class="font-bold text-slate-900 block">Used to do vs. Be used to doing</span>
+                    <p class="text-[11px] text-slate-600 leading-snug">
+                      <span class="text-rose-600 font-semibold line-through">I used to living</span> → <span class="text-emerald-700 font-bold">I used to live</span> (past habit) vs. <span class="text-emerald-700 font-bold">I am used to living</span> (accustomed to).
+                    </p>
+                  </div>
+                  <div>
+                    <span class="font-bold text-slate-900 block">Reported Speech Backshifts</span>
+                    <p class="text-[11px] text-slate-600 leading-snug">
+                      Tenses shift back; time adverbs shift: <span class="text-slate-700 italic">today → that day</span>, <span class="text-slate-700 italic">yesterday → the day before</span>.
+                    </p>
+                  </div>
+                  <div>
+                    <span class="font-bold text-slate-900 block">Pronunciation Triggers</span>
+                    <p class="text-[11px] text-slate-600 leading-snug">
+                      Watch multi-syllable rhythm: <span class="text-slate-800 font-mono font-medium">itinerary</span> (/aɪˈtɪnərəri/) and <span class="text-slate-800 font-mono font-medium">apron</span> (/ˈeɪprən/).
+                    </p>
+                  </div>
+                  <div class="pt-1.5 border-t border-slate-200/60">
+                    <span class="font-bold text-slate-900 block">Apron vs. Taxiway vs. Runway</span>
+                    <p class="text-[11px] text-slate-600 leading-snug">
+                      Maintain exact spatial precision: never say runway when referring to parking on the apron.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col 3: Cohort Reflections & Practice Focus -->
+            <div class="bg-slate-50/70 hover:bg-slate-50 rounded-xl p-3.5 border border-slate-200/90 transition-colors flex flex-col justify-between">
+              <div class="space-y-2.5">
+                <div class="flex items-center justify-between border-b border-slate-200/80 pb-2">
+                  <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                    <span>🗣️</span>
+                    <span>Cohort Pulse &amp; Focus</span>
+                  </span>
+                  <span class="text-[9.5px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                    Teaching Takeaways
+                  </span>
+                </div>
+                <div class="space-y-2 text-xs">
+                  <div>
+                    <span class="font-bold text-slate-900 flex items-center gap-1.5">
+                      <span class="text-amber-500">⚡</span> Fluency &amp; Word Retrieval
+                    </span>
+                    <p class="text-[11px] text-slate-600 leading-snug">
+                      Students report mid-sentence hesitation searching for technical terms. Prioritize rapid pair debates and role-plays to build retrieval speed.
+                    </p>
+                  </div>
+                  <div>
+                    <span class="font-bold text-slate-900 flex items-center gap-1.5">
+                      <span class="text-emerald-500">🎯</span> FE Presentation Readiness
+                    </span>
+                    <p class="text-[11px] text-slate-600 leading-snug">
+                      Strong student consensus: mastering exact aerodrome zones and personnel roles is essential for the 30-minute oral evaluation.
+                    </p>
+                  </div>
+                  <div>
+                    <span class="font-bold text-slate-900 flex items-center gap-1.5">
+                      <span class="text-sky-500">🎧</span> Self-Directed Study Habits
+                    </span>
+                    <p class="text-[11px] text-slate-600 leading-snug">
+                      Heavy student engagement with original-version movies, podcasts, and digital micro-quizzing rather than passive rote memorization.
+                    </p>
+                  </div>
+                  <div class="pt-1.5 border-t border-slate-200/60 bg-amber-50/60 -mx-1 px-2.5 py-1.5 rounded-lg border border-amber-200/60">
+                    <span class="text-[10px] font-bold uppercase text-amber-900 tracking-wider block">Teacher Recommendation</span>
+                    <p class="text-[11px] text-amber-950 leading-snug">
+                      Warm up each session with a 3-minute rapid-fire vocabulary challenge to reduce hesitations before Formative Evaluations.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     function renderPortfolioTab(sem) {
       const pData = getPortfolioDataForSemester(sem.num);
 
@@ -4677,6 +4877,9 @@ const PORTFOLIO_DATA_S1 = {
               <span>Portfolio Report (PDF)</span>
             </button>
           </div>
+
+          <!-- Cohort Insights & Reflections Summary Card -->
+          ${renderPortfolioInsightsCard(pData, sem)}
 
           <!-- Session Compliance Matrix Table -->
           <div class="bg-white rounded-2xl shadow-xs border border-slate-200 overflow-hidden">
