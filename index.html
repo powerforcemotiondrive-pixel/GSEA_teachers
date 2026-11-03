@@ -141,7 +141,7 @@
               <span class="text-[10px] sm:text-xs text-slate-300 font-mono truncate">ENAC • DÉPARTEMENT LH / LAN</span>
             </div>
             <h1 id="header-main-title" class="text-sm sm:text-xl font-bold tracking-tight text-white mt-0.5 truncate">
-              GSEA Teachers Hub: Semester 1 2 3 4
+              GSEA Teachers Hub: Semester 1
             </h1>
           </div>
         </div>
@@ -732,7 +732,7 @@
       // Update dynamic header title
       const mainTitle = document.getElementById('header-main-title');
       if (mainTitle) {
-        mainTitle.textContent = "GSEA Teachers Hub: Semester 1 2 3 4";
+        mainTitle.textContent = `GSEA Teachers Hub: Semester ${num}`;
       }
       // Update top-right ENAC eCampus crest link
       const ecampusLink = document.getElementById('header-ecampus-link');
@@ -871,10 +871,10 @@
       const container = document.getElementById('portal-content');
       const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
 
-      // Keep dynamic header title synchronized
+      // Keep dynamic header title synchronized with active semester
       const mainTitle = document.getElementById('header-main-title');
       if (mainTitle) {
-        mainTitle.textContent = "GSEA Teachers Hub: Semester 1 2 3 4";
+        mainTitle.textContent = `GSEA Teachers Hub: Semester ${activeSemester}`;
       }
 
       // Background cockpit workspace ALWAYS displays Overview
