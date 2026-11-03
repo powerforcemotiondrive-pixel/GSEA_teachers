@@ -940,7 +940,7 @@
       const facultyList = sem.faculty || [];
 
       return `
-        <div class="space-y-6">
+        <div class="space-y-4 sm:space-y-5">
           <!-- Hero Banner with Photography -->
           <div class="bg-white rounded-2xl overflow-hidden shadow-xs border border-slate-200">
             <div class="grid grid-cols-1 lg:grid-cols-12 items-stretch">
@@ -1021,17 +1021,18 @@
             </div>
           </div>
 
-          <!-- Section Heading: Workspace Links -->
-          <div class="flex items-center justify-between pt-1">
-            <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
-              <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
-              <span>Workspace Navigation</span>
-            </h3>
-            <span class="text-[10px] font-mono text-slate-400 hidden sm:inline">Modular Slide-Over Hub</span>
-          </div>
+          <!-- Section: Workspace Navigation -->
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
+                <span>Workspace Navigation</span>
+              </h3>
+              <span class="text-[10px] font-mono text-slate-400 hidden sm:inline">Modular Slide-Over Hub</span>
+            </div>
 
-          <!-- 5 Compact Pathway Action Tiles -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5">
+            <!-- 5 Compact Pathway Action Tiles -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5">
             <!-- 1. Programme -->
             <button 
               type="button" 
@@ -1112,27 +1113,21 @@
               <span class="text-slate-400 group-hover:text-amber-600 group-hover:translate-x-0.5 transition-all text-xs font-bold">→</span>
             </button>
           </div>
-              </span>
-              <div class="min-w-0 flex-1">
-                <div class="text-xs font-bold text-slate-900 group-hover:text-black truncate">Portfolio</div>
-                <div class="text-[10px] text-slate-500 truncate">Compliance Checklist</div>
-              </div>
-              <span class="text-slate-400 group-hover:text-amber-600 group-hover:translate-x-0.5 transition-all text-xs font-bold">→</span>
-            </button>
-          </div>
+        </div>
 
           <!-- MEDIA_UPDATE_START -->
-          <!-- Section Heading: Course Notices & Authentic Reading -->
-          <div class="flex items-center justify-between pt-1">
-            <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
-              <span>📌</span>
-              <span>Course Notices &amp; Authentic Reading</span>
-            </h3>
-            <span class="text-[10px] font-mono text-slate-400">Weekly News &amp; Articles</span>
-          </div>
+          <!-- Section: Course Notices & Authentic Reading -->
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                <span>📌</span>
+                <span>Course Notices &amp; Authentic Reading</span>
+              </h3>
+              <span class="text-[10px] font-mono text-slate-400">Weekly News &amp; Articles</span>
+            </div>
 
-          <!-- Up Next & Curated BBC Media Strip (Compact Single Row) -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <!-- Up Next & Curated BBC Media Strip (Compact Single Row) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             
             <!-- Box 1: Up Next / Pedagogical Notice -->
             <div class="p-3.5 sm:p-4 bg-amber-50/80 border border-amber-200/90 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2">
@@ -1142,45 +1137,45 @@
                     <span>📌</span>
                     <span>Week 46 • Notice</span>
                   </span>
-                  <span class="text-[10px] font-mono text-amber-800/80 font-bold">Pedagogical Note</span>
+                  <span class="text-[10px] text-amber-700 font-bold uppercase tracking-wider">Teaching Note</span>
                 </div>
-                <h4 class="text-xs sm:text-sm font-bold text-slate-950 leading-snug">
-                  Public Holiday &amp; Session 3 Prep
+                <h4 class="text-xs sm:text-sm font-black text-slate-900 leading-snug">
+                  Oral Fluency &amp; Active Listening
                 </h4>
-                <p class="text-[11px] sm:text-xs text-slate-700 leading-relaxed">
-                  Week 46 public holiday (11 Nov) — remind everyone to complete Session 3 study prep on eCampus.
+                <p class="text-[11px] text-slate-600 leading-relaxed">
+                  Week 46: Focus on past continuous narratives and peer listening. Formative Evaluation 1 is in 2 weeks.
                 </p>
               </div>
-              <div class="pt-1.5 border-t border-amber-200/60 flex items-center justify-between text-[10px] text-amber-900/80 font-medium">
-                <span>Teaching Note</span>
-                <span class="font-mono font-bold">Promotion GSEA26A</span>
+              <div class="pt-1.5 border-t border-amber-200/60 flex items-center justify-between text-[10px] text-amber-900/80 font-mono">
+                <span>ENAC GSEA English</span>
+                <span class="font-bold text-amber-800">Teaching Note</span>
               </div>
             </div>
 
-            <!-- Box 2: BBC News (Aviation Safety • Technical AT Track) -->
-            <div class="p-3.5 sm:p-4 bg-white border border-slate-200 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 group hover:border-slate-300 transition-all">
+            <!-- Box 2: BBC Article 1 -->
+            <div class="group p-3.5 sm:p-4 bg-white/95 border border-slate-200/90 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 hover:border-slate-300 hover:shadow-xs transition-all duration-150">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
-                  <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#b80000] text-white font-mono">
+                  <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#bb1919] text-white font-mono">
                     BBC NEWS
                   </span>
                   <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Aviation Safety (AT)</span>
                 </div>
                 <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-2">
-                  Florida Private Jet Crash: NTSB Investigates In-Flight Breakup
+                  Airlines Face New Flight Deck Audio Rules
                 </h4>
                 <p class="text-[11px] text-slate-500 leading-relaxed line-clamp-2">
-                  Federal authorities probe severe turbulence and structural factors in fatal charter flight.
+                  Global civil aviation authorities review cockpit voice recorder duration requirements to bolster safety protocols.
                 </p>
               </div>
               <div class="pt-1.5 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                <span class="text-[10px] text-slate-400 font-mono">Incident Analysis</span>
+                <span class="text-[10px] text-slate-400 font-mono">News Article</span>
                 <a 
                   href="https://www.bbc.com/news/articles/cm9wz01dx8xro" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                  title="Read article on BBC News (https://www.bbc.com/news/articles/cm9wz01dx8xro) ↗"
+                  title="Read article on BBC News ↗"
                 >
                   <span>Read on BBC News</span>
                   <span class="text-[10px]">↗</span>
@@ -1188,8 +1183,8 @@
               </div>
             </div>
 
-            <!-- Box 3: BBC Travel (Travel & Leisure • General AG Track) -->
-            <div class="p-3.5 sm:p-4 bg-white border border-slate-200 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 group hover:border-slate-300 transition-all">
+            <!-- Box 3: BBC Article 2 -->
+            <div class="group p-3.5 sm:p-4 bg-white/95 border border-slate-200/90 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 hover:border-slate-300 hover:shadow-xs transition-all duration-150">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
                   <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#004f71] text-white font-mono">
@@ -1211,7 +1206,7 @@
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                  title="Read feature on BBC Travel (https://www.bbc.com/travel/article/20261028-the-peruvian-hotel-with-a-terrifying-check-in) ↗"
+                  title="Read feature on BBC Travel ↗"
                 >
                   <span>Read on BBC Travel</span>
                   <span class="text-[10px]">↗</span>
@@ -1220,9 +1215,11 @@
             </div>
 
           </div>
+        </div>
 
-          <!-- Section Heading: General Culture & Cinema -->
-          <div class="flex items-center justify-between pt-1">
+        <!-- Section: General Culture & Cinema -->
+        <div class="space-y-2.5">
+          <div class="flex items-center justify-between">
             <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
               <span>🎬</span>
               <span>General Culture &amp; Cinema • Weekly Film Recommendations</span>
@@ -1233,21 +1230,19 @@
           <!-- Weekly Film Recommendations Strip (Compact Single Row) -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             
-            <!-- Film 1: Le Corset (Iron Boy) -->
+            <!-- Film Card -->
             <div class="group p-3.5 sm:p-4 bg-white/95 border border-slate-200/90 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 hover:border-slate-300 hover:shadow-xs transition-all duration-150">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
                   <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-900 text-amber-300 font-mono">
                     🇫🇷 FRENCH CINEMA
                   </span>
-                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Animation / Drama</span>
+                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Curated Cinema</span>
                 </div>
                 <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-1">
                   Le Corset (Iron Boy) (2026)
                 </h4>
-                <p class="text-[10px] text-slate-500 font-mono">
-                  Dir. Louis Clichy • Beauce, France
-                </p>
+                <p class="text-[10px] text-slate-500 font-mono">Dir. Louis Clichy • Beauce, France</p>
                 <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
                   An 11-year-old boy in rural Beauce navigates scoliosis and medical isolation, finding his voice and connection through music.
                 </p>
@@ -1257,11 +1252,11 @@
                   IMDb
                 </span>
                 <a 
-                  href="https://www.imdb.com/title/tt36639956/?ref_=nv_sr_srsg_0_tt_7_nm_1_in_0_q_le%20corset" 
+                  href="https://www.imdb.com/title/tt36639956/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                  title="View Le Corset on IMDb ↗"
+                  title="View on IMDb ↗"
                 >
                   <span>View on IMDb</span>
                   <span class="text-[10px]">↗</span>
@@ -1269,21 +1264,19 @@
               </div>
             </div>
 
-            <!-- Film 2: Primetime -->
+            <!-- Film Card -->
             <div class="group p-3.5 sm:p-4 bg-white/95 border border-slate-200/90 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 hover:border-slate-300 hover:shadow-xs transition-all duration-150">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
                   <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-900 text-amber-300 font-mono">
                     🇺🇸 AMERICAN CINEMA
                   </span>
-                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">A24 • Thriller</span>
+                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Curated Cinema</span>
                 </div>
                 <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-1">
                   Primetime (2026)
                 </h4>
-                <p class="text-[10px] text-slate-500 font-mono">
-                  Dir. Lance Oppenheim • Starring Robert Pattinson
-                </p>
+                <p class="text-[10px] text-slate-500 font-mono">Dir. Lance Oppenheim • Starring Robert Pattinson</p>
                 <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
                   A psychological dramatization exploring 2000s television sting operations and the blurred ethical boundaries of media spectacle.
                 </p>
@@ -1293,11 +1286,11 @@
                   IMDb
                 </span>
                 <a 
-                  href="https://www.imdb.com/title/tt34206385/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_primetime" 
+                  href="https://www.imdb.com/title/tt34206385/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                  title="View Primetime on IMDb ↗"
+                  title="View on IMDb ↗"
                 >
                   <span>View on IMDb</span>
                   <span class="text-[10px]">↗</span>
@@ -1305,21 +1298,19 @@
               </div>
             </div>
 
-            <!-- Film 3: Hope (호프) -->
+            <!-- Film Card -->
             <div class="group p-3.5 sm:p-4 bg-white/95 border border-slate-200/90 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2 hover:border-slate-300 hover:shadow-xs transition-all duration-150">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
                   <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-900 text-amber-300 font-mono">
                     🇰🇷 INTERNATIONAL CINEMA
                   </span>
-                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Sci-Fi / Mystery</span>
+                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Curated Cinema</span>
                 </div>
                 <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-1">
                   Hope (호프) (2026)
                 </h4>
-                <p class="text-[10px] text-slate-500 font-mono">
-                  Dir. Na Hong-jin • International Cast
-                </p>
+                <p class="text-[10px] text-slate-500 font-mono">Dir. Na Hong-jin • International Cast</p>
                 <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
                   An isolated coastal community confronts an inexplicable phenomenon, bridging Korean auteur filmmaking with a global ensemble.
                 </p>
@@ -1329,11 +1320,11 @@
                   IMDb
                 </span>
                 <a 
-                  href="https://www.imdb.com/title/tt27369017/?ref_=nv_sr_srsg_0_tt_2_nm_6_in_0_q_hope" 
+                  href="https://www.imdb.com/title/tt27369017/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                  title="View Hope on IMDb ↗"
+                  title="View on IMDb ↗"
                 >
                   <span>View on IMDb</span>
                   <span class="text-[10px]">↗</span>
@@ -1342,6 +1333,7 @@
             </div>
 
           </div>
+        </div>
           <!-- MEDIA_UPDATE_END -->
         </div>
       `;

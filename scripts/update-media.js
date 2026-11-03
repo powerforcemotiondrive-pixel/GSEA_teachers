@@ -167,17 +167,18 @@ function main() {
   const noticeNoteType = upNextItem.summary || 'Teaching Note';
 
   // Build replacement HTML
-  const replacementHTML = `<!-- Section Heading: Course Notices & Authentic Reading -->
-          <div class="flex items-center justify-between pt-1">
-            <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
-              <span>📌</span>
-              <span>Course Notices &amp; Authentic Reading</span>
-            </h3>
-            <span class="text-[10px] font-mono text-slate-400">Weekly News &amp; Articles</span>
-          </div>
+  const replacementHTML = `<!-- Section: Course Notices & Authentic Reading -->
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                <span>📌</span>
+                <span>Course Notices &amp; Authentic Reading</span>
+              </h3>
+              <span class="text-[10px] font-mono text-slate-400">Weekly News &amp; Articles</span>
+            </div>
 
-          <!-- Up Next & Curated BBC Media Strip (Compact Single Row) -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <!-- Up Next & Curated BBC Media Strip (Compact Single Row) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             
             <!-- Box 1: Up Next / Pedagogical Notice -->
             <div class="p-3.5 sm:p-4 bg-amber-50/80 border border-amber-200/90 rounded-2xl shadow-2xs flex flex-col justify-between space-y-2">
@@ -265,9 +266,11 @@ function main() {
             </div>
 
           </div>
+        </div>
 
-          <!-- Section Heading: General Culture & Cinema -->
-          <div class="flex items-center justify-between pt-1">
+        <!-- Section: General Culture & Cinema -->
+        <div class="space-y-2.5">
+          <div class="flex items-center justify-between">
             <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
               <span>🎬</span>
               <span>General Culture &amp; Cinema • Weekly Film Recommendations</span>
@@ -325,7 +328,8 @@ function main() {
             </div>`;
             }).join('\n\n            ')}
 
-          </div>`;
+          </div>
+        </div>`;
 
   let indexHTML = fs.readFileSync(INDEX_HTML_PATH, 'utf8');
   const startMarker = '<!-- MEDIA_UPDATE_START -->';
