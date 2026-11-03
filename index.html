@@ -160,41 +160,37 @@
         </div>
       </div>
 
-      <!-- Master Semester Selection Ribbon (S1 • S2 • S3 • S4) -->
-      <div class="mt-3 sm:mt-4 pt-2.5 sm:pt-3.5 border-t border-white/15">
-        <div class="grid grid-cols-4 gap-1.5 sm:gap-2.5 w-full" id="semester-selector-group">
-          <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-slate-900 border-amber-400 shadow-md" title="Switch to Semester 1">
-            <span class="flex items-center gap-1.5 min-w-0">
-              <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 shrink-0"></span>
-              <span class="sm:hidden font-mono">S1</span>
-              <span class="hidden sm:inline truncate">Semester 1</span>
-            </span>
-            <span class="text-[10px] font-mono opacity-80 bg-slate-900/10 px-1.5 py-0.5 rounded ml-1 hidden sm:inline shrink-0">AG + AT</span>
+      <!-- Master Semester Selection Capsule -->
+      <div class="mt-2.5 sm:mt-3 pt-2 sm:pt-2.5 border-t border-white/10 flex flex-wrap items-center justify-between gap-2">
+        <div class="grid grid-cols-4 sm:inline-flex items-center p-1 rounded-xl bg-slate-950/50 border border-white/15 shadow-inner w-full sm:w-auto" id="semester-selector-group">
+          <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer bg-amber-400 text-slate-950 shadow-xs" title="Switch to Semester 1">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-950 shrink-0"></span>
+            <span class="sm:hidden font-mono">S1</span>
+            <span class="hidden sm:inline truncate">Semester 1</span>
+            <span class="text-[9.5px] font-mono font-bold bg-slate-950/15 text-slate-950 px-1.5 py-0.5 rounded hidden sm:inline shrink-0">AG + AT</span>
           </button>
-          <button type="button" onclick="selectSemester(2)" id="sem-btn-2" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-slate-800/80 hover:bg-slate-700 text-white border-white/20" title="Switch to Semester 2">
-            <span class="flex items-center gap-1.5 min-w-0">
-              <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-400 shrink-0"></span>
-              <span class="sm:hidden font-mono">S2</span>
-              <span class="hidden sm:inline truncate">Semester 2</span>
-            </span>
-            <span class="text-[10px] font-mono opacity-80 bg-white/10 px-1.5 py-0.5 rounded ml-1 hidden sm:inline shrink-0">AG + AAS</span>
+          <button type="button" onclick="selectSemester(2)" id="sem-btn-2" class="sem-btn flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10" title="Switch to Semester 2">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+            <span class="sm:hidden font-mono">S2</span>
+            <span class="hidden sm:inline truncate">Semester 2</span>
+            <span class="text-[9.5px] font-mono text-slate-400 bg-white/5 px-1.5 py-0.5 rounded hidden sm:inline shrink-0">AG + AAS</span>
           </button>
-          <button type="button" onclick="selectSemester(3)" id="sem-btn-3" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-slate-800/80 hover:bg-slate-700 text-white border-white/20" title="Switch to Semester 3">
-            <span class="flex items-center gap-1.5 min-w-0">
-              <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-400 shrink-0"></span>
-              <span class="sm:hidden font-mono">S3</span>
-              <span class="hidden sm:inline truncate">Semester 3</span>
-            </span>
-            <span class="text-[10px] font-mono opacity-80 bg-white/10 px-1.5 py-0.5 rounded ml-1 hidden sm:inline shrink-0">AT</span>
+          <button type="button" onclick="selectSemester(3)" id="sem-btn-3" class="sem-btn flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10" title="Switch to Semester 3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+            <span class="sm:hidden font-mono">S3</span>
+            <span class="hidden sm:inline truncate">Semester 3</span>
+            <span class="text-[9.5px] font-mono text-slate-400 bg-white/5 px-1.5 py-0.5 rounded hidden sm:inline shrink-0">AT</span>
           </button>
-          <button type="button" onclick="selectSemester(4)" id="sem-btn-4" class="sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-slate-800/80 hover:bg-slate-700 text-white border-white/20" title="Switch to Semester 4">
-            <span class="flex items-center gap-1.5 min-w-0">
-              <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-400 shrink-0"></span>
-              <span class="sm:hidden font-mono">S4</span>
-              <span class="hidden sm:inline truncate">Semester 4</span>
-            </span>
-            <span class="text-[10px] font-mono opacity-80 bg-white/10 px-1.5 py-0.5 rounded ml-1 hidden sm:inline shrink-0">AP</span>
+          <button type="button" onclick="selectSemester(4)" id="sem-btn-4" class="sem-btn flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10" title="Switch to Semester 4">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+            <span class="sm:hidden font-mono">S4</span>
+            <span class="hidden sm:inline truncate">Semester 4</span>
+            <span class="text-[9.5px] font-mono text-slate-400 bg-white/5 px-1.5 py-0.5 rounded hidden sm:inline shrink-0">AP</span>
           </button>
+        </div>
+        <div class="hidden md:flex items-center gap-2 text-[10.5px] font-mono text-slate-400 pr-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+          <span>Oral Assessment &amp; Syllabus Cockpit</span>
         </div>
       </div>
     </header>
@@ -751,17 +747,17 @@
         const dot = btn.querySelector('.rounded-full');
         const tag = btn.querySelector('.font-mono:not(.sm\\:hidden)');
         if (s === num) {
-          btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-white text-slate-900 border-amber-400 shadow-md";
-          if (dot) dot.className = "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 shrink-0";
-          if (tag) tag.className = "text-[10px] font-mono opacity-80 bg-slate-900/10 text-slate-900 px-1.5 py-0.5 rounded ml-1 hidden sm:inline shrink-0";
+          btn.className = "sem-btn flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer bg-amber-400 text-slate-950 shadow-xs";
+          if (dot) dot.className = "w-1.5 h-1.5 rounded-full bg-slate-950 shrink-0";
+          if (tag) tag.className = "text-[9.5px] font-mono font-bold bg-slate-950/15 text-slate-950 px-1.5 py-0.5 rounded hidden sm:inline shrink-0";
         } else if (btn.hasAttribute('disabled')) {
-          btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs font-medium transition-all border border-dashed border-white/15 bg-slate-900/40 text-slate-400 opacity-40 cursor-not-allowed";
-          if (dot) dot.className = "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-600 shrink-0";
-          if (tag) tag.className = "text-[10px] font-mono opacity-40 bg-white/5 text-slate-400 px-1.5 py-0.5 rounded ml-1 hidden sm:inline shrink-0";
+          btn.className = "sem-btn flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium transition-all opacity-40 cursor-not-allowed text-slate-400";
+          if (dot) dot.className = "w-1.5 h-1.5 rounded-full bg-slate-600 shrink-0";
+          if (tag) tag.className = "text-[9.5px] font-mono text-slate-500 bg-white/5 px-1.5 py-0.5 rounded hidden sm:inline shrink-0";
         } else {
-          btn.className = "sem-btn flex items-center justify-center sm:justify-between px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer bg-slate-800/80 hover:bg-slate-700 text-white border-white/20";
-          if (dot) dot.className = "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-400 shrink-0";
-          if (tag) tag.className = "text-[10px] font-mono opacity-80 bg-white/10 text-white/80 px-1.5 py-0.5 rounded ml-1 hidden sm:inline shrink-0";
+          btn.className = "sem-btn flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10";
+          if (dot) dot.className = "w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0";
+          if (tag) tag.className = "text-[9.5px] font-mono text-slate-400 bg-white/5 px-1.5 py-0.5 rounded hidden sm:inline shrink-0";
         }
       }
       renderCurrentView();
