@@ -15,7 +15,7 @@ This repository houses the official **ENAC GSEA English Teachers Hub & Grading P
   - **Semester 1**: AG (LV101E) & AT (LV121E)
   - **Semester 2**: AG (LV102E) & AAS (LV122E)
   - **Semester 3**: AT (LV125E) Technical English only (AG disabled)
-  - **Semester 4**: AP (Aeronautical Professional) only
+  - **Semester 4**: AP (Professional English) only
 - Switching semesters re-binds timetables, group allocations, rota schedules, and the grading form dynamically.
 
 ### C. Mandatory Pre-Implementation Response & Approval Gate

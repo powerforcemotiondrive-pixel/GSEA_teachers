@@ -35,7 +35,7 @@ Attach or paste the latest Google Form/Sheet export CSV and trigger the correspo
 | **`Semester 1 Teachers Portfolio Update`**<br>*(or `Semester 1 Portfolio Teachers Update`)* | `npm run portfolio:s1` | Updates Semester 1 (AG & AT), parses student entries, extracts buzzwords & grammar traps, rebuilds SCORM/ISO/DMG packages, and commits to Git. |
 | **`Semester 2 Teachers Portfolio Update`**<br>*(or `Semester 2 Portfolio Teachers Update`)* | `npm run portfolio:s2` | Updates Semester 2 (AG & AAS), processes new cohort reflections, and refreshes the S2 portfolio dashboard. |
 | **`Semester 3 Teachers Portfolio Update`**<br>*(or `Semester 3 Portfolio Teachers Update`)* | `npm run portfolio:s3` | Updates Semester 3 (AT Technical English), processes technical vocabulary & system reflections. |
-| **`Semester 4 Teachers Portfolio Update`**<br>*(or `Semester 4 Portfolio Teachers Update`)* | `npm run portfolio:s4` | Updates Semester 4 (AP Aeronautical Professional), processes operational briefings & project data. |
+| **`Semester 4 Teachers Portfolio Update`**<br>*(or `Semester 4 Portfolio Teachers Update`)* | `npm run portfolio:s4` | Updates Semester 4 (AP Professional English), processes operational briefings & project data. |
 
 > **Security & Privacy Invariant**: All raw CSV files are saved locally to `data/portfolio-s{X}-latest.csv` under `.gitignore`. Student 4-digit security PIN codes are permanently stripped out. Only anonymous IDs (`GRPA001`–`GRPB009`) are tracked in Git.
 
