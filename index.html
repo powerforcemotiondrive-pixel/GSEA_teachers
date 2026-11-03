@@ -154,7 +154,7 @@
             <span class="text-emerald-400/50">•</span>
             <span class="text-emerald-200">SCORM 1.2</span>
           </div>
-          <a href="https://e-campus.enac.fr/moodle/my/" target="_blank" rel="noopener noreferrer" class="opacity-90 hover:opacity-100 transition-opacity" title="Open ENAC eCampus Dashboard (https://e-campus.enac.fr/moodle/my/) ↗">
+          <a id="header-ecampus-link" href="https://e-campus.enac.fr/moodle/pluginfile.php/542566/mod_resource/content/33/index.html#ag-module1-card1" target="_blank" rel="noopener noreferrer" class="opacity-90 hover:opacity-100 transition-opacity" title="Open ENAC eCampus Course Space (Semester 1) ↗">
             <img src="images/enac_logo_white.png" alt="ENAC" class="h-5 sm:h-7 w-auto object-contain">
           </a>
         </div>
@@ -416,6 +416,7 @@
       1: {
         num: 1,
         title: "Semester 1",
+        ecampusUrl: "https://e-campus.enac.fr/moodle/pluginfile.php/542566/mod_resource/content/33/index.html#ag-module1-card1",
         tracks: "AG (LV101E) & AT (LV121E)",
         description: "General English (Travel, Weather, New Tech) & Technical English (Aerodrome, Aircraft Anatomy, Human Factors)",
         faculty: [
@@ -685,6 +686,7 @@
       2: {
         num: 2,
         title: "Semester 2",
+        ecampusUrl: "https://e-campus.enac.fr/moodle/my/",
         tracks: "AG (LV102E) & AAS (LV122E)",
         description: "General English (Mobility, Global Immersion Milestone) & Aeronautical English",
         faculty: [
@@ -701,6 +703,7 @@
       3: {
         num: 3,
         title: "Semester 3",
+        ecampusUrl: "https://e-campus.enac.fr/moodle/course/view.php?id=32729",
         tracks: "AT (LV125E) Technical English Only",
         description: "Technical English Only (AG Disabled) • Systems Engineering, ATM, Radar & Incident Investigations",
         faculty: [
@@ -714,6 +717,7 @@
       4: {
         num: 4,
         title: "Semester 4",
+        ecampusUrl: "https://e-campus.enac.fr/moodle/course/view.php?id=32728",
         tracks: "AP Only (Aeronautical Professional)",
         description: "Professional Aviation English & Final Certification Readiness",
         faculty: [{ name: "Professional English Lead", track: "AP", group: "All Groups", schedule: "Intensive" }],
@@ -731,6 +735,12 @@
       const mainTitle = document.getElementById('header-main-title');
       if (mainTitle) {
         mainTitle.textContent = `GSEA TEACHERS HUB SEMESTER ${num}`;
+      }
+      // Update top-right ENAC eCampus crest link
+      const ecampusLink = document.getElementById('header-ecampus-link');
+      if (ecampusLink && SEMESTERS_DATA[num]) {
+        ecampusLink.href = SEMESTERS_DATA[num].ecampusUrl || 'https://e-campus.enac.fr/moodle/my/';
+        ecampusLink.title = `Open ENAC eCampus Course Space (${SEMESTERS_DATA[num].title}) ↗`;
       }
       // Update Pills styling
       for (let s = 1; s <= 4; s++) {
@@ -973,6 +983,20 @@
                   <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     This central dashboard unifies course scheduling, 30-minute oral tutorial rotas, attendance management, official continuous assessment scoring, and live student portfolio compliance tracking for <strong>${sem.title}</strong>.
                   </p>
+
+                  <div class="pt-1">
+                    <a 
+                      href="${sem.ecampusUrl || 'https://e-campus.enac.fr/moodle/my/'}" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-all shadow-sm group w-fit border border-slate-700"
+                      title="Open official ENAC eCampus Moodle space for ${sem.title}"
+                    >
+                      <img src="images/enac_logo_white.png" alt="ENAC" class="h-3.5 w-auto object-contain opacity-90">
+                      <span>Open ${sem.title} on eCampus</span>
+                      <span class="text-amber-400 group-hover:translate-x-0.5 transition-transform text-xs">↗</span>
+                    </a>
+                  </div>
                 </div>
 
                 <!-- Quick Snapshot Metrics -->
