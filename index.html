@@ -66,20 +66,20 @@
         box-shadow: none !important;
         background: #ffffff !important;
       }
-      .student-bulletin-card, .absence-report-card {
+      .student-bulletin-card, .absence-report-card, .portfolio-report-card {
         page-break-after: always !important;
         break-after: page !important;
         box-shadow: none !important;
         border: 1px solid #cbd5e1 !important;
         padding: 1.5rem !important;
       }
-      #grade-report-modal, #absence-report-modal {
+      #grade-report-modal, #absence-report-modal, #portfolio-report-modal {
         position: static !important;
         background: transparent !important;
         padding: 0 !important;
         overflow: visible !important;
       }
-      #grade-report-modal > div, #absence-report-modal > div {
+      #grade-report-modal > div, #absence-report-modal > div, #portfolio-report-modal > div {
         max-height: none !important;
         box-shadow: none !important;
         border: none !important;
@@ -4060,6 +4060,17 @@ const PORTFOLIO_DATA_S1 = {
                 Module 3 (FE3)
               </button>
             </div>
+
+            <!-- PDF Report Generator Button -->
+            <button 
+              type="button" 
+              onclick="openPortfolioReportModal()" 
+              class="px-3.5 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-2xs transition-all cursor-pointer border border-amber-400 shrink-0"
+              title="Generate Official Student Portfolio Compliance & Reflection Dossier (PDF)"
+            >
+              <span>🖨️</span>
+              <span>Portfolio Report (PDF)</span>
+            </button>
           </div>
 
           <!-- Session Compliance Matrix Table -->
@@ -4133,6 +4144,67 @@ const PORTFOLIO_DATA_S1 = {
                   }).join("")}
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portfolio Report Print / PDF Modal -->
+        <div id="portfolio-report-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+          <div class="bg-white w-full max-w-5xl rounded-2xl shadow-2xl border border-slate-300 max-h-[92vh] flex flex-col overflow-hidden">
+            <!-- Modal Control Header (hidden in print) -->
+            <div class="no-print p-4 sm:p-5 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-slate-800 text-white flex items-center justify-center font-bold text-lg shadow-inner">
+                  🖨️
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-slate-900">Official Portfolio Compliance &amp; Reflection Dossier</h3>
+                  <p class="text-xs text-slate-500">ENAC Official Academic Transcript • Student Self-Evaluation &amp; Reflection Digest</p>
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center gap-2">
+                <!-- Scope Filter -->
+                <select id="port-report-candidate-filter" onchange="renderPortfolioReportPrintArea()" class="text-xs font-bold p-2 rounded-xl border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-slate-800 cursor-pointer">
+                  <option value="all">All Candidates (Full Promotion Dossier)</option>
+                  <option value="grpA">Group A Only</option>
+                  <option value="grpB">Group B Only</option>
+                </select>
+
+                <!-- Module Filter -->
+                <select id="port-report-module-filter" onchange="renderPortfolioReportPrintArea()" class="text-xs font-bold p-2 rounded-xl border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-slate-800 cursor-pointer">
+                  <option value="1">Module 1 (FE1)</option>
+                  <option value="2">Module 2 (FE2)</option>
+                  <option value="3">Module 3 (FE3)</option>
+                  <option value="all">All Modules Cumulative</option>
+                </select>
+
+                <!-- Print Button -->
+                <button 
+                  type="button" 
+                  onclick="window.print()" 
+                  class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 flex items-center gap-2 shadow-sm transition-all cursor-pointer border border-amber-400"
+                >
+                  <span>🖨️</span>
+                  <span>Print / Save as PDF</span>
+                </button>
+
+                <!-- Close Button -->
+                <button 
+                  type="button" 
+                  onclick="closePortfolioReportModal()" 
+                  class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
+                  title="Close modal"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            <!-- Modal Scrollable Print Preview Body -->
+            <div class="p-4 sm:p-8 overflow-y-auto flex-1 bg-slate-100/60">
+              <div id="portfolio-report-print-area" class="max-w-4xl mx-auto space-y-6">
+                <!-- Injected via renderPortfolioReportPrintArea() -->
+              </div>
             </div>
           </div>
         </div>
@@ -4393,6 +4465,314 @@ const PORTFOLIO_DATA_S1 = {
               <div class="text-center">
                 <div class="h-10 w-36 border-b border-dashed border-slate-400"></div>
                 <span class="text-[10px] text-slate-500 uppercase tracking-wider">Examiner Signature</span>
+              </div>
+              <div class="text-center">
+                <div class="h-10 w-36 border-b border-dashed border-slate-400"></div>
+                <span class="text-[10px] text-slate-500 uppercase tracking-wider">Course Director</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+
+    // ============================================================================
+    // PORTFOLIO COMPLIANCE & REFLECTION REPORT (PRINT / PDF ENGINE)
+    // ============================================================================
+
+    function openPortfolioReportModal() {
+      const modal = document.getElementById("portfolio-report-modal");
+      if (!modal) return;
+      modal.classList.remove("hidden");
+
+      // Populate candidate selector with groups and candidates
+      const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
+      const filterSelect = document.getElementById("port-report-candidate-filter");
+      if (filterSelect) {
+        let options = '<option value="all">All Candidates (Full Promotion Dossier)</option>';
+        options += '<option value="grpA">Group A (All Students)</option>';
+        options += '<option value="grpB">Group B (All Students)</option>';
+
+        Object.entries(sem.students || {}).forEach(([grpKey, sIds]) => {
+          const grpLabel = grpKey.includes("A") ? "Group A" : (grpKey.includes("B") ? "Group B" : (grpKey.includes("C") ? "Group C" : "Group D"));
+          options += '<optgroup label="' + grpLabel + ' (' + sIds.length + ' students)">';
+          sIds.forEach(sId => {
+            options += '<option value="' + sId + '">' + formatStudentName(sId) + ' (' + grpLabel + ')</option>';
+          });
+          options += '</optgroup>';
+        });
+        filterSelect.innerHTML = options;
+      }
+
+      const modSelect = document.getElementById("port-report-module-filter");
+      if (modSelect) {
+        modSelect.value = String(activePortfolioModule || 1);
+      }
+
+      renderPortfolioReportPrintArea();
+    }
+
+    function closePortfolioReportModal() {
+      const modal = document.getElementById("portfolio-report-modal");
+      if (modal) modal.classList.add("hidden");
+    }
+
+    function renderPortfolioReportPrintArea() {
+      const container = document.getElementById("portfolio-report-print-area");
+      if (!container) return;
+
+      const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
+      const pData = getPortfolioDataForSemester(sem.num);
+
+      if (!pData || !pData.totalSubmissions || pData.totalSubmissions === 0) {
+        container.innerHTML = `
+          <div class="portfolio-report-card bg-white rounded-2xl p-8 border border-slate-200 text-center space-y-3">
+            <span class="text-3xl">⏳</span>
+            <h3 class="text-base font-bold text-slate-900">Awaiting Student Portfolio Submissions</h3>
+            <p class="text-xs text-slate-500">No student reflection logs have been synchronized for ${sem.title} yet.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const candidateFilter = document.getElementById("port-report-candidate-filter")?.value || "all";
+      const moduleFilter = document.getElementById("port-report-module-filter")?.value || String(activePortfolioModule || 1);
+
+      // Collect eligible candidates
+      const allStudents = [];
+      (sem.students?.groupA || []).forEach(s => allStudents.push({ id: s, name: formatStudentName(s), group: "Group A" }));
+      (sem.students?.groupB || []).forEach(s => allStudents.push({ id: s, name: formatStudentName(s), group: "Group B" }));
+      (sem.students?.groupC || []).forEach(s => allStudents.push({ id: s, name: formatStudentName(s), group: "Group C" }));
+      (sem.students?.groupD || []).forEach(s => allStudents.push({ id: s, name: formatStudentName(s), group: "Group D" }));
+
+      let displayedStudents = allStudents;
+      if (candidateFilter === "grpA") {
+        displayedStudents = allStudents.filter(s => s.group === "Group A");
+      } else if (candidateFilter === "grpB") {
+        displayedStudents = allStudents.filter(s => s.group === "Group B");
+      } else if (candidateFilter !== "all") {
+        displayedStudents = allStudents.filter(s => s.id === candidateFilter);
+      }
+
+      const records = pData.studentRecords || [];
+      const isDualTrack = sem.num === 1 || sem.num === 2;
+      const atLabel = sem.num === 2 ? "AAS" : (sem.num === 4 ? "AP" : "AT");
+      const modNum = moduleFilter === "all" ? 0 : (parseInt(moduleFilter, 10) || 1);
+      const totalExpected = isDualTrack ? (modNum === 0 ? 24 : 8) : (modNum === 0 ? 12 : 4);
+
+      const candidateRows = displayedStudents.map(st => {
+        const sEntries = records.filter(r => r.id === st.id && (modNum === 0 || getRecordModuleNum(r) === modNum));
+        const atSet = new Set(sEntries.filter(r => r.track && r.track.toUpperCase() === atLabel).map(r => String(r.session)));
+        const agSet = new Set(sEntries.filter(r => r.track && r.track.toUpperCase() === "AG").map(r => String(r.session)));
+        const loggedCount = sEntries.length;
+        const isComplete = loggedCount >= totalExpected;
+        const isZero = loggedCount === 0;
+
+        return {
+          ...st,
+          atSet,
+          agSet,
+          loggedCount,
+          isComplete,
+          isZero
+        };
+      });
+
+      const totalVerifiedLogs = candidateRows.reduce((acc, c) => acc + c.loggedCount, 0);
+      const totalPossible = displayedStudents.length * totalExpected;
+      const complianceRate = totalPossible > 0 ? Math.round((totalVerifiedLogs / totalPossible) * 100) : 0;
+      const completedCandidates = candidateRows.filter(c => c.isComplete).length;
+
+      const todayFormatted = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+      const scopeLabel = candidateFilter === "all" ? "Full Promotion (" + displayedStudents.length + " candidates)" : (candidateFilter === "grpA" ? "Group A Only" : (candidateFilter === "grpB" ? "Group B Only" : displayedStudents[0]?.name || "Individual"));
+      const modLabel = modNum === 0 ? "Cumulative (All Modules)" : "Module " + modNum + (modNum === 1 ? " (FE1)" : (modNum === 2 ? " (FE2)" : " (FE3)"));
+
+      container.innerHTML = `
+        <div class="portfolio-report-card bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+          <!-- Institutional Header -->
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between pb-4 border-b-2 border-slate-800 gap-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-black uppercase tracking-widest text-white bg-slate-800 px-2 py-0.5 rounded">
+                  ENAC • DÉPARTEMENT LH / LAN
+                </span>
+                <span class="text-[11px] font-mono text-slate-500 font-bold">${sem.title} • ${sem.tracks}</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-black text-slate-950 tracking-tight pt-1">
+                Official Portfolio Compliance &amp; Reflection Dossier
+              </h2>
+              <div class="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-700">
+                <span>Promotion: <strong>GSEA26A</strong></span>
+                <span>•</span>
+                <span>Scope: <strong>${scopeLabel}</strong></span>
+                <span>•</span>
+                <span>Module: <strong>${modLabel}</strong></span>
+                <span>•</span>
+                <span>Certified Date: <strong>${todayFormatted}</strong></span>
+              </div>
+            </div>
+
+            <!-- Executive Summary Metrics -->
+            <div class="shrink-0 flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <div class="text-center px-2">
+                <span class="text-[10px] uppercase font-bold text-slate-500 block">Candidates</span>
+                <span class="text-xl font-black text-slate-900">${displayedStudents.length}</span>
+              </div>
+              <div class="h-8 w-px bg-slate-200"></div>
+              <div class="text-center px-2">
+                <span class="text-[10px] uppercase font-bold text-slate-500 block">Verified Logs</span>
+                <span class="text-xl font-black text-slate-900">${totalVerifiedLogs}</span>
+              </div>
+              <div class="h-8 w-px bg-slate-200"></div>
+              <div class="text-center px-2">
+                <span class="text-[10px] uppercase font-bold text-emerald-700 block">Compliance</span>
+                <span class="text-xl font-black text-emerald-700">${complianceRate}%</span>
+              </div>
+              <div class="h-8 w-px bg-slate-200"></div>
+              <div class="text-center px-2">
+                <span class="text-[10px] uppercase font-bold text-slate-700 block">Avg FE Conf.</span>
+                <span class="text-xl font-black text-slate-900">${pData.metrics?.avgFeConfidence || '4.1'}/10</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Candidate Compliance Standings Table -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2">
+                <span>📊</span>
+                <span>Candidate Reflection Compliance &amp; Progress (Target: ${totalExpected} Sessions)</span>
+              </h3>
+              <span class="text-[11px] text-slate-500 font-mono">${completedCandidates} of ${displayedStudents.length} Complete (${complianceRate}%)</span>
+            </div>
+
+            <div class="overflow-x-auto rounded-xl border border-slate-200">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200 uppercase tracking-wider text-[10px]">
+                    <th class="py-2.5 px-3">Candidate / Student</th>
+                    <th class="py-2.5 px-3">Group</th>
+                    <th class="py-2.5 px-3 text-center">${atLabel} Track (S1–S4)</th>
+                    ${isDualTrack ? '<th class="py-2.5 px-3 text-center">AG Track (S1–S4)</th>' : ''}
+                    <th class="py-2.5 px-3 text-center">Progress</th>
+                    <th class="py-2.5 px-3 text-center">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  ${candidateRows.map(st => {
+                    const statusBadge = st.isComplete
+                      ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">✓ Complete</span>'
+                      : (st.isZero
+                        ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-200">❌ No Entries</span>'
+                        : '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">⏳ Partial</span>');
+
+                    return `
+                      <tr class="hover:bg-slate-50/50">
+                        <td class="py-2 px-3 font-mono font-bold text-slate-900 whitespace-nowrap">
+                          ${st.name}
+                        </td>
+                        <td class="py-2 px-3 text-slate-600 text-xs whitespace-nowrap">
+                          ${st.group}
+                        </td>
+                        <td class="py-2 px-3 text-center whitespace-nowrap font-mono text-[10px]">
+                          <div class="inline-flex items-center gap-1">
+                            ${[1, 2, 3, 4].map(sNum => st.atSet.has(String(sNum))
+                              ? '<span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold border border-emerald-200">● S' + sNum + '</span>'
+                              : '<span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-400 border border-slate-200">○ S' + sNum + '</span>'
+                            ).join("")}
+                          </div>
+                        </td>
+                        ${isDualTrack ? `
+                          <td class="py-2 px-3 text-center whitespace-nowrap font-mono text-[10px]">
+                            <div class="inline-flex items-center gap-1">
+                              ${[1, 2, 3, 4].map(sNum => st.agSet.has(String(sNum))
+                                ? '<span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold border border-emerald-200">● S' + sNum + '</span>'
+                                : '<span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-400 border border-slate-200">○ S' + sNum + '</span>'
+                              ).join("")}
+                            </div>
+                          </td>
+                        ` : ''}
+                        <td class="py-2 px-3 text-center font-mono font-bold text-xs whitespace-nowrap ${st.isComplete ? 'text-emerald-700' : (st.isZero ? 'text-rose-700' : 'text-amber-700')}">
+                          ${st.loggedCount} / ${totalExpected}
+                        </td>
+                        <td class="py-2 px-3 text-center whitespace-nowrap">
+                          ${statusBadge}
+                        </td>
+                      </tr>
+                    `;
+                  }).join("")}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Key Pedagogical Insights & Reflection Summary -->
+          <div class="space-y-3 pt-2 border-t border-slate-200">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2">
+                <span>💡</span>
+                <span>Cohort Reflection Highlights &amp; Target Consensus</span>
+              </h3>
+              <span class="text-[11px] text-slate-500 font-mono">B2 Spoken Communication Benchmark</span>
+            </div>
+
+            <!-- Buzzwords & Traps Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- High Frequency Terminology -->
+              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                <h4 class="text-[11px] font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                  <span>🎯</span>
+                  <span>Core Spoken Vocabulary (High Consensus)</span>
+                </h4>
+                <div class="space-y-1.5 text-xs">
+                  ${(pData.topBuzzwords || []).slice(0, 4).map(bw => `
+                    <div class="p-2 bg-white rounded-lg border border-slate-200">
+                      <div class="flex items-center justify-between font-bold text-slate-900">
+                        <span>${bw.term}</span>
+                        <span class="text-[10px] text-slate-500 font-normal uppercase">${bw.track.toUpperCase()} • ${bw.category}</span>
+                      </div>
+                      <p class="text-[11px] text-slate-600 mt-0.5">${bw.definition}</p>
+                    </div>
+                  `).join("")}
+                </div>
+              </div>
+
+              <!-- Spoken Traps & Verbatim Takeaways -->
+              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                <h4 class="text-[11px] font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                  <span>⚠️</span>
+                  <span>Key Pitfalls &amp; Actionable FE Advice</span>
+                </h4>
+                <div class="space-y-1.5 text-xs">
+                  ${(pData.grammarTraps || []).slice(0, 3).map(gt => `
+                    <div class="p-2 bg-white rounded-lg border border-slate-200">
+                      <span class="font-bold text-slate-900 block">${gt.rule}</span>
+                      <div class="text-[11px] flex items-center gap-2 mt-0.5 font-mono">
+                        <span class="text-rose-600 line-through">${gt.wrong}</span>
+                        <span class="text-slate-400">➔</span>
+                        <span class="text-emerald-700 font-bold">${gt.right}</span>
+                      </div>
+                    </div>
+                  `).join("")}
+                  <div class="p-2 bg-amber-50/70 border border-amber-200/80 rounded-lg text-[11px] text-slate-800">
+                    <strong>FE Spoken Advice:</strong> ${pData.cohortReflections?.feAdvice || "Mastering aerodrome spatial zones and active pair discussion reduces mid-sentence hesitations."}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Official Faculty Sign-Off Strip -->
+          <div class="pt-4 border-t-2 border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-600 gap-4">
+            <div class="space-y-0.5">
+              <span class="font-bold text-slate-800 block">ENAC GSEA Platform • Automated Faculty Portal</span>
+              <span class="text-[10px] text-slate-500">Certified for institutional record keeping &amp; Formative Evaluation monitoring</span>
+            </div>
+            <div class="flex items-center gap-6 self-end sm:self-auto">
+              <div class="text-center">
+                <div class="h-10 w-44 border-b border-dashed border-slate-400"></div>
+                <span class="text-[10px] text-slate-500 uppercase tracking-wider">Evaluation Coordinator</span>
               </div>
               <div class="text-center">
                 <div class="h-10 w-36 border-b border-dashed border-slate-400"></div>
