@@ -1,6 +1,6 @@
-# ENAC GSEA English Multi-Semester Faculty Portal — AI Agent Guidelines & Architecture Rules
+# ENAC GSEA English Multi-Semester Teachers Hub — AI Agent Guidelines & Architecture Rules
 
-This repository houses the official **ENAC GSEA English Faculty Administration & Grading Portal** (`GSEA_teachers`). It serves as the master central cockpit for ENAC English faculty across all four semesters (S1, S2, S3, S4).
+This repository houses the official **ENAC GSEA English Teachers Hub & Grading Portal** (`GSEA_teachers`). It serves as the master central cockpit for ENAC English teachers across all four semesters (S1, S2, S3, S4).
 
 ---
 
@@ -30,8 +30,13 @@ This repository houses the official **ENAC GSEA English Faculty Administration &
 - **Moral Rights & Authorship**: Protected under French Intellectual Property law (Articles L.111-1 & L.121-1 CPI) with author attribution to **Phil PARRIS (Département LH / LAN)**.
 - **100% Invisible On Screen**: All protections reside under the hood via `<meta>` tags, HTML comment blocks, frozen JavaScript tokens (`window.__GSEA_FACULTY_AUTH`), and cryptographic checksums.
 
-### F. Student & Faculty Privacy Protocol
+### F. Student & Teacher Privacy Protocol
 - **Strict Codebase Anonymity**: The Git codebase must NEVER contain real student names or private teacher contact info. Anonymous identifiers (`GRPA001`–`GRPA010`) are used in public files.
 - **Zero Student PII in AI Chat**: Real student names must NEVER be entered, printed, or output in the AI chat conversation or prompt history. All conversational responses, tables, summaries, logs, and examples must strictly and exclusively use anonymous student identifiers (`GRPA001`–`GRPB009`). Real student identities reside exclusively within local `students.private.json` files on the instructor's local machine for offline client-side package injection.
 - **Private Mapping**: Real rosters are maintained in private, git-ignored configuration files (`students.private.json`).
 
+### G. Plain English & Strict Prohibition of the Term 'Faculty'
+- **Zero Pedagogical or Academic Jargon**: All instructions and interface copy must use clear, simple, plain English easily understood by any B2 learner worldwide.
+- **Strict Prohibition of the Term 'Faculty'**:
+  - Never use the word `"faculty"` across any UI labels, headings, cards, badges, documentation, teacher portals, student worksheets, or prompt responses.
+  - Always use clear, plain, human-friendly terms instead: `"Teachers"`, `"Teaching Team"`, `"Teaching Staff"`, `"Teacher Notes"`, `"Teaching Notes"`, or `"Course Administration"`.
