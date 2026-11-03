@@ -1383,7 +1383,37 @@
 
     function renderEvaluationsTab(sem) {
       return `
-        <div class="space-y-5">
+        <div class="space-y-4">
+          <!-- Visual Orientation Header Banner -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-xs border border-slate-200">
+            <div class="grid grid-cols-1 md:grid-cols-12 items-stretch">
+              <div class="md:col-span-4 relative min-h-[140px] sm:min-h-[160px] bg-slate-900">
+                <img 
+                  src="images/fe_aas_mod1.jpg" 
+                  alt="Oral Evaluation & Spoken Criteria Scoring" 
+                  class="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent flex flex-col justify-end p-3.5 sm:p-4 text-white">
+                  <span class="text-[9.5px] font-black uppercase tracking-wider text-amber-300 font-mono">
+                    ${sem.title} • Evaluations
+                  </span>
+                  <h4 class="text-xs sm:text-sm font-bold mt-0.5">Continuous Grading Cockpit</h4>
+                </div>
+              </div>
+              <div class="md:col-span-8 p-4 sm:p-5 flex flex-col justify-center space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-mono shadow-2xs">
+                    Teacher Guide
+                  </span>
+                  <span class="text-xs font-bold text-slate-800 font-mono">20-Point Oral Criteria &amp; Continuous Grading</span>
+                </div>
+                <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
+                  This official grading cockpit records spontaneous spoken English performance according to the ENAC 20-point assessment rubric. Candidates are evaluated across six communicative criteria, strictly prohibiting scripted reading. Select a student, assign rubric marks, and add constructive qualitative observations. Submitted evaluations calculate weighted averages and generate certified student feedback bulletins.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <!-- Evaluation Form Card -->
           <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-5">
             <!-- Header -->
@@ -1514,17 +1544,6 @@
                           </optgroup>
                         </select>
                       </div>
-                    </div>
-                  </div>
-
-                  <!-- Candidate History Strip -->
-                  <div id="candidate-history-strip" class="p-2 bg-white rounded-xl border border-slate-200 flex flex-wrap items-center justify-between gap-1.5 text-xs">
-                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
-                      <span>📌</span>
-                      <span>Dossier:</span>
-                    </span>
-                    <div id="candidate-history-pills" class="flex flex-wrap items-center gap-1 font-mono">
-                      <!-- Populated dynamically via updateCandidateHistoryStrip() -->
                     </div>
                   </div>
                 </div>
@@ -2518,8 +2537,40 @@
       const currentFe = activeTrack.fes[activeRotaFe] || activeTrack.fes[1];
 
       return `
-        <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-5 print-card">
-          <!-- Top Header -->
+        <div class="space-y-4">
+          <!-- Visual Orientation Header Banner -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-xs border border-slate-200">
+            <div class="grid grid-cols-1 md:grid-cols-12 items-stretch">
+              <div class="md:col-span-4 relative min-h-[140px] sm:min-h-[160px] bg-slate-900">
+                <img 
+                  src="images/fe_progress_check.jpg" 
+                  alt="Oral Tutorial Rotas & Timings" 
+                  class="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent flex flex-col justify-end p-3.5 sm:p-4 text-white">
+                  <span class="text-[9.5px] font-black uppercase tracking-wider text-amber-300 font-mono">
+                    ${sem.title} • Rotas
+                  </span>
+                  <h4 class="text-xs sm:text-sm font-bold mt-0.5">Oral Tutorial Schedules</h4>
+                </div>
+              </div>
+              <div class="md:col-span-8 p-4 sm:p-5 flex flex-col justify-center space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-mono shadow-2xs">
+                    Teacher Guide
+                  </span>
+                  <span class="text-xs font-bold text-slate-800 font-mono">30-Minute Oral Tutorial Timings &amp; Pairings</span>
+                </div>
+                <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
+                  This schedule manages all 30-minute oral evaluation slots across FE1, FE2, and FE3 for both Group A and Group B. Alternating candidate pairs and trios are dynamically assigned to ensure diverse peer interactions and equal speaking time. Use this page before each evaluation day to confirm candidate arrival times, verify room rosters, or print official tutorial door schedules for your classroom.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Rotas Table Card -->
+          <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-5 print-card">
+            <!-- Top Header -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-3">
             <div>
               <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
@@ -2621,6 +2672,7 @@
             </table>
           </div>
         </div>
+      </div>
       `;
     }
 
@@ -2648,8 +2700,40 @@
       const activeCal = sem.calendar[activeCalendarTrack] || sem.calendar.ag;
 
       return `
-        <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-5 print-card">
-          <!-- Top Header -->
+        <div class="space-y-4">
+          <!-- Visual Orientation Header Banner -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-xs border border-slate-200">
+            <div class="grid grid-cols-1 md:grid-cols-12 items-stretch">
+              <div class="md:col-span-4 relative min-h-[140px] sm:min-h-[160px] bg-slate-900">
+                <img 
+                  src="images/course_admin.jpg" 
+                  alt="Curriculum Architecture & Timetable" 
+                  class="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent flex flex-col justify-end p-3.5 sm:p-4 text-white">
+                  <span class="text-[9.5px] font-black uppercase tracking-wider text-amber-300 font-mono">
+                    ${sem.title} • Programme
+                  </span>
+                  <h4 class="text-xs sm:text-sm font-bold mt-0.5">Curriculum Architecture</h4>
+                </div>
+              </div>
+              <div class="md:col-span-8 p-4 sm:p-5 flex flex-col justify-center space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-mono shadow-2xs">
+                    Teacher Guide
+                  </span>
+                  <span class="text-xs font-bold text-slate-800 font-mono">16-Week Syllabus &amp; Milestones</span>
+                </div>
+                <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
+                  This master timetable provides a week-by-week roadmap of all 16 teaching sessions and oral evaluation milestones across the semester. Use the track filter tabs (AT / AG) below to review weekly lesson topics, room allocations, holiday breaks, and upcoming Formative Evaluation (FE) dates. Ensure your weekly classroom pacing aligns with the scheduled formative assessment checkpoints.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Timetable Card -->
+          <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-5 print-card">
+            <!-- Top Header -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-3">
             <div>
               <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
@@ -2730,6 +2814,7 @@
             `).join('')}
           </div>
         </div>
+      </div>
       `;
     }
 
@@ -2751,7 +2836,37 @@
       }
 
       return `
-        <div class="space-y-5">
+        <div class="space-y-4">
+          <!-- Visual Orientation Header Banner -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-xs border border-slate-200">
+            <div class="grid grid-cols-1 md:grid-cols-12 items-stretch">
+              <div class="md:col-span-4 relative min-h-[140px] sm:min-h-[160px] bg-slate-900">
+                <img 
+                  src="images/semester_objectives.jpg" 
+                  alt="Class Groups & Attendance Monitoring" 
+                  class="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent flex flex-col justify-end p-3.5 sm:p-4 text-white">
+                  <span class="text-[9.5px] font-black uppercase tracking-wider text-amber-300 font-mono">
+                    ${sem.title} • Cohort Groups
+                  </span>
+                  <h4 class="text-xs sm:text-sm font-bold mt-0.5">Rosters &amp; Attendance</h4>
+                </div>
+              </div>
+              <div class="md:col-span-8 p-4 sm:p-5 flex flex-col justify-center space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-mono shadow-2xs">
+                    Teacher Guide
+                  </span>
+                  <span class="text-xs font-bold text-slate-800 font-mono">Attendance Monitoring &amp; Group Administration</span>
+                </div>
+                <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
+                  This cockpit centralizes student group rosters and official attendance monitoring. Use the streamlined form on the left to immediately record student absences or arrival delays during class sessions, which automatically updates the live log and calculates total lost hours. The roster cards on the right provide quick access to assigned teachers, group headcounts, and candidate identifiers.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <!-- Top Section: 2 Columns (Absence Logger + Teachers) -->
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
             <!-- Left 2 Cols: Absence / Lateness Record Form -->
@@ -2759,39 +2874,13 @@
               <!-- Form: Streamlined Precision Cockpit Layout -->
               <form id="absence-record-form" onsubmit="handleAbsenceSubmit(event)" class="space-y-4">
                 
-                <!-- Card Header: Title on Left, Clear & Submit on Right -->
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-3">
-                  <div class="shrink-0">
+                <!-- Card Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                  <div>
                     <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
                       ${sem.title} • Attendance Tracker
                     </span>
-                    <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1 whitespace-nowrap">Record Student Absence or Lateness</h2>
-                  </div>
-                  <div class="flex items-center gap-2 shrink-0">
-                    <button 
-                      type="button" 
-                      onclick="openAbsenceReportModal()" 
-                      class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 flex items-center gap-1.5 shadow-xs cursor-pointer border border-amber-400"
-                      title="Generate Official ENAC Attendance & Absence Dossier (PDF)"
-                    >
-                      <span>🖨️</span>
-                      <span>Absence Report (PDF)</span>
-                    </button>
-                    <button 
-                      type="button" 
-                      onclick="resetAbsenceInputs()" 
-                      class="px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 font-bold text-xs transition-all cursor-pointer shadow-2xs"
-                    >
-                      Clear
-                    </button>
-                    <button 
-                      type="submit" 
-                      id="btn-submit-absence" 
-                      class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer border border-amber-400"
-                    >
-                      <span>💾</span>
-                      <span>Submit Record</span>
-                    </button>
+                    <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Record Student Absence or Lateness</h2>
                   </div>
                 </div>
 
@@ -2905,6 +2994,25 @@
                     >
                   </div>
 
+                </div>
+
+                <!-- Row 3: Action Submission Bar (Clear & Submit) -->
+                <div class="flex items-center justify-between pt-3 border-t border-slate-100 gap-3">
+                  <button 
+                    type="button" 
+                    onclick="resetAbsenceInputs()" 
+                    class="px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 font-bold text-xs transition-all cursor-pointer shadow-2xs"
+                  >
+                    Clear Form
+                  </button>
+                  <button 
+                    type="submit" 
+                    id="btn-submit-absence" 
+                    class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 font-bold text-xs shadow-sm transition-all flex items-center gap-1.5 cursor-pointer border border-amber-400"
+                  >
+                    <span>💾</span>
+                    <span>Submit Absence / Lateness Record</span>
+                  </button>
                 </div>
 
               </form>
@@ -4486,6 +4594,36 @@ const PORTFOLIO_DATA_S1 = {
 
       return `
         <div class="space-y-4">
+          <!-- Visual Orientation Header Banner -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-xs border border-slate-200">
+            <div class="grid grid-cols-1 md:grid-cols-12 items-stretch">
+              <div class="md:col-span-4 relative min-h-[140px] sm:min-h-[160px] bg-slate-900">
+                <img 
+                  src="images/ddrs_ag_mod1.jpg" 
+                  alt="Student Language Portfolio & Learning Reflections" 
+                  class="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent flex flex-col justify-end p-3.5 sm:p-4 text-white">
+                  <span class="text-[9.5px] font-black uppercase tracking-wider text-amber-300 font-mono">
+                    ${sem.title} • Portfolio Pulse
+                  </span>
+                  <h4 class="text-xs sm:text-sm font-bold mt-0.5">Cohort Reflections &amp; Data</h4>
+                </div>
+              </div>
+              <div class="md:col-span-8 p-4 sm:p-5 flex flex-col justify-center space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-mono shadow-2xs">
+                    Teacher Guide
+                  </span>
+                  <span class="text-xs font-bold text-slate-800 font-mono">Student Reflection &amp; Cohort Insights</span>
+                </div>
+                <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
+                  This analytical dashboard synthesizes cumulative student reflections, weekly learning habits, and independent study logs from Google Forms across the entire semester. Review the cohort's top technical buzzwords, high-frequency spoken grammar traps, and authentic student reflections to tailor your upcoming classroom practice and address common oral anxieties before Formative Evaluations.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <!-- Minimalist Control Bar: Group Selector & Module Selector -->
           <div class="bg-white rounded-2xl p-4 shadow-xs border border-slate-200 flex flex-wrap items-center justify-between gap-3">
             <!-- Group Selector (Streamlined Group A / Group B) -->
