@@ -15,6 +15,7 @@
     "portfolio:s3": "node scripts/update-portfolio.js 3 && npm run package",
     "portfolio:s4": "node scripts/update-portfolio.js 4 && npm run package",
     "portfolio:update": "node scripts/update-portfolio.js",
+    "media:update": "node scripts/update-media.js && npm run package",
     "dev:css": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --watch",
     "serve": "python3 -m http.server 8080"
   },

@@ -40,3 +40,15 @@ This repository houses the official **ENAC GSEA English Teachers Hub & Grading P
 - **Strict Prohibition of the Term 'Faculty'**:
   - Never use the word `"faculty"` across any UI labels, headings, cards, badges, documentation, teacher portals, student worksheets, or prompt responses.
   - Always use clear, plain, human-friendly terms instead: `"Teachers"`, `"Teaching Team"`, `"Teaching Staff"`, `"Teacher Notes"`, `"Teaching Notes"`, or `"Course Administration"`.
+
+### H. `Media Update` Automated Weekly Curation Protocol
+- **Weekly Media Curation Trigger (`Media Update`)**: Whenever the user sends `Media Update` (with a CSV attached, pasted in chat, or written to `data/media-latest.csv`):
+  1. Ingest `data/media-latest.csv` containing:
+     - 1 Up Next notice/statement (headline, week tag, teaching note).
+     - 2 BBC article links (Aviation Safety / AT and Tourism & Leisure / AG, with title, summary, link).
+     - 3 IMDb film recommendations (General Culture & Cinema: title, country/genre tag, credits, synopsis, link).
+  2. Parse and synchronize the dynamic media blocks bounded by `<!-- MEDIA_UPDATE_START -->` and `<!-- MEDIA_UPDATE_END -->` in `index.html` (via `npm run media:update` or `node scripts/update-media.js`).
+  3. Rebuild minified Tailwind CSS and all 3 distribution packages (`dist/GSEA_Teachers_SCORM.zip`, `.iso`, `.dmg`).
+  4. Automatically execute `git commit` AND `git push origin main` in the same step.
+- **General Culture Focus**: Film recommendations are curated for broad cultural perspective, creative storytelling, and critical reflection beyond language boundaries, and are not restricted to English-language cinema.
+- **Privacy & Clean Code Invariants**: Raw `data/*.csv` files remain in `.gitignore`. Example template is tracked at `data/media-latest.example.csv`. Prohibited term `"faculty"` must never appear in generated copy or UI.

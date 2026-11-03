@@ -27,4 +27,5 @@ students.private.json
 teachers.private.json
 PROMO_SETUP.private.md
 data/*.csv
+!data/*.example.csv
 data/portfolio-latest.csv
