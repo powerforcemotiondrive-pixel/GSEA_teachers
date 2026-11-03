@@ -198,34 +198,6 @@
       </div>
     </header>
 
-    <!-- Sub-Navigation Tab Strip -->
-    <nav class="flex items-center gap-1.5 overflow-x-auto p-1.5 text-xs select-none bg-slate-800 border border-slate-700/80 rounded-2xl shadow-sm text-white" id="main-nav-tabs" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
-      <button onclick="switchTab('overview')" id="tab-btn-overview" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl font-bold transition-all bg-white/20 text-white shadow-xs cursor-pointer">
-        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
-        <span>Overview</span>
-      </button>
-      <button onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
-        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
-        <span>Programme</span>
-      </button>
-      <button onclick="switchTab('rotas')" id="tab-btn-rotas" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
-        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <span>Tutorial Rotas</span>
-      </button>
-      <button onclick="switchTab('groups')" id="tab-btn-groups" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
-        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
-        <span>Groups &amp; Absences</span>
-      </button>
-      <button onclick="switchTab('evaluations')" id="tab-btn-evaluations" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
-        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z"/></svg>
-        <span>Evaluation</span>
-      </button>
-      <button onclick="switchTab('portfolio')" id="tab-btn-portfolio" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
-        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
-        <span>Portfolio</span>
-      </button>
-    </nav>
-
     <!-- Content Workspace -->
     <main id="portal-content" class="space-y-4">
       <!-- Instant Skeleton Loader (hydrated on load by selectSemester(1)) -->
@@ -251,10 +223,10 @@
         <span class="text-slate-600 hidden sm:inline">•</span>
         <span class="text-slate-400">GSEA English Teachers Hub &amp; Academic Portal</span>
       </div>
-      <div class="flex items-center gap-3 text-[11px] text-slate-400">
-        <span>Author: Phil PARRIS</span>
-        <span class="text-slate-600">•</span>
-        <span>© 2026 ENAC. All Rights Reserved.</span>
+      <div class="flex items-center gap-2 text-[11px] text-slate-400">
+        <span class="font-mono text-emerald-400/90 font-bold bg-black/30 px-2 py-0.5 rounded border border-white/10 text-[10px]">
+          100% Offline Capable &amp; Cloud Sync
+        </span>
       </div>
     </div>
   </footer>
@@ -1027,9 +999,10 @@
           <!-- Section Heading: Workspace Links -->
           <div class="flex items-center justify-between pt-1">
             <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
-              <span>🔗</span>
-              <span>Workspace Links</span>
+              <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
+              <span>Workspace Navigation</span>
             </h3>
+            <span class="text-[10px] font-mono text-slate-400 hidden sm:inline">Modular Slide-Over Hub</span>
           </div>
 
           <!-- 5 Compact Pathway Action Tiles -->
@@ -1040,8 +1013,8 @@
               onclick="switchTab('calendar')" 
               class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-amber-400 hover:shadow-xs transition-all text-left cursor-pointer group"
             >
-              <span class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
-                📅
+              <span class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-700 shrink-0 group-hover:scale-105 transition-transform">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
               </span>
               <div class="min-w-0 flex-1">
                 <div class="text-xs font-bold text-slate-900 group-hover:text-black truncate">Programme</div>
@@ -1056,8 +1029,8 @@
               onclick="switchTab('rotas')" 
               class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-amber-400 hover:shadow-xs transition-all text-left cursor-pointer group"
             >
-              <span class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
-                ⏱️
+              <span class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700 shrink-0 group-hover:scale-105 transition-transform">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               </span>
               <div class="min-w-0 flex-1">
                 <div class="text-xs font-bold text-slate-900 group-hover:text-black truncate">Tutorial Rotas</div>
@@ -1072,8 +1045,8 @@
               onclick="switchTab('groups')" 
               class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-amber-400 hover:shadow-xs transition-all text-left cursor-pointer group"
             >
-              <span class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
-                👥
+              <span class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shrink-0 group-hover:scale-105 transition-transform">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
               </span>
               <div class="min-w-0 flex-1">
                 <div class="text-xs font-bold text-slate-900 group-hover:text-black truncate">Groups &amp; Absences</div>
@@ -1088,8 +1061,8 @@
               onclick="switchTab('evaluations')" 
               class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-amber-400 hover:shadow-xs transition-all text-left cursor-pointer group"
             >
-              <span class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
-                📝
+              <span class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700 shrink-0 group-hover:scale-105 transition-transform">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z"/></svg>
               </span>
               <div class="min-w-0 flex-1">
                 <div class="text-xs font-bold text-slate-900 group-hover:text-black truncate">Evaluation</div>
@@ -1104,8 +1077,16 @@
               onclick="switchTab('portfolio')" 
               class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-amber-400 hover:shadow-xs transition-all text-left cursor-pointer group"
             >
-              <span class="w-8 h-8 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-center text-base shrink-0 group-hover:scale-105 transition-transform">
-                📊
+              <span class="w-8 h-8 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-700 shrink-0 group-hover:scale-105 transition-transform">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
+              </span>
+              <div class="min-w-0 flex-1">
+                <div class="text-xs font-bold text-slate-900 group-hover:text-black truncate">Portfolio</div>
+                <div class="text-[10px] text-slate-500 truncate">Compliance Checklist</div>
+              </div>
+              <span class="text-slate-400 group-hover:text-amber-600 group-hover:translate-x-0.5 transition-all text-xs font-bold">→</span>
+            </button>
+          </div>
               </span>
               <div class="min-w-0 flex-1">
                 <div class="text-xs font-bold text-slate-900 group-hover:text-black truncate">Portfolio</div>
@@ -2849,16 +2830,22 @@
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
             <!-- Left 2 Cols: Absence / Lateness Record Form -->
             <div class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200">
-              <!-- Form: Streamlined Precision Cockpit Layout -->
+              <!-- Form: Balanced Institutional Cockpit Layout -->
               <form id="absence-record-form" onsubmit="handleAbsenceSubmit(event)" class="space-y-4">
                 
                 <!-- Card Header -->
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
-                  <div>
-                    <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-                      ${sem.title} • Attendance Tracker
-                    </span>
-                    <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Record Student Absence or Lateness</h2>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3.5 border-b border-slate-100 gap-2">
+                  <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                      <span class="text-[9.5px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                        ${sem.title} • Attendance Tracker
+                      </span>
+                      <span class="text-[11px] font-mono text-slate-400">Live Incident Logger</span>
+                    </div>
+                    <h2 class="text-base sm:text-lg font-bold text-slate-900">Record Student Absence or Lateness</h2>
+                  </div>
+                  <div class="text-[11px] text-slate-500 font-medium">
+                    Automatically calculates lost syllabus hours
                   </div>
                 </div>
 
@@ -2871,18 +2858,27 @@
                   <button type="button" onclick="document.getElementById('abs-submit-banner').classList.add('hidden')" class="text-emerald-600 hover:text-emerald-900 font-bold ml-2 cursor-pointer">✕</button>
                 </div>
 
-                <!-- Row 1: The 3 Fast Selectors (Track • Group • Status) -->
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+                <!-- Tier 1: 3 Balanced Equal Columns (4 : 4 : 4) -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
                   
-                  <!-- 1. Track / Subject -->
-                  <div class="md:col-span-3">
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">Track / Subject</label>
+                  <!-- 1. Class Group -->
+                  <div class="space-y-1.5">
+                    <label class="block text-[10.5px] font-bold uppercase tracking-wider text-slate-600">Class Group</label>
+                    <div id="abs-group-pills" class="flex gap-1.5">
+                      <button type="button" onclick="setAbsGroup('A')" class="abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'A' ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}">Group A</button>
+                      <button type="button" onclick="setAbsGroup('B')" class="abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'B' ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}">Group B</button>
+                    </div>
+                  </div>
+
+                  <!-- 2. Track / Subject -->
+                  <div class="space-y-1.5">
+                    <label class="block text-[10.5px] font-bold uppercase tracking-wider text-slate-600">Curriculum Track</label>
                     <div id="abs-track-pills" class="flex gap-1.5">
                       ${tracksList.map(t => `
                         <button 
                           type="button" 
                           onclick="setAbsTrack('${t}')" 
-                          class="abs-track-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsTrack === t ? 'bg-amber-400 text-slate-950 border-amber-400 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
+                          class="abs-track-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsTrack === t ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
                         >
                           ${t}
                         </button>
@@ -2890,23 +2886,14 @@
                     </div>
                   </div>
 
-                  <!-- 2. Class Group -->
-                  <div class="md:col-span-4">
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">Class Group</label>
-                    <div id="abs-group-pills" class="flex gap-1.5">
-                      <button type="button" onclick="setAbsGroup('A')" class="abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'A' ? 'bg-amber-400 text-slate-950 border-amber-400 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}">Group A</button>
-                      <button type="button" onclick="setAbsGroup('B')" class="abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border ${activeAbsGroup === 'B' ? 'bg-amber-400 text-slate-950 border-amber-400 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}">Group B</button>
-                    </div>
-                  </div>
-
-                  <!-- 3. Attendance Status (Cockpit Slate with Status Dots) -->
-                  <div class="md:col-span-5">
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">Status</label>
+                  <!-- 3. Incident Status & Duration -->
+                  <div class="space-y-1.5">
+                    <label class="block text-[10.5px] font-bold uppercase tracking-wider text-slate-600">Incident Type</label>
                     <div class="flex items-center gap-1.5">
                       <button 
                         type="button" 
                         onclick="setAbsStatus('Absent')" 
-                        class="abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${activeAbsStatus === 'Absent' ? 'bg-rose-50 text-rose-800 border-rose-300 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
+                        class="abs-status-btn flex-1 h-10 px-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${activeAbsStatus === 'Absent' ? 'bg-rose-50 text-rose-800 border-rose-300 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
                       >
                         <span class="w-2 h-2 rounded-full ${activeAbsStatus === 'Absent' ? 'bg-rose-500' : 'bg-slate-300'}"></span>
                         <span>Absent</span>
@@ -2915,14 +2902,14 @@
                       <button 
                         type="button" 
                         onclick="setAbsStatus('Late')" 
-                        class="abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${activeAbsStatus === 'Late' ? 'bg-amber-400 text-slate-950 border-amber-400 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
+                        class="abs-status-btn flex-1 h-10 px-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${activeAbsStatus === 'Late' ? 'bg-amber-50 text-amber-900 border-amber-300 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'}"
                       >
-                        <span class="w-2 h-2 rounded-full ${activeAbsStatus === 'Late' ? 'bg-amber-400' : 'bg-slate-300'}"></span>
+                        <span class="w-2 h-2 rounded-full ${activeAbsStatus === 'Late' ? 'bg-amber-500' : 'bg-slate-300'}"></span>
                         <span>Late</span>
                       </button>
 
                       <div id="abs-late-duration-box" class="${activeAbsStatus === 'Late' ? 'flex' : 'hidden'} items-center shrink-0">
-                        <select id="abs-delay-duration" class="h-10 text-xs font-bold px-2 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800">
+                        <select id="abs-delay-duration" class="h-10 text-xs font-bold px-2 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800 shadow-2xs">
                           <option value="5-10 mins">5–10m</option>
                           <option value="15-20 mins" selected>15–20m</option>
                           <option value="30+ mins">30m+</option>
@@ -2933,63 +2920,63 @@
 
                 </div>
 
-                <!-- Row 2: Candidate Details, Date, and Notes (Unified Surface) -->
-                <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 pt-3 border-t border-slate-100">
+                <!-- Tier 2: Candidate & Date (Clean 2-Column Balanced Grid: 8 cols : 4 cols) -->
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-3.5 pt-3 border-t border-slate-100">
                   
-                  <!-- Candidate Selector (filtered by group) -->
-                  <div class="sm:col-span-5">
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                      Candidate <span class="text-rose-500">*</span>
+                  <!-- Candidate Selector (8 cols) -->
+                  <div class="sm:col-span-8 space-y-1.5">
+                    <label class="block text-[10.5px] font-bold uppercase tracking-wider text-slate-600">
+                      Candidate Identifier &amp; Name <span class="text-rose-500">*</span>
                     </label>
-                    <select id="abs-student-select" class="w-full h-11 text-xs font-bold px-3 rounded-xl border border-slate-300 bg-slate-50/50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800 focus:outline-none shadow-2xs">
+                    <select id="abs-student-select" class="w-full h-11 text-xs font-bold px-3 rounded-xl border border-slate-300 bg-slate-50/60 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800 focus:outline-none shadow-2xs">
                       <!-- Populated dynamically via updateAbsStudentOptions() -->
                     </select>
                   </div>
 
-                  <!-- Date Picker -->
-                  <div class="sm:col-span-3">
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                      Date
+                  <!-- Date Picker (4 cols) -->
+                  <div class="sm:col-span-4 space-y-1.5">
+                    <label class="block text-[10.5px] font-bold uppercase tracking-wider text-slate-600">
+                      Session Date
                     </label>
                     <input 
                       type="date" 
                       id="abs-incident-date" 
                       value="${new Date().toISOString().split('T')[0]}" 
-                      class="w-full h-11 text-xs font-bold px-3 rounded-xl border border-slate-300 bg-slate-50/50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800 focus:outline-none shadow-2xs"
-                    >
-                  </div>
-
-                  <!-- Reason / Notes -->
-                  <div class="sm:col-span-4">
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                      Reason / Notes <span class="text-slate-400 font-normal lowercase">(optional)</span>
-                    </label>
-                    <input 
-                      type="text" 
-                      id="abs-incident-notes" 
-                      placeholder="e.g., Medical, transport delay..." 
-                      class="w-full h-11 text-xs px-3 rounded-xl border border-slate-300 bg-slate-50/50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800 focus:outline-none shadow-2xs"
+                      class="w-full h-11 text-xs font-bold px-3 rounded-xl border border-slate-300 bg-slate-50/60 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800 focus:outline-none shadow-2xs font-mono"
                     >
                   </div>
 
                 </div>
 
-                <!-- Row 3: Action Submission Bar (Clear & Submit) -->
-                <div class="flex items-center justify-between pt-3 border-t border-slate-100 gap-3">
+                <!-- Tier 3: Reason / Notes (Full Width) -->
+                <div class="space-y-1.5 pt-1">
+                  <label class="block text-[10.5px] font-bold uppercase tracking-wider text-slate-600">
+                    Reason / Official Justification <span class="text-slate-400 font-normal lowercase">(optional)</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    id="abs-incident-notes" 
+                    placeholder="e.g. Medical certificate provided, transport disruption, prior academic appointment..." 
+                    class="w-full h-11 text-xs px-3.5 rounded-xl border border-slate-300 bg-slate-50/60 text-slate-900 focus:bg-white focus:ring-2 focus:ring-slate-800 focus:outline-none shadow-2xs placeholder:text-slate-400"
+                  >
+                </div>
+
+                <!-- Tier 4: Action Submission Bar -->
+                <div class="flex items-center justify-between pt-3.5 border-t border-slate-100 gap-3">
                   <button 
                     type="button" 
                     onclick="resetAbsenceInputs()" 
-                    class="px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 font-bold text-xs transition-all cursor-pointer shadow-2xs"
+                    class="px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 font-bold text-xs transition-all cursor-pointer shadow-2xs"
                   >
-                    Clear Form
+                    Reset Form
                   </button>
                   <button 
                     type="submit" 
                     id="btn-submit-absence" 
-                    class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 font-bold text-xs shadow-sm transition-all flex items-center gap-1.5 cursor-pointer border border-amber-400"
+                    class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 font-bold text-xs shadow-sm transition-all flex items-center gap-2 cursor-pointer border border-amber-400"
                   >
-                    <span>💾</span>
-                    <span>Submit Absence / Lateness Record</span>
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                    <span>Record Attendance Incident</span>
                   </button>
                 </div>
 
@@ -3197,7 +3184,7 @@
       activeAbsTrack = track;
       document.querySelectorAll('.abs-track-btn').forEach(btn => {
         const isActive = btn.textContent.trim() === track;
-        btn.className = "abs-track-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border " + (isActive ? 'bg-amber-400 text-slate-950 border-amber-400 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
+        btn.className = "abs-track-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
       });
     }
 
@@ -3206,7 +3193,7 @@
       document.querySelectorAll('.abs-group-btn').forEach(btn => {
         const txt = btn.textContent.trim();
         const isActive = txt.endsWith(group) || txt === group;
-        btn.className = "abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border " + (isActive ? 'bg-amber-400 text-slate-950 border-amber-400 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
+        btn.className = "abs-group-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold transition-all border " + (isActive ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
       });
       updateAbsStudentOptions();
     }
@@ -3234,14 +3221,14 @@
         const isAbsentBtn = btn.getAttribute('onclick').includes("'Absent'");
         if (isAbsentBtn) {
           const isActive = activeAbsStatus === 'Absent';
-          btn.className = "abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer " + (isActive ? 'bg-rose-50 text-rose-800 border-rose-300 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
+          btn.className = "abs-status-btn flex-1 h-10 px-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer " + (isActive ? 'bg-rose-50 text-rose-800 border-rose-300 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
           const dot = btn.querySelector('.rounded-full');
           if (dot) dot.className = "w-2 h-2 rounded-full " + (isActive ? 'bg-rose-500' : 'bg-slate-300');
         } else {
           const isActive = activeAbsStatus === 'Late';
-          btn.className = "abs-status-btn flex-1 h-10 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer " + (isActive ? 'bg-amber-400 text-slate-950 border-amber-400 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
+          btn.className = "abs-status-btn flex-1 h-10 px-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition-all cursor-pointer " + (isActive ? 'bg-amber-50 text-amber-900 border-amber-300 shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200');
           const dot = btn.querySelector('.rounded-full');
-          if (dot) dot.className = "w-2 h-2 rounded-full " + (isActive ? 'bg-amber-600' : 'bg-slate-300');
+          if (dot) dot.className = "w-2 h-2 rounded-full " + (isActive ? 'bg-amber-500' : 'bg-slate-300');
         }
       });
     }
