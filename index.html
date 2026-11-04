@@ -833,9 +833,12 @@
         const btn = document.getElementById(`drawer-nav-${k}`);
         if (!btn) return;
         if (k === tabKey || (k === 'evaluations' && (tabKey === 'grading' || tabKey === 'rubrics'))) {
-          btn.className = "drawer-nav-tab flex items-center gap-1 px-3 py-1.5 rounded-lg font-bold transition-all bg-white/20 text-white shadow-xs cursor-pointer";
+          btn.className = "drawer-nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold transition-all bg-white/20 text-white shadow-xs cursor-pointer";
+          try {
+            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+          } catch (_) {}
         } else {
-          btn.className = "drawer-nav-tab flex items-center gap-1 px-3 py-1.5 rounded-lg font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer";
+          btn.className = "drawer-nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer";
         }
       });
     }
@@ -885,6 +888,7 @@
       // If drawer is open, render active tab inside drawer body
       const drawerBody = document.getElementById('teacher-drawer-body');
       if (activeTab !== 'overview' && drawerBody) {
+        drawerBody.scrollTop = 0;
         if (activeTab === 'calendar') {
           drawerBody.innerHTML = renderCalendarTab(sem);
         } else if (activeTab === 'rotas') {
@@ -905,8 +909,9 @@
       updateMainNavPills(activeTab);
     }
 
-    // Global Keyboard Escape Key Handler for Drawers & Modals
+    // Global Keyboard Navigation & Escape Handler for Drawers & Modals
     document.addEventListener('keydown', (e) => {
+      // 1. ESCAPE KEY: Close active popup modals or slide-over drawer
       if (e.key === 'Escape') {
         const reportModal = document.getElementById('portfolio-report-modal');
         if (reportModal && !reportModal.classList.contains('hidden')) {
@@ -926,6 +931,57 @@
         const teacherModal = document.getElementById('teacher-resource-modal');
         if (teacherModal && !teacherModal.classList.contains('hidden')) {
           closeTeacherDrawer();
+        }
+        return;
+      }
+
+      // 2. ARROW KEYS: Left / Right Navigation (Drawer Tabs & Semester Switcher)
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        // Prevent interfering when user is typing in form inputs, textareas, or selects
+        const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+        if (activeTag === 'input' || activeTag === 'textarea' || activeTag === 'select' || document.activeElement?.isContentEditable) {
+          return;
+        }
+
+        // Do not intercept if an inner popup modal is active
+        const reportModal = document.getElementById('portfolio-report-modal');
+        const gradeModal = document.getElementById('grade-report-modal');
+        const absModal = document.getElementById('absence-report-modal');
+        if ((reportModal && !reportModal.classList.contains('hidden')) ||
+            (gradeModal && !gradeModal.classList.contains('hidden')) ||
+            (absModal && !absModal.classList.contains('hidden'))) {
+          return;
+        }
+
+        const teacherModal = document.getElementById('teacher-resource-modal');
+        const isDrawerOpen = teacherModal && !teacherModal.classList.contains('hidden');
+
+        if (isDrawerOpen) {
+          // Navigate between drawer tabs: Programme, Tutorial Rotas, Groups & Absences, Evaluation, Portfolio
+          const drawerTabs = ['calendar', 'rotas', 'groups', 'evaluations', 'portfolio'];
+          let currentKey = activeTab;
+          if (currentKey === 'grading' || currentKey === 'rubrics') currentKey = 'evaluations';
+          let currentIndex = drawerTabs.indexOf(currentKey);
+          if (currentIndex === -1) currentIndex = 0;
+
+          e.preventDefault();
+          if (e.key === 'ArrowRight') {
+            const nextIndex = (currentIndex + 1) % drawerTabs.length;
+            switchTab(drawerTabs[nextIndex]);
+          } else {
+            const prevIndex = (currentIndex - 1 + drawerTabs.length) % drawerTabs.length;
+            switchTab(drawerTabs[prevIndex]);
+          }
+        } else {
+          // Navigate between Semesters 1, 2, 3, 4 on overview landing cockpit
+          e.preventDefault();
+          if (e.key === 'ArrowRight') {
+            const nextSem = (activeSemester % 4) + 1;
+            selectSemester(nextSem);
+          } else {
+            const prevSem = activeSemester === 1 ? 4 : activeSemester - 1;
+            selectSemester(prevSem);
+          }
         }
       }
     });
