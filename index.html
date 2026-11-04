@@ -414,6 +414,9 @@
       1: {
         num: 1,
         title: "Semester 1",
+        promotion: "GSEA26A",
+        teacherFocus: "General & Technical",
+        nextMilestone: { title: "FE1 Tutorial", sub: "Week 48 Oral Exam" },
         ecampusUrl: "https://e-campus.enac.fr/moodle/pluginfile.php/542566/mod_resource/content/33/index.html#ag-module1-card1",
         tracks: "AG (LV101E) & AT (LV121E)",
         description: "General English (Travel, Weather, New Tech) & Technical English (Aerodrome, Aircraft Anatomy, Human Factors)",
@@ -684,42 +687,68 @@
       2: {
         num: 2,
         title: "Semester 2",
+        promotion: "GSEA25B",
+        teacherFocus: "General & Aeronautical",
+        nextMilestone: { title: "FE1 Tutorial", sub: "Week 11 Oral Exam" },
         ecampusUrl: "https://e-campus.enac.fr/moodle/my/",
         tracks: "AG (LV102E) & AAS (LV122E)",
         description: "General English (Mobility, Global Immersion Milestone) & Aeronautical English",
         faculty: [
-          { name: "Teacher A (TBC)", track: "AAS", group: "Group A", schedule: "Wednesdays" },
-          { name: "Teacher B (TBC)", track: "AAS", group: "Group B", schedule: "Wednesdays" },
-          { name: "Teacher C (TBC)", track: "AG", group: "Group A", schedule: "Fridays" },
-          { name: "Teacher D (TBC)", track: "AG", group: "Group B", schedule: "Fridays" }
+          { name: "Teacher A (TBC)", track: "AAS", group: "Group A", schedule: "Wednesdays 13h15–15h15" },
+          { name: "Teacher B (TBC)", track: "AAS", group: "Group B", schedule: "Wednesdays 13h15–15h15" },
+          { name: "Teacher C (TBC)", track: "AG", group: "Group A", schedule: "Fridays 08h00–10h00" },
+          { name: "Teacher D (TBC)", track: "AG", group: "Group B", schedule: "Fridays 08h00–10h00" }
         ],
-        students: { groupA: ["GRPA001", "GRPA002", "GRPA003"], groupB: ["GRPB001", "GRPB002", "GRPB003"] },
-        evaluationDates: { fe1: { at: "TBC", ag: "TBC" }, fe2: { at: "TBC", ag: "TBC" }, fe3: { at: "TBC", ag: "TBC" } },
+        students: {
+          groupA: ["GRPA001", "GRPA002", "GRPA003", "GRPA004", "GRPA005", "GRPA006", "GRPA007", "GRPA008", "GRPA009", "GRPA010"],
+          groupB: ["GRPB001", "GRPB002", "GRPB003", "GRPB004", "GRPB005", "GRPB006", "GRPB007", "GRPB008", "GRPB009", "GRPB010"]
+        },
+        evaluationDates: { fe1: { at: "Wed 17 Mar (W11)", ag: "Fri 19 Mar (W11)" }, fe2: { at: "Wed 28 Apr (W17)", ag: "Fri 30 Apr (W17)" }, fe3: { at: "TBC", ag: "TBC" } },
         rotas: [{ slot: "Slot 1 (30m)", groupA: "Pair 1", groupB: "Pair 1", format: "Pair" }],
         programme: [{ week: "W10", date: "Mar", mod: "M1", s: "S1", titleAG: "Immersion Preparation", titleAT: "Aeronautical Systems Overview" }]
       },
       3: {
         num: 3,
         title: "Semester 3",
+        promotion: "GSEA25A",
+        teacherFocus: "Technical",
+        nextMilestone: { title: "FE1 Tutorial", sub: "Week 43 Oral Exam" },
         ecampusUrl: "https://e-campus.enac.fr/moodle/course/view.php?id=32729",
         tracks: "AT (LV125E) Technical English Only",
         description: "Technical English Only (AG Disabled) • Systems Engineering, ATM, Radar & Incident Investigations",
         faculty: [
-          { name: "Technical English Teacher", track: "AT", group: "Group A/B/C", schedule: "Dedicated Slots" }
+          { name: "Teacher A (TBC)", track: "AT", group: "Group A", schedule: "Fridays 13h15–15h15" },
+          { name: "Teacher B (TBC)", track: "AT", group: "Group B", schedule: "Fridays 13h15–15h15" },
+          { name: "Teacher C (TBC)", track: "AT", group: "Group C", schedule: "Fridays 13h15–15h15" }
         ],
-        students: { groupA: ["GRPA001", "GRPA002"], groupB: ["GRPB001", "GRPB002"] },
-        evaluationDates: { fe1: { at: "TBC", ag: "N/A" }, fe2: { at: "TBC", ag: "N/A" }, fe3: { at: "TBC", ag: "N/A" } },
+        students: {
+          groupA: ["GRPA001", "GRPA002", "GRPA003", "GRPA004", "GRPA005", "GRPA006", "GRPA007", "GRPA008", "GRPA009", "GRPA010"],
+          groupB: ["GRPB001", "GRPB002", "GRPB003", "GRPB004", "GRPB005", "GRPB006", "GRPB007", "GRPB008", "GRPB009", "GRPB010"],
+          groupC: ["GRPC001", "GRPC002", "GRPC003", "GRPC004", "GRPC005", "GRPC006", "GRPC007", "GRPC008", "GRPC009", "GRPC010"]
+        },
+        evaluationDates: { fe1: { at: "Wed 21 Oct (W43)", ag: "N/A" }, fe2: { at: "Wed 13 Jan (W02)", ag: "N/A" }, fe3: { at: "TBC", ag: "N/A" } },
         rotas: [{ slot: "Slot 1 (30m)", groupA: "Technical Pair", groupB: "Technical Pair", format: "Pair" }],
         programme: [{ week: "W38", date: "Sep", mod: "M1", s: "S1", titleAG: "N/A (AT Only)", titleAT: "Aviation Systems Architecture" }]
       },
       4: {
         num: 4,
         title: "Semester 4",
+        promotion: "GSEA24B",
+        teacherFocus: "Professional",
+        nextMilestone: { title: "Certification", sub: "Final Professional Exam" },
         ecampusUrl: "https://e-campus.enac.fr/moodle/course/view.php?id=32728",
-        tracks: "AP Only (Professional English)",
+        tracks: "AP (LV126E) Professional English",
         description: "Professional English (Anglais Professionnel) & Final Certification Readiness",
-        faculty: [{ name: "Professional English Lead", track: "AP", group: "All Groups", schedule: "Intensive" }],
-        students: { groupA: ["GRPA001"], groupB: ["GRPB001"] },
+        faculty: [
+          { name: "Teacher A (TBC)", track: "AP", group: "Group A", schedule: "Intensive" },
+          { name: "Teacher B (TBC)", track: "AP", group: "Group B", schedule: "Intensive" },
+          { name: "Teacher C (TBC)", track: "AP", group: "Group C", schedule: "Intensive" },
+          { name: "Teacher D (TBC)", track: "AP", group: "Group D", schedule: "Intensive" }
+        ],
+        students: {
+          groupA: ["GRPA001", "GRPA002", "GRPA003", "GRPA004", "GRPA005", "GRPA006", "GRPA007", "GRPA008", "GRPA009", "GRPA010"],
+          groupB: ["GRPB001", "GRPB002", "GRPB003", "GRPB004", "GRPB005", "GRPB006", "GRPB007", "GRPB008", "GRPB009", "GRPB010"]
+        },
         evaluationDates: { fe1: { at: "TBC", ag: "N/A" }, fe2: { at: "TBC", ag: "N/A" }, fe3: { at: "TBC", ag: "N/A" } },
         rotas: [{ slot: "Slot 1 (30m)", groupA: "Professional Interview", groupB: "Professional Interview", format: "Individual/Pair" }],
         programme: [{ week: "W15", date: "Apr", mod: "M1", s: "S1", titleAG: "N/A", titleAT: "Certification Simulation" }]
@@ -729,6 +758,9 @@
     // Select Semester
     function selectSemester(num) {
       activeSemester = num;
+      if (SEMESTERS_DATA[num]?.promotion) {
+        activeAbsPromo = SEMESTERS_DATA[num].promotion;
+      }
       // Update dynamic header title
       const mainTitle = document.getElementById('header-main-title');
       if (mainTitle) {
@@ -990,8 +1022,13 @@
     // TAB 0: OVERVIEW & WELCOME LANDING PAGE
     // ============================================================================
     function renderOverviewTab(sem) {
-      const allStudentsCount = ((sem.students?.groupA || []).length) + ((sem.students?.groupB || []).length);
+      const allStudentsCount = ((sem.students?.groupA || []).length) + 
+                               ((sem.students?.groupB || []).length) + 
+                               ((sem.students?.groupC || []).length) + 
+                               ((sem.students?.groupD || []).length);
       const facultyList = sem.faculty || [];
+      const grpKeys = Object.keys(sem.students || {}).filter(k => (sem.students[k] || []).length > 0);
+      const grpLabels = grpKeys.map(k => k.replace('group', '')).join('/');
 
       return `
         <div class="space-y-4 sm:space-y-5">
@@ -1026,7 +1063,7 @@
                       Teachers Dashboard
                     </span>
                     <span class="text-xs text-slate-500 font-mono font-medium">
-                      Active Promotion: <strong>GSEA26A</strong>
+                      Active Promotion: <strong>${sem.promotion || 'GSEA26A'}</strong>
                     </span>
                   </div>
 
@@ -1057,18 +1094,18 @@
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2 border-t border-slate-100 text-xs">
                   <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200/80">
                     <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Promotion</span>
-                    <span class="text-xs sm:text-sm font-black text-slate-800 font-mono">GSEA26A</span>
-                    <span class="text-[10px] text-slate-500 block">${allStudentsCount} Students (A/B)</span>
+                    <span class="text-xs sm:text-sm font-black text-slate-800 font-mono">${sem.promotion || 'GSEA26A'}</span>
+                    <span class="text-[10px] text-slate-500 block">${allStudentsCount} Students (${grpLabels || 'A/B'})</span>
                   </div>
                   <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200/80">
                     <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Teachers</span>
                     <span class="text-xs sm:text-sm font-black text-slate-800 font-mono">${facultyList.length} Teachers</span>
-                    <span class="text-[10px] text-slate-500 block">General &amp; Technical</span>
+                    <span class="text-[10px] text-slate-500 block">${sem.teacherFocus || 'General &amp; Technical'}</span>
                   </div>
                   <div class="p-2.5 bg-amber-50/80 rounded-xl border border-amber-200 col-span-2 sm:col-span-1">
                     <span class="text-[10px] uppercase font-bold text-amber-800 block tracking-wider">Next Milestone</span>
-                    <span class="text-xs sm:text-sm font-black text-slate-900 font-mono">FE1 Tutorial</span>
-                    <span class="text-[10px] text-amber-700 block">Week 48 Oral Exam</span>
+                    <span class="text-xs sm:text-sm font-black text-slate-900 font-mono">${sem.nextMilestone?.title || 'FE1 Tutorial'}</span>
+                    <span class="text-[10px] text-amber-700 block">${sem.nextMilestone?.sub || 'Oral Exam'}</span>
                   </div>
                 </div>
               </div>
@@ -5261,7 +5298,7 @@ const PORTFOLIO_DATA_S1 = {
                 Official Attendance &amp; Absence Dossier
               </h2>
               <div class="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-700">
-                <span>Promotion: <strong>GSEA26A</strong></span>
+                <span>Promotion: <strong>${sem.promotion || 'GSEA26A'}</strong></span>
                 <span>•</span>
                 <span>Scope: <strong>${scopeLabel}</strong></span>
                 <span>•</span>
@@ -5542,7 +5579,7 @@ const PORTFOLIO_DATA_S1 = {
                 Official Portfolio Compliance &amp; Reflection Dossier
               </h2>
               <div class="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-700">
-                <span>Promotion: <strong>GSEA26A</strong></span>
+                <span>Promotion: <strong>${sem.promotion || 'GSEA26A'}</strong></span>
                 <span>•</span>
                 <span>Scope: <strong>${scopeLabel}</strong></span>
                 <span>•</span>
