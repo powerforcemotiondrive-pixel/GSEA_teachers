@@ -32,7 +32,8 @@ Attach or paste the latest Google Form/Sheet export CSV and trigger the correspo
 
 | Natural Language Chat Command | Terminal / NPM Command | Scope & Behavior |
 | :--- | :--- | :--- |
-| **`Semester 1 Teachers Portfolio Update`**<br>*(or `Semester 1 Portfolio Teachers Update`)* | `npm run portfolio:s1` | Updates Semester 1 (AG & AT), parses student entries, extracts buzzwords & grammar traps, rebuilds SCORM/ISO/DMG packages, and commits to Git. |
+| **`Semester 1 Dual Portfolio Update`**<br>*(or `Semester 1 Full Portfolio Update`)* | `npm run portfolio:s1` + `semester_1` | **Unified Dual-Portal Update**: Ingests CSV once to update **both** Student Deck (`GSEA_semester_1`) and Teachers Hub (`GSEA_teachers`), rebuilds all 7 packages, and commits & pushes both repos to GitHub. |
+| **`Semester 1 Teachers Portfolio Update`**<br>*(or `Semester 1 Portfolio Teachers Update`)* | `npm run portfolio:s1` | Updates Semester 1 (AG & AT) Teachers Hub only, parses student entries, extracts buzzwords & grammar traps, rebuilds SCORM/ISO/DMG packages, and commits to Git. |
 | **`Semester 2 Teachers Portfolio Update`**<br>*(or `Semester 2 Portfolio Teachers Update`)* | `npm run portfolio:s2` | Updates Semester 2 (AG & AAS), processes new cohort reflections, and refreshes the S2 portfolio dashboard. |
 | **`Semester 3 Teachers Portfolio Update`**<br>*(or `Semester 3 Portfolio Teachers Update`)* | `npm run portfolio:s3` | Updates Semester 3 (AT Technical English), processes technical vocabulary & system reflections. |
 | **`Semester 4 Teachers Portfolio Update`**<br>*(or `Semester 4 Portfolio Teachers Update`)* | `npm run portfolio:s4` | Updates Semester 4 (AP Professional English), processes operational briefings & project data. |

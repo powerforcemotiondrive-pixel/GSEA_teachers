@@ -52,3 +52,10 @@ This repository houses the official **ENAC GSEA English Teachers Hub & Grading P
   4. Automatically execute `git commit` AND `git push origin main` in the same step.
 - **General Culture Focus**: Film recommendations are curated for broad cultural perspective, creative storytelling, and critical reflection beyond language boundaries, and are not restricted to English-language cinema.
 - **Privacy & Clean Code Invariants**: Raw `data/*.csv` files remain in `.gitignore`. Example template is tracked at `data/media-latest.example.csv`. Prohibited term `"faculty"` must never appear in generated copy or UI.
+
+### I. `Semester X Dual Portfolio Update` Cross-Portal Sync Protocol
+- **Trigger**: Whenever the user sends `Semester 1 Dual Portfolio Update` (or `Semester 1 Full Portfolio Update` / `Dual Portfolio Update S1`, with a CSV attached or pasted):
+  1. Save raw CSV to `GSEA_semester_1/data/portfolio-latest.csv` AND `GSEA_teachers/data/portfolio-s1-latest.csv` (both git-ignored).
+  2. Update `GSEA_semester_1` via `npm run portfolio:summary`, rebuild all 4 packages (`SCORM.zip`, `SCORM_MOODLE.zip`, `.iso`, `.dmg`), and commit & push to GitHub.
+  3. Update `GSEA_teachers` via `npm run portfolio:s1`, rebuild all 3 packages (`SCORM.zip`, `.iso`, `.dmg`), and commit & push to GitHub.
+  4. Output a single consolidated report in chat with total submissions, track breakdown, and confirmation of both remote repositories synchronized live.
