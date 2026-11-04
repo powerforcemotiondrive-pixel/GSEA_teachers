@@ -10,7 +10,7 @@ Attach or paste a CSV containing 1 Up Next statement, 2 BBC article links, and 3
 
 | Natural Language Chat Command | Terminal / NPM Command | Scope & Behavior |
 | :--- | :--- | :--- |
-| **`Media Update`** | `npm run media:update` | Parses `data/media-latest.csv`, updates the **Course Notices & Authentic Reading** strip (Notice + 2 BBC articles) and the **General Culture & Cinema** strip (3 IMDb films), rebuilds SCORM/ISO/DMG packages, and commits to Git. |
+| **`Media Update`** | `npm run media:update` | Parses `data/media-latest.csv`, updates the **Noticeboard and Media** strip (Notice + 2 BBC articles) and the **General Culture & Cinema** strip (3 IMDb films), rebuilds SCORM/ISO/DMG packages, and commits to Git. |
 
 #### Required CSV Format (`data/media-latest.csv`):
 ```csv

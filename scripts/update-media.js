@@ -167,12 +167,12 @@ function main() {
   const noticeNoteType = upNextItem.summary || 'Teaching Note';
 
   // Build replacement HTML
-  const replacementHTML = `<!-- Section: Course Notices & Authentic Reading -->
+  const replacementHTML = `<!-- Section: Noticeboard and Media -->
           <div class="space-y-2.5">
             <div class="flex items-center justify-between">
               <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
                 <span>📌</span>
-                <span>Course Notices &amp; Authentic Reading</span>
+                <span>Noticeboard and Media</span>
               </h3>
               <span class="text-[10px] font-mono text-slate-400">Weekly News &amp; Articles</span>
             </div>
