@@ -1,16 +1,16 @@
 {
   "semester": 1,
-  "lastUpdated": "3 Nov 2026",
-  "totalSubmissions": 21,
+  "lastUpdated": "4 Nov 2026",
+  "totalSubmissions": 27,
   "trackBreakdown": {
-    "at": 11,
-    "ag": 10,
+    "at": 12,
+    "ag": 15,
     "aas": 0,
     "ap": 0
   },
   "metrics": {
-    "avgFeConfidence": "4.1",
-    "avgToeicConfidence": "7.7",
+    "avgFeConfidence": "4.0",
+    "avgToeicConfidence": "7.4",
     "targetFeLevel": "CEFR B2",
     "feWindow": "Week 48 (FE1)"
   },
@@ -59,6 +59,21 @@
       "feScore": 2,
       "toeicPrep": "N/A (AT Track)",
       "toeicScore": 10
+    },
+    {
+      "id": "GRPA002",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/4/2026 1:40:27",
+      "vocab": "Itinerary : A planned route, scheduled points or activities\n\nNon-Stop Flight : A flight from a city to another without landing anywhere else\n\nTo My Relief : An expression used to say that a stressful travel situation turns ot well\n\nMiss a Connection : To arrive too late for a connecting flight or train due to delay\n\n\nVery useful to use when you tell a story to someone",
+      "content": "First we tried to remember each other's names by playing a memory game. Then we did an acting activity in which we had to tell a story in pairs.",
+      "needs": "I need to focus on pronunciation of certain words and fluency when improvising.",
+      "helpFe": "The acting activity trained us for answering questions the day of the evaluation.",
+      "feScore": 2,
+      "toeicPrep": "I did the positionnal test on global exam",
+      "toeicScore": 5
     },
     {
       "id": "GRPA003",
@@ -132,7 +147,7 @@
       "needs": "My prononciation of certain words like itinerary were not accurate. I also have to learn new words in the vocab section.",
       "helpFe": "The vocabulary I've learned in this lesson is particularly important for the FE as it involves travel and tourism.",
       "feScore": 4,
-      "toeicPrep": "I took the first test on global exam so that the website can \"guess\" my current level and then I did 22 exercises (a little bit of everything as I'm completing it in order) which represents, as written on the website, about 5 hours of practice.",
+      "toeicPrep": "I took the first test on global exam so that the website can \"guess\" your current level and then I did 22 exercises (a little bit of everything as I'm completing it in order) which represents, as written on the website, about 5 hours of practice.",
       "toeicScore": 8
     },
     {
@@ -241,6 +256,51 @@
       "toeicScore": 3
     },
     {
+      "id": "GRPB002",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "11/3/2026 18:30:59",
+      "vocab": "connection",
+      "content": "Really short session because of the briefing in the beggining of the course.",
+      "needs": "It's hard to find my words, so I'm lacking of fluency.",
+      "helpFe": "I need to learn a lot of vocabulary words in AT. Not knowing a key word can make all the understanding harder, especially in technicals conversations.",
+      "feScore": 2,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB002",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/3/2026 18:36:54",
+      "vocab": "connection",
+      "content": "It was really interesting to debate about aeronautical subjects.",
+      "needs": "I need to find my words quickly in order to improve my fluency.",
+      "helpFe": "I will do more conversations with AI for example to practice outside the english class.",
+      "feScore": 3,
+      "toeicPrep": "I did some grammar quizz",
+      "toeicScore": 4
+    },
+    {
+      "id": "GRPB002",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/3/2026 18:38:13",
+      "vocab": "I updated the wrong session, i will correct that after the second session.",
+      "content": "I updated the wrong session, i will correct that after the second session.",
+      "needs": "I updated the wrong session, i will correct that after the second session.",
+      "helpFe": "I updated the wrong session, i will correct that after the second session.",
+      "feScore": 3,
+      "toeicPrep": "I updated the wrong session, i will correct that after the second session.",
+      "toeicScore": 4
+    },
+    {
       "id": "GRPB003",
       "group": "Group B",
       "track": "AG",
@@ -269,6 +329,36 @@
       "feScore": 3,
       "toeicPrep": "N/A (AT Track)",
       "toeicScore": 10
+    },
+    {
+      "id": "GRPB004",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/3/2026 15:42:20",
+      "vocab": "A round trip\nOff the beaten track",
+      "content": "We did a little roleplay in which I was an airline employee and my partner Peter was a stressed out traveler",
+      "needs": "I should try using past perfect correctly. (ex : I was late in the morning because there had been an incident on the road.",
+      "helpFe": "Being more invested in the conversation would be an improvement. It's hard to have a good pronunciation when you are speaking live.",
+      "feScore": 7,
+      "toeicPrep": "I did the global exam evaluation test",
+      "toeicScore": 9
+    },
+    {
+      "id": "GRPB005",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/4/2026 2:20:35",
+      "vocab": "Seek assistance,\nTo get upgraded,\nAn entry fee",
+      "content": "I had to argue over several subject and sometimes trying to find arguments over some subjects I would have never thought of. For example, the allowance of taking the plane for flights that are less than 2.5 hours (which is something we already do in France). Another example is to ban or accept drinking alcohol in the airplane.",
+      "needs": "I realised I had some trouble understanding and recognizing the time the verbs were conjugated. I have no idea what past simple, présent perfect is, but I can copy the tense in a phrase and understand the meaning of it.",
+      "helpFe": "Maybe give me some vocabulary and make me avoid making some tenses mistakes or at least be aware of them.",
+      "feScore": 6,
+      "toeicPrep": "Nothing done",
+      "toeicScore": 5
     },
     {
       "id": "GRPB007",
