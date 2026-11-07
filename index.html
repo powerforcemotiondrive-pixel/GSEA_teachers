@@ -6052,7 +6052,7 @@ const PORTFOLIO_DATA_S1 = {
 
       const items = isNews ? (window.MEDIA_ARCHIVE_DATA?.news || []) : (window.MEDIA_ARCHIVE_DATA?.films || []);
       if (!items || items.length === 0) {
-        listEl.innerHTML = "<p class="py-6 text-xs text-slate-400 italic text-center">No previous items archived yet.</p>";
+        listEl.innerHTML = '<p class="py-6 text-xs text-slate-400 italic text-center">No previous items archived yet.</p>';
       } else {
         listEl.innerHTML = items.map(item => `
           <a 
