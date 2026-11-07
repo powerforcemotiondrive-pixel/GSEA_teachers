@@ -945,6 +945,11 @@
     document.addEventListener('keydown', (e) => {
       // 1. ESCAPE KEY: Close active popup modals or slide-over drawer
       if (e.key === 'Escape') {
+        const mediaModal = document.getElementById('media-archive-modal');
+        if (mediaModal && !mediaModal.classList.contains('hidden')) {
+          closeMediaArchiveModal();
+          return;
+        }
         const reportModal = document.getElementById('portfolio-report-modal');
         if (reportModal && !reportModal.classList.contains('hidden')) {
           closePortfolioReportModal();
@@ -1209,12 +1214,27 @@
           <!-- MEDIA_UPDATE_START -->
           <!-- Section: Noticeboard and Media -->
           <div class="space-y-2.5">
-            <div class="flex items-center justify-between">
-              <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
-                <span>📌</span>
-                <span>Noticeboard and Media</span>
-              </h3>
-              <span class="text-[10px] font-mono text-slate-400">Weekly News &amp; Articles</span>
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
+              <div>
+                <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2">
+                  <span>📌</span>
+                  <span>Noticeboard &amp; Weekly Speaking Prompts</span>
+                </h3>
+                <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">
+                  Weekly teaching focus and short topical articles for 5-minute speaking warm-ups in Technical (AT) and General English (AG).
+                </p>
+              </div>
+              <button 
+                type="button" 
+                onclick="openMediaArchiveModal('news')" 
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 text-[11px] font-bold transition-colors cursor-pointer w-fit shrink-0 shadow-2xs border border-slate-200/60"
+                title="View previous articles"
+              >
+                <span>📁</span>
+                <span>Past Articles</span>
+                <span id="news-archive-badge" class="px-1.5 py-0.2 bg-slate-200 text-slate-700 rounded-full font-mono text-[9.5px]">2</span>
+                <span class="text-[10px] text-slate-400">→</span>
+              </button>
             </div>
 
             <!-- Up Next & Curated BBC Media Strip (Compact Single Row) -->
@@ -1266,7 +1286,7 @@
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                  title="Read article on BBC News ↗"
+                  title="Read on BBC News ↗"
                 >
                   <span>Read on BBC News</span>
                   <span class="text-[10px]">↗</span>
@@ -1297,7 +1317,7 @@
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                  title="Read feature on BBC Travel ↗"
+                  title="Read on BBC Travel ↗"
                 >
                   <span>Read on BBC Travel</span>
                   <span class="text-[10px]">↗</span>
@@ -1310,12 +1330,27 @@
 
         <!-- Section: General Culture & Cinema -->
         <div class="space-y-2.5">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
-              <span>🎬</span>
-              <span>General Culture &amp; Cinema • Weekly Film Recommendations</span>
-            </h3>
-            <span class="text-[10px] font-mono text-slate-400">Curated International &amp; Domestic Cinema</span>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
+            <div>
+              <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2">
+                <span>🎬</span>
+                <span>Weekly Film Recommendations</span>
+              </h3>
+              <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">
+                Curated cinema suggestions for students to practice independent listening and explore diverse culture outside class.
+              </p>
+            </div>
+            <button 
+              type="button" 
+              onclick="openMediaArchiveModal('films')" 
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 text-[11px] font-bold transition-colors cursor-pointer w-fit shrink-0 shadow-2xs border border-slate-200/60"
+              title="View previous film recommendations"
+            >
+              <span>📁</span>
+              <span>Past Films</span>
+              <span id="films-archive-badge" class="px-1.5 py-0.2 bg-slate-200 text-slate-700 rounded-full font-mono text-[9.5px]">5</span>
+              <span class="text-[10px] text-slate-400">→</span>
+            </button>
           </div>
 
           <!-- Weekly Film Recommendations Strip (Compact Single Row) -->
@@ -1425,7 +1460,6 @@
 
           </div>
         </div>
-          <!-- MEDIA_UPDATE_END -->
         </div>
       `;
     }
@@ -5920,6 +5954,129 @@ const PORTFOLIO_DATA_S1 = {
       `;
     }
 
+  </script>
+
+  <!-- Discreet Media Archive Modal Window (Option 1) -->
+  <div id="media-archive-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <!-- Backdrop Click to Close -->
+    <div onclick="closeMediaArchiveModal()" class="fixed inset-0"></div>
+    
+    <!-- Modal Dialog Window -->
+    <div class="relative bg-white rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border border-slate-200 space-y-4 z-10 transition-all">
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span id="archive-modal-icon" class="text-base">📁</span>
+          <div>
+            <h3 id="archive-modal-title" class="text-sm sm:text-base font-bold text-slate-900 leading-snug">Previous Recommendations</h3>
+            <span class="text-[10px] text-slate-400 font-mono">External direct links</span>
+          </div>
+        </div>
+        <button 
+          type="button" 
+          onclick="closeMediaArchiveModal()" 
+          class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-colors cursor-pointer text-xs font-bold" 
+          title="Close (Esc)"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Clean List of Links -->
+      <div id="archive-modal-list" class="divide-y divide-slate-100 max-h-80 overflow-y-auto pr-1">
+        <!-- Dynamically injected -->
+      </div>
+
+      <!-- Footer -->
+      <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+        <span class="text-[10.5px] text-slate-400 font-mono">Click link to open external page ↗</span>
+        <button 
+          type="button" 
+          onclick="closeMediaArchiveModal()" 
+          class="px-3.5 py-1.5 text-xs font-bold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors cursor-pointer"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // <!-- MEDIA_ARCHIVE_DATA_START -->
+    window.MEDIA_ARCHIVE_DATA = {
+  "news": [
+    {
+      "title": "Airlines Face New Flight Deck Audio Rules",
+      "url": "https://www.bbc.com/news/articles/cm9wz01dx8xro"
+    },
+    {
+      "title": "The Peruvian Hotel with a Terrifying Check-In",
+      "url": "https://www.bbc.com/travel/article/20261028-the-peruvian-hotel-with-a-terrifying-check-in"
+    }
+  ],
+  "films": [
+    {
+      "title": "Primetime (2026) • Dir. Lance Oppenheim",
+      "url": "https://www.imdb.com/title/tt34206385/"
+    },
+    {
+      "title": "Hope (호프) (2026) • Dir. Na Hong-jin",
+      "url": "https://www.imdb.com/title/tt27369017/"
+    },
+    {
+      "title": "Anatomy of a Fall (2023) • Dir. Justine Triet",
+      "url": "https://www.imdb.com/title/tt17009710/"
+    },
+    {
+      "title": "Perfect Days (2023) • Dir. Wim Wenders",
+      "url": "https://www.imdb.com/title/tt27503884/"
+    },
+    {
+      "title": "Past Lives (2023) • Dir. Celine Song",
+      "url": "https://www.imdb.com/title/tt13238346/"
+    }
+  ]
+};
+    // <!-- MEDIA_ARCHIVE_DATA_END -->
+
+    function openMediaArchiveModal(type) {
+      const modal = document.getElementById("media-archive-modal");
+      const titleEl = document.getElementById("archive-modal-title");
+      const iconEl = document.getElementById("archive-modal-icon");
+      const listEl = document.getElementById("archive-modal-list");
+      if (!modal || !listEl) return;
+
+      const isNews = type === "news";
+      if (iconEl) iconEl.textContent = isNews ? "📰" : "🎬";
+      if (titleEl) titleEl.textContent = isNews ? "Previous News Articles" : "Previous Film Recommendations";
+
+      const items = isNews ? (window.MEDIA_ARCHIVE_DATA?.news || []) : (window.MEDIA_ARCHIVE_DATA?.films || []);
+      if (!items || items.length === 0) {
+        listEl.innerHTML = "<p class="py-6 text-xs text-slate-400 italic text-center">No previous items archived yet.</p>";
+      } else {
+        listEl.innerHTML = items.map(item => `
+          <a 
+            href="${item.url}" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="flex items-center justify-between py-2.5 px-2 hover:bg-slate-50 rounded-lg transition-colors group cursor-pointer text-xs"
+            title="Open link in new tab ↗"
+          >
+            <span class="text-slate-800 font-medium group-hover:text-amber-600 transition-colors line-clamp-1 pr-3">
+              ${item.title}
+            </span>
+            <span class="text-slate-400 group-hover:text-amber-600 shrink-0 text-xs font-mono font-bold">↗</span>
+          </a>
+        `).join("");
+      }
+
+      modal.classList.remove("hidden");
+    }
+
+    function closeMediaArchiveModal() {
+      const modal = document.getElementById("media-archive-modal");
+      if (modal) modal.classList.add("hidden");
+    }
   </script>
 </body>
 </html>
