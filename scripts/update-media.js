@@ -1,5 +1,6 @@
 /**
  * GSEA Teachers Portal — Automated Weekly Media & Film Recommendations Updater
+ * With Automatic Historical Archive Dropdowns
  * 
  * Usage:
  *   node scripts/update-media.js [optional_csv_path]
@@ -10,6 +11,11 @@
  *   - 1 x up_next (statement / teaching note)
  *   - 2 x bbc (articles with URL)
  *   - 3 x imdb (film recommendations with IMDb URL)
+ * 
+ * Archive Storage:
+ *   data/media-archive.json
+ *   Contains historical arrays for 'newsArchive' and 'filmsArchive'.
+ *   Active cards automatically shift into the archive dropdowns on new updates.
  */
 
 const fs = require('fs');
@@ -19,6 +25,7 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const INDEX_HTML_PATH = path.join(ROOT_DIR, 'index.html');
 const DEFAULT_CSV_PATH = path.join(ROOT_DIR, 'data', 'media-latest.csv');
 const EXAMPLE_CSV_PATH = path.join(ROOT_DIR, 'data', 'media-latest.example.csv');
+const ARCHIVE_JSON_PATH = path.join(ROOT_DIR, 'data', 'media-archive.json');
 
 function parseCSV(text) {
   const lines = [];
@@ -86,6 +93,26 @@ function escapeHtml(str) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+function loadArchive() {
+  if (fs.existsSync(ARCHIVE_JSON_PATH)) {
+    try {
+      const data = JSON.parse(fs.readFileSync(ARCHIVE_JSON_PATH, 'utf8'));
+      return {
+        newsArchive: Array.isArray(data.newsArchive) ? data.newsArchive : [],
+        filmsArchive: Array.isArray(data.filmsArchive) ? data.filmsArchive : []
+      };
+    } catch (e) {
+      console.warn('⚠️ Could not parse media-archive.json, starting fresh.', e.message);
+    }
+  }
+  return { newsArchive: [], filmsArchive: [] };
+}
+
+function saveArchive(archive) {
+  fs.writeFileSync(ARCHIVE_JSON_PATH, JSON.stringify(archive, null, 2), 'utf8');
+  console.log(`💾 Saved archive: ${archive.newsArchive.length} news stories, ${archive.filmsArchive.length} films.`);
 }
 
 function main() {
@@ -166,9 +193,154 @@ function main() {
   const noticeStatement = upNextItem.content || upNextItem.summary || '';
   const noticeNoteType = upNextItem.summary || 'Teaching Note';
 
+  // --- ARCHIVE HANDLING ---
+  const archive = loadArchive();
+
+  // Helper to extract currently active links from index.html if not already archived
+  let indexHTML = fs.readFileSync(INDEX_HTML_PATH, 'utf8');
+
+  // Regex to extract existing active BBC articles in index.html before overwriting
+  const currentBbcRegex = /<h4[^>]*class="[^"]*font-bold[^"]*"[^>]*>\s*([\s\S]*?)\s*<\/h4>[\s\S]*?<a\s+href="([^"]+)"[^>]*>[\s\S]*?Read on BBC/gi;
+  let match;
+  while ((match = currentBbcRegex.exec(indexHTML)) !== null) {
+    const rawTitle = match[1].replace(/<[^>]+>/g, '').trim();
+    const rawUrl = match[2].trim();
+    // Only archive if valid BBC URL and not currently the incoming new one
+    if (rawUrl.startsWith('http') && rawUrl !== bbc1.content && rawUrl !== bbc2.content) {
+      if (!archive.newsArchive.some(a => a.url === rawUrl)) {
+        archive.newsArchive.unshift({
+          date: new Date().toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }),
+          week: noticeWeek,
+          category: rawUrl.includes('travel') ? 'Tourism & Leisure (AG)' : 'Aviation Safety (AT)',
+          source: rawUrl.includes('travel') ? 'BBC TRAVEL' : 'BBC NEWS',
+          title: rawTitle,
+          summary: '',
+          url: rawUrl
+        });
+      }
+    }
+  }
+
+  // Regex to extract existing active IMDb films in index.html before overwriting
+  const currentImdbRegex = /<h4[^>]*class="[^"]*font-bold[^"]*"[^>]*>\s*([\s\S]*?)\s*<\/h4>[\s\S]*?<a\s+href="(https:\/\/www\.imdb\.com\/title\/[^"]+)"/gi;
+  while ((match = currentImdbRegex.exec(indexHTML)) !== null) {
+    const rawTitle = match[1].replace(/<[^>]+>/g, '').trim();
+    const rawUrl = match[2].trim();
+    // Only archive if not currently the incoming new one
+    if (rawUrl !== imdb1.content && rawUrl !== imdb2.content && rawUrl !== imdb3.content) {
+      if (!archive.filmsArchive.some(f => f.url === rawUrl)) {
+        archive.filmsArchive.unshift({
+          date: new Date().toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }),
+          week: noticeWeek,
+          category: 'CURATED CINEMA',
+          genre: 'Cinema',
+          title: rawTitle,
+          credits: '',
+          summary: '',
+          url: rawUrl
+        });
+      }
+    }
+  }
+
+  saveArchive(archive);
+
+  // Render previous news stories dropdown HTML
+  const newsDropdownHTML = archive.newsArchive.length > 0 ? `
+            <!-- Previous News Stories Collapsible Dropdown -->
+            <details class="group bg-slate-50 border border-slate-200/90 rounded-2xl overflow-hidden shadow-2xs transition-all">
+              <summary class="cursor-pointer p-3 sm:p-3.5 flex items-center justify-between font-bold text-xs text-slate-700 hover:text-slate-900 hover:bg-slate-100/70 transition-colors select-none">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm">📰</span>
+                  <span class="uppercase tracking-wider">Previous News Stories</span>
+                  <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">${archive.newsArchive.length} archived</span>
+                </div>
+                <div class="flex items-center gap-1.5 text-[11px] text-slate-400 font-normal">
+                  <span class="group-open:hidden">Show archive</span>
+                  <span class="hidden group-open:inline">Hide archive</span>
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </div>
+              </summary>
+              <div class="p-3 sm:p-4 border-t border-slate-200/80 bg-white/70 space-y-2.5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  ${archive.newsArchive.map(item => `
+                  <div class="p-3 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-slate-300 transition-all flex flex-col justify-between space-y-1.5">
+                    <div>
+                      <div class="flex items-center justify-between gap-1 mb-1">
+                        <span class="text-[9px] font-black uppercase font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 truncate">
+                          ${escapeHtml(item.category || 'News')}
+                        </span>
+                        ${item.date ? `<span class="text-[10px] font-mono text-slate-400 shrink-0">${escapeHtml(item.date)}</span>` : ''}
+                      </div>
+                      <h5 class="text-xs font-bold text-slate-900 leading-snug line-clamp-2">
+                        ${escapeHtml(item.title)}
+                      </h5>
+                      ${item.summary ? `<p class="text-[11px] text-slate-500 leading-snug line-clamp-2 mt-0.5">${escapeHtml(item.summary)}</p>` : ''}
+                    </div>
+                    <div class="pt-1.5 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                      <span class="text-[10px] text-slate-400 font-mono">${escapeHtml(item.source || 'BBC')}</span>
+                      <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-slate-800 hover:text-amber-600 underline inline-flex items-center gap-0.5 cursor-pointer">
+                        <span>Read</span>
+                        <span class="text-[10px]">↗</span>
+                      </a>
+                    </div>
+                  </div>`).join('')}
+                </div>
+              </div>
+            </details>` : '';
+
+  // Render previous film recommendations dropdown HTML
+  const filmsDropdownHTML = archive.filmsArchive.length > 0 ? `
+            <!-- Previous Film Recommendations Collapsible Dropdown -->
+            <details class="group bg-slate-50 border border-slate-200/90 rounded-2xl overflow-hidden shadow-2xs transition-all">
+              <summary class="cursor-pointer p-3 sm:p-3.5 flex items-center justify-between font-bold text-xs text-slate-700 hover:text-slate-900 hover:bg-slate-100/70 transition-colors select-none">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm">🎬</span>
+                  <span class="uppercase tracking-wider">Previous Film Recommendations</span>
+                  <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">${archive.filmsArchive.length} archived</span>
+                </div>
+                <div class="flex items-center gap-1.5 text-[11px] text-slate-400 font-normal">
+                  <span class="group-open:hidden">Show archive</span>
+                  <span class="hidden group-open:inline">Hide archive</span>
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </div>
+              </summary>
+              <div class="p-3 sm:p-4 border-t border-slate-200/80 bg-white/70 space-y-2.5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+                  ${archive.filmsArchive.map(item => `
+                  <div class="p-3 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-slate-300 transition-all flex flex-col justify-between space-y-1.5">
+                    <div>
+                      <div class="flex items-center justify-between gap-1 mb-1">
+                        <span class="text-[9px] font-black uppercase font-mono px-1.5 py-0.5 rounded bg-slate-900 text-amber-300 truncate">
+                          ${escapeHtml(item.category || 'Cinema')}
+                        </span>
+                        ${item.date ? `<span class="text-[10px] font-mono text-slate-400 shrink-0">${escapeHtml(item.date)}</span>` : ''}
+                      </div>
+                      <h5 class="text-xs font-bold text-slate-900 leading-snug line-clamp-1">
+                        ${escapeHtml(item.title)}
+                      </h5>
+                      ${item.credits ? `<p class="text-[10px] text-slate-500 font-mono truncate">${escapeHtml(item.credits)}</p>` : ''}
+                      ${item.summary ? `<p class="text-[11px] text-slate-600 leading-snug line-clamp-2 mt-0.5">${escapeHtml(item.summary)}</p>` : ''}
+                    </div>
+                    <div class="pt-1.5 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                      <span class="px-1.5 py-0.5 rounded bg-[#f5c518] text-slate-950 font-black font-mono text-[9px]">IMDb</span>
+                      <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-slate-800 hover:text-amber-600 underline inline-flex items-center gap-0.5 cursor-pointer">
+                        <span>View</span>
+                        <span class="text-[10px]">↗</span>
+                      </a>
+                    </div>
+                  </div>`).join('')}
+                </div>
+              </div>
+            </details>` : '';
+
   // Build replacement HTML
   const replacementHTML = `<!-- Section: Noticeboard and Media -->
-          <div class="space-y-2.5">
+          <div class="space-y-3">
             <div class="flex items-center justify-between">
               <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
                 <span>📌</span>
@@ -265,21 +437,23 @@ function main() {
               </div>
             </div>
 
-          </div>
-        </div>
+            </div>
 
-        <!-- Section: General Culture & Cinema -->
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
-              <span>🎬</span>
-              <span>General Culture &amp; Cinema • Weekly Film Recommendations</span>
-            </h3>
-            <span class="text-[10px] font-mono text-slate-400">Curated International &amp; Domestic Cinema</span>
+            ${newsDropdownHTML}
           </div>
 
-          <!-- Weekly Film Recommendations Strip (Compact Single Row) -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <!-- Section: General Culture & Cinema -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                <span>🎬</span>
+                <span>General Culture &amp; Cinema • Weekly Film Recommendations</span>
+              </h3>
+              <span class="text-[10px] font-mono text-slate-400">Curated International &amp; Domestic Cinema</span>
+            </div>
+
+            <!-- Weekly Film Recommendations Strip (Compact Single Row) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             
             ${[imdb1, imdb2, imdb3].map((film) => {
               const fullSummary = film.summary || '';
@@ -328,10 +502,11 @@ function main() {
             </div>`;
             }).join('\n\n            ')}
 
-          </div>
-        </div>`;
+            </div>
 
-  let indexHTML = fs.readFileSync(INDEX_HTML_PATH, 'utf8');
+            ${filmsDropdownHTML}
+          </div>`;
+
   const startMarker = '<!-- MEDIA_UPDATE_START -->';
   const endMarker = '<!-- MEDIA_UPDATE_END -->';
 
@@ -354,11 +529,10 @@ function main() {
   }
 
   fs.writeFileSync(INDEX_HTML_PATH, updatedHTML, 'utf8');
-  console.log('✅ index.html media sections updated successfully!');
+  console.log('✅ index.html media sections updated successfully with historical archive dropdowns!');
   console.log(`📌 Up Next Notice: "${noticeHeadline}"`);
   console.log(`📰 BBC Articles: "${bbc1.title}" & "${bbc2.title}"`);
   console.log(`🎬 IMDb Films: "${imdb1.title}", "${imdb2.title}", "${imdb3.title}"`);
 }
 
 main();
-
