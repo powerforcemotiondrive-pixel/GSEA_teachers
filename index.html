@@ -96,23 +96,37 @@
         box-shadow: none !important;
         background: #ffffff !important;
       }
-      .student-bulletin-card, .absence-report-card, .portfolio-report-card, .portfolio-group-cover-card {
+      .student-bulletin-card, .absence-report-card, .portfolio-report-card {
         page-break-after: always !important;
         break-after: page !important;
         box-shadow: none !important;
         border: 1px solid #cbd5e1 !important;
         padding: 1.5rem !important;
       }
+      .portfolio-group-cover-header {
+        border-bottom: 2px solid #0f172a !important;
+        padding-bottom: 1.25rem !important;
+        margin-bottom: 1.5rem !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      .portfolio-student-section {
+        box-shadow: none !important;
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
       .portfolio-student-section.student-page-break {
         page-break-after: always !important;
         break-after: page !important;
       }
-      .portfolio-entry-card {
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
+      .portfolio-session-entry {
         box-shadow: none !important;
-        border: 1px solid #cbd5e1 !important;
-        background: #ffffff !important;
+        background: transparent !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
       }
       #grade-report-modal, #absence-report-modal, #portfolio-report-modal, #group-entries-dossier-modal {
         position: static !important;
@@ -127,6 +141,13 @@
         overflow: visible !important;
         width: 100% !important;
         max-width: 100% !important;
+        background: #ffffff !important;
+        padding: 0 !important;
+      }
+      #group-entries-print-area {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
     }
   </style>
@@ -6164,9 +6185,9 @@ const PORTFOLIO_DATA_S1 = {
                   <option value="3">Module 3 (FE3)</option>
                 </select>
 
-                <!-- Page Break Toggle -->
+                <!-- Page Break Toggle (Default unchecked for continuous flow without page gaps) -->
                 <label class="hidden sm:inline-flex items-center gap-1.5 text-xs text-slate-600 font-semibold cursor-pointer px-2 py-1 rounded-lg bg-white border border-slate-200" title="Start each student on a new page when printing or saving as PDF">
-                  <input type="checkbox" id="group-dossier-page-break" onchange="renderGroupEntriesPrintArea()" checked class="rounded border-slate-300 text-slate-800 focus:ring-slate-800 cursor-pointer">
+                  <input type="checkbox" id="group-dossier-page-break" onchange="renderGroupEntriesPrintArea()" class="rounded border-slate-300 text-slate-800 focus:ring-slate-800 cursor-pointer">
                   <span>Page break / student</span>
                 </label>
 
@@ -6913,55 +6934,60 @@ const PORTFOLIO_DATA_S1 = {
       const avgToeic = allToeicScores.length > 0 ? (allToeicScores.reduce((a, b) => a + b, 0) / allToeicScores.length).toFixed(1) : "N/A";
 
       let html = `
-        <div class="portfolio-group-cover-card bg-white rounded-2xl p-6 sm:p-8 border border-slate-300 shadow-sm space-y-5">
-          <div class="flex flex-col sm:flex-row sm:items-start justify-between pb-4 border-b-2 border-slate-900 gap-4">
-            <div class="space-y-1.5">
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="text-[10px] font-black uppercase tracking-widest text-white bg-slate-900 px-2 py-0.5 rounded">
+        <!-- Official Document Header (No Giant Box) -->
+        <div class="portfolio-group-cover-header pb-4 mb-6 border-b-2 border-slate-900 bg-white">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div class="space-y-1">
+              <div class="flex flex-wrap items-center gap-2 text-xs">
+                <span class="font-black uppercase tracking-wider text-slate-900 font-mono">
                   ENAC • DÉPARTEMENT LH / LAN
                 </span>
-                <span class="text-[11px] font-mono font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-                  ${sem.title} • ${sem.tracks}
+                <span class="text-slate-400">•</span>
+                <span class="font-mono text-slate-600 font-bold">
+                  ${sem.title} (${sem.tracks})
+                </span>
+                <span class="text-slate-400">•</span>
+                <span class="text-slate-500 font-mono">
+                  Date: ${todayFormatted}
                 </span>
               </div>
-              <h2 class="text-xl sm:text-2xl font-black text-slate-950 tracking-tight pt-1 font-mono">
+              <h2 class="text-xl sm:text-2xl font-black text-slate-950 tracking-tight font-mono uppercase">
                 ${bookletCallsign}
               </h2>
-              <p class="text-xs font-semibold text-slate-600">
-                Official Student Portfolio Reflections Dossier • Complete Log of All Student Entries
+              <p class="text-xs text-slate-600">
+                Official Student Portfolio Reflections Dossier • Complete Verbatim Transcripts
               </p>
-              <div class="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-600">
+              <div class="flex flex-wrap items-center gap-2 pt-1 text-xs text-slate-600">
                 <span>Promotion: <strong>${promoName}</strong></span>
                 <span>•</span>
-                <span>Scope: <strong>${grpFilter === "all" ? "All Groups" : groupsToRender[0]?.name}</strong></span>
+                <span>Scope: <strong>${grpFilter === "all" ? "All Groups Combined" : groupsToRender[0]?.name}</strong></span>
                 <span>•</span>
-                <span>Track: <strong>${trackFilter === "all" ? "All Tracks" : trackFilter}</strong></span>
+                <span>Track: <strong>${trackFilter === "all" ? "All Tracks Combined" : trackFilter}</strong></span>
                 <span>•</span>
                 <span>Module: <strong>${modLabel}</strong></span>
-                <span>•</span>
-                <span>Date: <strong>${todayFormatted}</strong></span>
               </div>
             </div>
 
-            <div class="shrink-0 flex items-center gap-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200 self-start">
-              <div class="text-center px-2">
-                <span class="text-[9px] uppercase font-bold text-slate-500 block">Candidates</span>
-                <span class="text-lg font-black text-slate-900">${studentWithEntriesCount} / ${totalStudentsInScope}</span>
+            <!-- KPI Summary Text Strip -->
+            <div class="flex items-center gap-4 text-xs font-mono shrink-0 pt-1 sm:pt-0">
+              <div class="text-right">
+                <span class="text-[10px] uppercase text-slate-500 block font-sans">Active Candidates</span>
+                <strong class="text-slate-900 text-sm">${studentWithEntriesCount} / ${totalStudentsInScope}</strong>
               </div>
-              <div class="h-7 w-px bg-slate-200"></div>
-              <div class="text-center px-2">
-                <span class="text-[9px] uppercase font-bold text-slate-500 block">Total Logs</span>
-                <span class="text-lg font-black text-slate-900">${totalMatchingEntries}</span>
+              <div class="h-8 w-px bg-slate-300"></div>
+              <div class="text-right">
+                <span class="text-[10px] uppercase text-slate-500 block font-sans">Total Logs</span>
+                <strong class="text-slate-900 text-sm">${totalMatchingEntries}</strong>
               </div>
-              <div class="h-7 w-px bg-slate-200"></div>
-              <div class="text-center px-2">
-                <span class="text-[9px] uppercase font-bold text-emerald-700 block">Avg FE</span>
-                <span class="text-lg font-black text-emerald-700">${avgFe}/10</span>
+              <div class="h-8 w-px bg-slate-300"></div>
+              <div class="text-right">
+                <span class="text-[10px] uppercase text-slate-500 block font-sans">Avg FE</span>
+                <strong class="text-emerald-700 text-sm">${avgFe}/10</strong>
               </div>
-              <div class="h-7 w-px bg-slate-200"></div>
-              <div class="text-center px-2">
-                <span class="text-[9px] uppercase font-bold text-slate-700 block">Avg TOEIC</span>
-                <span class="text-lg font-black text-slate-900">${avgToeic}/10</span>
+              <div class="h-8 w-px bg-slate-300"></div>
+              <div class="text-right">
+                <span class="text-[10px] uppercase text-slate-500 block font-sans">Avg TOEIC</span>
+                <strong class="text-slate-900 text-sm">${avgToeic}/10</strong>
               </div>
             </div>
           </div>
@@ -6970,7 +6996,7 @@ const PORTFOLIO_DATA_S1 = {
 
       groupsToRender.forEach(group => {
         html += `
-          <div class="space-y-6 pt-2">
+          <div class="space-y-4 pt-2">
             ${groupsToRender.length > 1 ? `
               <div class="pb-2 border-b-2 border-slate-800 flex items-center justify-between">
                 <h3 class="text-base font-black text-slate-900 uppercase tracking-wider font-mono">
@@ -6993,119 +7019,99 @@ const PORTFOLIO_DATA_S1 = {
           const pageBreakClass = pageBreakChecked ? 'student-page-break' : '';
 
           html += `
-            <div class="portfolio-student-section bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-2xs space-y-4 ${pageBreakClass}">
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 gap-2">
+            <div class="portfolio-student-section pt-5 mb-8 ${pageBreakClass}">
+              <!-- High-Contrast Visual Break Bar Between Students -->
+              <div class="flex flex-wrap items-baseline justify-between gap-2 pb-2 mb-4 border-b-2 border-slate-900" style="break-after: avoid;">
                 <div class="flex items-center gap-2.5">
-                  <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-xs shadow-inner">
-                    👤
-                  </div>
-                  <div>
-                    <h4 class="text-sm sm:text-base font-black text-slate-950 font-mono">
-                      ${sName}
-                    </h4>
-                    <p class="text-[11px] text-slate-500">
-                      ${group.name} • Identifier: <span class="font-mono font-bold text-slate-700">${stId}</span>
-                    </p>
-                  </div>
+                  <span class="text-base font-black text-slate-950 font-mono tracking-tight">
+                    ${sName}
+                  </span>
+                  <span class="text-[11px] font-mono font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-300">
+                    ${stId}
+                  </span>
                 </div>
-                <div class="flex items-center gap-2">
-                  <span class="text-xs font-bold px-2.5 py-1 rounded-lg ${sEntries.length > 0 ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-slate-100 text-slate-600 border border-slate-200'}">
+                <div class="flex items-center gap-2 text-xs font-mono text-slate-600">
+                  <span class="font-bold text-slate-800">${group.name}</span>
+                  <span>•</span>
+                  <span class="font-bold ${sEntries.length > 0 ? 'text-emerald-700' : 'text-slate-400'}">
                     ${sEntries.length} ${sEntries.length === 1 ? 'Entry Logged' : 'Entries Logged'}
                   </span>
                 </div>
               </div>
 
+              <!-- Entries Flow (Pure Typography, Zero Nested Boxes) -->
               ${sEntries.length === 0 ? `
-                <div class="p-4 rounded-xl bg-slate-50 border border-dashed border-slate-300 text-center text-xs text-slate-500 italic">
+                <div class="py-3 text-xs text-slate-500 italic pl-3 border-l-2 border-slate-300">
                   ⏳ No reflection entries submitted for ${sName} matching ${trackTag} • ${modLabel}.
                 </div>
               ` : `
-                <div class="space-y-4">
+                <div class="space-y-6">
                   ${sEntries.map(entry => {
                     const isAg = entry.track && entry.track.toUpperCase() === "AG";
-                    const trackBadgeBg = isAg ? "bg-sky-100 text-sky-800 border-sky-200" : "bg-purple-100 text-purple-800 border-purple-200";
-
                     return `
-                      <div class="portfolio-entry-card bg-slate-50/70 rounded-xl p-4 sm:p-5 border border-slate-200 space-y-3">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-2.5 border-b border-slate-200 gap-2">
-                          <div class="flex flex-wrap items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider ${trackBadgeBg} border">
-                              ${entry.track} TRACK
+                      <div class="portfolio-session-entry pb-5 border-b border-slate-200 space-y-3">
+                        <!-- Session Subtitle Line -->
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-1 border-b border-slate-100 text-xs">
+                          <div class="flex items-center gap-2">
+                            <span class="font-mono font-bold text-[10px] uppercase px-1.5 py-0.5 rounded text-white ${isAg ? 'bg-sky-800' : 'bg-purple-800'}">
+                              ${entry.track}
                             </span>
-                            <span class="font-bold text-xs text-slate-900">
+                            <strong class="text-slate-900">
                               Session ${entry.session} — ${escapeHtml(entry.module || 'Module ' + modNum)}
-                            </span>
-                            <span class="text-[10px] text-slate-400 font-mono">
+                            </strong>
+                            <span class="text-slate-400 font-mono text-[11px]">
                               (${escapeHtml(entry.timestamp)})
                             </span>
                           </div>
-                          <div class="flex items-center gap-2 text-[11px] font-mono">
+                          <div class="flex items-center gap-3 font-mono text-[11px]">
                             ${entry.feScore !== null && entry.feScore !== undefined ? `
-                              <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold border border-emerald-200" title="Formative Evaluation Preparation Readiness">
-                                🗣️ FE: ${entry.feScore}/10
-                              </span>
+                              <span class="text-emerald-800 font-bold">🗣️ FE Readiness: ${entry.feScore}/10</span>
                             ` : ''}
                             ${entry.toeicScore !== null && entry.toeicScore !== undefined ? `
-                              <span class="px-2 py-0.5 rounded bg-indigo-50 text-indigo-800 font-bold border border-indigo-200" title="TOEIC Test Readiness">
-                                🎧 TOEIC: ${entry.toeicScore}/10
-                              </span>
+                              <span class="text-indigo-800 font-bold">🎧 TOEIC: ${entry.toeicScore}/10</span>
                             ` : ''}
                           </div>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                          <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1">
-                            <div class="flex items-center gap-1.5 font-bold text-slate-800 text-[11px] uppercase tracking-wider">
-                              <span>🎯</span>
-                              <span>Key Spoken Vocabulary</span>
-                            </div>
-                            <p class="text-slate-700 leading-relaxed whitespace-pre-line text-[11.5px]">
+                        <!-- Clean Structured Text Blocks (Zero Boxes) -->
+                        <div class="space-y-3 text-xs text-slate-800 leading-relaxed">
+                          <div>
+                            <span class="font-bold text-amber-900 uppercase tracking-wider text-[10.5px] block mb-0.5">🎯 Key Spoken Vocabulary</span>
+                            <p class="whitespace-pre-line pl-3 border-l-2 border-amber-400 text-slate-700">
                               ${escapeHtml(entry.vocab) || '<span class="text-slate-400 italic">None logged</span>'}
                             </p>
                           </div>
 
-                          <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1">
-                            <div class="flex items-center gap-1.5 font-bold text-slate-800 text-[11px] uppercase tracking-wider">
-                              <span>📖</span>
-                              <span>Lesson Content Review (What I Learnt)</span>
-                            </div>
-                            <p class="text-slate-700 leading-relaxed whitespace-pre-line text-[11.5px]">
+                          <div>
+                            <span class="font-bold text-slate-800 uppercase tracking-wider text-[10.5px] block mb-0.5">📖 Lesson Content Review (What I Learnt)</span>
+                            <p class="whitespace-pre-line pl-3 border-l-2 border-slate-400 text-slate-700">
                               ${escapeHtml(entry.content) || '<span class="text-slate-400 italic">None logged</span>'}
                             </p>
                           </div>
 
-                          <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1">
-                            <div class="flex items-center gap-1.5 font-bold text-amber-900 text-[11px] uppercase tracking-wider">
-                              <span>🛠️</span>
-                              <span>What I Need to Work On (Weaknesses)</span>
-                            </div>
-                            <p class="text-slate-700 leading-relaxed whitespace-pre-line text-[11.5px]">
+                          <div>
+                            <span class="font-bold text-rose-900 uppercase tracking-wider text-[10.5px] block mb-0.5">🛠️ What I Need to Work On (Weaknesses)</span>
+                            <p class="whitespace-pre-line pl-3 border-l-2 border-rose-400 text-slate-700">
                               ${escapeHtml(entry.needs) || '<span class="text-slate-400 italic">None logged</span>'}
                             </p>
                           </div>
 
-                          <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1">
-                            <div class="flex items-center gap-1.5 font-bold text-emerald-900 text-[11px] uppercase tracking-wider">
-                              <span>🗣️</span>
-                              <span>Formative Evaluation Application</span>
-                            </div>
-                            <p class="text-slate-700 leading-relaxed whitespace-pre-line text-[11.5px]">
+                          <div>
+                            <span class="font-bold text-emerald-900 uppercase tracking-wider text-[10.5px] block mb-0.5">🗣️ Formative Evaluation Application</span>
+                            <p class="whitespace-pre-line pl-3 border-l-2 border-emerald-400 text-slate-700">
                               ${escapeHtml(entry.helpFe) || '<span class="text-slate-400 italic">None logged</span>'}
                             </p>
                           </div>
-                        </div>
 
-                        ${entry.toeicPrep && !entry.toeicPrep.startsWith("N/A") && entry.toeicPrep.trim().length > 0 ? `
-                          <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1 text-xs">
-                            <div class="flex items-center gap-1.5 font-bold text-indigo-900 text-[11px] uppercase tracking-wider">
-                              <span>🎧</span>
-                              <span>Independent Study &amp; TOEIC Practice This Week</span>
+                          ${entry.toeicPrep && !entry.toeicPrep.startsWith("N/A") && entry.toeicPrep.trim().length > 0 ? `
+                            <div>
+                              <span class="font-bold text-indigo-900 uppercase tracking-wider text-[10.5px] block mb-0.5">🎧 Independent Study &amp; TOEIC Practice This Week</span>
+                              <p class="whitespace-pre-line pl-3 border-l-2 border-indigo-400 text-slate-700">
+                                ${escapeHtml(entry.toeicPrep)}
+                              </p>
                             </div>
-                            <p class="text-slate-700 leading-relaxed whitespace-pre-line text-[11.5px]">
-                              ${escapeHtml(entry.toeicPrep)}
-                            </p>
-                          </div>
-                        ` : ''}
+                          ` : ''}
+                        </div>
                       </div>
                     `;
                   }).join("")}
@@ -7119,7 +7125,8 @@ const PORTFOLIO_DATA_S1 = {
       });
 
       html += `
-        <div class="portfolio-entry-card bg-white rounded-2xl p-6 border border-slate-300 shadow-2xs space-y-4 mt-6">
+        <!-- Teachers Institutional Sign-Off Strip -->
+        <div class="pt-6 mt-8 border-t-2 border-slate-900">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-600 gap-4">
             <div class="space-y-0.5">
               <span class="font-bold text-slate-900 block font-mono">${bookletCallsign}</span>
