@@ -96,24 +96,37 @@
         box-shadow: none !important;
         background: #ffffff !important;
       }
-      .student-bulletin-card, .absence-report-card, .portfolio-report-card {
+      .student-bulletin-card, .absence-report-card, .portfolio-report-card, .portfolio-group-cover-card {
         page-break-after: always !important;
         break-after: page !important;
         box-shadow: none !important;
         border: 1px solid #cbd5e1 !important;
         padding: 1.5rem !important;
       }
-      #grade-report-modal, #absence-report-modal, #portfolio-report-modal {
+      .portfolio-student-section.student-page-break {
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+      .portfolio-entry-card {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        background: #ffffff !important;
+      }
+      #grade-report-modal, #absence-report-modal, #portfolio-report-modal, #group-entries-dossier-modal {
         position: static !important;
         background: transparent !important;
         padding: 0 !important;
         overflow: visible !important;
       }
-      #grade-report-modal > div, #absence-report-modal > div, #portfolio-report-modal > div {
+      #grade-report-modal > div, #absence-report-modal > div, #portfolio-report-modal > div, #group-entries-dossier-modal > div {
         max-height: none !important;
         box-shadow: none !important;
         border: none !important;
         overflow: visible !important;
+        width: 100% !important;
+        max-width: 100% !important;
       }
     }
   </style>
@@ -955,6 +968,11 @@
           closePortfolioReportModal();
           return;
         }
+        const groupModal = document.getElementById('group-entries-dossier-modal');
+        if (groupModal && !groupModal.classList.contains('hidden')) {
+          closeGroupEntriesDossierModal();
+          return;
+        }
         const gradeModal = document.getElementById('grade-report-modal');
         if (gradeModal && !gradeModal.classList.contains('hidden')) {
           closeStudentGradeReportModal();
@@ -982,9 +1000,11 @@
 
         // Do not intercept if an inner popup modal is active
         const reportModal = document.getElementById('portfolio-report-modal');
+        const groupModal = document.getElementById('group-entries-dossier-modal');
         const gradeModal = document.getElementById('grade-report-modal');
         const absModal = document.getElementById('absence-report-modal');
         if ((reportModal && !reportModal.classList.contains('hidden')) ||
+            (groupModal && !groupModal.classList.contains('hidden')) ||
             (gradeModal && !gradeModal.classList.contains('hidden')) ||
             (absModal && !absModal.classList.contains('hidden'))) {
           return;
@@ -5828,16 +5848,27 @@ const PORTFOLIO_DATA_S1 = {
               </button>
             </div>
 
-            <!-- PDF Report Generator Button -->
-            <button 
-              type="button" 
-              onclick="openPortfolioReportModal()" 
-              class="px-3.5 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-2xs transition-all cursor-pointer border border-amber-400 shrink-0"
-              title="Generate Official Student Portfolio Compliance & Reflection Dossier (PDF)"
-            >
-              <span>🖨️</span>
-              <span>Portfolio Report (PDF)</span>
-            </button>
+            <!-- PDF Report Generator Action Buttons (Mobile-first wrapped) -->
+            <div class="flex items-center gap-2 w-full sm:w-auto justify-end flex-wrap">
+              <button 
+                type="button" 
+                onclick="openPortfolioReportModal()" 
+                class="px-3.5 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-2xs transition-all cursor-pointer border border-amber-400 shrink-0"
+                title="Generate Official Student Portfolio Compliance & Reflection Digest (PDF)"
+              >
+                <span>📊</span>
+                <span>Compliance Report (PDF)</span>
+              </button>
+              <button 
+                type="button" 
+                onclick="openGroupEntriesDossierModal()" 
+                class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:bg-slate-900 text-white font-bold text-xs flex items-center gap-1.5 shadow-2xs transition-all cursor-pointer border border-slate-700 shrink-0"
+                title="Generate Complete PDF of All Student Portfolio Entries by Group & Track (e.g. GSEA26A AG GRP A)"
+              >
+                <span>📝</span>
+                <span>Group Entries Dossier (PDF)</span>
+              </button>
+            </div>
           </div>
 
           <!-- Cohort Insights & Reflections Summary Card -->
@@ -5974,6 +6005,80 @@ const PORTFOLIO_DATA_S1 = {
             <div class="p-4 sm:p-8 overflow-y-auto flex-1 bg-slate-100/60">
               <div id="portfolio-report-print-area" class="max-w-4xl mx-auto space-y-6">
                 <!-- Injected via renderPortfolioReportPrintArea() -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group Portfolio Entries Print / PDF Modal -->
+        <div id="group-entries-dossier-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+          <div class="bg-white w-full max-w-5xl rounded-2xl shadow-2xl border border-slate-300 max-h-[92vh] flex flex-col overflow-hidden">
+            <!-- Modal Control Header (hidden in print) -->
+            <div class="no-print p-4 sm:p-5 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-lg shadow-inner">
+                  📝
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-slate-900">Student Portfolio Entries Dossier</h3>
+                  <p class="text-xs text-slate-500">ENAC Official Academic Digest • Complete Verbatim Student Reflections</p>
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+                <!-- Group Filter -->
+                <select id="group-dossier-group-filter" onchange="renderGroupEntriesPrintArea()" class="text-xs font-bold p-2 rounded-xl border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-slate-800 cursor-pointer flex-1 sm:flex-initial">
+                  <option value="grpA">Group A</option>
+                  <option value="grpB">Group B</option>
+                  <option value="all">All Groups</option>
+                </select>
+
+                <!-- Track Filter -->
+                <select id="group-dossier-track-filter" onchange="renderGroupEntriesPrintArea()" class="text-xs font-bold p-2 rounded-xl border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-slate-800 cursor-pointer flex-1 sm:flex-initial">
+                  <option value="all">All Tracks</option>
+                  <option value="AG">AG (General)</option>
+                  <option value="AT">AT (Technical)</option>
+                </select>
+
+                <!-- Module Filter -->
+                <select id="group-dossier-module-filter" onchange="renderGroupEntriesPrintArea()" class="text-xs font-bold p-2 rounded-xl border border-slate-300 bg-white text-slate-800 focus:ring-2 focus:ring-slate-800 cursor-pointer flex-1 sm:flex-initial">
+                  <option value="all">All Modules (Cumulative)</option>
+                  <option value="1">Module 1 (FE1)</option>
+                  <option value="2">Module 2 (FE2)</option>
+                  <option value="3">Module 3 (FE3)</option>
+                </select>
+
+                <!-- Page Break Toggle -->
+                <label class="hidden sm:inline-flex items-center gap-1.5 text-xs text-slate-600 font-semibold cursor-pointer px-2 py-1 rounded-lg bg-white border border-slate-200" title="Start each student on a new page when printing or saving as PDF">
+                  <input type="checkbox" id="group-dossier-page-break" onchange="renderGroupEntriesPrintArea()" checked class="rounded border-slate-300 text-slate-800 focus:ring-slate-800 cursor-pointer">
+                  <span>Page break / student</span>
+                </label>
+
+                <!-- Print Button -->
+                <button 
+                  type="button" 
+                  onclick="window.print()" 
+                  class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 flex items-center gap-2 shadow-sm transition-all cursor-pointer border border-amber-400 w-full sm:w-auto justify-center"
+                >
+                  <span>🖨️</span>
+                  <span>Print / Save as PDF</span>
+                </button>
+
+                <!-- Close Button -->
+                <button 
+                  type="button" 
+                  onclick="closeGroupEntriesDossierModal()" 
+                  class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer"
+                  title="Close modal"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            <!-- Modal Scrollable Print Preview Body -->
+            <div class="p-4 sm:p-8 overflow-y-auto flex-1 bg-slate-100/60">
+              <div id="group-entries-print-area" class="max-w-4xl mx-auto space-y-6">
+                <!-- Injected via renderGroupEntriesPrintArea() -->
               </div>
             </div>
           </div>
@@ -6552,6 +6657,372 @@ const PORTFOLIO_DATA_S1 = {
           </div>
         </div>
       `;
+    }
+
+    // ============================================================================
+    // GROUP STUDENT PORTFOLIO ENTRIES DOSSIER (PRINT / PDF ENGINE)
+    // ============================================================================
+
+    function openGroupEntriesDossierModal() {
+      const modal = document.getElementById("group-entries-dossier-modal");
+      if (!modal) return;
+      modal.classList.remove("hidden");
+
+      const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
+      const grpSelect = document.getElementById("group-dossier-group-filter");
+      if (grpSelect) {
+        let options = '';
+        const groupsAvailable = [];
+        if (sem.students?.groupA?.length) groupsAvailable.push({ key: "grpA", label: "Group A", count: sem.students.groupA.length });
+        if (sem.students?.groupB?.length) groupsAvailable.push({ key: "grpB", label: "Group B", count: sem.students.groupB.length });
+        if (sem.students?.groupC?.length) groupsAvailable.push({ key: "grpC", label: "Group C", count: sem.students.groupC.length });
+        if (sem.students?.groupD?.length) groupsAvailable.push({ key: "grpD", label: "Group D", count: sem.students.groupD.length });
+
+        groupsAvailable.forEach(g => {
+          options += '<option value="' + g.key + '">' + g.label + ' (' + g.count + ' Candidates)</option>';
+        });
+        options += '<option value="all">All Groups Combined</option>';
+        grpSelect.innerHTML = options;
+
+        if (activeMatrixGroupFilter === "Group A") grpSelect.value = "grpA";
+        else if (activeMatrixGroupFilter === "Group B") grpSelect.value = "grpB";
+        else if (activeMatrixGroupFilter === "Group C") grpSelect.value = "grpC";
+        else if (activeMatrixGroupFilter === "Group D") grpSelect.value = "grpD";
+        else grpSelect.value = groupsAvailable[0]?.key || "grpA";
+      }
+
+      const trackSelect = document.getElementById("group-dossier-track-filter");
+      if (trackSelect) {
+        const isDualTrack = sem.num === 1 || sem.num === 2;
+        const atLabel = sem.num === 2 ? "AAS" : (sem.num === 4 ? "AP" : "AT");
+        let trackOpts = '<option value="all">All Tracks Combined</option>';
+        if (isDualTrack) {
+          trackOpts += '<option value="AG">AG (General English)</option>';
+          trackOpts += '<option value="' + atLabel + '">' + atLabel + ' (Technical English)</option>';
+        } else {
+          trackOpts += '<option value="' + atLabel + '">' + atLabel + ' (Technical English)</option>';
+        }
+        trackSelect.innerHTML = trackOpts;
+        trackSelect.value = "all";
+      }
+
+      const modSelect = document.getElementById("group-dossier-module-filter");
+      if (modSelect) {
+        modSelect.value = String(activePortfolioModule || 1);
+      }
+
+      renderGroupEntriesPrintArea();
+    }
+
+    function closeGroupEntriesDossierModal() {
+      const modal = document.getElementById("group-entries-dossier-modal");
+      if (modal) modal.classList.add("hidden");
+    }
+
+    function renderGroupEntriesPrintArea() {
+      const container = document.getElementById("group-entries-print-area");
+      if (!container) return;
+
+      const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
+      const pData = getPortfolioDataForSemester(sem.num);
+
+      if (!pData || !pData.totalSubmissions || pData.totalSubmissions === 0) {
+        container.innerHTML = `
+          <div class="portfolio-report-card bg-white rounded-2xl p-8 border border-slate-200 text-center space-y-3">
+            <span class="text-3xl">⏳</span>
+            <h3 class="text-base font-bold text-slate-900">Awaiting Student Portfolio Submissions</h3>
+            <p class="text-xs text-slate-500">No student reflection logs have been synchronized for ${sem.title} yet.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const grpFilter = document.getElementById("group-dossier-group-filter")?.value || "grpA";
+      const trackFilter = document.getElementById("group-dossier-track-filter")?.value || "all";
+      const modFilter = document.getElementById("group-dossier-module-filter")?.value || "1";
+      const pageBreakChecked = document.getElementById("group-dossier-page-break")?.checked !== false;
+
+      const modNum = modFilter === "all" ? 0 : (parseInt(modFilter, 10) || 1);
+      const isDualTrack = sem.num === 1 || sem.num === 2;
+      const atLabel = sem.num === 2 ? "AAS" : (sem.num === 4 ? "AP" : "AT");
+
+      const groupsToRender = [];
+      if (grpFilter === "all" || grpFilter === "grpA") {
+        if (sem.students?.groupA?.length) groupsToRender.push({ key: "grpA", name: "Group A", short: "GRP A", ids: sem.students.groupA });
+      }
+      if (grpFilter === "all" || grpFilter === "grpB") {
+        if (sem.students?.groupB?.length) groupsToRender.push({ key: "grpB", name: "Group B", short: "GRP B", ids: sem.students.groupB });
+      }
+      if (grpFilter === "all" || grpFilter === "grpC") {
+        if (sem.students?.groupC?.length) groupsToRender.push({ key: "grpC", name: "Group C", short: "GRP C", ids: sem.students.groupC });
+      }
+      if (grpFilter === "all" || grpFilter === "grpD") {
+        if (sem.students?.groupD?.length) groupsToRender.push({ key: "grpD", name: "Group D", short: "GRP D", ids: sem.students.groupD });
+      }
+
+      const records = pData.studentRecords || [];
+
+      // Callsign formatted as requested: e.g. "GSEA26A AG GRP A", "GSEA26A AT GRP B"
+      const promoName = sem.promotion || "GSEA26A";
+      let trackTag = trackFilter === "all" ? "ALL" : trackFilter.toUpperCase();
+      let groupTag = grpFilter === "all" ? "ALL GROUPS" : (grpFilter === "grpA" ? "GRP A" : (grpFilter === "grpB" ? "GRP B" : (grpFilter === "grpC" ? "GRP C" : "GRP D")));
+      const bookletCallsign = `${promoName} ${trackTag} ${groupTag}`;
+      const modLabel = modNum === 0 ? "Cumulative (All Modules)" : `Module ${modNum}`;
+      const todayFormatted = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+
+      let totalMatchingEntries = 0;
+      let totalStudentsInScope = 0;
+      let studentWithEntriesCount = 0;
+      const allFeScores = [];
+      const allToeicScores = [];
+
+      groupsToRender.forEach(g => {
+        totalStudentsInScope += g.ids.length;
+        g.ids.forEach(stId => {
+          const sEntries = records.filter(r => r.id === stId &&
+            (trackFilter === "all" || (r.track && r.track.toUpperCase() === trackFilter.toUpperCase())) &&
+            (modNum === 0 || getRecordModuleNum(r) === modNum)
+          );
+          if (sEntries.length > 0) studentWithEntriesCount++;
+          totalMatchingEntries += sEntries.length;
+          sEntries.forEach(r => {
+            if (r.feScore !== null && r.feScore !== undefined && !isNaN(r.feScore) && r.feScore > 0) allFeScores.push(r.feScore);
+            if (r.toeicScore !== null && r.toeicScore !== undefined && !isNaN(r.toeicScore) && r.toeicScore > 0) allToeicScores.push(r.toeicScore);
+          });
+        });
+      });
+
+      const avgFe = allFeScores.length > 0 ? (allFeScores.reduce((a, b) => a + b, 0) / allFeScores.length).toFixed(1) : "N/A";
+      const avgToeic = allToeicScores.length > 0 ? (allToeicScores.reduce((a, b) => a + b, 0) / allToeicScores.length).toFixed(1) : "N/A";
+
+      let html = `
+        <div class="portfolio-group-cover-card bg-white rounded-2xl p-6 sm:p-8 border border-slate-300 shadow-sm space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between pb-4 border-b-2 border-slate-900 gap-4">
+            <div class="space-y-1.5">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-[10px] font-black uppercase tracking-widest text-white bg-slate-900 px-2 py-0.5 rounded">
+                  ENAC • DÉPARTEMENT LH / LAN
+                </span>
+                <span class="text-[11px] font-mono font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                  ${sem.title} • ${sem.tracks}
+                </span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-black text-slate-950 tracking-tight pt-1 font-mono">
+                ${bookletCallsign}
+              </h2>
+              <p class="text-xs font-semibold text-slate-600">
+                Official Student Portfolio Reflections Dossier • Complete Log of All Student Entries
+              </p>
+              <div class="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-600">
+                <span>Promotion: <strong>${promoName}</strong></span>
+                <span>•</span>
+                <span>Scope: <strong>${grpFilter === "all" ? "All Groups" : groupsToRender[0]?.name}</strong></span>
+                <span>•</span>
+                <span>Track: <strong>${trackFilter === "all" ? "All Tracks" : trackFilter}</strong></span>
+                <span>•</span>
+                <span>Module: <strong>${modLabel}</strong></span>
+                <span>•</span>
+                <span>Date: <strong>${todayFormatted}</strong></span>
+              </div>
+            </div>
+
+            <div class="shrink-0 flex items-center gap-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200 self-start">
+              <div class="text-center px-2">
+                <span class="text-[9px] uppercase font-bold text-slate-500 block">Candidates</span>
+                <span class="text-lg font-black text-slate-900">${studentWithEntriesCount} / ${totalStudentsInScope}</span>
+              </div>
+              <div class="h-7 w-px bg-slate-200"></div>
+              <div class="text-center px-2">
+                <span class="text-[9px] uppercase font-bold text-slate-500 block">Total Logs</span>
+                <span class="text-lg font-black text-slate-900">${totalMatchingEntries}</span>
+              </div>
+              <div class="h-7 w-px bg-slate-200"></div>
+              <div class="text-center px-2">
+                <span class="text-[9px] uppercase font-bold text-emerald-700 block">Avg FE</span>
+                <span class="text-lg font-black text-emerald-700">${avgFe}/10</span>
+              </div>
+              <div class="h-7 w-px bg-slate-200"></div>
+              <div class="text-center px-2">
+                <span class="text-[9px] uppercase font-bold text-slate-700 block">Avg TOEIC</span>
+                <span class="text-lg font-black text-slate-900">${avgToeic}/10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      groupsToRender.forEach(group => {
+        html += `
+          <div class="space-y-6 pt-2">
+            ${groupsToRender.length > 1 ? `
+              <div class="pb-2 border-b-2 border-slate-800 flex items-center justify-between">
+                <h3 class="text-base font-black text-slate-900 uppercase tracking-wider font-mono">
+                  📂 ${promoName} • ${group.name}
+                </h3>
+                <span class="text-xs text-slate-500 font-mono">${group.ids.length} Candidates</span>
+              </div>
+            ` : ''}
+        `;
+
+        group.ids.forEach(stId => {
+          const sName = formatStudentName(stId);
+          const sEntries = records.filter(r => r.id === stId &&
+            (trackFilter === "all" || (r.track && r.track.toUpperCase() === trackFilter.toUpperCase())) &&
+            (modNum === 0 || getRecordModuleNum(r) === modNum)
+          );
+
+          sEntries.sort((a, b) => (parseInt(a.session, 10) || 0) - (parseInt(b.session, 10) || 0));
+
+          const pageBreakClass = pageBreakChecked ? 'student-page-break' : '';
+
+          html += `
+            <div class="portfolio-student-section bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-2xs space-y-4 ${pageBreakClass}">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 gap-2">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-xs shadow-inner">
+                    👤
+                  </div>
+                  <div>
+                    <h4 class="text-sm sm:text-base font-black text-slate-950 font-mono">
+                      ${sName}
+                    </h4>
+                    <p class="text-[11px] text-slate-500">
+                      ${group.name} • Identifier: <span class="font-mono font-bold text-slate-700">${stId}</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold px-2.5 py-1 rounded-lg ${sEntries.length > 0 ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-slate-100 text-slate-600 border border-slate-200'}">
+                    ${sEntries.length} ${sEntries.length === 1 ? 'Entry Logged' : 'Entries Logged'}
+                  </span>
+                </div>
+              </div>
+
+              ${sEntries.length === 0 ? `
+                <div class="p-4 rounded-xl bg-slate-50 border border-dashed border-slate-300 text-center text-xs text-slate-500 italic">
+                  ⏳ No reflection entries submitted for ${sName} matching ${trackTag} • ${modLabel}.
+                </div>
+              ` : `
+                <div class="space-y-4">
+                  ${sEntries.map(entry => {
+                    const isAg = entry.track && entry.track.toUpperCase() === "AG";
+                    const trackBadgeBg = isAg ? "bg-sky-100 text-sky-800 border-sky-200" : "bg-purple-100 text-purple-800 border-purple-200";
+
+                    return `
+                      <div class="portfolio-entry-card bg-slate-50/70 rounded-xl p-4 sm:p-5 border border-slate-200 space-y-3">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-2.5 border-b border-slate-200 gap-2">
+                          <div class="flex flex-wrap items-center gap-2">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider ${trackBadgeBg} border">
+                              ${entry.track} TRACK
+                            </span>
+                            <span class="font-bold text-xs text-slate-900">
+                              Session ${entry.session} — ${escapeHtml(entry.module || 'Module ' + modNum)}
+                            </span>
+                            <span class="text-[10px] text-slate-400 font-mono">
+                              (${escapeHtml(entry.timestamp)})
+                            </span>
+                          </div>
+                          <div class="flex items-center gap-2 text-[11px] font-mono">
+                            ${entry.feScore !== null && entry.feScore !== undefined ? `
+                              <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold border border-emerald-200" title="Formative Evaluation Preparation Readiness">
+                                🗣️ FE: ${entry.feScore}/10
+                              </span>
+                            ` : ''}
+                            ${entry.toeicScore !== null && entry.toeicScore !== undefined ? `
+                              <span class="px-2 py-0.5 rounded bg-indigo-50 text-indigo-800 font-bold border border-indigo-200" title="TOEIC Test Readiness">
+                                🎧 TOEIC: ${entry.toeicScore}/10
+                              </span>
+                            ` : ''}
+                          </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                          <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1">
+                            <div class="flex items-center gap-1.5 font-bold text-slate-800 text-[11px] uppercase tracking-wider">
+                              <span>🎯</span>
+                              <span>Key Spoken Vocabulary</span>
+                            </div>
+                            <p class="text-slate-700 leading-relaxed whitespace-pre-line text-[11.5px]">
+                              ${escapeHtml(entry.vocab) || '<span class="text-slate-400 italic">None logged</span>'}
+                            </p>
+                          </div>
+
+                          <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1">
+                            <div class="flex items-center gap-1.5 font-bold text-slate-800 text-[11px] uppercase tracking-wider">
+                              <span>📖</span>
+                              <span>Lesson Content Review (What I Learnt)</span>
+                            </div>
+                            <p class="text-slate-700 leading-relaxed whitespace-pre-line text-[11.5px]">
+                              ${escapeHtml(entry.content) || '<span class="text-slate-400 italic">None logged</span>'}
+                            </p>
+                          </div>
+
+                          <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1">
+                            <div class="flex items-center gap-1.5 font-bold text-amber-900 text-[11px] uppercase tracking-wider">
+                              <span>🛠️</span>
+                              <span>What I Need to Work On (Weaknesses)</span>
+                            </div>
+                            <p class="text-slate-700 leading-relaxed whitespace-pre-line text-[11.5px]">
+                              ${escapeHtml(entry.needs) || '<span class="text-slate-400 italic">None logged</span>'}
+                            </p>
+                          </div>
+
+                          <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1">
+                            <div class="flex items-center gap-1.5 font-bold text-emerald-900 text-[11px] uppercase tracking-wider">
+                              <span>🗣️</span>
+                              <span>Formative Evaluation Application</span>
+                            </div>
+                            <p class="text-slate-700 leading-relaxed whitespace-pre-line text-[11.5px]">
+                              ${escapeHtml(entry.helpFe) || '<span class="text-slate-400 italic">None logged</span>'}
+                            </p>
+                          </div>
+                        </div>
+
+                        ${entry.toeicPrep && !entry.toeicPrep.startsWith("N/A") && entry.toeicPrep.trim().length > 0 ? `
+                          <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1 text-xs">
+                            <div class="flex items-center gap-1.5 font-bold text-indigo-900 text-[11px] uppercase tracking-wider">
+                              <span>🎧</span>
+                              <span>Independent Study &amp; TOEIC Practice This Week</span>
+                            </div>
+                            <p class="text-slate-700 leading-relaxed whitespace-pre-line text-[11.5px]">
+                              ${escapeHtml(entry.toeicPrep)}
+                            </p>
+                          </div>
+                        ` : ''}
+                      </div>
+                    `;
+                  }).join("")}
+                </div>
+              `}
+            </div>
+          `;
+        });
+
+        html += `</div>`;
+      });
+
+      html += `
+        <div class="portfolio-entry-card bg-white rounded-2xl p-6 border border-slate-300 shadow-2xs space-y-4 mt-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-600 gap-4">
+            <div class="space-y-0.5">
+              <span class="font-bold text-slate-900 block font-mono">${bookletCallsign}</span>
+              <span class="text-[10.5px] text-slate-500">Official ENAC Academic Portfolio Dossier • Language Department (LAN)</span>
+            </div>
+            <div class="flex items-center gap-6 self-end sm:self-auto pt-2 sm:pt-0">
+              <div class="text-center">
+                <div class="h-8 w-36 border-b border-dashed border-slate-400"></div>
+                <span class="text-[9.5px] text-slate-500 uppercase tracking-wider">Course Teacher</span>
+              </div>
+              <div class="text-center">
+                <div class="h-8 w-36 border-b border-dashed border-slate-400"></div>
+                <span class="text-[9.5px] text-slate-500 uppercase tracking-wider">Language Coordinator</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
     }
 
   </script>
