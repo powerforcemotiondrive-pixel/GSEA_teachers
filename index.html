@@ -2956,6 +2956,13 @@
         activeAbsTrack = tracksList[0] || 'AT';
       }
 
+      const groups = [];
+      if (sem.students?.groupA?.length) groups.push({ key: "A", name: "Group A", ids: sem.students.groupA });
+      if (sem.students?.groupB?.length) groups.push({ key: "B", name: "Group B", ids: sem.students.groupB });
+      if (sem.students?.groupC?.length) groups.push({ key: "C", name: "Group C", ids: sem.students.groupC });
+      if (sem.students?.groupD?.length) groups.push({ key: "D", name: "Group D", ids: sem.students.groupD });
+      const totalStudentsCount = groups.reduce((acc, g) => acc + g.ids.length, 0);
+
       return `
         <div class="space-y-4">
           <!-- Visual Orientation Header Banner -->
@@ -3164,6 +3171,94 @@
                   `).join('')}
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Middle Section: Official Student Group Lists & Rosters -->
+          <div class="space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-900"></span>
+                <h3 class="text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wide">
+                  Official Student Group Lists &amp; Rosters
+                </h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] text-slate-500 font-mono">
+                  ${sem.promotion || 'GSEA26A'} • ${totalStudentsCount} Total Students
+                </span>
+                <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded border border-slate-200 font-bold">
+                  ${sem.tracks || 'AG &amp; AT'}
+                </span>
+              </div>
+            </div>
+
+            <!-- Group Cards Grid (Group A, Group B, etc.) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${groups.map(g => `
+                <div class="bg-white rounded-2xl shadow-xs border border-slate-200 overflow-hidden flex flex-col">
+                  <!-- Group Header -->
+                  <div class="p-3.5 bg-slate-900 text-white flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full ${g.key === 'A' ? 'bg-emerald-400' : (g.key === 'B' ? 'bg-sky-400' : 'bg-purple-400')}"></span>
+                      <h4 class="text-xs font-bold uppercase tracking-wider font-mono">
+                        ${g.name} (${g.ids.length} Students)
+                      </h4>
+                    </div>
+                    <span class="text-[10px] bg-white/15 px-2 py-0.5 rounded font-mono font-bold">
+                      ${g.ids.length >= 10 ? '2 Pairs + 2 Trios' : '3 Pairs + 1 Trio'} • 4 Slots
+                    </span>
+                  </div>
+
+                  <!-- Group Table -->
+                  <div class="overflow-x-auto flex-1">
+                    <table class="w-full text-left text-xs border-collapse">
+                      <thead>
+                        <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 text-[10px] uppercase font-bold tracking-wider">
+                          <th class="py-2.5 px-3 w-10 text-center">#</th>
+                          <th class="py-2.5 px-3">Student Name &amp; Candidate ID</th>
+                          <th class="py-2.5 px-3 text-right">Quick Action</th>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-slate-100">
+                        ${g.ids.map((stId, idx) => `
+                          <tr class="hover:bg-slate-50/70 transition-colors">
+                            <td class="py-2 px-3 text-center font-mono text-[11px] text-slate-400 font-bold">
+                              ${idx + 1}
+                            </td>
+                            <td class="py-2 px-3 whitespace-nowrap">
+                              <div class="flex items-center gap-2">
+                                <span class="font-mono font-bold text-slate-900 text-xs">${formatStudentName(stId)}</span>
+                                <span class="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 border border-slate-200">${stId}</span>
+                              </div>
+                            </td>
+                            <td class="py-2 px-3 text-right whitespace-nowrap">
+                              <div class="inline-flex items-center gap-1.5 justify-end">
+                                <button 
+                                  type="button" 
+                                  onclick="quickSelectStudentForAbsence('${stId}', '${g.key}')" 
+                                  class="px-2 py-1 rounded-lg text-[10.5px] font-bold bg-amber-50 hover:bg-amber-100 active:bg-amber-200 text-amber-900 border border-amber-200 transition-colors cursor-pointer shadow-2xs"
+                                  title="Select ${formatStudentName(stId)} in the absence recording form above"
+                                >
+                                  + Log Incident
+                                </button>
+                                <button 
+                                  type="button" 
+                                  onclick="filterRegisterForStudent('${stId}')" 
+                                  class="p-1 rounded-lg text-[10.5px] font-bold text-slate-500 hover:text-slate-800 hover:bg-slate-100 border border-slate-200 transition-colors cursor-pointer shadow-2xs"
+                                  title="Filter attendance register below for ${formatStudentName(stId)}"
+                                >
+                                  🔍
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        `).join('')}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              `).join('')}
             </div>
           </div>
 
@@ -3421,6 +3516,28 @@
       setAbsStatus('Absent');
       const dateEl = document.getElementById('abs-incident-date');
       if (dateEl) dateEl.value = new Date().toISOString().split('T')[0];
+    }
+
+    function quickSelectStudentForAbsence(stId, groupKey) {
+      setAbsGroup(groupKey);
+      const select = document.getElementById('abs-student-select');
+      if (select) select.value = stId;
+      const formCard = document.getElementById('absence-record-form');
+      if (formCard) {
+        formCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        formCard.classList.add('ring-2', 'ring-amber-400');
+        setTimeout(() => formCard.classList.remove('ring-2', 'ring-amber-400'), 1500);
+      }
+    }
+
+    function filterRegisterForStudent(stId) {
+      const searchInput = document.getElementById('abs-search-input');
+      if (searchInput) {
+        searchInput.value = stId;
+        renderAbsenceLogs();
+        const tableEl = document.getElementById('absence-register-tbody');
+        if (tableEl) tableEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     }
 
     // Google Form Submission Pipeline (matching GSEA_attendance)
