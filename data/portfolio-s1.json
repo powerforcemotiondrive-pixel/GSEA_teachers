@@ -1,16 +1,16 @@
 {
   "semester": 1,
-  "lastUpdated": "13 Nov 2026",
-  "totalSubmissions": 78,
+  "lastUpdated": "16 Nov 2026",
+  "totalSubmissions": 86,
   "trackBreakdown": {
-    "at": 42,
-    "ag": 36,
+    "at": 43,
+    "ag": 43,
     "aas": 0,
     "ap": 0
   },
   "metrics": {
-    "avgFeConfidence": "5.4",
-    "avgToeicConfidence": "8.2",
+    "avgFeConfidence": "5.5",
+    "avgToeicConfidence": "8.1",
     "targetFeLevel": "CEFR B2",
     "feWindow": "Week 48 (FE1)"
   },
@@ -256,6 +256,21 @@
       "toeicScore": 10
     },
     {
+      "id": "GRPA003",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 15:41:06",
+      "vocab": "In today's session we could begin with another drawing animal game to warm up then we got to emphasize some grammatical points, here are the following ones :\n\n- Making people do things using : MAKE+person+VERB - HAVE+person+VERB - REQUIRE+person+TO+VERB\n\nexamples : \n\n- She mad her brother do her homework. \n- I had my neighbor feed the cats. \n- Building this shelf requires him to be helped. \n\n- Using DESPITE+noun and IN SPITE OF+noun or DESPITE/IN SPITE OF+verbING\n\nexamples :\n\n- Despite the weather he decided to go for a run. \n- He decided to get there in spite of the prohibition. \n- Despite sleeping enough he feels exhausted all the same. \n-He got rejected in spite of being skilled enough for this job. \n\n- Using WHEREAS/WHILE to express contrast between two different situations. \n\nexamples :\n\n- The kids were loudly playing while their grandparents tried to enjoy some rest. \n- The company is thinking of making redundancies whereas it is already short of skilled employees.",
+      "content": "In a third part we could discuss in group of a day trip plan in a seaside town for three different groups of people. \nOur first group was a healthcare worker group and we first suggested to get them to the clinic to show them how modern the working environment is and to try to convince them to apply to work in it. Then a visit of the old town square would be interesting enough not to be missed as a tour of the ridge homes residential area would also be. to finish the day we could go to the beach by the beach path to find the café Row to enjoy some refreshments. \n\nOur second group was a group of retired people who would like to enjoy the calmness of a life by the sea off season. We thought we would first get them to the garden lookout as it's spring time and so they could enjoy an idyllic atmosphere. oing to the beach by the beach path is also inevitable and so they would be able to rest by the sea and take some sunlight. To finish the day we could visit the old town center and find a cosy cafe to rest peacefully. \n\nOur third group was a group of teenagers full of energy who like to enjoy themselves a lot so we instantly though that the major part of the day would take place at the beach with excursion to the markets and old town center to buy some lunch and make some purchase as their convenience. Ending the day in a cafe near the beach would be pleasant to them too.",
+      "needs": "We could work on our debating skills through the last exercise we got confronted to. We discovered a delicate situation of over tourism in a small seaside town that schedules to expand the runway of its airport. Such a decision would lead to a sensitive situation where tourism would be harmful for locals living conditions rather than being benefiting them. \nTo solve this problem we tried to find an agreement between local political figures and local citizens representatives. Negotiations led us to the following compromise :\n- the runway will be expanded and tourism will be promoted but nevertheless controlled depending in the current consequences it may cause. \n- A tax will be applied to every tourist and it will benefit the town maintenance and citizens everyday activities over a long time plan.\n- a quota of water consumption will be applied to hotel to make them having a reasonable consumption regarding natural ressources that are already running short. \n- farmers will also benefit the tax that will compensate the loss of land they need to cultivate to grow the citrus and olives that make them live.",
+      "helpFe": "Like every session, this one enable us to work on our oral skills and encourage us to speak confidently to express ideas and explain points of view.",
+      "feScore": 7,
+      "toeicPrep": "Global Exam sometimes provides answers that are  very close in meaning so it's hard to make a choice and the explanation doesn't make the correct answer an evidence neither.",
+      "toeicScore": 7
+    },
+    {
       "id": "GRPA004",
       "group": "Group A",
       "track": "AT",
@@ -496,6 +511,21 @@
       "toeicScore": 10
     },
     {
+      "id": "GRPA007",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/16/2026 17:09:49",
+      "vocab": "I learnt key vocabulary related to mass tourism, such as carrying capacity (which is the maximum number of visitors a site can handle before suffering damage), de-marketing or visitor dispersion (strategies to redirect tourist flows). I also practiced policy terms like tourist levies (like a day-tripper entry fees), short-term rental caps, and resident backlash.",
+      "content": "I reviewed causative verbs of authority (make/require someone to do) and contrast linkers (despite, whereas) to express regulations and opposing viewpoints. We also practiced as a group with a debate, where we negotiated water quotas in the Isla Serena emergency summit role-play, and consolidated long-term solutions through a timed Taboo speaking challenge.",
+      "needs": "I want to improve my paraphrasing speed under time pressure, which was the case during the roleplay.",
+      "helpFe": "N/A",
+      "feScore": 9,
+      "toeicPrep": "N/A",
+      "toeicScore": 9
+    },
+    {
       "id": "GRPA008",
       "group": "Group A",
       "track": "AT",
@@ -546,13 +576,13 @@
       "track": "AG",
       "module": "Travel, Transport and Leisure",
       "session": "3",
-      "timestamp": "11/13/2026 8:17:10",
-      "vocab": "t",
-      "content": "t",
-      "needs": "t",
-      "helpFe": "t",
+      "timestamp": "11/16/2026 9:08:14",
+      "vocab": "Making people do things :\n\nmake + person + verb\n\nhave + person + verb\n\nRequire + person + to + verb\n\n\n\nDespite / In spite of + noun\n\nDespite / In spite of + verb-ing\n\nWhereas / While to show two different situations, both sides highlight a difference",
+      "content": "we did an exercise creating 3 tourism routes, making them coherent with a theme of our choice and planning the timings.\nThen presented them to the class",
+      "needs": "no particular problem this session",
+      "helpFe": "it trained us to present in front of people",
       "feScore": 8,
-      "toeicPrep": "t",
+      "toeicPrep": "started the TOEIC preparation this week, did like 5% of the exercises",
       "toeicScore": 7
     },
     {
@@ -706,6 +736,21 @@
       "toeicScore": 10
     },
     {
+      "id": "GRPA010",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 16:56:58",
+      "vocab": "During this session, we learnt new vocabulary about overtourism and its consequences, like tourist tax, resident displacement, infrastructure strain and heritage conservation. And also \"badger\" and Walrus\n\nWe also talked about some solutions to reduce overtourism, for example dynamic pricing, advance reservation and de-marketing.\n\nAbout grammar, studied the difference between despite, in spite of, whereas and while. We also studied how to use make, have and require when we want someone to do something.",
+      "content": "We started the lesson with an animal Pictionary game. After that, we worked on tourism activities and a fictional city.\n\nWe also did an activity about a crisis situation with a water shortage due to drought, environmental problems and money issues. We had to find solutions and explain our choices.\nWe discussed about overtourism and its consequences for local people, historical places and infrastructure. We also talked about different solutions like tourist taxes or limiting the number of visitors.\nWe also did some grammar exercises about \"making someone or something do something\"",
+      "needs": "I need to improve my ability to use more specific vocabulary when discussing tourism and environmental issues, particularly expressions such as *carrying capacity*, *infrastructure strain* and *resident displacement*.\nI also need to practise using *make*, *have* and *require* correctly, as well as linking expressions such as *despite*, *whereas* and *while*.\nMy main objective is to become more fluent when expressing opinions, explaining problems and suggesting solutions without hesitating too much.",
+      "helpFe": "This session helped me prepare for the upcoming oral evaluation by practising how to discuss problems, express opinions and justify decisions.\nThe overtourism and crisis-management activities were particularly useful because they required us to consider different perspectives and suggest realistic solutions.\nDuring the evaluation, I will try to use more precise vocabulary, organise my arguments with linking expressions and to provide examples to support my ideas. I also want to improve my fluency and grammatical accuracy.",
+      "feScore": 8,
+      "toeicPrep": "I did some TOIEC practice about modals",
+      "toeicScore": 7
+    },
+    {
       "id": "GRPB001",
       "group": "Group B",
       "track": "AT",
@@ -779,6 +824,21 @@
       "feScore": 6,
       "toeicPrep": "N/A (AT Track)",
       "toeicScore": 10
+    },
+    {
+      "id": "GRPB001",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 19:22:35",
+      "vocab": "We remembered about « modal shift » « externalities », « decarbonization »",
+      "content": "Today we talked about overtourism, its causes and what cities are doing to try to limit tourism.\nWe also studied grammar points and practicised making sentences like « I went the garage last week to have my car repaired », with despite « Despite the bad weather, I will play outside » and whereas « I like playing football whereas my friend préfère to watch football »",
+      "needs": "I really need to improve my fluency, I’m still looking for my words and I almost used simple words.",
+      "helpFe": "-",
+      "feScore": 6,
+      "toeicPrep": "I Will do somes toeic exercices saturday.",
+      "toeicScore": 4
     },
     {
       "id": "GRPB002",
@@ -899,6 +959,36 @@
       "feScore": 7,
       "toeicPrep": "I didn't train enough on Global Exam this week. I have to work on my organisation to find more time to do them. However the small exercices in ressources and these classes make me more confident on the progress I can make before the final exam.",
       "toeicScore": 4
+    },
+    {
+      "id": "GRPB003",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 16:55:32",
+      "vocab": "Today's lesson was about overtourism. Meaning the fact that there can be so many tourism in a place, over it's carrying capcity, that it can even harm the environment and local residents.\nFor that, some cities had campaigns during tourism peak season, like putting a mandatory entry fee, or a tourist tax, to tourists who want to enter inside a city. It can help a bit to reduce overtourism but it also helps to fund monuments for renovation.\nThose crowded places have an impact on residents as we can see a resident displacement. For apartments, we can see that long term rentals is becoming short term rentals.\nAlso for museums, they are all putting advance reservation systems, in order to control hourly crowd and to put a limit on the amount of tourisms.",
+      "content": "To begin with, we started in pairs by thinking about a memory with overcrowd and we saw that everyone once had experienced overtourism and saw the impact of it.\nDuring this lesson, we had the opportunity to make a debate. As tourisms consume waters in hotels, it can sometimes be very low. There were a project to extend an airport to increase tourisms and local economy, however it could have an impact on the primordial resource. So we had to find a compromise and we chose to improve other ways of tourism connectivity instead of the airport extension, to make campaigns about water consumption and with the increase tourism and economy, maybe we will see later to extend the airport.",
+      "needs": "The vocabulary was harder than last times here. It's more unknown words that I used to see since the beginning and I will have to do more efforts to learn them and to reuse them later. I learnt definitions however I don't know if I will be able to use the m naturally for now. I think about making a new way of learning them with papers or maybe an application.\nFor the pronunciation, I feel more at ease speaking English and more confident with my accent compared to the beginning of the year, even if my fluency is still bad.",
+      "helpFe": "The new vocabulary learnt is really specific about overtourism and really linked with the module of AG. I still don't know how my evaluation will be and I'm asking myself few questions, but I see how helpful the vocabulary is.",
+      "feScore": 6,
+      "toeicPrep": "This week, I trained more than usual and I'm happy with all exercises I did, especially with listening comprehension where I took a lot of fun to do it, however my results are not what I expected as I still have not enough to pass the final exam. More work will be necessary.",
+      "toeicScore": 4
+    },
+    {
+      "id": "GRPB003",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/14/2026 18:01:35",
+      "vocab": "After the virtual class, I learnt vocabulary about ground operations. Few vehicles are used for planes during their TAT, meaning the Turn Around Time. It's the time between chocks-on, where the ground crew set chocks after arrival, and chocks-off, where they remove them, before departure.\nThere is for example, the belt loader which is a vehicle used to load baggage inside a plane with a tilted conveyor belt. Also, the refuel truck is called a bowser. It's here to refuel the plane during the TAT.\nI learnt few acronyms like TAT, CTOT, GSE which means Ground Support Equipment and PPE which means Personal Protection Equipments and design high-visibility vests, hearing protections, helmets or boots.",
+      "content": "The lesson wanted us to tackle some scenarios which down GSE and to see how we could react. This showed us the important and the balance between security and efficiency for planes during turn around. Planes need to take off quickly after arrival to not lose too much money, however it's important to guarantee the security like fluids leak.",
+      "needs": "I worked on the ground operations vocabulary and organization that still helped me to learn more about every objects and elements on an airport, but this session is marked with a lack of pronunciation as it's not easy to do that alone during a day-off.",
+      "helpFe": "More and more vocabulary are learnt about airports. I think I can reuse them with ease during the upcoming evaluation.",
+      "feScore": 7,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
     },
     {
       "id": "GRPB004",
@@ -1066,6 +1156,21 @@
       "toeicScore": 5
     },
     {
+      "id": "GRPB007",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/15/2026 22:16:18",
+      "vocab": "During this third session of General English, I have learnt new vocabulary words like : overtourism, cruise ship, peak season, dynamic pricing, visitor dispersal, destination pressure...",
+      "content": "This lesson was separate in 4 parts : \nFirst, we did a little recap about the session 2, we reviewed the vocabulary and the evolution of transport. \nThen, we study four touristic destinations as Venice, Dubrovnik, Amsterdam and Maya Bay in Thailand. All these destinations are very touristic and suffer from overtourism. For example, in Venice, there is 500 times more tourists than residents. Due to this overtourism, the cities need to find some solutions to protect their landscapes, they have created quotas or tax for tourists. \nAfter this, we did a little grammar point on the causative and contrast words like make/have, despite/in spite of and whereas/while. \nThen, we did a simulation with 4 people to decide or not if an island need to extend his runway of the local airport. Personnaly, I was an Hotel association president and I was for this proposition because this project can bring more tourist and give me more money. But, at the end of the debate, we decided to not built this extend to protect the island economically and environementally. \nTo finish this session, we review the new vocabulary.",
+      "needs": "I need to improve my fluency by learning more vocabulary and improve my grammar knowledges.",
+      "helpFe": "Particulary during the debate, I spoke a lot to defend my position. This exercise help me to be more comfortable in oral and it improve my skill of improvisation.",
+      "feScore": 7,
+      "toeicPrep": "During this week, I continue my parcours to prepare the TOEIC exam. I particulary did reading exercises.",
+      "toeicScore": 5
+    },
+    {
       "id": "GRPB008",
       "group": "Group B",
       "track": "AT",
@@ -1184,6 +1289,21 @@
       "feScore": 5,
       "toeicPrep": "N/A (AT Track)",
       "toeicScore": 10
+    },
+    {
+      "id": "GRPB009",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 21:42:12",
+      "vocab": "Today's lesson was about overtourism, which refers to an excessive tourist number in some famous places in the world like Venice or Amsterdam. It can lead to really bad effects on the environment and the life the local residents. We also learnt other words linked to this notion :\n- tourist tax : a tax for day visitors to avoid overtourism. This system is currently tested in Venice where tourism become a real problem but it doesn't seem to be the right solution.\n- cruise ship ceiling : a limit about the number of cruise ship allowed in a port. This is currently tested in Amsterdam where the number of cruise ships increase each year.\n- heritage conservation : preservation of historical monuments and archaeological sites, sometimes by charging tourist to access to it. This is the case in Rome for the Trevi fountain.\n- resident displacement : owing to short-term vacation rental, local resident are struggling to find housing in their own cities.",
+      "content": "Firstly, we saw different cases of overtourism in the world such as Venice and Amsterdam. Then we argued about potential solutions and their real impact on the problem.\nSecondly, we learnt some notions in grammar, especially how to use causative verbs. This is useful to enrich our arguments.\nFinally, we made a debate about a concrete situation allowing us to understand why it could be so difficult to find a solution for the overtourism concerns. In fact, it is essential to find a balance between tourism and well-being of the population. However, tourism often represents an economical opportunity and it could be difficult for the governments to reduce it.",
+      "needs": "This session allowed me to speak a lot and to expose arguments. However, I still have to improve my fluency because I can't speak during to much time without searching for a word or an expression. To improve it I started a series and I hope it will bring me some useful expressions in the daily life.",
+      "helpFe": "Today's session was a good training for the formative evaluation due to the debates we made. It was a great occasion to use well-built sentences in order to explain an opinion. We also learnt some vocabulary, which will be useful to speak about a specific subject during the evaluation.",
+      "feScore": 5,
+      "toeicPrep": "I did a mock exam on Wednesday and I reached the B2 level with 860 points over 990. Now I keep training but I think that I've made some progress since the beginning of the year.",
+      "toeicScore": 8
     }
   ],
   "topBuzzwords": [
