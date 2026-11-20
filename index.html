@@ -380,16 +380,20 @@
 
     function formatStudentName(id) {
       if (!id) return '';
-      if (typeof PRIVATE_STUDENT_NAMES !== 'undefined' && PRIVATE_STUDENT_NAMES[id]) {
-        return `${PRIVATE_STUDENT_NAMES[id]} (${id})`;
+      if (typeof PRIVATE_STUDENT_NAMES !== 'undefined') {
+        const semMap = PRIVATE_STUDENT_NAMES[`s${activeSemester}`];
+        if (semMap && semMap[id]) return `${semMap[id]} (${id})`;
+        if (typeof PRIVATE_STUDENT_NAMES[id] === 'string') return `${PRIVATE_STUDENT_NAMES[id]} (${id})`;
       }
       return id;
     }
 
     function getStudentShortName(id) {
       if (!id) return '';
-      if (typeof PRIVATE_STUDENT_NAMES !== 'undefined' && PRIVATE_STUDENT_NAMES[id]) {
-        return PRIVATE_STUDENT_NAMES[id];
+      if (typeof PRIVATE_STUDENT_NAMES !== 'undefined') {
+        const semMap = PRIVATE_STUDENT_NAMES[`s${activeSemester}`];
+        if (semMap && semMap[id]) return semMap[id];
+        if (typeof PRIVATE_STUDENT_NAMES[id] === 'string') return PRIVATE_STUDENT_NAMES[id];
       }
       return id;
     }
@@ -741,29 +745,500 @@
         rotas: [{ slot: "Slot 1 (30m)", groupA: "Pair 1", groupB: "Pair 1", format: "Pair" }],
         programme: [{ week: "W10", date: "Mar", mod: "M1", s: "S1", titleAG: "Immersion Preparation", titleAT: "Aeronautical Systems Overview" }]
       },
-      3: {
-        num: 3,
-        title: "Semester 3",
-        promotion: "GSEA25A",
-        teacherFocus: "Technical",
-        nextMilestone: { title: "FE1 Tutorial", sub: "Week 43 Oral Exam" },
-        ecampusUrl: "https://e-campus.enac.fr/moodle/course/view.php?id=32729",
-        tracks: "AT (LV125E) Technical English Only",
-        description: "Technical English Only (AG Disabled) • Systems Engineering, ATM, Radar & Incident Investigations",
-        faculty: [
-          { name: "Teacher A (TBC)", track: "AT", group: "Group A", schedule: "Fridays 13h15–15h15" },
-          { name: "Teacher B (TBC)", track: "AT", group: "Group B", schedule: "Fridays 13h15–15h15" },
-          { name: "Teacher C (TBC)", track: "AT", group: "Group C", schedule: "Fridays 13h15–15h15" }
-        ],
-        students: {
-          groupA: ["GRPA001", "GRPA002", "GRPA003", "GRPA004", "GRPA005", "GRPA006", "GRPA007", "GRPA008", "GRPA009", "GRPA010"],
-          groupB: ["GRPB001", "GRPB002", "GRPB003", "GRPB004", "GRPB005", "GRPB006", "GRPB007", "GRPB008", "GRPB009", "GRPB010"],
-          groupC: ["GRPC001", "GRPC002", "GRPC003", "GRPC004", "GRPC005", "GRPC006", "GRPC007", "GRPC008", "GRPC009", "GRPC010"]
+      3:   "num": 3,
+        "title": "Semester 3",
+        "promotion": "GSEA25A",
+        "teacherFocus": "Technical English",
+        "nextMilestone": {
+                "title": "FE1 Tutorial",
+                "sub": "Week 02 Oral Exam"
         },
-        evaluationDates: { fe1: { at: "Wed 21 Oct (W43)", ag: "N/A" }, fe2: { at: "Wed 13 Jan (W02)", ag: "N/A" }, fe3: { at: "TBC", ag: "N/A" } },
-        rotas: [{ slot: "Slot 1 (30m)", groupA: "Technical Pair", groupB: "Technical Pair", format: "Pair" }],
-        programme: [{ week: "W38", date: "Sep", mod: "M1", s: "S1", titleAG: "N/A (AT Only)", titleAT: "Aviation Systems Architecture" }]
-      },
+        "ecampusUrl": "https://e-campus.enac.fr/moodle/course/view.php?id=32729",
+        "tracks": "AT (LV125E) Technical English Only",
+        "description": "Technical English Only (AG Disabled) \u2022 EASA Regulations, Systems Engineering, ATM, Radar & Incident Investigations",
+        "faculty": [
+                {
+                        "name": "Teacher A (TBC)",
+                        "track": "AT",
+                        "group": "Group A",
+                        "schedule": "Fridays 13h15\u201315h15"
+                },
+                {
+                        "name": "Teacher B (TBC)",
+                        "track": "AT",
+                        "group": "Group B",
+                        "schedule": "Fridays 13h15\u201315h15"
+                },
+                {
+                        "name": "Teacher C (TBC)",
+                        "track": "AT",
+                        "group": "Group C",
+                        "schedule": "Fridays 13h15\u201315h15"
+                }
+        ],
+        "students": {
+                "groupA": [
+                        "GRPA001",
+                        "GRPA002",
+                        "GRPA003",
+                        "GRPA004",
+                        "GRPA005",
+                        "GRPA006",
+                        "GRPA007",
+                        "GRPA008",
+                        "GRPA009",
+                        "GRPA010",
+                        "GRPA011"
+                ],
+                "groupB": [
+                        "GRPB001",
+                        "GRPB002",
+                        "GRPB003",
+                        "GRPB004",
+                        "GRPB005",
+                        "GRPB006",
+                        "GRPB007",
+                        "GRPB008",
+                        "GRPB009"
+                ],
+                "groupC": [
+                        "GRPC001",
+                        "GRPC002",
+                        "GRPC003",
+                        "GRPC004",
+                        "GRPC005",
+                        "GRPC006",
+                        "GRPC007",
+                        "GRPC008",
+                        "GRPC009"
+                ]
+        },
+        "evaluationDates": {
+                "fe1": {
+                        "at": "Friday 15 Jan 2027 (W02)",
+                        "ag": "N/A (AT Only)"
+                },
+                "fe2": {
+                        "at": "Friday 05 Mar 2027 (W09)",
+                        "ag": "N/A (AT Only)"
+                },
+                "fe3": {
+                        "at": "Friday 09 Apr 2027 (W14)",
+                        "ag": "N/A (AT Only)"
+                }
+        },
+        "rotas": {
+                "at": {
+                        "code": "LV125E",
+                        "name": "Technical English (AT)",
+                        "schedule": "Fridays 13h15 \u2013 15h15",
+                        "roomNote": "Friday Session \u2022 2 Hours (3 Groups: A, B, C)",
+                        "fes": {
+                                "1": {
+                                        "title": "FE1 \u2014 EASA Regulatory Extract & Class Activity Evaluation",
+                                        "week": "Week 02",
+                                        "dateStr": "Friday 15 January 2027",
+                                        "groupA": {
+                                                "teacher": "Teacher A (TBC)",
+                                                "slotSummary": "Friday 13h15 - 15h15",
+                                                "room": "",
+                                                "slots": [
+                                                        {
+                                                                "num": 1,
+                                                                "time": "13h15 \u2013 13h45",
+                                                                "type": "team",
+                                                                "students": [
+                                                                        "GRPA001",
+                                                                        "GRPA002",
+                                                                        "GRPA003",
+                                                                        "GRPA004"
+                                                                ]
+                                                        },
+                                                        {
+                                                                "num": 2,
+                                                                "time": "13h45 \u2013 14h15",
+                                                                "type": "team",
+                                                                "students": [
+                                                                        "GRPA005",
+                                                                        "GRPA006",
+                                                                        "GRPA007",
+                                                                        "GRPA008"
+                                                                ]
+                                                        },
+                                                        {
+                                                                "num": 3,
+                                                                "time": "14h15 \u2013 14h45",
+                                                                "type": "trio",
+                                                                "students": [
+                                                                        "GRPA009",
+                                                                        "GRPA010",
+                                                                        "GRPA011"
+                                                                ]
+                                                        },
+                                                        {
+                                                                "num": 4,
+                                                                "time": "14h45 \u2013 15h15",
+                                                                "type": "feedback",
+                                                                "students": [
+                                                                        "Whole-Class Feedback & Teacher Debrief"
+                                                                ]
+                                                        }
+                                                ]
+                                        },
+                                        "groupB": {
+                                                "teacher": "Teacher B (TBC)",
+                                                "slotSummary": "Friday 13h15 - 15h15",
+                                                "room": "",
+                                                "slots": [
+                                                        {
+                                                                "num": 1,
+                                                                "time": "13h15 \u2013 13h45",
+                                                                "type": "trio",
+                                                                "students": [
+                                                                        "GRPB001",
+                                                                        "GRPB002",
+                                                                        "GRPB003"
+                                                                ]
+                                                        },
+                                                        {
+                                                                "num": 2,
+                                                                "time": "13h45 \u2013 14h15",
+                                                                "type": "trio",
+                                                                "students": [
+                                                                        "GRPB004",
+                                                                        "GRPB005",
+                                                                        "GRPB006"
+                                                                ]
+                                                        },
+                                                        {
+                                                                "num": 3,
+                                                                "time": "14h15 \u2013 14h45",
+                                                                "type": "trio",
+                                                                "students": [
+                                                                        "GRPB007",
+                                                                        "GRPB008",
+                                                                        "GRPB009"
+                                                                ]
+                                                        },
+                                                        {
+                                                                "num": 4,
+                                                                "time": "14h45 \u2013 15h15",
+                                                                "type": "feedback",
+                                                                "students": [
+                                                                        "Whole-Class Feedback & Teacher Debrief"
+                                                                ]
+                                                        }
+                                                ]
+                                        },
+                                        "groupC": {
+                                                "teacher": "Teacher C (TBC)",
+                                                "slotSummary": "Friday 13h15 - 15h15",
+                                                "room": "",
+                                                "slots": [
+                                                        {
+                                                                "num": 1,
+                                                                "time": "13h15 \u2013 13h45",
+                                                                "type": "trio",
+                                                                "students": [
+                                                                        "GRPC001",
+                                                                        "GRPC002",
+                                                                        "GRPC003"
+                                                                ]
+                                                        },
+                                                        {
+                                                                "num": 2,
+                                                                "time": "13h45 \u2013 14h15",
+                                                                "type": "trio",
+                                                                "students": [
+                                                                        "GRPC004",
+                                                                        "GRPC005",
+                                                                        "GRPC006"
+                                                                ]
+                                                        },
+                                                        {
+                                                                "num": 3,
+                                                                "time": "14h15 \u2013 14h45",
+                                                                "type": "trio",
+                                                                "students": [
+                                                                        "GRPC007",
+                                                                        "GRPC008",
+                                                                        "GRPC009"
+                                                                ]
+                                                        },
+                                                        {
+                                                                "num": 4,
+                                                                "time": "14h45 \u2013 15h15",
+                                                                "type": "feedback",
+                                                                "students": [
+                                                                        "Whole-Class Feedback & Teacher Debrief"
+                                                                ]
+                                                        }
+                                                ]
+                                        }
+                                }
+                        }
+                }
+        },
+        "calendar": {
+                "at": {
+                        "code": "LV125E",
+                        "name": "Technical English (AT)",
+                        "dayTime": "Fridays 13h15 \u2013 15h15",
+                        "faculty": "Teacher A (TBC) (Group A) \u2022 Teacher B (TBC) (Group B) \u2022 Teacher C (TBC) (Group C)",
+                        "modules": [
+                                {
+                                        "num": 1,
+                                        "title": "Module 1: EASA Docs, Safety & Audits (7 Sessions)",
+                                        "weeks": "W47 \u2013 W02",
+                                        "headerBg": "#1e293b",
+                                        "sessions": [
+                                                {
+                                                        "courseWeek": "W01",
+                                                        "week": "W47",
+                                                        "date": "Fri 20 Nov",
+                                                        "title": "Session 1 \u2014 EASA Rules & Modal Precision",
+                                                        "subtitle": "",
+                                                        "tag": "Teaching Session",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "courseWeek": "W02",
+                                                        "week": "W48",
+                                                        "date": "Fri 27 Nov",
+                                                        "title": "Session 2 \u2014 Safety Alerts & Ramp Briefings",
+                                                        "subtitle": "",
+                                                        "tag": "Teaching Session",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "courseWeek": "W03",
+                                                        "week": "W49",
+                                                        "date": "Fri 04 Dec",
+                                                        "title": "Session 3 \u2014 Special Requests & Runway Safety Cases",
+                                                        "subtitle": "",
+                                                        "tag": "Teaching Session",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "courseWeek": "W04",
+                                                        "week": "W50",
+                                                        "date": "Fri 11 Dec",
+                                                        "title": "Session 4 \u2014 Ground Inspection & Audit Findings",
+                                                        "subtitle": "",
+                                                        "tag": "Teaching Session",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "courseWeek": "W05",
+                                                        "week": "W51",
+                                                        "date": "Fri 18 Dec",
+                                                        "title": "Session 5 \u2014 Multi-Source Incident Investigation & Root Cause Analysis",
+                                                        "subtitle": "",
+                                                        "tag": "Teaching Session",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "isHoliday": true,
+                                                        "text": "\ud83c\udf84 Weeks 52 & 53 \u2014 Christmas & Winter Vacation (No Classes)"
+                                                },
+                                                {
+                                                        "courseWeek": "W06",
+                                                        "week": "W01",
+                                                        "date": "Fri 08 Jan",
+                                                        "title": "Session 6 \u2014 The Corrective Action Plan & CAP Review",
+                                                        "subtitle": "",
+                                                        "tag": "Teaching Session \u2022 Prep FE1",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "courseWeek": "W07",
+                                                        "week": "W02",
+                                                        "date": "Fri 15 Jan",
+                                                        "title": "Session 7 \u2014 FORMATIVE EVALUATION 1 (FE1): EASA Regulatory Extract & Class Activity Evaluation",
+                                                        "subtitle": "Fri 15 Jan \u2022 30-min evaluation slots (Teacher A (TBC) / Teacher B (TBC) / Teacher C (TBC))",
+                                                        "tag": "Grade /20",
+                                                        "isFe": true,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                }
+                                        ]
+                                },
+                                {
+                                        "num": 2,
+                                        "title": "Module 2: MTF ICAO Level 4 Test Preparation (8 Sessions)",
+                                        "weeks": "W03 \u2013 W11",
+                                        "headerBg": "#182b42",
+                                        "sessions": [
+                                                {
+                                                        "courseWeek": "W08",
+                                                        "week": "W03",
+                                                        "date": "Fri 22 Jan",
+                                                        "title": "Session 1 \u2014 Introduction to the MTF ICAO Level Test",
+                                                        "subtitle": "",
+                                                        "tag": "Teaching Session",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "courseWeek": "W09",
+                                                        "week": "W04",
+                                                        "date": "Fri 29 Jan",
+                                                        "title": "Session 2 \u2014 The MTF Picture Exercise & Spoken Description Practice",
+                                                        "subtitle": "",
+                                                        "tag": "Teaching Session",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "courseWeek": "W10",
+                                                        "week": "W05",
+                                                        "date": "Fri 05 Feb",
+                                                        "title": "Session 3 \u2014 The MTF Listening Section & Audio Comprehension Practice",
+                                                        "subtitle": "",
+                                                        "tag": "Teaching Session",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "isHoliday": true,
+                                                        "text": "\u2744\ufe0f Week 06 \u2014 Mid-Semester Break (No Classes)"
+                                                },
+                                                {
+                                                        "courseWeek": "W11",
+                                                        "week": "W07",
+                                                        "date": "Fri 19 Feb",
+                                                        "title": "Session 4 \u2014 The MTF Text Exercise & Technical Summary Practice",
+                                                        "subtitle": "",
+                                                        "tag": "Teaching Session",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "courseWeek": "W12",
+                                                        "week": "W08",
+                                                        "date": "Fri 26 Feb",
+                                                        "title": "Session 5 \u2014 MTF Practice Test (Part 1 - Individual 30-Min Oral Trials)",
+                                                        "subtitle": "Fri 26 Feb \u2022 Individual 30-min oral test slots (Week 1 of 2)",
+                                                        "tag": "Mock Exam \u2022 30-min Oral",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "courseWeek": "W13",
+                                                        "week": "W09",
+                                                        "date": "Fri 05 Mar",
+                                                        "title": "Session 6 \u2014 MTF Practice Test (Part 2 - Individual 30-Min Oral Trials)",
+                                                        "subtitle": "Fri 05 Mar \u2022 Individual 30-min oral test slots (Week 2 of 2)",
+                                                        "tag": "Mock Exam \u2022 30-min Oral",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "courseWeek": "W14",
+                                                        "week": "W10",
+                                                        "date": "Fri 12 Mar",
+                                                        "title": "Session 7 \u2014 MTF Comprehensive Revision & Error Analysis",
+                                                        "subtitle": "",
+                                                        "tag": "MTF Revision",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                },
+                                                {
+                                                        "courseWeek": "W15",
+                                                        "week": "W11",
+                                                        "date": "Fri 19 Mar",
+                                                        "title": "Session 8 \u2014 MTF Final Revision & Test Readiness",
+                                                        "subtitle": "Fri 19 Mar \u2022 MTF Examination also administered in Week 11",
+                                                        "tag": "MTF Revision",
+                                                        "isFe": false,
+                                                        "rooms": {
+                                                                "A": "",
+                                                                "B": "",
+                                                                "C": "",
+                                                                "D": ""
+                                                        }
+                                                }
+                                        ]
+                                }
+                        ]
+                }
+        }
+},
       4: {
         num: 4,
         title: "Semester 4",
@@ -824,6 +1299,15 @@
           btn.className = "sem-btn flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10";
           if (dot) dot.className = "w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0";
           if (tag) tag.className = "text-[9.5px] font-mono text-slate-400 bg-white/5 px-1.5 py-0.5 rounded hidden sm:inline shrink-0";
+        }
+      }
+      if (SEMESTERS_DATA[num]) {
+        const sem = SEMESTERS_DATA[num];
+        if (sem.calendar && !sem.calendar[activeCalendarTrack]) {
+          activeCalendarTrack = sem.calendar.at ? 'at' : (sem.calendar.ag ? 'ag' : Object.keys(sem.calendar)[0]);
+        }
+        if (sem.rotas && !sem.rotas[activeRotaTrack]) {
+          activeRotaTrack = sem.rotas.at ? 'at' : (sem.rotas.ag ? 'ag' : Object.keys(sem.rotas)[0]);
         }
       }
       renderCurrentView();
@@ -2654,7 +3138,7 @@
     // TAB 2: FE ROTAS
     // ============================================================================
     function renderRotasTab(sem) {
-      if (!sem.rotas || !sem.rotas.ag || !sem.rotas.at) {
+      if (!sem.rotas || (!sem.rotas.ag && !sem.rotas.at)) {
         // Fallback for other semesters
         return `
           <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-4 print-card">
@@ -2675,8 +3159,16 @@
         `;
       }
 
-      const activeTrack = sem.rotas[activeRotaTrack] || sem.rotas.ag;
-      const currentFe = activeTrack.fes[activeRotaFe] || activeTrack.fes[1];
+      const activeTrack = sem.rotas[activeRotaTrack] || sem.rotas.at || sem.rotas.ag;
+      const currentFe = activeTrack.fes[activeRotaFe] || activeTrack.fes[Object.keys(activeTrack.fes)[0]];
+
+      const availableGroups = [];
+      if (currentFe.groupA) availableGroups.push({ key: "groupA", letter: "A", name: "Group A", teacher: currentFe.groupA.teacher, slots: currentFe.groupA.slots });
+      if (currentFe.groupB) availableGroups.push({ key: "groupB", letter: "B", name: "Group B", teacher: currentFe.groupB.teacher, slots: currentFe.groupB.slots });
+      if (currentFe.groupC) availableGroups.push({ key: "groupC", letter: "C", name: "Group C", teacher: currentFe.groupC.teacher, slots: currentFe.groupC.slots });
+      if (currentFe.groupD) availableGroups.push({ key: "groupD", letter: "D", name: "Group D", teacher: currentFe.groupD.teacher, slots: currentFe.groupD.slots });
+
+      const maxSlots = Math.max(4, ...availableGroups.map(g => (g.slots || []).length));
 
       return `
         <div class="space-y-4">
@@ -2704,7 +3196,7 @@
                   <span class="text-xs font-bold text-slate-800 font-mono">30-Minute Oral Tutorial Timings &amp; Pairings</span>
                 </div>
                 <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
-                  This schedule manages all 30-minute oral evaluation slots across FE1, FE2, and FE3 for both Group A and Group B. Alternating candidate pairs and trios are dynamically assigned to ensure diverse peer interactions and equal speaking time. Use this page before each evaluation day to confirm candidate arrival times, verify room rosters, or print official tutorial door schedules for your classroom.
+                  This schedule manages all 30-minute oral evaluation slots across FE milestones for ${availableGroups.map(g => `Group ${g.letter}`).join(', ')}. Candidate teams, pairs, and trios are assigned to ensure diverse peer interactions and equal speaking time. Use this page before each evaluation day to confirm candidate arrival times, verify room rosters, or print official tutorial door schedules for your classroom.
                 </p>
               </div>
             </div>
@@ -2732,12 +3224,16 @@
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Track:</span>
               <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-white">
-                <button type="button" onclick="setRotaTrack('ag')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'ag' ? 'bg-amber-400 text-slate-950 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
-                  🗣️ General English (AG • LV101E)
-                </button>
-                <button type="button" onclick="setRotaTrack('at')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'at' ? 'bg-amber-400 text-slate-950 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
-                  ✈️ Technical English (AT • LV121E)
-                </button>
+                ${sem.rotas.ag ? `
+                  <button type="button" onclick="setRotaTrack('ag')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'ag' ? 'bg-amber-400 text-slate-950 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                    🗣️ General English (AG • ${sem.rotas.ag.code || 'LV101E'})
+                  </button>
+                ` : ''}
+                ${sem.rotas.at ? `
+                  <button type="button" onclick="setRotaTrack('at')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'at' ? 'bg-amber-400 text-slate-950 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                    ✈️ Technical English (AT • ${sem.rotas.at.code || 'LV125E'})
+                  </button>
+                ` : ''}
               </div>
             </div>
 
@@ -2745,15 +3241,15 @@
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Milestone:</span>
               <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-white">
-                <button type="button" onclick="setRotaFe(1)" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaFe === 1 ? 'bg-slate-800 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
-                  FE1 (W48)
-                </button>
-                <button type="button" onclick="setRotaFe(2)" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaFe === 2 ? 'bg-slate-800 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
-                  FE2 (W03)
-                </button>
-                <button type="button" onclick="setRotaFe(3)" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaFe === 3 ? 'bg-slate-800 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
-                  FE3 (W08)
-                </button>
+                ${Object.keys(activeTrack.fes || {}).map(feKey => {
+                  const fe = activeTrack.fes[feKey];
+                  const num = Number(feKey);
+                  return `
+                    <button type="button" onclick="setRotaFe(${num})" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaFe === num ? 'bg-slate-800 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                      FE${num} (${fe.week || 'Week'})
+                    </button>
+                  `;
+                }).join('')}
               </div>
             </div>
           </div>
@@ -2771,8 +3267,7 @@
               <p class="text-xs text-slate-600 mt-1">${currentFe.dateStr} • ${activeTrack.schedule}</p>
             </div>
             <div class="text-xs space-y-0.5 text-right sm:text-right">
-              <div><span class="text-slate-500 font-medium">Group A (10 students):</span> <strong class="text-slate-900">${currentFe.groupA.teacher}</strong></div>
-              <div><span class="text-slate-500 font-medium">Group B (9 students):</span> <strong class="text-slate-900">${currentFe.groupB.teacher}</strong></div>
+              ${availableGroups.map(g => `<div><span class="text-slate-500 font-medium">Group ${g.letter}:</span> <strong class="text-slate-900">${g.teacher}</strong></div>`).join('')}
             </div>
           </div>
 
@@ -2782,30 +3277,29 @@
               <thead>
                 <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200 uppercase tracking-wider text-[10px]">
                   <th class="py-3 px-3 w-32">Slot &amp; Time</th>
-                  <th class="py-3 px-3">Group A (${currentFe.groupA.teacher})</th>
-                  <th class="py-3 px-3">Group B (${currentFe.groupB.teacher})</th>
+                  ${availableGroups.map(g => `<th class="py-3 px-3">Group ${g.letter} (${g.teacher})</th>`).join('')}
                   <th class="py-3 px-3 text-right">Length</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-100">
-                ${[0, 1, 2, 3].map(idx => {
-                  const sA = currentFe.groupA.slots[idx];
-                  const sB = currentFe.groupB.slots[idx];
+                ${Array.from({ length: maxSlots }, (_, idx) => {
+                  const firstGrp = availableGroups[0];
+                  const slotTime = (firstGrp && firstGrp.slots && firstGrp.slots[idx] && firstGrp.slots[idx].time) || `Slot ${idx + 1}`;
                   return `
                     <tr class="hover:bg-slate-50/80 transition-colors">
                       <td class="py-3 px-3 font-mono font-bold text-slate-900 whitespace-nowrap">
-                        <span class="text-slate-400 font-normal">Slot ${idx + 1}:</span> ${sA.time}
+                        <span class="text-slate-400 font-normal">Slot ${idx + 1}:</span> ${slotTime}
                       </td>
-                      <td class="py-3 px-3">
-                        <div class="flex items-center gap-1.5 flex-wrap">
-                          ${sA.students.map(st => `<span class="px-2 py-0.5 rounded font-mono font-bold bg-slate-50 border border-slate-200 text-slate-800" title="${formatStudentName(st)}">${getStudentShortName(st)}</span>`).join('')}
-                        </div>
-                      </td>
-                      <td class="py-3 px-3">
-                        <div class="flex items-center gap-1.5 flex-wrap">
-                          ${sB.students.map(st => `<span class="px-2 py-0.5 rounded font-mono font-bold bg-slate-50 border border-slate-200 text-slate-800" title="${formatStudentName(st)}">${getStudentShortName(st)}</span>`).join('')}
-                        </div>
-                      </td>
+                      ${availableGroups.map(g => {
+                        const s = (g.slots && g.slots[idx]) || { students: [] };
+                        return `
+                          <td class="py-3 px-3">
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                              ${(s.students || []).map(st => `<span class="px-2 py-0.5 rounded font-mono font-bold bg-slate-50 border border-slate-200 text-slate-800" title="${formatStudentName(st)}">${getStudentShortName(st)}</span>`).join('')}
+                            </div>
+                          </td>
+                        `;
+                      }).join('')}
                       <td class="py-3 px-3 text-right font-mono text-slate-500 whitespace-nowrap">30 mins</td>
                     </tr>
                   `;
@@ -2822,7 +3316,7 @@
     // TAB 3: PROGRAMME & CALENDAR
     // ============================================================================
     function renderCalendarTab(sem) {
-      if (!sem.calendar || !sem.calendar.ag || !sem.calendar.at) {
+      if (!sem.calendar || (!sem.calendar.ag && !sem.calendar.at)) {
         // Fallback for other semesters
         return `
           <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200 space-y-4 print-card">
@@ -2839,7 +3333,7 @@
         `;
       }
 
-      const activeCal = sem.calendar[activeCalendarTrack] || sem.calendar.ag;
+      const activeCal = sem.calendar[activeCalendarTrack] || sem.calendar.at || sem.calendar.ag;
 
       return `
         <div class="space-y-4">
@@ -2864,10 +3358,10 @@
                   <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-mono shadow-2xs">
                     Teacher Guide
                   </span>
-                  <span class="text-xs font-bold text-slate-800 font-mono">16-Week Syllabus &amp; Milestones</span>
+                  <span class="text-xs font-bold text-slate-800 font-mono">Curriculum Syllabus &amp; Milestones</span>
                 </div>
                 <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
-                  This master timetable provides a week-by-week roadmap of all 16 teaching sessions and oral evaluation milestones across the semester. Use the track filter tabs (AT / AG) below to review weekly lesson topics, room allocations, holiday breaks, and upcoming Formative Evaluation (FE) dates. Ensure your weekly classroom pacing aligns with the scheduled formative assessment checkpoints.
+                  This master timetable provides a week-by-week roadmap of all teaching sessions and oral evaluation milestones across the semester. Use the track filter tabs below to review weekly lesson topics, room allocations, holiday breaks, and upcoming Formative Evaluation (FE) dates. Ensure your weekly classroom pacing aligns with the scheduled formative assessment checkpoints.
                 </p>
               </div>
             </div>
@@ -2881,10 +3375,10 @@
               <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
                 ${sem.title} • Weekly Course Calendar
               </span>
-              <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">15-Week Curriculum &amp; Evaluation Timetable</h2>
+              <h2 class="text-base sm:text-lg font-bold text-slate-900 mt-1">Curriculum &amp; Evaluation Timetable</h2>
             </div>
             <span class="text-xs font-mono font-bold text-slate-600 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200">
-              Official Start: Week 44
+              ${activeCal.name} • ${activeCal.code}
             </span>
           </div>
 
@@ -2893,12 +3387,16 @@
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Course Track:</span>
               <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-white">
-                <button type="button" onclick="setCalendarTrack('ag')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'ag' ? 'bg-amber-400 text-slate-950 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
-                  🗣️ General English (AG • LV101E)
-                </button>
-                <button type="button" onclick="setCalendarTrack('at')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'at' ? 'bg-amber-400 text-slate-950 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
-                  ✈️ Technical English (AT • LV121E)
-                </button>
+                ${sem.calendar.ag ? `
+                  <button type="button" onclick="setCalendarTrack('ag')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'ag' ? 'bg-amber-400 text-slate-950 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                    🗣️ General English (AG • ${sem.calendar.ag.code || 'LV101E'})
+                  </button>
+                ` : ''}
+                ${sem.calendar.at ? `
+                  <button type="button" onclick="setCalendarTrack('at')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'at' ? 'bg-amber-400 text-slate-950 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
+                    ✈️ Technical English (AT • ${sem.calendar.at.code || 'LV125E'})
+                  </button>
+                ` : ''}
               </div>
             </div>
             <div class="text-xs text-slate-600 font-medium">
@@ -2935,15 +3433,15 @@
                         }
                         return `
                           <tr class="${s.isFe ? 'bg-amber-50/70 font-semibold border-l-4 border-amber-500' : 'hover:bg-slate-50/70'} transition-colors">
-                            <td class="py-2.5 px-3 font-mono font-bold ${s.isFe ? 'text-amber-900' : 'text-slate-700'}">${s.week}</td>
-                            <td class="py-2.5 px-3 font-medium text-slate-600 whitespace-nowrap">${s.date}</td>
+                            <td class="py-2.5 px-3 font-mono font-bold ${s.isFe ? 'text-amber-900' : 'text-slate-700'}">${s.week || '—'}</td>
+                            <td class="py-2.5 px-3 font-medium text-slate-600 whitespace-nowrap">${s.date || '—'}</td>
                             <td class="py-2.5 px-3">
                               <div class="font-bold ${s.isFe ? 'text-slate-900' : 'text-slate-900'}">${s.title}</div>
                               ${s.subtitle ? `<div class="text-[10px] text-slate-500 mt-0.5">${s.subtitle}</div>` : ''}
                             </td>
                             <td class="py-2.5 px-3 text-right whitespace-nowrap">
                               <span class="px-2 py-0.5 rounded text-[10px] font-bold ${s.isFe ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-slate-100 text-slate-700 border border-slate-200'}">
-                                ${s.tag}
+                                ${s.tag || 'Session'}
                               </span>
                             </td>
                           </tr>
