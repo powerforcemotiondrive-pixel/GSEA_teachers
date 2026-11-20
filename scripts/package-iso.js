@@ -18,6 +18,14 @@ if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
 }
 
+// 0.5. Validate JavaScript Syntax & AST
+try {
+  execSync("node scripts/validate-syntax.js", { cwd: rootDir, stdio: "inherit" });
+} catch (err) {
+  console.error("✗ Syntax validation failed. Aborting packaging.");
+  process.exit(1);
+}
+
 // 1. Build minified CSS
 console.log('🎨 Compiling Tailwind CSS (minified)...');
 try {

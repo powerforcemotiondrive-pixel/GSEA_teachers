@@ -6,7 +6,7 @@
   "scripts": {
     "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --minify",
     "build": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --minify",
-    "package": "node scripts/package-scorm.js && node scripts/package-iso.js",
+    "package": "node scripts/validate-syntax.js && node scripts/package-scorm.js && node scripts/package-iso.js",
     "package:scorm": "node scripts/package-scorm.js",
     "package:iso": "node scripts/package-iso.js",
     "backup": "node scripts/backup.js",
@@ -17,7 +17,9 @@
     "portfolio:update": "node scripts/update-portfolio.js",
     "media:update": "node scripts/update-media.js && npm run package",
     "dev:css": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --watch",
-    "serve": "python3 -m http.server 8080"
+    "serve": "python3 -m http.server 8080",
+    "test": "node scripts/validate-syntax.js",
+    "bug": "node scripts/validate-syntax.js"
   },
   "repository": {
     "type": "git",
