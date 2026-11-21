@@ -268,13 +268,18 @@ function main() {
   const replacementHTML = `<!-- MEDIA_UPDATE_START -->
           <!-- Unified Weekly Noticeboard and Culture / Media Panel -->
           <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-            <!-- Panel Header Ribbon -->
+            <!-- Panel Header Ribbon with Purpose Banner -->
             <div class="px-4 py-3 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-2 border-b border-slate-800">
-              <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-                <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
-                  WEEKLY NOTICEBOARD AND CULTURE / MEDIA
-                </h3>
+              <div class="flex items-center gap-2.5">
+                <span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+                <div>
+                  <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
+                    WEEKLY NOTICEBOARD AND CULTURE / MEDIA
+                  </h3>
+                  <p class="text-[11px] text-slate-300 font-normal">
+                    Weekly teaching focus, short conversational warm-ups for the start of class, and independent cultural listening recommendations.
+                  </p>
+                </div>
               </div>
               <div class="flex items-center gap-2">
                 <button 
@@ -306,11 +311,13 @@ function main() {
               <!-- Left Column: Noticeboard & Speaking Warm-ups -->
               <div class="p-4 sm:p-5 flex flex-col justify-between space-y-4">
                 <div class="space-y-3.5">
-                  <div class="flex items-center justify-between pb-1 border-b border-slate-100">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                      <span>📌</span> Teaching Focus &amp; Spoken Discussion Prompts
+                  <div class="pb-1.5 border-b border-slate-100">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                      <span>📌</span> Classroom Speaking Warm-ups (AT &amp; AG)
                     </span>
-                    <span class="text-[10px] font-mono text-slate-400">5-Min Warm-ups</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5">
+                      Weekly teaching priorities and 5-minute BBC topical articles to activate student speaking at the beginning of each session.
+                    </p>
                   </div>
 
                   <!-- Up Next Notice Banner -->
@@ -397,11 +404,13 @@ function main() {
               <!-- Right Column: Curated Cultural Cinema & Listening -->
               <div class="p-4 sm:p-5 flex flex-col justify-between space-y-4">
                 <div class="space-y-3">
-                  <div class="flex items-center justify-between pb-1 border-b border-slate-100">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                      <span>🎬</span> Curated Cinema for Independent Listening
+                  <div class="pb-1.5 border-b border-slate-100">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                      <span>🎬</span> Cultural Cinema &amp; Independent Listening
                     </span>
-                    <span class="text-[10px] font-mono text-slate-400">Cultural Immersion</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5">
+                      Curated weekly film suggestions (French, British/American, and International) for students to practice listening comprehension outside class.
+                    </p>
                   </div>
 
                   ${[imdb1, imdb2, imdb3].map((film, fIdx) => {

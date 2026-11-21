@@ -1679,13 +1679,18 @@
           <!-- MEDIA_UPDATE_START -->
           <!-- Unified Weekly Operational Briefings & Cultural Media Panel -->
           <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-            <!-- Panel Header Ribbon -->
+            <!-- Panel Header Ribbon with Purpose Banner -->
             <div class="px-4 py-3 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-2 border-b border-slate-800">
-              <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-                <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
-                  WEEKLY NOTICEBOARD AND CULTURE / MEDIA
-                </h3>
+              <div class="flex items-center gap-2.5">
+                <span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+                <div>
+                  <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
+                    WEEKLY NOTICEBOARD AND CULTURE / MEDIA
+                  </h3>
+                  <p class="text-[11px] text-slate-300 font-normal">
+                    Weekly teaching focus, short conversational warm-ups for the start of class, and independent cultural listening recommendations.
+                  </p>
+                </div>
               </div>
               <div class="flex items-center gap-2">
                 <button 
@@ -1717,11 +1722,13 @@
               <!-- Left Column: Noticeboard & Speaking Warm-ups -->
               <div class="p-4 sm:p-5 flex flex-col justify-between space-y-4">
                 <div class="space-y-3.5">
-                  <div class="flex items-center justify-between pb-1 border-b border-slate-100">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                      <span>📌</span> Teaching Focus &amp; Spoken Discussion Prompts
+                  <div class="pb-1.5 border-b border-slate-100">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                      <span>📌</span> Classroom Speaking Warm-ups (AT &amp; AG)
                     </span>
-                    <span class="text-[10px] font-mono text-slate-400">5-Min Warm-ups</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5">
+                      Weekly teaching priorities and 5-minute BBC topical articles to activate student speaking at the beginning of each session.
+                    </p>
                   </div>
 
                   <!-- Up Next Notice Banner -->
@@ -1808,11 +1815,13 @@
               <!-- Right Column: Curated Cultural Cinema & Listening -->
               <div class="p-4 sm:p-5 flex flex-col justify-between space-y-4">
                 <div class="space-y-3">
-                  <div class="flex items-center justify-between pb-1 border-b border-slate-100">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                      <span>🎬</span> Curated Cinema for Independent Listening
+                  <div class="pb-1.5 border-b border-slate-100">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                      <span>🎬</span> Cultural Cinema &amp; Independent Listening
                     </span>
-                    <span class="text-[10px] font-mono text-slate-400">Cultural Immersion</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5">
+                      Curated weekly film suggestions (French, British/American, and International) for students to practice listening comprehension outside class.
+                    </p>
                   </div>
 
                   <!-- Film Card -->
@@ -1926,93 +1935,159 @@
 
           <!-- Section: Recent Aviation Live Traffic -->
           <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-            <!-- Panel Header Ribbon -->
+            <!-- Panel Header Ribbon with Purpose Banner -->
             <div class="px-4 py-3 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-2 border-b border-slate-800">
               <div class="flex items-center gap-2.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse shrink-0"></span>
                 <div>
                   <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
-                    Recent Aviation Live Traffic
+                    Recent Aviation Live Traffic &amp; ATC Debriefs
                   </h3>
                   <p class="text-[11px] text-slate-300 font-normal">
-                    Please find below recent live traffic recordings from VASAviation.
+                    Curated authentic air traffic recordings from VASAviation with operational summaries and classroom speaking prompts.
                   </p>
                 </div>
               </div>
               <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-200 font-mono text-[10.5px] font-bold shrink-0">
-                <svg class="w-3.5 h-3.5 text-rose-500" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
-                <span>VASAviation</span>
+                <svg class="w-3.5 h-3.5 text-rose-500" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                <span>VASAviation (2 Cases Max)</span>
               </span>
             </div>
 
-            <!-- 2-Column Responsive Video Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-200">
+            <!-- Stacked Deep Video Cards -->
+            <div class="divide-y divide-slate-200">
               
-              <!-- Video 1 -->
-              <div class="p-4 sm:p-5 flex flex-col justify-between space-y-3">
-                <div class="space-y-2">
+              <!-- Case 1: Runway Evacuation (DFW) -->
+              <div class="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+                <!-- Video Player Column (Deep 16:9 on Desktop) -->
+                <div class="lg:col-span-7 flex flex-col space-y-2.5">
                   <div class="flex items-center justify-between gap-2">
-                    <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/80 font-mono">
-                      🔴 RUNWAY EVACUATION
+                    <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/80 font-mono">
+                      🔴 CASE 1: ACTIVE RUNWAY EVACUATION
                     </span>
-                    <span class="text-[10px] text-slate-500 font-mono">Dallas/Fort Worth (DFW)</span>
+                    <span class="text-[10.5px] text-slate-500 font-mono">Dallas/Fort Worth (DFW) • Rwy 17L</span>
                   </div>
-                  <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
+                  <h4 class="text-sm sm:text-base font-bold text-slate-900 leading-snug">
                     Plane EVACUATING ON RUNWAY at Busy DFW | Smoke on Board!
                   </h4>
-                  <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-900 border border-slate-200 shadow-inner">
+                  <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-300 shadow-md">
                     <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/-LDLo2WhCIU" title="Plane EVACUATING ON RUNWAY at Busy DFW | Smoke on Board!" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                   </div>
-                  <p class="text-[11px] text-slate-600 leading-relaxed">
-                    Authentic air traffic control recordings and pilot readbacks during runway emergency evacuation due to onboard smoke at Dallas/Fort Worth.
-                  </p>
+                  <div class="flex items-center justify-between pt-1 text-[11px]">
+                    <span class="text-[10px] text-slate-400 font-mono">Channel: VASAviation • Authentic ATC Audio &amp; Radar Animation</span>
+                    <a 
+                      href="https://www.youtube.com/watch?v=-LDLo2WhCIU" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      class="text-xs font-bold text-slate-800 hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
+                      title="Watch on YouTube ↗"
+                    >
+                      <span>Watch on YouTube</span>
+                      <span class="text-[10px]">↗</span>
+                    </a>
+                  </div>
                 </div>
-                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                  <span class="text-[10px] text-slate-400 font-mono">VASAviation • Authentic ATC</span>
-                  <a 
-                    href="https://www.youtube.com/watch?v=-LDLo2WhCIU" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    class="text-xs font-bold text-slate-800 hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                    title="Watch on YouTube ↗"
-                  >
-                    <span>Watch on YouTube</span>
-                    <span class="text-[10px]">↗</span>
-                  </a>
+
+                <!-- Debrief & Teaching Prompts Column -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-3.5 bg-slate-50/90 rounded-xl p-4 sm:p-5 border border-slate-200">
+                  <div class="space-y-3">
+                    <div class="border-b border-slate-200 pb-2">
+                      <span class="text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">Operational Incident Debrief</span>
+                      <h5 class="text-xs sm:text-sm font-bold text-slate-800 mt-0.5">Emergency Stop, ARFF Rollout &amp; Traffic Diversion</h5>
+                    </div>
+
+                    <div class="space-y-2 text-xs text-slate-600 leading-relaxed">
+                      <p>
+                        <strong class="text-slate-800">Situation:</strong> An American Airlines Boeing 737 declares an emergency on final approach reporting dense smoke in the passenger cabin. The aircraft comes to a complete halt directly on active Runway 17L and deploys evacuation slides.
+                      </p>
+                      <p>
+                        <strong class="text-slate-800">Phraseology &amp; ATC Coordination:</strong> Tower controller immediately coordinates Airport Rescue &amp; Firefighting (ARFF), halts departures, and transmits rapid go-around instructions (<em class="text-slate-800 font-mono text-[11px]">"Go around, aircraft evacuating on runway"</em>) to closely trailing arrivals.
+                      </p>
+                    </div>
+
+                    <!-- Classroom Discussion Box -->
+                    <div class="p-3 bg-amber-50/90 border border-amber-200 rounded-lg space-y-1.5">
+                      <div class="flex items-center gap-1.5 text-amber-900 font-bold text-[11px] uppercase tracking-wide">
+                        <span>💬</span> Suggested Classroom Speaking Prompts
+                      </div>
+                      <ul class="text-[11.5px] text-amber-950/90 space-y-1 list-disc list-inside">
+                        <li>How does the local controller prioritize workload between the emergency aircraft and trailing traffic?</li>
+                        <li>Listen to the readbacks: what standard phraseology ensures ARFF vehicles enter the active runway safely?</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-[10.5px] text-slate-500 font-mono">
+                    <span>Target Level: B1+/B2</span>
+                    <span>Track Focus: Technical English (AT)</span>
+                  </div>
                 </div>
               </div>
 
-              <!-- Video 2 -->
-              <div class="p-4 sm:p-5 flex flex-col justify-between space-y-3">
-                <div class="space-y-2">
+              <!-- Case 2: Taxiway Collision -->
+              <div class="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+                <!-- Video Player Column (Deep 16:9 on Desktop) -->
+                <div class="lg:col-span-7 flex flex-col space-y-2.5">
                   <div class="flex items-center justify-between gap-2">
-                    <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/80 font-mono">
-                      ⚠️ GROUND COLLISION
+                    <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/80 font-mono">
+                      ⚠️ CASE 2: APRON &amp; TAXIWAY GROUND COLLISION
                     </span>
-                    <span class="text-[10px] text-slate-500 font-mono">Taxi Incident &amp; Damage</span>
+                    <span class="text-[10.5px] text-slate-500 font-mono">Ground Movement Incident &amp; Damage</span>
                   </div>
-                  <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
+                  <h4 class="text-sm sm:text-base font-bold text-slate-900 leading-snug">
                     Two Planes COLLIDE During Taxi | This Error Caused Severe Damage!
                   </h4>
-                  <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-900 border border-slate-200 shadow-inner">
+                  <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-300 shadow-md">
                     <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/i4IePwbw8kU" title="Two Planes COLLIDE During Taxi | This Error Caused Severe Damage!" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                   </div>
-                  <p class="text-[11px] text-slate-600 leading-relaxed">
-                    Ground movement communication failure leading to collision between taxiing aircraft, featuring ground controller instructions and subsequent damage reports.
-                  </p>
+                  <div class="flex items-center justify-between pt-1 text-[11px]">
+                    <span class="text-[10px] text-slate-400 font-mono">Channel: VASAviation • Authentic Ground Control Recordings</span>
+                    <a 
+                      href="https://www.youtube.com/watch?v=i4IePwbw8kU" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      class="text-xs font-bold text-slate-800 hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
+                      title="Watch on YouTube ↗"
+                    >
+                      <span>Watch on YouTube</span>
+                      <span class="text-[10px]">↗</span>
+                    </a>
+                  </div>
                 </div>
-                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                  <span class="text-[10px] text-slate-400 font-mono">VASAviation • Authentic ATC</span>
-                  <a 
-                    href="https://www.youtube.com/watch?v=i4IePwbw8kU" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    class="text-xs font-bold text-slate-800 hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                    title="Watch on YouTube ↗"
-                  >
-                    <span>Watch on YouTube</span>
-                    <span class="text-[10px]">↗</span>
-                  </a>
+
+                <!-- Debrief & Teaching Prompts Column -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-3.5 bg-slate-50/90 rounded-xl p-4 sm:p-5 border border-slate-200">
+                  <div class="space-y-3">
+                    <div class="border-b border-slate-200 pb-2">
+                      <span class="text-[10px] font-black uppercase tracking-wider text-slate-500 font-mono">Operational Incident Debrief</span>
+                      <h5 class="text-xs sm:text-sm font-bold text-slate-800 mt-0.5">Spatial Awareness &amp; Progressive Taxi Readback</h5>
+                    </div>
+
+                    <div class="space-y-2 text-xs text-slate-600 leading-relaxed">
+                      <p>
+                        <strong class="text-slate-800">Situation:</strong> Two commercial aircraft make wingtip contact during ground taxiing near a congested ramp intersection. One aircraft clips the horizontal stabilizer and wing of the second aircraft, inflicting substantial structural damage.
+                      </p>
+                      <p>
+                        <strong class="text-slate-800">Phraseology &amp; Communication Breakdown:</strong> Analysis highlights ambiguous position reports, spatial clearance misunderstandings on narrow taxiways, and the critical importance of progressive taxi instructions when ground visibility or wingtip clearance is in doubt.
+                      </p>
+                    </div>
+
+                    <!-- Classroom Discussion Box -->
+                    <div class="p-3 bg-amber-50/90 border border-amber-200 rounded-lg space-y-1.5">
+                      <div class="flex items-center gap-1.5 text-amber-900 font-bold text-[11px] uppercase tracking-wide">
+                        <span>💬</span> Suggested Classroom Speaking Prompts
+                      </div>
+                      <ul class="text-[11.5px] text-amber-950/90 space-y-1 list-disc list-inside">
+                        <li>Where did the miscommunication or spatial assumption occur between pilots and ground control?</li>
+                        <li>What standard phraseology should a flight crew use if wingtip clearance behind or beside another taxiing aircraft appears doubtful?</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="pt-2 border-t border-slate-200 flex items-center justify-between text-[10.5px] text-slate-500 font-mono">
+                    <span>Target Level: B1+/B2</span>
+                    <span>Track Focus: Ground Operations &amp; Safety</span>
+                  </div>
                 </div>
               </div>
 
