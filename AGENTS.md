@@ -59,3 +59,23 @@ This repository houses the official **ENAC GSEA English Teachers Hub & Grading P
   2. Update `GSEA_semester_1` via `npm run portfolio:summary`, rebuild all 4 packages (`SCORM.zip`, `SCORM_MOODLE.zip`, `.iso`, `.dmg`), and commit & push to GitHub.
   3. Update `GSEA_teachers` via `npm run portfolio:s1`, rebuild all 3 packages (`SCORM.zip`, `.iso`, `.dmg`), and commit & push to GitHub.
   4. Output a single consolidated report in chat with total submissions, track breakdown, and confirmation of both remote repositories synchronized live.
+
+### I. Modular Source Architecture & Build Runbook (`src/` Invariant)
+- **Modular Source Tree**: Human-editable source files live cleanly under `src/`:
+  - `src/template.html`: Base application HTML shell, navigation bar, and modal structures.
+  - `src/js/01-auth-engine.js`: Cryptographic integrity, student pseudonymization placeholders, and storage keys.
+  - `src/js/02-config-semesters.js`: Multi-semester static configuration (`SEMESTERS_DATA` for S1–S4).
+  - `src/js/03-core-deck.js`: Navigation controllers, semester switching, and view dispatcher.
+  - `src/js/04-tab-overview.js`: Weekly noticeboard, speaking warm-ups, cinema, and live traffic.
+  - `src/js/05-tab-evaluations.js`: Formative evaluation grading calculator, rubrics, and Google Sheets sync.
+  - `src/js/06-tab-calendar-rotas.js`: Weekly timetables and FE tutorial rotas.
+  - `src/js/07-tab-groups-absences.js`: Class rosters, student groups, absence tracking, and print engine.
+  - `src/js/08-portfolio-data.js`: Embedded student portfolio reflection matrices (`PORTFOLIO_DATA_S1` through `S4`).
+  - `src/js/09-tab-portfolio.js`: Student portfolio reflection view, analytics cards, and dossiers.
+  - `src/js/10-media-archive.js`: Media recommendations archive data and modal controller.
+  - `src/js/11-footer-init.js`: DOM initialization handler.
+- **Build Commands**:
+  - `npm run build:html`: Compiles `src/template.html` and `src/js/*.js` into `index.html`.
+  - `npm run build:css`: Compiles Tailwind CSS v4 minified into `output.css`.
+  - `npm run build`: Runs both `build:html` and `build:css`.
+  - `npm run package`: Runs `npm run build`, validates AST syntax (`npm test`), and packages the SCORM `.zip`, Universal `.iso`, and Apple Mac `.dmg` installers.

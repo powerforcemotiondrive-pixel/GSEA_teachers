@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    ==========================================================================
+    ENAC GSEA Multi-Semester Teachers Hub & Grading Portal
+    © 2026 Phil PARRIS. All Rights Reserved.
+    Author & Pedagogical Architect: Phil PARRIS (Département LH / LAN)
+    Protected under the French Intellectual Property Code (Articles L.111-1 & L.121-1).
+    Strictly licensed for official ENAC GSEA training. Unauthorized copying,
+    derivative modification, extraction, or removal of attribution is prohibited.
+    ==========================================================================
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="author" content="Phil PARRIS">
+  <meta name="creator" content="Phil PARRIS (ENAC LH/LAN)">
+  <meta name="copyright" content="© 2026 Phil PARRIS. All Rights Reserved.">
+  <title>ENAC GSEA — Teachers Hub & Academic Portal</title>
+  <!-- Tailwind CSS CLI Output -->
+  <link rel="stylesheet" href="output.css">
+  <style>
+    /* Signature Precision CAD Micro-Grid (Semester 1 Deep Cockpit Slate) */
+    .textured-surface,
+    #portal-header {
+      background-color: #1e293b !important;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.18) 0%, transparent 75%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(0, 0, 0, 0.18) 100%) !important;
+      background-size: 100% 100%, 16px 16px, 16px 16px, 100% 100% !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.35) !important;
+    }
+
+    /* Precision Aviation Technical Canvas (Semester 1 Clean Slate Backdrop) */
+    body {
+      background-color: #f1f5f9;
+      background-image: radial-gradient(rgba(0, 0, 0, 0.085) 1.25px, transparent 1.25px);
+      background-size: 20px 20px;
+      background-attachment: fixed;
+    }
+
+    /* Deck Canvas 690px Fixed Height Desktop Parity with Semesters 1, 2 & 3 */
+    @media (min-width: 768px) {
+      .moodle-deck-canvas {
+        height: 690px;
+        min-height: 690px;
+        max-height: 690px;
+      }
+      #portal-content {
+        height: 100% !important;
+        min-height: 0 !important;
+        overflow-y: auto !important;
+        flex: 1 1 0% !important;
+      }
+    }
+
+    /* Subtle slim scrollbar for internal content pane */
+    #portal-content::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    #portal-content::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    #portal-content::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    #portal-content::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Refined Workspace Card Surface Depth & Boundary Definition */
+    .bg-white.rounded-2xl {
+      box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(203, 213, 225, 0.6) !important;
+    }
+
+    /* Modal Drawer & Backdrop transitions */
+    #teacher-modal-drawer {
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #teacher-modal-backdrop {
+      transition: opacity 0.28s ease;
+    }
+
+    /* Print Formatting Rules */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      #portal-header, #main-nav-tabs, footer, .no-print, button, #teacher-drawer-header, #teacher-drawer-footer, #teacher-modal-backdrop {
+        display: none !important;
+      }
+      body:has(#teacher-resource-modal:not(.hidden)) #portal-content {
+        display: none !important;
+      }
+      #teacher-resource-modal,
+      #teacher-resource-modal > div,
+      #teacher-modal-drawer,
+      #teacher-drawer-body {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+        transform: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: #ffffff !important;
+      }
+      #portal-content {
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+      }
+      .student-bulletin-card, .absence-report-card, .portfolio-report-card {
+        page-break-after: always !important;
+        break-after: page !important;
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        padding: 1.5rem !important;
+      }
+      .portfolio-group-cover-header {
+        border-bottom: 2px solid #0f172a !important;
+        padding-bottom: 1.25rem !important;
+        margin-bottom: 1.5rem !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      .portfolio-student-section {
+        box-shadow: none !important;
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+      .portfolio-student-section.student-page-break {
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+      .portfolio-session-entry {
+        box-shadow: none !important;
+        background: transparent !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+      #grade-report-modal, #absence-report-modal, #portfolio-report-modal, #group-entries-dossier-modal {
+        position: static !important;
+        background: transparent !important;
+        padding: 0 !important;
+        overflow: visible !important;
+      }
+      #grade-report-modal > div, #absence-report-modal > div, #portfolio-report-modal > div, #group-entries-dossier-modal > div {
+        max-height: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        overflow: visible !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        background: #ffffff !important;
+        padding: 0 !important;
+      }
+      #group-entries-print-area {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center text-slate-800 antialiased font-sans">
+
+  <!-- Main Container: 1:1 Parity with Semester 1 and 2 Flight Deck / Admin Hub -->
+  <div class="w-[98%] sm:w-[95%] lg:w-[90%] max-w-[1350px] mx-auto px-2 sm:px-4 py-3 font-sans">
+    
+    <!-- Unified Deck Canvas Enclosure (690px Fixed Height Desktop Parity) -->
+    <div class="moodle-deck-canvas bg-white rounded-2xl shadow-xl border border-slate-300 flex flex-col overflow-hidden">
+
+      <!-- Executive Header (Compact Cockpit Header - Flush Left) -->
+      <header id="portal-header" class="textured-surface text-white px-4 sm:px-6 py-2.5 sm:py-3 border-b border-slate-900/60 flex items-center justify-between gap-3 shrink-0 relative overflow-hidden">
+        <!-- Brand & Title Block (Flush Left) -->
+        <div class="min-w-0">
+          <h1 id="header-main-title" class="text-xs sm:text-base font-bold tracking-tight text-white uppercase truncate">
+            GSEA TEACHERS HUB
+          </h1>
+          <span class="text-[10px] sm:text-xs text-slate-300 font-mono truncate block mt-0.5">
+            ENAC • DÉPARTEMENT LH / LAN
+          </span>
+        </div>
+
+
+      </header>
+
+      <!-- Master Semester Selection Strip (Flush Left with Title Above) -->
+      <div id="semester-nav-bar" class="bg-slate-950/90 border-b border-slate-800 px-4 sm:px-6 py-1.5 sm:py-2 flex items-center overflow-x-auto shrink-0 no-print">
+        <div class="inline-flex items-center p-0.5 sm:p-1 rounded-xl bg-slate-900 border border-white/10 shadow-inner" id="semester-selector-group">
+          <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer bg-amber-400 text-slate-950 shadow-xs" title="Switch to Semester 1">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-950 shrink-0"></span>
+            <span class="sm:hidden font-mono text-[11px]">S1</span>
+            <span class="hidden sm:inline truncate">Semester 1</span>
+            <span class="text-[9px] font-mono font-bold bg-slate-950/15 text-slate-950 px-1 py-0.5 rounded hidden md:inline shrink-0">AG + AT</span>
+          </button>
+          <button type="button" onclick="selectSemester(2)" id="sem-btn-2" class="sem-btn flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10" title="Switch to Semester 2">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+            <span class="sm:hidden font-mono text-[11px]">S2</span>
+            <span class="hidden sm:inline truncate">Semester 2</span>
+            <span class="text-[9px] font-mono text-slate-400 bg-white/5 px-1 py-0.5 rounded hidden md:inline shrink-0">AG + AAS</span>
+          </button>
+          <button type="button" onclick="selectSemester(3)" id="sem-btn-3" class="sem-btn flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10" title="Switch to Semester 3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+            <span class="sm:hidden font-mono text-[11px]">S3</span>
+            <span class="hidden sm:inline truncate">Semester 3</span>
+            <span class="text-[9px] font-mono text-slate-400 bg-white/5 px-1 py-0.5 rounded hidden md:inline shrink-0">AT</span>
+          </button>
+          <button type="button" onclick="selectSemester(4)" id="sem-btn-4" class="sem-btn flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10" title="Switch to Semester 4">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+            <span class="sm:hidden font-mono text-[11px]">S4</span>
+            <span class="hidden sm:inline truncate">Semester 4</span>
+            <span class="text-[9px] font-mono text-slate-400 bg-white/5 px-1 py-0.5 rounded hidden md:inline shrink-0">AP</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Navigation Tab Strip (Light/White Ribbon Docked Over Dashboard) -->
+      <nav id="main-nav-tabs" class="bg-white border-b border-slate-200/90 px-4 sm:px-6 py-2 flex items-center gap-1.5 sm:gap-2 overflow-x-auto text-xs shrink-0 shadow-2xs z-10 no-print">
+        <button type="button" onclick="switchTab('overview')" id="tab-btn-overview" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg font-bold transition-all bg-slate-900 text-white shadow-xs cursor-pointer">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
+          <span>Overview</span>
+        </button>
+        <button type="button" onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.253 3.75m3 2.25a2.25 2.25 0 012.25 2.25v7.5A2.25 2.25 0 0121 21H3a2.25 2.25 0 01-2.25-2.25v-7.5A2.25 2.25 0 013 9.75h18z"/></svg>
+          <span>Programme &amp; Calendar</span>
+        </button>
+        <button type="button" onclick="switchTab('rotas')" id="tab-btn-rotas" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>FE Tutorial Rotas</span>
+        </button>
+        <button type="button" onclick="switchTab('groups')" id="tab-btn-groups" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+          <span>Groups &amp; Absences</span>
+        </button>
+        <button type="button" onclick="switchTab('evaluations')" id="tab-btn-evaluations" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Formative Evaluations</span>
+        </button>
+        <button type="button" onclick="switchTab('portfolio')" id="tab-btn-portfolio" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+          <span>Learning Portfolios</span>
+        </button>
+      </nav>
+
+      <!-- Content Workspace (Inside the unified card canvas) -->
+      <main id="portal-content" class="p-3 sm:p-5 sm:p-6 bg-slate-50 flex-1 flex flex-col space-y-4 min-h-[520px]">
+        <!-- Instant Skeleton Loader (hydrated on load by selectSemester(1)) -->
+        <div id="portal-skeleton" class="space-y-4 animate-pulse">
+          <div class="h-28 bg-slate-200/80 rounded-2xl border border-slate-300/60"></div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="h-56 bg-slate-200/70 rounded-2xl border border-slate-300/60"></div>
+            <div class="h-56 bg-slate-200/70 rounded-2xl border border-slate-300/60"></div>
+            <div class="h-56 bg-slate-200/70 rounded-2xl border border-slate-300/60"></div>
+          </div>
+          <div class="h-44 bg-slate-200/60 rounded-2xl border border-slate-300/60"></div>
+        </div>
+      </main>
+
+      <!-- Status Footer (Flush integrated at bottom of hub card) -->
+      <footer class="textured-surface bg-[#1e293b] border-t border-slate-900/60 py-2.5 sm:py-3 px-4 sm:px-6 text-xs text-slate-400 shadow-inner shrink-0 no-print">
+        <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+          <div class="flex items-center gap-2 text-[11px]">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span class="font-bold text-slate-200">ENAC • Département LH / LAN</span>
+          </div>
+          <div class="flex items-center gap-3 text-[11px] text-slate-400">
+            <span class="font-mono text-slate-300 text-[10.5px]">Phil PARRIS</span>
+            <span class="text-slate-600 hidden sm:inline">•</span>
+            <span class="font-mono text-slate-400 text-[10.5px]">v1.2.0</span>
+            <span class="text-slate-600 hidden sm:inline">•</span>
+            <a id="footer-ecampus-link" href="https://e-campus.enac.fr/moodle/pluginfile.php/542566/mod_resource/content/33/index.html#ag-module1-card1" target="_blank" rel="noopener noreferrer" class="opacity-80 hover:opacity-100 transition-opacity inline-flex items-center shrink-0" title="Open ENAC eCampus Course Space (Semester 1) ↗">
+              <img src="images/enac_logo_white.png" alt="ENAC" class="h-4 sm:h-5 w-auto object-contain">
+            </a>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Slide-Over Teacher Modal Drawer (In-Deck Hub) -->
+  <div id="teacher-resource-modal" class="fixed inset-0 z-40 overflow-hidden hidden" aria-labelledby="teacher-modal-title" role="dialog" aria-modal="true">
+    <!-- Backdrop Overlay -->
+    <div id="teacher-modal-backdrop" onclick="closeTeacherDrawer()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs opacity-0 transition-opacity duration-300"></div>
+
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
+      <div id="teacher-modal-drawer" class="w-screen max-w-4xl lg:max-w-5xl h-full bg-slate-50 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out border-l border-slate-700/60">
+        
+        <!-- Drawer Header -->
+        <header id="teacher-drawer-header" class="textured-surface bg-[#1e293b] text-white px-4 py-3.5 sm:px-6 sm:py-4 flex flex-col gap-2.5 border-b border-slate-700/80 shrink-0 shadow-sm">
+          <div class="flex items-center justify-between gap-3">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2.5 min-w-0">
+              <span id="teacher-modal-tag" class="bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded font-mono shadow-2xs w-fit shrink-0">
+                Semester 1 • Section
+              </span>
+              <h2 id="teacher-modal-title" class="text-sm sm:text-base font-bold text-white truncate">
+                Section Details
+              </h2>
+            </div>
+            
+            <div class="flex items-center space-x-2 shrink-0">
+              <!-- Print Button -->
+              <button 
+                type="button" 
+                onclick="window.print()" 
+                class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white/10 hover:bg-white/20 text-white flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
+                title="Print this section"
+              >
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z"/></svg>
+                <span class="hidden sm:inline">Print</span>
+              </button>
+
+              <!-- Close Modal Button -->
+              <button 
+                id="teacher-modal-close-btn" 
+                type="button" 
+                onclick="closeTeacherDrawer()" 
+                aria-label="Close drawer" 
+                class="text-white/80 hover:text-white bg-black/25 hover:bg-black/40 p-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer"
+              >
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Drawer Navigation Tab Strip -->
+          <nav id="teacher-drawer-nav" class="flex items-center gap-1 overflow-x-auto pb-0.5 text-xs select-none" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
+            <button onclick="switchTab('calendar')" id="drawer-nav-calendar" class="drawer-nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-white/75 hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
+              <span>Programme</span>
+            </button>
+            <button onclick="switchTab('rotas')" id="drawer-nav-rotas" class="drawer-nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-white/75 hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Tutorial Rotas</span>
+            </button>
+            <button onclick="switchTab('groups')" id="drawer-nav-groups" class="drawer-nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-white/75 hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+              <span>Groups &amp; Absences</span>
+            </button>
+            <button onclick="switchTab('evaluations')" id="drawer-nav-evaluations" class="drawer-nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-white/75 hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z"/></svg>
+              <span>Evaluation</span>
+            </button>
+            <button onclick="switchTab('portfolio')" id="drawer-nav-portfolio" class="drawer-nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-white/75 hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
+              <span>Portfolio</span>
+            </button>
+          </nav>
+        </header>
+
+        <!-- Drawer Content Body -->
+        <div id="teacher-drawer-body" class="overflow-y-auto flex-1 p-4 sm:p-6 space-y-5 bg-slate-50/70">
+          <!-- Dynamically Injected Tab Content -->
+        </div>
+
+        <!-- Drawer Footer -->
+        <footer id="teacher-drawer-footer" class="textured-surface bg-[#1e293b] border-t border-slate-700/80 px-4 py-2.5 sm:px-6 flex items-center justify-between text-xs text-slate-300 shrink-0">
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span class="text-[11px] font-mono text-slate-300">GSEA Teachers Portal</span>
+          </div>
+          <button 
+            type="button" 
+            onclick="closeTeacherDrawer()" 
+            class="text-[11px] font-bold text-amber-300 hover:text-amber-200 transition-colors cursor-pointer flex items-center gap-1"
+          >
+            <span>Close Drawer</span>
+            <span>✕</span>
+          </button>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic -->
+  
+  <!-- Discreet Media Archive Modal Window (Option 1) -->
+  <div id="media-archive-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <!-- Backdrop Click to Close -->
+    <div onclick="closeMediaArchiveModal()" class="fixed inset-0"></div>
+    
+    <!-- Modal Dialog Window -->
+    <div class="relative bg-white rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border border-slate-200 space-y-4 z-10 transition-all">
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span id="archive-modal-icon" class="text-base">📁</span>
+          <div>
+            <h3 id="archive-modal-title" class="text-sm sm:text-base font-bold text-slate-900 leading-snug">Previous Recommendations</h3>
+            <span class="text-[10px] text-slate-400 font-mono">External direct links</span>
+          </div>
+        </div>
+        <button 
+          type="button" 
+          onclick="closeMediaArchiveModal()" 
+          class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-colors cursor-pointer text-xs font-bold" 
+          title="Close (Esc)"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Clean List of Links -->
+      <div id="archive-modal-list" class="divide-y divide-slate-100 max-h-80 overflow-y-auto pr-1">
+        <!-- Dynamically injected -->
+      </div>
+
+      <!-- Footer -->
+      <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+        <span class="text-[10.5px] text-slate-400 font-mono">Click link to open external page ↗</span>
+        <button 
+          type="button" 
+          onclick="closeMediaArchiveModal()" 
+          class="px-3.5 py-1.5 text-xs font-bold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors cursor-pointer"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic -->
+  <script>
+  <!-- INLINE_APP_SCRIPTS -->
+  </script>
+</body>
+</html>

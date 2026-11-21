@@ -1,0 +1,1947 @@
+// ============================================================================
+    /* --- PORTFOLIO_DATA_S1_START --- */
+const PORTFOLIO_DATA_S1 = {
+  "semester": 1,
+  "lastUpdated": "20 Nov 2026",
+  "totalSubmissions": 105,
+  "trackBreakdown": {
+    "at": 55,
+    "ag": 50,
+    "aas": 0,
+    "ap": 0
+  },
+  "metrics": {
+    "avgFeConfidence": "5.8",
+    "avgToeicConfidence": "8.2",
+    "targetFeLevel": "CEFR B2",
+    "feWindow": "Week 48 (FE1)"
+  },
+  "studentRecords": [
+    {
+      "id": "GRPA001",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "10/28/2026 17:29:56",
+      "vocab": "airside (all zones before entering the plane where pax are prohibited), aerodrome operator : manages the safety of the airport. It was opposed to airline which job is to transport people. Apron : where the aircraft is parked unloaded and refueled. It is also called ramp. An unruly passenger can also be called a \"disruptive \"one.",
+      "content": "We talked about the turnaround : here with the job Turnaround Coordinator which is an airside mmanager supervising synchronizing ground handling activites between an aircraft arrival and its new departure. We learnt about the GPU which brings the electricity inside the aircraft, and the AODB : the database in which you can access to allocated stands, gate changes and scheduled flights",
+      "needs": "I need to consolidate my global knowledge of aeronautical vocab, both in French and in English. I cannot really add much more details about that because I am currently at beginner level if not less in this area.",
+      "helpFe": "Knowing the different geographical parts of an airport, as well as the jobs will be very important in the airport presentation. I mean, I think it is pretty much self explanatory : the oral presentation won't be possible without being able to name the different parts.",
+      "feScore": 1,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA001",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "10/30/2026 19:19:26",
+      "vocab": "I have learnt multiple useful idioms such as catching the travel bug ( which means developping a strong desire to something, here the something being travelling). I also did not know about jumping on the bandwagon ( meaning joining a popular trend because everyone does it). If I talk about a trip which I loved, I could use the first one to explain how it influences me to travel again. For the second one, I think it is a bit harder to use, for it needs me to join a trend in the first place. Nonetheless, I guess I could always lie about it in a presentation and pretend our trip was a trendy one.",
+      "content": "Today we pretended being customers in an airport or the agent managing the paxs.  We invented issues about travels and the potential solutions we could give them. We also did some \" fill the holes \" with texts dealing with tenses ( past simple, past perfect simple ...). This one was hard for me, especially when there were words such as \" Hardy had we \" \" not only did\" etc. \nWe also discussed about time in reports : yesterday becoming the Day before, now becoming then ...",
+      "needs": "I need to focus on learning tenses as they tend to be unconscious from my part. The issue with this being that when I dont know, I cannot refer to a precise knowledge to make a decision on what to use. Testing myself with the toeic questions in here as well as in global exam is a funnier way to incorporate the informations in my brain than doing it the old way ( learning by heart with a copybook) even though I wrote it all down.",
+      "helpFe": "I plan on using a lot of idioms as I love them. Knowing the difference between book, board etc is also crucial for the presentation. Discussion skills worked in pairs surely are unavoidable to make a great formative evaluation as our fluency improves.",
+      "feScore": 2,
+      "toeicPrep": "As always, I do some random toeic exercices on global exam on saturdays. Unfortunately, I cannot remember what I have precisely done but I ́m slowly but surely working my way towards our goal. \nI as well did the 5 questions linked to the session. These were very useful, knowing that they were focused on one of my biggest weaknesses. \nFor the listening, I am sorry in advance : I may repeat myself throughout the weeks as my main way of improving is by listening podcasts about my interests in english. ( I do that mainly on youtube, sometimes on Spotify) \nHave a Nice week-end !",
+      "toeicScore": 3
+    },
+    {
+      "id": "GRPA001",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/4/2026 16:27:02",
+      "vocab": "In this session, we talked about the difference between safety (prevention that can be made towards unintentional harm) and security (protection towards intentional harm such as terrorists, bombs...). Furthermore, when somebody goes crazy because he is in the air, we call that an air rage. It usually happpens when the pax has a fear of flying. If an aircraft has an issue during its flight, it may divert towards another airport ( or the one which it comes from). In an airport, the concourse is the main place where you can move around. It is defined as a \"large place in a public building\". My stance for this training course is that it was really fun and that I learnt lots of new words.",
+      "content": "In session 2, we did some exercices in pairs : we explained to our partner some aeronautical-related vocabulary words such as \"unruly passenger\" ( a pax which is disruptive), the EU261 rule : a rule which creates a mandatory duty of Care from an airline if you suffer from a prolonged delay. We also did an exercise in which I played the role of an aerodrome ground liaison calling a ramp service escort member to try and prevent a passenger from causing a big security breach (which he did in the beginning, but it turned out well in the end. If I may, I think it is because the teamwork with my partner was very efficient).",
+      "needs": "The main things which I need to consolidate would be the usage of the good prepositions. In the exercise where we had four different options I was not that bad, but in general I tend to mix them a bit when it comes to specific areas such as aeronautical vocabulary. I've written down on my paper this explanations : AT is used for specific nodes and points, In for enclosed Volumes and rooms, ON for operational lines (pavement or runways for example) and last but not least Through/Along/Across for directionnal movements. \nTo be honest, I also had a bit of an issue concerning the PRM Passenger Reduced Mobility acronym. In one of our exercises, I wanted to talk about special lifts which are designed for these type of people, but I did not really know how to call them while being sure that I was not being offensive.",
+      "helpFe": "During our airport presentation, sessions 2's vocabulary will help me explain in which room I am at any point : from the concourse to the gates, the apron with the different run/taxiways... The idea would be using them while maybe doing a roleplay of a pax trying to embark in a plane. We could talk about the security screening zone, the automatic bag drops etc... all while using the only correct preposition when explaining where we are.\nI'm sure that learning all this vocab will go a long way concerning our fluency. But do not think that I will wait until I get the go ahead before using them in my presentation ! If I told you that, it would be some kind of white lie",
+      "feScore": 4,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA001",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/6/2026 15:00:14",
+      "vocab": "My favorit vocab words of this week would be \"Epoch\" meaning a period of time where there was a great change or a breakthrough. I also learnt the meaning of \"doing a point to point transit\" : the journey being composed of more than just the plane or the train, but also how you get to the train station or the airport from your house/work. At the end, you also have to arrive at your final destination so it is included in the idiom. I was wondering about the english translation for covoiturage and thanks to the flash cards I can say that it is called \" carpooling\".",
+      "content": "Today we've done some works such as choosing a travel mode and defend it with arguments. We chose to travel by train. We told the other groups that we had the smallest Carbon footprints, that we could work (using the power outlets) but also that it was more comfortable. Next, we impersonated ENAC and had to find 3 incentive and 2 deterrents to support decarbonization. Ours were : making people pay for their kCO2 emitted, and that if they did not use the greener option we would make a penalty on their salary. On another note, we supported SAF engagement, as well as the use of wignlets by promising ENAC duty free coupons on Agape and in the ENAC shops. Another activity was  a \"confrontation\" between the train and the plane. For my side, the plane, I told Aine that it was cheaper (not always true but in this case yes), faster, and also that it was part of the travel experience.",
+      "needs": "I still believe that I lack some vocabulary knowledge. Fortunately, that is one of the focuses our sessions, providing 30 new words/idioms to learn. Each weekend I do some Global Exam as well as reading back the vocab words of each session.",
+      "helpFe": "If I choose to talk about a journey, I'll definitely try to incorporate some green transport modes (bike, bus, carpooling instead of short haul flights, whatever..). I could explain that I want to do a Modal Shift. In my opinion, no big journey is made without going into an intermodal hub, so I'll talk about that as well. The door to door thing is also very interesting : it can maybe be part of the title ?",
+      "feScore": 3,
+      "toeicPrep": "This week, I have done a new GlobalExam test because the first one I did I was not really focused and in a good environment. This time, I received a B2 level which was the initial goal. Moreover, I just finished the TOEIC practice questions in session 2.",
+      "toeicScore": 5
+    },
+    {
+      "id": "GRPA001",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/12/2026 13:37:16",
+      "vocab": "In this training course, I learnt the signification of \"Chocks-on/Chocks-off\", which is a precise operational times when wooden or rubber wedges are placed against or removed from aircraft landing wheels ; as well as \"Slot Adherence\" : being the fact of departing exactly within the calculated Take off Time window. This is important to maintain the air traffic flow management.",
+      "content": "Course was cancelled, therefore we did not perform oral exercises.",
+      "needs": "In addition to Chocks on and Slot Adherence, I had to search for the translation of the word \"Dolly\" in order to understand the flashcard \"Baggage Tug & Dolly Train\". Concerning the grammar part, this lesson's focus was on : Cause, Effect & Relative Clauses in Ground Operations, an exercise which we already did in the AG session.",
+      "helpFe": "Course was cancelled. I can only use the vocab to enhance the quality of my oral presentation.",
+      "feScore": 5,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA001",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 13:29:50",
+      "vocab": "This session was mainly about ressources and prices fluctuating because of overtourism. My favorite collocations would be : \"Zoning ordinance\" which are statues establishing where commercial hospitality establishments may legally operate ; \"Authenticity erosion\" being the fact of transforming local residences and neighbourhoods into commercialized souvenir corridors ; and Demarketing. This one may seem strange at first, because why would you voluntarily discourage people to come to your town ? In the end, it makes sense : you want to discourage tourists to come by and break things for example, or because you suffer from overtourism. The thing you want though is respectful travelers.",
+      "content": "In today's session we did a \"Map the pressure and redesign the flow\", an exercise in which we had three tourist groups and we needed to stagger them in order to preserve the local wellbeing. Therefore, we designed two different paths : one going to the beach and the other visiting the city. The second one consisted of two groups : one arriving at 14 \"Historical\" , and the other at 8pm \"fun\".\nThe next big exercise was a crisis overview in which I played the town mayor. While discussing with partners, we had to find solutions for our city issues : concerning water inequity and low reserves, farmers losing their lands... We finally decided to cut the usage of tourists by half, from eight hundrer liters per person per day to four, and up the citizen's one from eighty to two hundred. Another great idea was the construction of a epuration station to recycle used water, improving the island's water reserves.",
+      "needs": "For once, I have been able to understand pretty much everything correctly, as I did not find myself in the wrong for any of the questions available.",
+      "helpFe": "We really have to start preparing our oral. To be honest, we are a bit late on another presentation, so...\nI still think that debating with a group of 5 people (bigger than usual) was a great way to enhance our fluency as we needed to talk with all of them almost without interruption. It is also great being able to think as if we were in someone else's shoes, so that we can come up with other ideas.",
+      "feScore": 6,
+      "toeicPrep": "Same as every week : both TOEIC practices and few lessons on global exam.",
+      "toeicScore": 6
+    },
+    {
+      "id": "GRPA002",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "10/28/2026 18:54:31",
+      "vocab": "Unruly passenger : A passenger that is disruptive, who does not follow the instructions of crew members\n\nAirside : Those areas of an airport that support aircraft activities ( what's after the gate )\n\nLandside : The public areas of an airport before passing through immigration ( what's before the gate )\n\nGate : Area where passengers check-in before boarding the aircraft (from landside to airside)\n\nStand : Parking area for aircraft\n\nTurnaround : The total time an aircraft spends on the ground at a gate or stand between its arrival from one flight and its departure for the next\n\nAPU : Auxiliary Power Unit\n\nGPU : Ground Power Unit\n\nLuggage : A case used to carry belongings when traveling\n\nApron/Ramp : A defined area on an airport intended to accomodate aircraft for purposes of loading or unloading passengers or cargo, refueling, parking, or maintenance\n\nTaxiways : Paved areas for aircraft to move between parking aprons, runways and airfield services",
+      "content": "We just learned some new vocabulary",
+      "needs": "No problem of pronunciation, grammar or fluency with the new vocabulary of this session. ( I just need to remember it )",
+      "helpFe": "New vocabulary is always useful to be more precise when we explain or describe something to someone",
+      "feScore": 2,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA002",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/4/2026 1:40:27",
+      "vocab": "Itinerary : A planned route, scheduled points or activities\n\nNon-Stop Flight : A flight from a city to another without landing anywhere else\n\nTo My Relief : An expression used to say that a stressful travel situation turns ot well\n\nMiss a Connection : To arrive too late for a connecting flight or train due to delay\n\n\nVery useful to use when you tell a story to someone",
+      "content": "First we tried to remember each other's names by playing a memory game. Then we did an acting activity in which we had to tell a story in pairs.",
+      "needs": "I need to focus on pronunciation of certain words and fluency when improvising.",
+      "helpFe": "The acting activity trained us for answering questions the day of the evaluation.",
+      "feScore": 2,
+      "toeicPrep": "I did the positionnal test on global exam",
+      "toeicScore": 5
+    },
+    {
+      "id": "GRPA002",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/11/2026 23:19:02",
+      "vocab": "Landside\n\nThe public areas of an airport terminal (ticketing, check-in, arrivals hall) accessible without a boarding pass.\n\n\nSelf-Service Kiosk\n\nAutomated touchscreens where passengers check in, print boarding passes, and generate baggage tags independently.\n\n\nAutomated Bag Drop\n\nA conveyor system where ticketed travelers scan luggage tags and deposit checked bags without agent help.\n\n\nSecurity Screening Checkpoint\n\nThe inspection point using metal detectors, body scanners, and X-ray machines to examine carry-on luggage.\n\n\nAirside\n\nThe secure airport zone beyond security, including departure lounges, duty-free retail, gates, and aircraft stands.\n\n\nDwell Time\n\nThe duration passengers spend in the terminal between clearing security and boarding, driving retail revenue.\n\n\nBoarding Gate\n\nThe concourse doorway and service counter through which ticketed travelers present passes to board.\n\n\nJet Bridge (Airbridge)\n\nAn enclosed, movable telescopic bridge linking the airport departure gate directly to the airplane door.\n\n\nApron (Ramp)\n\nThe designated paved area where aircraft park to load passengers, refuel, load baggage, and undergo servicing.\n\n\nMovement Area\n\nThe aerodrome surface comprising runways, taxiways, and aprons used for aircraft surface movement.\n\n\nManoeuvring Area\n\nThe runways and taxiways strictly managed for aircraft surface movements, distinct from terminal servicing aprons.\n\n\nPushback Tug\n\nA specialized heavy vehicle used to push aircraft backward out of their parking stands into taxi lanes.\n\n\nMarshaller\n\nGround handling personnel using illuminated wands to guide pilots precisely into an apron parking stand.\n\n\nForeign Object Debris (FOD)\n\nLoose items, trash, or metal fragments on taxiways or runways capable of damaging aircraft engines or tires.\n\n\nTaxiway Centerline\n\nA solid yellow line painted on taxiway pavement that pilots align with nose gear to ensure wingtip obstacle clearance.\n\n\nRunway-Holding Position\n\nA mandatory painted marking (two solid and two dashed yellow lines) and red sign where aircraft must stop short.\n\n\nRunway Incursion\n\nAny unauthorized presence of an aircraft, vehicle, or pedestrian on a protected runway surface designated for takeoff or landing.\n\n\nRunway Designator (Numbering)\n\nThe two-digit number painted on a runway end representing its magnetic azimuth rounded to the nearest 10 degrees.\n\n\nHold Short Line\n\nA painted line before a runway where aircraft and vehicles must stop until cleared by air traffic control.\n\n\nTaxiway Guideline Lighting\n\nGreen lights embedded along the center of a taxiway to guide pilots safely during night operations or low visibility.\n\n\nStop Bar\n\nA row of flush red lights across a taxiway pavement that warns vehicles and pilots not to enter an active runway.\n\n\nApron Taxi Lane\n\nA designated route on the apron designed to allow aircraft access to and from parking stands.\n\n\nFollow-Me Car\n\nA marked airport vehicle with flashing yellow lights that guides aircraft to their parking stand in low visibility.\n\n\nBaggage Conveyor Belt\n\nA moving belt system that carries checked luggage from the check-in hall to the baggage sorting area.\n\n\nBody Scanner\n\nA security screening device using millimeter-waves to detect hidden objects without physical contact.\n\n\nBiometric E-Gate\n\nAn automated border or boarding gate using facial recognition cameras to verify a traveler's identity.\n\n\nPassengers with Reduced Mobility (PRM)\n\nTravelers who need dedicated assistance through the airport due to physical disability, age, or medical condition.\n\n\nFlight Information Display System (FIDS)\n\nElectronic screens throughout the terminal showing real-time departure, arrival, and gate information.\n\n\nService Road\n\nMarked roadways on the airfield reserved strictly for ground handling vehicles, fuel trucks, and baggage tugs.\n\n\nBlast Fence\n\nA physical barrier placed on the airfield to protect ground vehicles, people, and buildings from aircraft jet engine blast.",
+      "content": "We learned some new vocabulary and did some improvisations talking about airports and travel (unauthorized entrance from a passenger)",
+      "needs": "Still some fluency problems when i am improvising.",
+      "helpFe": "This will help if we need to present some airports (check-in etc ..).",
+      "feScore": 4,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA002",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/11/2026 23:36:11",
+      "vocab": "Modal Shift\n\nEncouraging travelers or cargo to switch from high-carbon transport (like cars or planes) to greener options (like trains or buses).\n\n\nHigh-Speed Rail (HSR)\n\nElectrified passenger trains operating over 250 km/h, providing a low-carbon competitor to domestic flights.\n\n\nLife-Cycle Emissions\n\nThe total greenhouse gas emissions generated throughout vehicle manufacturing, operation, maintenance, and disposal.\n\n\nTerritorial Equity\n\nEnsuring that rural and remote areas have fair access to reliable, affordable public transport—not just big cities.\n\n\nIntermodal Hub\n\nA transit node seamlessly integrating rail, metro, bus, shared mobility, and pedestrian corridors.\n\n\nDecarbonization\n\nThe process of eliminating carbon dioxide emissions from transportation fuels and propulsion systems.\n\n\nElectrification\n\nConverting transit lines from fossil fuels to electric power supplied by renewable grids.\n\n\nActive Mobility\n\nHuman-powered travel modes, primarily cycling and walking, producing zero operational emissions.\n\n\nCorridor Capacity\n\nThe maximum passenger or freight volume that a transit route can transport within a given timeframe.\n\n\nFleet Modernization\n\nSystematic replacement of aging vehicles with energy-efficient, low-emission models.\n\n\nContainerisation\n\nThe standardized shipping container system developed in the late 20th century that transformed global trade.\n\n\nPoint-to-Point Transit\n\nA network architecture where vehicles travel directly between origin and destination without intermediate hubs.\n\n\nSustainable Aviation Fuel (SAF)\n\nNon-petroleum-based drop-in aviation fuel derived from waste oils, agricultural residues, or captured carbon.\n\n\nTraffic Congestion\n\nGridlock conditions when traffic volume exceeds roadway capacity, causing delays and excess idling emissions.\n\n\nMicro-Mobility\n\nSmall, lightweight transportation devices operating at low speeds, such as e-scooters and e-bikes.\n\n\nInduced Demand\n\nThe phenomenon where increasing roadway capacity results in increased vehicular traffic rather than congestion relief.\n\n\nModal Split\n\nThe percentage of total passenger journeys completed using each transport mode within a given region.\n\n\nLow-Emission Zone (LEZ)\n\nA designated geographic area where access by polluting vehicles is restricted or subject to penalty fees.\n\n\nNight Train (Sleeper Train)\n\nLong-distance passenger trains operating overnight with sleeping berths, offering a low-carbon alternative to domestic flights.\n\n\nDoor-to-Door Travel Time\n\nThe total time required for a complete journey, from leaving home or the office until arriving at the final destination.\n\n\nCarpooling\n\nSharing car journeys with other travelers going to the same destination to reduce travel costs, fuel consumption, and road traffic.\n\n\nPublic Transit Subsidy\n\nFinancial assistance provided by governments to keep bus, metro, and train fares affordable for citizens.\n\n\nCycling Infrastructure\n\nProtected bike lanes, secure parking stations, and bike-sharing networks designed to support safe everyday bicycle travel.\n\n\nGrid Capacity\n\nThe maximum amount of electrical power that a regional power network can transmit to charge electric vehicles and trains.\n\n\nCongestion Charge\n\nA fee charged to drivers entering city centers during peak hours to encourage walking, cycling, or public transport.\n\n\nShort-Haul Flight\n\nA commercial flight typically covering under 500 to 800 kilometers that can often be replaced by high-speed rail connections.\n\n\nTransit-Oriented Development\n\nUrban planning that clusters housing, shops, and offices within easy walking distance of major rail and transit stations.\n\n\nFirst-Mile / Last-Mile Transit\n\nThe first or final leg of a commuter's journey between home or work and a public transport hub.\n\n\nShared Mobility\n\nTransportation services and vehicles (like rental bikes, scooters, and carsharing fleets) shared among users on demand.\n\n\nCarbon Intensity\n\nThe amount of carbon dioxide emitted per passenger-kilometer or per ton of freight moved across a transport network.",
+      "content": "We learned some new vocabulary and did some improvisations on the theme of ecology and price of travelling by plane/train/car and what we thought about it .",
+      "needs": "Some little problems of fluency and grammar when talking.",
+      "helpFe": "It will help describing and comparing things in order to make some arguments to say which transport is the best.",
+      "feScore": 4,
+      "toeicPrep": "Grammar revisions and global exam practice",
+      "toeicScore": 3
+    },
+    {
+      "id": "GRPA002",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/11/2026 23:49:42",
+      "vocab": "Turnaround Time (TAT)\n\nThe total duration an aircraft remains stationary on stand between its arrival (chocks-on) and its next departure (chocks-off).\n\n\nGround Support Equipment (GSE)\n\nThe specialized fleet of vehicles, tugs, conveyors, and units that service an aircraft on the airport apron.\n\n\nChocks-On / Chocks-Off\n\nThe precise operational times when wooden or rubber wedges are placed against or removed from aircraft landing wheels.\n\n\nPushback Tractor (Tug)\n\nA heavy, low-profile vehicle used to push an aircraft backwards from the terminal gate into the taxiway lane.\n\n\nGround Power Unit (GPU)\n\nA mobile external generator or gate connection that supplies 115V/400Hz electricity to the aircraft while main engines are off.\n\n\nBelt Loader\n\nAn inclined mobile conveyor belt vehicle used for loading and unloading loose baggage and cargo into the lower aircraft hold.\n\n\nRefueling Hydrant Dispenser\n\nA ramp vehicle that connects underground fuel pipelines to aircraft wing tanks under regulated pressure.\n\n\nCatering Hi-Lift Truck\n\nA specialized truck with an elevated scissor-lift body that raises meal and beverage carts directly to cabin galley doors.\n\n\nPotable Water Truck\n\nA dedicated sanitary tanker vehicle that replenishes the aircraft tanks with fresh drinking water for galley and washbasin use.\n\n\nLavatory Service Unit\n\nA ground servicing vehicle that empties, flushes, and sanitizes the aircraft toilet waste holding tanks.\n\n\nDe-icing / Anti-icing Rig\n\nA specialized boom truck that sprays heated glycol-water mixtures onto wings and control surfaces to remove frost and ice.\n\n\nFollow-Me Car\n\nA high-visibility safety vehicle with amber flashing lights and illuminated signs that escorts taxiing aircraft to their gate.\n\n\nForeign Object Debris (FOD)\n\nAny loose item, tool, fragment, or trash on the apron or taxiway that could be ingested by an engine or damage an aircraft tire.\n\n\nAirside Service Road\n\nMarked roadway corridors on the ramp reserved strictly for authorized ground support equipment and airport vehicles.\n\n\nPassenger Boarding Bridge (Jet Bridge)\n\nAn enclosed, movable elevated corridor connecting the terminal gate directly to the forward passenger door of the aircraft.\n\n\nBaggage Tug & Dolly Train\n\nA small motorized towing tractor pulling a train of wheeled carts (dollies) transporting baggage containers or loose luggage.\n\n\nSlot Adherence (CTOT)\n\nDeparting strictly within the assigned Calculated Take-Off Time window to maintain air traffic flow management compliance.\n\n\nStand Clearance\n\nThe formal safety confirmation that all vehicles, equipment, and ramp personnel have retreated behind safety lines before pushback.",
+      "content": "It was public holidays so I did the lesson myself, i learned the new vocabulary, and tried to do the activities alone ( instead of explaining to my partner i explained to my screen)",
+      "needs": "Still same as last week with some improvements",
+      "helpFe": "Always useful to learn authentic spoken briefing and terms to better understand how the professional of the aviation are working.",
+      "feScore": 6,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA002",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/20/2026 2:49:28",
+      "vocab": "Capacity\n\nThe maximum number of visitors an area or historic city can welcome without damaging nature, local culture, or public infrastructure.\n\n\nOvertourism\n\nExcessive tourist numbers resulting in environmental harm, resident displacement, and diminished visitor experiences.\n\n\nVisitor Dispersal\n\nEncouraging tourists to visit less crowded areas or travel during off-peak seasons to spread economic benefits and avoid crowding.\n\n\nTourist Tax\n\nA municipal levy assessed on overnight lodging or day visitors to fund public infrastructure and sanitation.\n\n\nDe-Marketing\n\nCampaigns that discourage too many tourists or target respectful travelers instead of rowdy party crowds (e.g. Amsterdam's \"Stay Away\" campaign).\n\n\nResident Displacement\n\nThe pricing out of long-term local residents caused by short-term vacation rental conversions.\n\n\nHeritage Conservation\n\nThe scientific and policy preservation of historical monuments and archaeological sites against tourist wear.\n\n\nAdvance Reservation\n\nA mandatory timed-entry booking system used by museums and national parks to control hourly crowd density.\n\n\nCruise Ship Ceiling\n\nA statutory limit placed on the number of large cruise vessels allowed to berth at a port daily.\n\n\nSeasonal Compression\n\nThe high concentration of visitor traffic into a brief summer or holiday window, straining local resources.\n\n\nSpatial Saturation\n\nSevere physical overcrowding where visitor numbers overwhelm streets, historic sites, and public amenities.\n\n\nCommunity Stewardship\n\nLocal resident participation in formulating municipal tourism guidelines and revenue allocations.\n\n\nDynamic Pricing\n\nFluctuating ticket tariffs calibrated to demand to incentivize off-peak visiting hours.\n\n\nInfrastructure Strain\n\nThe overwhelming of sewage, potable water, waste collection, and electrical grids during high season.\n\n\nShort-Term Vacation Rental (STVR)\n\nFurnished residential apartments rented to tourists on a nightly basis through digital booking platforms.\n\n\nAuthenticity Erosion\n\nThe transformation of genuine residential neighborhoods into commercialized souvenir corridors.\n\n\nZoning Ordinance\n\nMunicipal legal statutes establishing where commercial hospitality establishments may legally operate.\n\n\nAquifer Depletion\n\nThe severe loss of underground freshwater reserves caused by summer tourism demand and resort overuse.",
+      "content": "We did some exercise related to overtourism and tourism in general, we had to prepare a trip for different groups with different themes and different time.",
+      "needs": "I’m still working on fluency in general in order to be more understandable and clear.",
+      "helpFe": "Airports are heavily related to tourism so a lesson on tourism and overtourism will help for the formative evaluation",
+      "feScore": 8,
+      "toeicPrep": "I work on my grammar for the TOEIC",
+      "toeicScore": 4
+    },
+    {
+      "id": "GRPA003",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "10/28/2026 19:53:43",
+      "vocab": "We got to learn the difference between mostly used professional terms that could be easily mixed up each others.\n\nThe difference between LANDSIDE and AIRSIDE. The landside is the first area we got to walk in while entering an airport. It is accessible to anyone. The airside is the secured operational area beyond the security checkpoint. It includes all the different areas of the airport that are beyond the security gate. \n\nthe difference between AIRLINE and AERODROME OPERATOR. The airline owns the aircrafts and provide commercial passenger and cargo air transports. The aerodrome operator owns the airport infrastructure in itself and enable airlines to provide flights services to their customers.\n\nThe difference between SCHEDULED FLIGHT and CHARTER FLIGHT. A scheduled flight is fixed and provided regardless of passenger load while a charter flight is one flight booked by a specific organization for a specific slot of time.\n\nThe distinction between a DELAY and a FLIGHT CANCELLATION. A delay means that the flight will still be provided but within a different slot time from the originally scheduled one. A flight cancellation means that the flight has been called off. In this situation the passengers will either be allocated to alternative flights or fully refund with statutory compensations.\n\nWe also got to learn some abbreviations. \nAODB for Airport Operational DataBase (that manages flight schedules, stand allocations and gate changes)\nTRC for Turnaround Coordinator (the airside manager who supervises all ground activities between arrival and departure)\nGPU for Ground Power Unit (a mobile generator that provides electricity and air conditioning to the aircraft with engines and APU off)\nGSE for Ground Support Equipment (all mobile ground equipment that ensure ground manoeuvre)",
+      "content": "Through the vocabulary that emerged in discussions, we could learnt about airports organization and some passengers rights while traveling by plane.\nWe got to learn about the two main parts of an airport and the way they work and we could debate with our pair working on some aeronautical terms.",
+      "needs": "I need to improve in all the communication technics, learn some vocabularies to talk about civil aviation in a professional way and particularly make links between all the pieces of vocabulary.",
+      "helpFe": "I discovered some new vocabulary that will definitely help me to talk about civil aviation topics with more confidence and more professionally oriented sentences.",
+      "feScore": 6,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA003",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "10/30/2026 14:05:20",
+      "vocab": "In today sessions we got to learn some travel allocations and idioms.\n\nBOOK A FLIGHT means to reserve a seat into a plane for travel transportation. \nBOARD A PLANE means to get into the plane.\nCHECK IN FOR A FLIGHT means to register our arrival at the airport and get the boarding pass.\nCLEAR CUSTOMS means to go through security points without any problem.\nMISS A FLIGHT means to arrive too late to board into your scheduled flight. \nEXTEND A STAY means to extend your travel at the some place, mostly extend the duration of a booking at a hotel. \nA ROUND TRIP TICKET is a ticket that is eligible both for the outbound and the return of a travel. \nA HAND LUGGAGE is a piece of luggage small enough to be carried with us into the cabin. \n\nTO HIT THE ROAD means to live one's place and begin the travel. \nTO TAKE THE SCENIC ROUTE means to take a longer way to get to the destination but a more pleasant one. \nTO BE IN THE DRIVER'S SEAT is to b in control of a situation. \nTO JUMP ON THE BANDWAGON is to adopt a trend because everyone else is doing it. \nTO CATCH THE BUG is to suddenly develop a strong passion for something.",
+      "content": "In this session we could work on our debate skills in pair. One of us played the customer of an airline and the other one played the airline client service support. We had the opportunity to mobilize the vocabulary that we had learnt in the previous session (aeronautical oriented) and that we have learnt sooner in this sessions. The vocabulary I am talking about was travel collocations like book a flight, check in for a flight, miss a flight or hand luggage. The aeronautical vocabulary we could use was \"air marshal\", \"scheduled flight\", \"passenger rights\" or \"biometric screening\".",
+      "needs": "in this session we worked on time accordance and how to transform sentences to report informations that has been told to us. for example the sentence \"I'm running on empty;\" is replaced by \"He said he was running on empty. \"\nas a summary we can say that present perfect is replaced by past perfect, present simple is replaced by past simple, past simple is replaced by pas perfect, now by then, today by that day, yesterday by the day before, tomorrow by the following day, last night by the previous night, ago by before, this morning by that morning. \n\nthis and these are used to point out things we can physically touch while that and those point out things physically far away from us.",
+      "helpFe": "In today's session we could learn some useful vocabulary and practice our ability to speak, trying to mobilize new vocabulary.",
+      "feScore": 7,
+      "toeicPrep": "it's sometimes frustrating to practice toeic with global exam especially the reading and finding exercises because several answer are appearing correct but the explanations available at the end of the test is useful to understand the shade between two word closed in meaning depending of the context they are used into.",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPA003",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/6/2026 19:37:40",
+      "vocab": "We could discuss in group class some grammatical points especially how to express\n\nthe CAUSE : DUE TO - BECAUSE OF - THANKS TO - AS A RESULT OF _ING (form)\n\nexample : As a result of working hard, he could pass his exam. \n\nthe EFFECT : x (subject) LED TO - x RESULTED IN - x TURNED OUT TO BE\n\nexample : Her suggestions resulted in an approval. \n\nthe DOUBLE COMPARATIVE : \n\nexample : The faster you drive, the more close to troubles you are. \n\nThe more I eat, the bigger I get. \n\nThe fuller the seats of a plane are, the less carbon dioxyde per passenger is emitted.",
+      "content": "Today's lesson theme was about the evolution of public transportation. \nWe could first get engaged in the course through a drawing game where we had to make the members of our team guess the animal we were drawing soon the whiteboard. \n\nThen, we could individually participate to another game whose aim was to recap all the vocabulary learnt in the previous lesson. We could steal point to our classmates which created a fierce commitment within us. The looser had to be devoured by the dragon. \n\nthe following activity was in pair working and we could discuss the benefits and downsides of each great period of transportation that are the 4 following ones : the STEAM RAILWAY (1950-70's) that produced a lot of local smoke and a massive carbon dioxyde amount as the coal fired powered trains were not green.  The POST WAR JET and AUTOMOBILE BOOM (1950-70's) that generated a significant carbon dioxyde emission on the rise and was highly dependent to oil consumption. The CONTAINERIZATION ERA (1980-2010's) that shaped the globalized supply chain. The current period that is an electrification of means of transportation era as well as a SAF using era on talks because SAF (Sustainable Aviation Fuels) are not used that much currently and they are highly carbon dioxyde generating for their production. \n\nThen, still in pair working, we could debate the wiser mean of transportation to get to Paris from Toulouse. W could choose either the plane or the. train. Admitedly, the train is a free carbon dioxyde emitting mean of transportation but the plane is faster and less expensive. However, we could all the same underline that sometimes the train is more spacious and it's also more convenient when arriving to the final destination because the station is directly integrated to the city. \n\nfinally, we could work on 3 ways to pollute less \n- using high speed rails rather than flying because it is a carbon free alternative for domestic journeys. \n- work from home and fund an association with the money it makes us save. \n- promoting a car-sharing network rather than being selfish in our own old heavily polluting car\n\nand 2 ways to promote greener travel habits as regards ENAC inner organization. A lot of ideas emerged but some of the most striking ones were :\n- being deducted directly from our salary the amount of flight ticket we could purchase (so that we pay twice). \n- renting electric vehicles from a car-sharing network rather than driving our own polluting ones.",
+      "needs": "The grammar points especially the use of double comparative was useful to work on because it enable us to make well built sentences close to the way the natives speak.",
+      "helpFe": "Communicative skills, arguments and vocabulary explored in this session will all help me to improve my AG formative evaluation by giving me tools to sound skilled and speak in a professional way.",
+      "feScore": 7,
+      "toeicPrep": "I try to do Global Exam exercices as often as I can and I find it pretty useful. Nevertheless the responses choices are sometimes ambiguous but I understand more in reading the correction explanations.",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPA003",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/4/2026 17:33:31",
+      "vocab": "We started this session with some vocabulary synonyms depending on the country we find ourselves into. We particularly enlightened the APRON used in GB that is called the RAMP in the USA. This led us to mention the difference in both countries accent. The British accent is described as NON RHOTIC while the USA accent is RHOTIC. \n\nThen we worked on some vocabulary from the previous session in pair. We had to explain our working partner what we had understand of these words. We especially treated the following ones : UNRULLY PASSENGERS, ANCILLARY REVENUE, PASSENGER RIGHTS and TURNAROUND TIME.",
+      "content": "All along the session we had opportunities to discuss new professional vocabulary with our teacher such as HANDWAND that is a sort of mobile device used to detect any metallic things such as blade that people can carry around. A RIP OFF that is an act of theft by a conman. To FILL UP a tank with oil or SAF (Sustainable Aviation Fuel). A MANUFACTURER is a plane builder such as Embraer in Brazil. TO BE PROBLEMATIC (and not a problematic) is similar to an issue or a challenge. The CONCOURSE is a large haul inside the airport where people can move around (it is not to be confused with the BOTTLE NECK that is a narrow corridor passengers walk through to board a plane. \n\nThe distance of a flight will makes us describe it as SHORT, MEDIUM or LONG HAUL. \n\nfinally we could make a differentiation between a CONVEYER BELT and a CAROUSEL and also between SAFETY (describe protection from unintentional harm) and SECURITY (describe protection against intentional harm).\n\nWe could discuss some new vocabulary in pair working. LANDSIDE CHECK IN and BAG DROP are both part of a procedure when people can print themselves their boarding pass and baggage tags inside the airport and then deposit their luggage at an automated conveyer. \n\nSECURITY SCREENING CHECKPOINT is when luggage go through X-rays while passengers walk through metal detectors or body scanners. \n\nAIRSIDE CONCOURSE is an inner area in the airside where people can walk along while intending to board an airplane. \n\nDWELL TIME is a time people wait between arriving from a flight and departing for the next one. \n\nThe BOARDING GATE is a check in point that people must go through before boarding a plane walking across the JET BRIDGE. \n\nSPECIAL ASSISTANCE consist on a ground team that helps disabled passenger to board a plane using technical tools such as specialized lifts or protocol like priority boarding.",
+      "needs": "We could underline the importance of making oneself understood while speaking to the radio especially with pronunciation and the use of prepositions.\nIndeed we could see through the analysis of a terrible accident that the misuse of prepositions or bad pronunciation could lead to irreversible situations regarding both regarding security and airport organization.",
+      "helpFe": "Like the previous session, this one enabled us to discover new vocabulary to use in the formative evaluation. We could also learn more about the airport organization which looks important to professionally talk about a topic.",
+      "feScore": 6,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA003",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/11/2026 12:00:41",
+      "vocab": "Today is a holiday so we could work on the session independently. We could mobilize a work environment vocabulary and training to define it using grammar structures such as USED FOR + ING or DESIGNED TO + BV along with the use of THAT or WHICH. \n\nIn this way, I could describe some airside specialized vehicles. \nThe PUSHBACK TUG is a vehicle designed to get the aircraft out of its parking area. It can be a tower or a towbarless tractor that basically enable the aircraft not to waste its fuel for ground manoeuvring and prevent aircraft from making noisy apron atmosphere. \n\nThe GROUND POWER UNIT is a mobile vehicule that provides electricity power to the parked aircraft with all engines off. It is used for maintaining the aircraft operative while standing in the boarding gate. \n\nThe POTABLE WATER TRUCK is designed to provide clear water to the aircraft which is essential for ensuring a comfortable flight with refreshment commodities. \n\nThe LAVORATORY SERVICE TRUCK is used by the hygienic team to carry all the sanitary equipment to clean the cabin. It is used for everyday cleaning service. \n\nThe DE-ICING TRUCK is designed to remove ice from the aircraft which is essential for flying performance and the efficiency of flying measurement instruments. \n\nThe FOLLOW ME CAR is used for leading aircraft to the apron area on bad weather conditions. Using flashy yellow lights, it is easily recognizable for the flight crew. \n\nThen, we could express cause and consequence using grammar structures such as DUE TO - OWING TO - AS A RESULT OF - LED TO - CONSEQUENTLY. \n\nhere are a few examples of sentences we could make. \n\n- Due to late passengers, the aircraft was waiting in the ramp a little longer. \n- Some troubles at the boarding gate could lead to delays owing to passengers inconsistent documentations or seat disputes. \n- Some passengers couldn't board as a result of overbooking issues which led to delays because the flight crew had to deal with a storm of protest. \n- Heavy snow fall has been reported and consequently it created some delays because aircraft were unable to takeoff on a scheduled time. \n\nWe could also express operational conditions with a structured sentence based on the use of IF and WILL/MUST. \n\n- If the passenger cannot provide a consistent boarding pass they must not smoothly board the aircraft.\n- If the refueler truck is late the plane will not be able to takeoff on a scheduled time.",
+      "content": "For working on technical skills, we could try to make a concise 60 seconds report. Making a stopwatched time report simulate the pressure of concrete work situations we could be faced of in the future. \n\nhere is an example of report : \" Aircraft F-G22O boarding in progress. estimated 15 delay due to an inconsistent boarding pass. The fuel tanker is late leading to another estimated delay of 30 minutes. Could you please use de-escalation to calm passengers down. Another unforeseeable events may occur so the estimated time of departure hasn't been fixed yet. \"",
+      "needs": "Everything in the aviation environment must be concise and accurate so we must make clear sentences that go straight to the message we want to communicate. Be understood is a key vector of safety and troubles avoidment. Moreover, like any system, the airside may deal with any problems that can affect the scheduled operative times, being professional is knowing how to face these issues to provide an effective, high service level.",
+      "helpFe": "We could discover another vocabulary to describe the airside and being understood with accuracy. Training on a stopwatched time report makes us realize the importance of making clear concise sentences that go straight to the point.",
+      "feScore": 7,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA003",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 15:41:06",
+      "vocab": "In today's session we could begin with another drawing animal game to warm up then we got to emphasize some grammatical points, here are the following ones :\n\n- Making people do things using : MAKE+person+VERB - HAVE+person+VERB - REQUIRE+person+TO+VERB\n\nexamples : \n\n- She mad her brother do her homework. \n- I had my neighbor feed the cats. \n- Building this shelf requires him to be helped. \n\n- Using DESPITE+noun and IN SPITE OF+noun or DESPITE/IN SPITE OF+verbING\n\nexamples :\n\n- Despite the weather he decided to go for a run. \n- He decided to get there in spite of the prohibition. \n- Despite sleeping enough he feels exhausted all the same. \n-He got rejected in spite of being skilled enough for this job. \n\n- Using WHEREAS/WHILE to express contrast between two different situations. \n\nexamples :\n\n- The kids were loudly playing while their grandparents tried to enjoy some rest. \n- The company is thinking of making redundancies whereas it is already short of skilled employees.",
+      "content": "In a third part we could discuss in group of a day trip plan in a seaside town for three different groups of people. \nOur first group was a healthcare worker group and we first suggested to get them to the clinic to show them how modern the working environment is and to try to convince them to apply to work in it. Then a visit of the old town square would be interesting enough not to be missed as a tour of the ridge homes residential area would also be. to finish the day we could go to the beach by the beach path to find the cafÃ© Row to enjoy some refreshments. \n\nOur second group was a group of retired people who would like to enjoy the calmness of a life by the sea off season. We thought we would first get them to the garden lookout as it's spring time and so they could enjoy an idyllic atmosphere. oing to the beach by the beach path is also inevitable and so they would be able to rest by the sea and take some sunlight. To finish the day we could visit the old town center and find a cosy cafe to rest peacefully. \n\nOur third group was a group of teenagers full of energy who like to enjoy themselves a lot so we instantly though that the major part of the day would take place at the beach with excursion to the markets and old town center to buy some lunch and make some purchase as their convenience. Ending the day in a cafe near the beach would be pleasant to them too.",
+      "needs": "We could work on our debating skills through the last exercise we got confronted to. We discovered a delicate situation of over tourism in a small seaside town that schedules to expand the runway of its airport. Such a decision would lead to a sensitive situation where tourism would be harmful for locals living conditions rather than being benefiting them. \nTo solve this problem we tried to find an agreement between local political figures and local citizens representatives. Negotiations led us to the following compromise :\n- the runway will be expanded and tourism will be promoted but nevertheless controlled depending in the current consequences it may cause. \n- A tax will be applied to every tourist and it will benefit the town maintenance and citizens everyday activities over a long time plan.\n- a quota of water consumption will be applied to hotel to make them having a reasonable consumption regarding natural ressources that are already running short. \n- farmers will also benefit the tax that will compensate the loss of land they need to cultivate to grow the citrus and olives that make them live.",
+      "helpFe": "Like every session, this one enable us to work on our oral skills and encourage us to speak confidently to express ideas and explain points of view.",
+      "feScore": 7,
+      "toeicPrep": "Global Exam sometimes provides answers that are  very close in meaning so it's hard to make a choice and the explanation doesn't make the correct answer an evidence neither.",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPA003",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "4",
+      "timestamp": "11/19/2026 9:00:59",
+      "vocab": "n today's session we could first make a recap as regard the vocabulary we got to learn when we made the last session by ourselves because of holiday bank 11th of November. \nWe could particularly emphasize on : POOR VISIBILITY CONDITIONS - the difference between SAFETY (protection against unintentional harm) ad SECURITY (protection against intentional harm) - CARROUSEL - CONVEYER BELT - to DWELL ON, the DWELL TIME - BOARD = EMBARK, GET OFF = DISEMBARK - to BE PROBLEMATIC - a RIP OFF - INCURSION - EXCURSION. \n\nwe could also introduce some new vocabulary and idioms :\n- LEEWAY that is flexibility over a period of time. \n- to VEER OFF is to change direction. \n- to SKID OFF is a breaking action. \n- the CORDON OFF that is temporary sealing an area. \n- to CALL THE SHOTS = to make a decision. \n- to DONE AN OXYGEN MASK. \n\nIn a second part we could make a game that consisted in associating the good definition to some vocabulary we already knew regarding the technical parts of an airport.",
+      "content": "We could make an activity that enable us to discover acronyms related with famous jobs in civilian aviation. \nWe could particularly emphasize the following ones :\n- ATCO for Air Traffic Control Officer\n- TRC for Turnaround Coordinator \n- Co-pilot that is the first officer \n- AFISO that is the Airport Flight Information Service Officer \n- Marshaller / Ramp lead \n- PSA that is the Passenger Service Agent\n\nWe could then participate to a first game in group class that consisted in guessing the primary work place of a designated jobs and what operational responsibilities the job provides for the airport. \nThrough this game we got to discover new civil aviation jobs regarding the landslide and the airside smooth operation.\n\nIn a second game in group of 4 we could mobilize the jobs discover. One of us gave clues regarding the job and the others had to guess what job it was.",
+      "needs": "We could underline some grammatical point regarding sentences structure such as :\n- BE RESPONSIBLE FOR + ING : The turnaround coordinator is responsible for managing all the ramp activities. \n- BE TASKED WITH + ING : The air traffic controller is tasked with clearing plane to take off or land and making the air traffic effective and smooth.\n- HAVE AUTHORITY OVER : The captain have authority over the first officer. \n- ENSURE THAT : the ground power unit ensure that the stationary aircraft with main engines off have access to the electrical power required.",
+      "helpFe": "Today's lesson was a rich one regarding the discover of civilian aviation jobs. We will be able to talk about these jobs in the FE if necessary and these jobs are crucial to talk about the operation of an airport with accuracy to clearly make ourselves understood.",
+      "feScore": 7,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA004",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "11/6/2026 6:35:54",
+      "vocab": "Word of mouth: bouche Ã  oreille \nGet off to a flying start : commencer d’Ãºn bon pied \nFormation vs pattern \nTraining is never plural. If singular, say a training course \nTake the entrance exam : concours d’Ã©ntrÃ©e \nSod it !/ Damn it ! \nDisruptive passenger :  a traveler who fails to respect the rules of conduct at an airport or on board an aircraft, or who fails to follow the instructions of the airport staff or crew members, thereby disturbing the good order and discipline\nStand : where the airplane is parked \nAirside vs land side : > The physical border between the two is always the security screening checkpoint (and passport control for international flights). Once you scan your boarding pass and step through the metal detectors, you have officially transitioned from landside to airside.",
+      "content": "We talked about how the year would go and the evaluations. Also e campus and the E Portfolio (definitely helped to understand how the we store works). \nFrom a technical point of view, we mainly worked on vocabulary.",
+      "needs": "I need to expand my technical vocabulary to be able to consolidate my knowledge",
+      "helpFe": "This vocabulary will help me to expand my technical precision while speaking and also writing.",
+      "feScore": 7,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA004",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/6/2026 6:45:44",
+      "vocab": "Book a flight/hotel : rÃ©server \nBoard a plane/train \nTo check in for a flight \nClear customs / security : passer les douanes \nMiss a flight / connection : rater sa correspondance\nExtend a stay : allonger un sÃ©jour \nA window /aisle seat \nA round trip ticket : un billet aller retour \nPeak travel season : pic saisonnier de voyage \nIdioms : \n- to hit the road : to depart, leave, or begin a journey, typically by car or another vehicle\n- to take the scenic route : choose a longer road maybe but a road that has nice scenery \n- to catch the bug : to develop a sudden, intense interest, enthusiasm, or passion for a specific activity or hobby.\n- to be in the driver’s seat : to be in command",
+      "content": "We talked about how will Toeic happen, the e portfolio and the work for the year. And also the formative evaluations. \nAnd then we talked about how to report a speech.",
+      "needs": "I should work on expanding my vocab.",
+      "helpFe": "The vocabulary learnt will definitely help me for this evaluation.",
+      "feScore": 7,
+      "toeicPrep": "I checked videos on YouTube on how to prepare for Toeic and to organize yourself to work for Toeic.",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPA004",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/6/2026 6:20:23",
+      "vocab": "Hand wand \nRip off : when you take advantage\nRetailer vs wholesaler \nManufacturers : constructeurs \nUnder the influence / intoxicated : nice way to say sous l’Ã©mprise d’Ã¡lcool ou de drogues \nNationale flag carrier : the airline that is officially registered or historically designated by its home nation to enjoy preferential rights, subsidies, or international route privileges for international operations.\nFear of flying :> air rage : disruptive, aggressive, or violent behavior exhibited by passengers or crew members aboard an aircraft, typically during a flight\nConcourse : large space in a public building \nSafety vs security :> - safety : protect from unintentional harm\n                                   - security : protection from intentional harm",
+      "content": "We have closely studied ATC challenges and problems that can occur especially with ICAO procedures and pronunciation. E-g Tenerife plane crash",
+      "needs": "My technical communication challenges are mainly based on operational language gasps. That is why I m working on expanding my technical vocabulary by trying to write it down and remembering as many words as possible.",
+      "helpFe": "It will help in my formative evaluation by giving me more vocabulary and more knowledge on the subject.",
+      "feScore": 7,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA004",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/10/2026 14:53:41",
+      "vocab": "No liquid restrictions : pas de restrictions \nSpacious seating : places spacieuses \nLess environmental impact : 5,5 kg CO2/passenger",
+      "content": "Cause : - due to \n              - thanks to \n              - as a result of \n              - on account of \n              - because of\nEffect : - … led to \n             - … resulted in\n             - … turned out to be \n… = subject/object \n\nDouble Comparative : - … the cheaper, … the better \n- the cheaper …, the more … \n\nGrammar : si la fin d’Ã¡djectif est consonne/voyelle/consonne (cvc) on double la consonne.",
+      "needs": "I have to work on my vocabulary.",
+      "helpFe": "The vocabulary and the grammar learnt will definitely help me for the FE.",
+      "feScore": 7,
+      "toeicPrep": "I did exercises with my English grammar.",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPA004",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/12/2026 14:40:25",
+      "vocab": "I learned several important terms related to airport operations. Chocks-On/Chocks-Off refers to placing or removing the safety blocks around an aircraft’s wheels to prevent it from moving. Turnaround Time is the time needed to prepare an aircraft for its next flight. A De-icing Rig is a vehicle used to remove ice and snow from an aircraft. The Passenger Boarding Bridge (Jet Bridge) is the enclosed walkway connecting the airport terminal to the aircraft. Finally, Slot Adherence means respecting the allocated departure or arrival time. To remember these terms, I use a practical learning approach: I write down their definitions, associate each word with a real situation at the airport, and repeat them regularly. I also try to use them in sentences to improve my understanding and memorize them more easily.",
+      "content": "Since the lesson was cancelled due to bank holiday I’m not able to talk about today’s lesson",
+      "needs": "I need to consolidate my vocab by reading more and learning more specifically the vocab I come across and don’t know the meaning.",
+      "helpFe": "Since the lesson was cancelled due to bank holiday I’m not able to talk about today’s lesson",
+      "feScore": 7,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA005",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "10/28/2026 17:01:09",
+      "vocab": "Acronyms I didn't know : \nAODB = Airport Operational Database, TRC = Turnaround Coordinator\nVocabulary I didn't know : \nApron/Ramp = the area where aircrafts move to taxiways (next to the terminal)",
+      "content": "Today, we studied aeronautical acronyms and we distinguished air area (airside) and ground area (landside) as well as their role in an airport.",
+      "needs": "Training and luggage can't have an S for their plural form. \nIf it's singular, we can say a piece of luggage and a training course.",
+      "helpFe": "We will be able to use some vocabulary we learned today for the oral exam because it'll concern the presentation of an airport and therefore precise vocabulary will be needed.",
+      "feScore": 4,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA005",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "10/30/2026 12:35:49",
+      "vocab": "The expression written with an \"-\" before are the ones I didn't know or am not really familiar with. \nto book a flight\nto board a plane\nto check in for a flight \n- to clear customs/security \nto miss a flight/connection\nto extend a stay\nwindow/aisle seat \n- a round-trip ticket\nhand luggage/carry-on baggage\npeak travel season\nto hit the road \n- to take the scenic route = take the more « cinematic » path and not the fastest one\n- to catch the bug (for something) = to develop a strong passion for something suddenly \n- to be in the driver’s seat = to be in control of the situation\n- to jump on the bandwagon = to join a trend or popular activity\n\nAs for the work on tenses and narrative: \ndirect to reported speech / narrated speech \nshe went shopping yesterday : she said she went shopping the day before\nshe went shopping today : she said she went shopping that day\nthis week = the week before\nnext year = the following year / the year after \ntomorrow = the following day / the next day \ni live here = she said that she lived there \nthis is my pencil = she said that that was her pencil \nthese are my pens = she said that those were her pens\ni am happy (present simple) => she said she was happy (past simple) => she said she had been happy (past perfect simple)\ntomorrow i will be happy (future simple) =>she said she would be happy tomorrow (conditional)",
+      "content": "We introduced ourselves quickly. Then we learned about tenses and how to narrate accurately and did a few exercises on that topic. Afterwards we did a role play in which we were a member of an airport or a stressed passenger and this role play helped us learn new vocabulary on aviation.",
+      "needs": "My prononciation of certain words like itinerary were not accurate. I also have to learn new words in the vocab section.",
+      "helpFe": "The vocabulary I've learned in this lesson is particularly important for the FE as it involves travel and tourism.",
+      "feScore": 4,
+      "toeicPrep": "I took the first test on global exam so that the website can \"guess\" your current level and then I did 22 exercises (a little bit of everything as I'm completing it in order) which represents, as written on the website, about 5 hours of practice.",
+      "toeicScore": 8
+    },
+    {
+      "id": "GRPA005",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/4/2026 22:07:46",
+      "vocab": "I learned a lot of new vocabulary : \nto embark / to disembark = to board or unboard a plane\nto dwell on = se lamenter = ruminating = to be in your head \nlong haul = long flight (same for short and medium)\nconcourse = a large space in the airport where you can move around \nto drop off someone at the curb = at the edge of the road \nto have a stance = to have an opinion on something \nbottleneck = narrower \nto get your luggage back : the carousel \nthe conveyor belt is where the luggage leaves\nthe tunnel to the airplanes is the jet way or jet bridge\nAncillary revenue is income generated from non-ticket sales (carry-on bags, seat selection, priority boarding).\ncarrier = company \nhandwand = the thing that scans you for security \nX-ray machine => to go through the machine \na scam = a ripp off \na retailer = l’Ã©picerie \nwholesaler = retailer \ngo back to the airport because of a problem = to divert (to the departure airport or an alternate airport)\n\n\nthe difference between safety and security : \nsafety = protect you from unintentional harm\nsecurity = protect from intentional harm (terrorist, hijacking, …)",
+      "content": "We learned about the way to handle an unruly passenger causing a disruption in the trafic and possibly putting his life and others in danger. \nWe also discovered technical terms like runway-holding position markings and other signs on the air side.",
+      "needs": "I had not idea how to pronounce alternate and I also did not know that the difference between British and American way to speak was called rhotic (=> usa speakers that make the sound « r ») and non-rhotic (=> british way of not pronouncing the « r »)",
+      "helpFe": "The new vocabulary will be very helpful for the FE especially the words related to the airport like concourse, all the vocabulary related to the safety and security checks (handwand,...) as well as crucial words concerning the air side and the runways. It was also interesting to learn more about the prepositions as we saw they were really important in live trafic to be understood well.",
+      "feScore": 5,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA005",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/8/2026 22:19:36",
+      "vocab": "Epoch = a period of time in which there has been a major development or change\nModal Shift = to shift towards greener options \nDoor to door = the distance (or time) from your departure point to your arrival one\nCarpooling = sharing a car journey with other people which pollutes less and helps saving money \nCarbon intensity = the amount of CO2 released by passenger/kilometer",
+      "content": "I learned about cause, effects and double comparative : \n\ncause :\ndue to\nbecause of\nthanks to\nas a result of \n\neffect :\nx led to\nx resulted in\nx turned out to be\n(x being a subject/object)\n\ndouble comparative :\nthe cheaper the train, the more people will take it.\n\nWe also did a lot of scenarios in pairs to defend our point of view on multiple questions and to imagine answers to futur problems.",
+      "needs": "There's nothing that was particularly difficult, I did well on the exercise on superlative. Maybe I can try to work on finding answers and ideas for the scenario more quickly.",
+      "helpFe": "This lesson will be helpful as I learned a lot of vocabulary on sustainable aviation. It was also great to practice how to prove a point and defend as well as express ideas better (with all the scenarios we did in pair or groups).",
+      "feScore": 6,
+      "toeicPrep": "I continued what I already did last week and I am now at 41 activities out of 100 for a total of 8 hours spent on the website.",
+      "toeicScore": 9
+    },
+    {
+      "id": "GRPA005",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/10/2026 23:19:08",
+      "vocab": "the vocabulary I learned : \nglycol fluid = a liquid sprayed to remove snow, frost, and ice from the wings and tail of the planes \nthe lavatory/potable water/catering/refueler truck = the truck that manages wastes/water/food/fuel to bring in or out the plane \npassenger boarding stairs = a mobile staircase that allows passengers to embark and disembark safely \nbelt loader = ramp helping to load and unload baggage and freight into the cargo\n\na follow-me car is a vehicle with flashing beacons that escorts taxiing aircraft to their assigned stands during low visibility\na pushback tug is a heavy vehicle that pushes aircraft backward away from the terminal gate into the taxi lane so that they can move freely afterwards",
+      "content": "These are my answers to the questions that were asked (as we could not do it in class) : \nIf catering arrives 5 minutes late, why does it cascade into a 20-minute slot loss ?\nA five-minute catering delay usually turns into a much longer twenty-minute wait because airplanes must stick to strict departure slots. ATC gives every flight a specific departure time window and if the catering truck finishes late, the cabin crew cannot shut the doors on time, which causes the plane to miss its assigned takeoff spot. Once that initial slot is lost, the plane goes back in line, and controllers must find a new place in the busy runway traffic to clear for departure that said flight. \nWhat's new this week in aviation ?\nAviation headlines this week focus have focused on how airlines and airports use digital tools to reduce flight delays. There are also global organizations like ICAO and IATA pushing for better air traffic management systems to keep planes moving smoothly and to gain efficiency. Moreover, many airlines are dealing with plane shortages because new aircraft deliveries are delayed across the industry. Due to strict environmental rules, airports are also looking for clever ways to handle more passengers without building new runways and therefore polluting more.",
+      "needs": "In this lesson we learned the difference between past simple and present perfect : \nWe use the past simple when an action happened at a specific and completed time in the past\nex : \"the plane landed yesterday\"\nWe use the present perfect when the event has a direct result on the present moment\nex : \"the plane has landed, so passengers can get off.\"\n\nAs we could not work in pairs, I could not practice pronunciation but I feel like I understand past simple vs present perfect\na lot better.",
+      "helpFe": "Like the other lessons, the vocabulary will be very helpful as I, prior to this module, knew absolutely no vocab concerning airports or aviation in general. The grammar points we saw will also be a great way to express ourselves properly during the FE.",
+      "feScore": 6,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA005",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 14:05:43",
+      "vocab": "I learned that a ridge was kind of a cliff. \nI also learned the word walruse in the first little game that we did.",
+      "content": "We discussed how to find common ground. Whether it was for the coachs in the activity where we had to work on overtourism with the city map or in the activity where we each represented a role in deciding of the future of an island. \nIt was interesting to put ourselves at the place of an organism or a mayor or a hotel president and discuss our views to then agree on 3 mesures.",
+      "needs": "we learned several points in grammar : \n\nmake + person + verb \nhave + person + verb\nrequire + person + to + verb\n\nin spite of / despite :\ndespite + noun \nin spite of + noun \nin spite of/despite + verbe-ing\n\nwhereas/while : \ntwo subjects - two verbs \nboth sides highlight a difference \n\nI feel like I understood these points well and I'll be able to use them for the FE.",
+      "helpFe": "As I said, the grammar points will be helpful for the FE, as well as practically everything we did for now in class.",
+      "feScore": 6,
+      "toeicPrep": "I continued the exercises on global exam but I feel ready.",
+      "toeicScore": 9
+    },
+    {
+      "id": "GRPA005",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "4",
+      "timestamp": "11/19/2026 10:23:40",
+      "vocab": "chocks on = cale au niveau des roues \nslot adherence\nCTOT = Calculated take off time\nTOBT = Target off block time \nFOD = foreign object debris/damage\nbowser = refueling truck\nleeway = the window time â¨baggage tug = a dolly cart or trailerâ¨to veer off = to change direction\nto skid off => braking action â¨incursion = non authorized presence of vehicule\nexcursion = a plane leaving the runway \nto overrun/overshoot = to go past the end of the runway â¨border force agent (UK) = people that check our passeports \nto cordon off = to put tape/to ceil an area \nGSE = ground support equipment",
+      "content": "I learned a lot about acronyms that I did not know as well as the difference jobs. For exemple I thought a Marshall was responsible for security/safety but turns out an air marshall helps guiding an aircraft.",
+      "needs": "be responsible for + -ing / noun\nbe tasked with + -ing / noun\nhave authority to + base verb / over + noun\nliaise with [peers/external bodies] vs. report to [hierarchical superior]",
+      "helpFe": "The jobs we learned will be interesting to use in the presentation of our airport to explain how they all participate to make the system work and be more efficient.",
+      "feScore": 8,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA007",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "10/28/2026 17:45:51",
+      "vocab": "GPU (ground power unit) which provides electricity on the ground when the APU (Auxilliary power unit) is off. The GSE (ground service equipement) which includes stairs, loaders etc.",
+      "content": "We saw Airside/Landside, so airside are the parts of the airport  that are prohibited to PAX and public generally. This may include the Tower, the jetway before boarding, the apron etc. It is the opposite of landside.",
+      "needs": "I'm used to workING whereas you would say I used to work if the session is done now.",
+      "helpFe": "N/A",
+      "feScore": 8,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA007",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/5/2026 12:54:45",
+      "vocab": "I learned the expression \"To take the scenic route\" which is a way to say you're taking a more picturesque way ro get somewhere, litteraly or not. \"To catch the bug for something\" is standing for getting a sudden passion or interest for a specific topic. Furthermore, 'to be in the driver's seat\" shows that you (or the said-person) is in control of your/its journey.",
+      "content": "I learned idiomatic expressions, vocabulary about customs and passenger experience. I also got to know more about reported speeches and the way I can use them in random sentences.",
+      "needs": "I need to learn more idiomatic expression in order to show the full extent of my vocabulary. It also shows that you are confident in the way you speak a certain language, so it is a really important point to work on.",
+      "helpFe": "N/A",
+      "feScore": 7,
+      "toeicPrep": "N/A",
+      "toeicScore": 8
+    },
+    {
+      "id": "GRPA007",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/5/2026 12:47:36",
+      "vocab": "I learned what a concourse is which is the huge space in a terminal where people can relax and wait for their flight. Then, they board the plane via a jetway (the tunnel between the terminal and the plane). They board/embark then the pushback tug move the plane onto the apron (or ramp in the US). They disembark after the flight and get their luggage thanks to the conveyer belt.",
+      "content": "We learned the difference between SAFETY and SECURITY. The first one focuses on unintentional hazards whereas the second one prevent human threats from happening (ie : with security checks). The TSA people use X-ray machines and handwands to check every people going to the boarding area.",
+      "needs": "The difference between safety and security was a mystery to me so I have to make sure every dark corner has been identified regarding this topic from now on.",
+      "helpFe": "N/A",
+      "feScore": 8,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA007",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/6/2026 17:09:19",
+      "vocab": "I learned what a warthog is, which reminded me of the A-10 warthog (little help to memorize it). There was also \"Epoch\" which is a period of time where several devloppement and growth were observed, whether it was in a special field or not. The term \"model shift\" was used to describe the shift from fossil energies to renewable ones, even though there is still a blur on the actual signfication.",
+      "content": "We learned all the different ways of transportations nowadays, how they can impact climate change and global warming. We also talked about the evolution of those and what could be in the future, helping ourselves with some oral practice. At the end of the session, we mentionned double comparison and several expression we could use in order to make our thoughts more unintelligible for others.",
+      "needs": "I have to look deeply into the actual meaning of \"model shift\".",
+      "helpFe": "N/A",
+      "feScore": 8,
+      "toeicPrep": "N/A",
+      "toeicScore": 8
+    },
+    {
+      "id": "GRPA007",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/11/2026 17:33:52",
+      "vocab": "Today, I learned several airport vehicules such as the pushback truck, the loader belt or the catering truck. The first one is the tool to push the plane onto the taxiway in order for it to taxi after its engines have been started. The catering truck provides food for the flight while the loading belt loads cargo and, obviously, luggage on-board.",
+      "content": "We understood what was actually happening in a turnaround with timestamps, and how short things actually were. It was really interesting to see how all the parties were acting quickly in order for the plane to leave as soon as possible. Another thing was to learn how to explain a situation with cause and consequences. In the end, describing an object not with its name but its caracteristics made us work on our vocabulary and the way we formalised things.",
+      "needs": "N/A",
+      "helpFe": "N/A",
+      "feScore": 8,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA007",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/16/2026 17:09:49",
+      "vocab": "I learnt key vocabulary related to mass tourism, such as carrying capacity (which is the maximum number of visitors a site can handle before suffering damage), de-marketing or visitor dispersion (strategies to redirect tourist flows). I also practiced policy terms like tourist levies (like a day-tripper entry fees), short-term rental caps, and resident backlash.",
+      "content": "I reviewed causative verbs of authority (make/require someone to do) and contrast linkers (despite, whereas) to express regulations and opposing viewpoints. We also practiced as a group with a debate, where we negotiated water quotas in the Isla Serena emergency summit role-play, and consolidated long-term solutions through a timed Taboo speaking challenge.",
+      "needs": "I want to improve my paraphrasing speed under time pressure, which was the case during the roleplay.",
+      "helpFe": "N/A",
+      "feScore": 9,
+      "toeicPrep": "N/A",
+      "toeicScore": 9
+    },
+    {
+      "id": "GRPA007",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "4",
+      "timestamp": "11/18/2026 23:46:14",
+      "vocab": "I learnt what a TRC is, which is a turnaround coordinator. We also reviewed several vocab words such as a bowser, TOBT and CTOT. Bowser is another word for refueling truck, a TOBT is the target off block time (the time the plane is supposed to depart from the stand and start its pushback). A CTOT is a calculated off block time, and this is the time that will make you have slots and have you modify your TOBT.",
+      "content": "We did a few games to understand the different jobs within the airport and the industry, as well as their role. We learnt thingd about ATCOs, pilots (like what a PIC is, the first officer role etc), AFISO, ground staff and more. The AFISO gives aerodrome information such as NOTAMs and METAR for pilots arriving to an airfield with to ATC service provided.",
+      "needs": "None to be honest.",
+      "helpFe": "N/A",
+      "feScore": 9,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA008",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "11/5/2026 12:15:30",
+      "vocab": "landside is the civilian/city side of the airport, before security checks\nairside is the part after security checks including the gates, runway, etc..\nApron/Ramp is the plane parking area\na stand is a parking spot from the apron\nGPU : ground power unit\nAPU : auxiliary power unit\nan unruly passenger is a passenger being disruptive, possibly being intoxicated or having an air rage",
+      "content": "turnaround time is the time needed to get the plane ready for takeoff again after landing.\na plane formation is a way planes are arranged in a controlled way, for exemple the red arrows",
+      "needs": "learn and remember the words that are the same when plural \nexemple : a piece of luggage, multiple luggage, a training course, multiple training",
+      "helpFe": "we learned a lot of technical aviation words that'll help express or understand when talking about aeronautics",
+      "feScore": 8,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA008",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/5/2026 12:24:38",
+      "vocab": "a hand wand is the instrument security use to body check for metals or bomb particles\nduty free is the retail place that is in the airside of the airport\nlong haul / short haul / medium haul : is the way of describing how long is a flight and how far it's going\nconcourse : a large space in a public building\na stance is an opinion\nconveyor belts are the moving things you put your luggage on, if they are in a loop it's called a carousel\nretailer : sells to people\nwholesaler : sells to shops",
+      "content": "to embark / to disembark is an other way to say to board\ncheck in is the bureau where you get your ticket printed and give your luggage\nto divert is the plane landing in an alternate airport because of a problem during the flight\nalternate airport : airport near the flying path of the plane where it can land in case of a problem\nSAF ( sustainable aviation fuel )",
+      "needs": "prononciation of \"alternate\" depending if it's \"to alternate\" meaning to switch and \"an alternate\" like an alternate airport",
+      "helpFe": "the important different between safety = protect from unintentional and security = protection from intentional harm\na larger vocabulary also helps not getting stuck on words, for exemple using \"manufacturers\" instead of \"constructors\"",
+      "feScore": 8,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA008",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/13/2026 8:17:54",
+      "vocab": "Non-stop flight is not equal to a direct flight\nA Non-stop flight is one that goes directly to destination without ever landing for fuel or to let out passengers\nA direct flight is one that leads to the destination but might stop in an alternate airport for fuel \nEpoch : a period of time ( Ã©poque en francais )",
+      "content": "Cause : due to thanks to as a result of , because of, ing after\neffect : resulted/resulting in, led to, turned out to be\ndouble comparative : the cheaper … the more",
+      "needs": "I don't remember having any difficulties on this specific lesson",
+      "helpFe": "Lots of talking in duo, helps with learning fluency and the ability to not search your words",
+      "feScore": 7,
+      "toeicPrep": "Didn't do much TOEIC prep this week but listened to a lot of english podcasts and movies",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPA008",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/16/2026 9:08:14",
+      "vocab": "Making people do things :\n\nmake + person + verb\n\nhave + person + verb\n\nRequire + person + to + verb\n\n\n\nDespite / In spite of + noun\n\nDespite / In spite of + verb-ing\n\nWhereas / While to show two different situations, both sides highlight a difference",
+      "content": "we did an exercise creating 3 tourism routes, making them coherent with a theme of our choice and planning the timings.\nThen presented them to the class",
+      "needs": "no particular problem this session",
+      "helpFe": "it trained us to present in front of people",
+      "feScore": 8,
+      "toeicPrep": "started the TOEIC preparation this week, did like 5% of the exercises",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPA009",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "10/30/2026 13:23:05",
+      "vocab": "I learned that when reporting what someone told us we changed the tense like present simple becomes past simple which becomes past perfect",
+      "content": "Well, we had exercises where we had to find the right tense to use for a verb in a sentence and another one where we had to role play a discussion between a stressed passenger in a very short connection and an airport employe.",
+      "needs": "I realized with a few words (like Itinerary) that I have to work on my pronunciation",
+      "helpFe": "Knowing what tense I should use to properly speak english in every situation is probably what I get from the class. The idioms will also help regardind my fluency.",
+      "feScore": 7,
+      "toeicPrep": "I did some exercises on Global Exam to test my level and lately I've also been watching a lot of american and british movies in their original language. It helps me a lot to grow accustomed to the accents and the pronunciation.",
+      "toeicScore": 6
+    },
+    {
+      "id": "GRPA009",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "10/28/2026 18:22:33",
+      "vocab": "I learned the idiom : Get off to a flying start, which means starting very well something and I also learned the expression \"word of mouth\" which means passing an information from person to person.",
+      "content": "We introduced ourselves and had to explain why we were here. Then we had a few aviation terms to talk about.",
+      "needs": "Well we didn't focus a lot on that but I figured my aviation vocabulary wasn't very rich. Regarding the language, maybe some  problems with plural. I learned that we can't say lugagges.",
+      "helpFe": "To be honest, it was an introduction class and we didn't get to communicate or use vocabulary a lot. But I learned a few idioms and expressions that might help me later !",
+      "feScore": 2,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA009",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/4/2026 16:07:33",
+      "vocab": "I learned a lot of new words in today's sesssion like :\n- Hand wand : The tool used by employees at security to detect metal\n- Air rage : A condition where people tend to get angry easily while in the air\n- Concourse : A large and spacious area where people move around\n- Bottleneck : A place where the path gets narrower and usually create a bit of traffic\n- To don (An oxygen mask) : To put on",
+      "content": "We talked mostly about security and safety and I was surprised to discover the difference with the french ones since \"SÃ©curitÃ©\" doesn't mean \"Security\" but \"Safety\". We went through the X-ray scans, all the security part but also some vocabulary around the airport (Like concourse). As usual we had to roleplay in some scenarios like the one where a confused and panicked passenger missed their flight and started running on the runway. We then had to use some technical vocabulary to communicate between different branches of the airport.",
+      "needs": "Today, we also talked about prepositions and I didn't realize that I had some trouble using them. I now know when to use in/at/on. \"In\" when it's in an enclosed space, \"at\" when it's a specific location and \"on\" when it's on a surface.",
+      "helpFe": "To be honest I don't really know how to answer this question, I think everything I'm learning in class will be helpful for the evaluation, whether it be using prepositions rightfully, expanding my aeronautical vocabulary or simply improving my general knowledge. We are not only learning aeronautic vocabulary, we're also learning some general idioms and expressions that are helpfull in improving my english level.",
+      "feScore": 5,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA009",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/6/2026 15:13:10",
+      "vocab": "I learned a few words like epoch, which means a period of time where some significant things happened like the 80's or the industrial revolution. I also heard about modal shift which means the tendancy for people to change their habits into less carbonated ones.",
+      "content": "Today we had a lot of roleplay exercises, one where we had to use linking words of cause (due to, as a result of), effect (led to, turned out to be) or double comparative (the cheaper the train, the more people...).\nWe also had to pretend we were part of the green mobility taskforce and had to present a 5 step decarbonization plan and give incentives and deterrents.",
+      "needs": "Everytime during general english class, I realize that I'm sometimes wrong about the right tense to use. I've been talking a bit of english for almost 20 years and now I feel like the tense I need to use comes naturally but I tend to make mistakes mostly with past perfect. I will try to work on this, I now know that I shouldn't use it when an action is done and in the past.",
+      "helpFe": "The linking expression we studied today (due to, because of...) will probably be helpful for our presentation. The approach of pretending to be a firm or a group could also be handy. Of course the vocabulary we are learning in every course will be useful and we will try to start working on it pretty soon.",
+      "feScore": 7,
+      "toeicPrep": "The results from my TOEIC first test on Global Exam put me between 785 and 940. I will try to practice a bit more with listening exercises because I realize that I need to improve my comprehension.",
+      "toeicScore": 6
+    },
+    {
+      "id": "GRPA009",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/10/2026 15:16:27",
+      "vocab": "I learned A LOT of new vocabulary, I didn't even know their name in french. It would be a very long list so I'll just focus on a few new words like :\nCatering Hi-lift truck : A truck meant to lift meal trays, carts and basically a lot of stuff for the cabin.\nLavatory Service Truck : Used to empty the waste from the previous flight\nFollow me car : A black and yellow car with lights meants to guide planes during bad weather and low visibility\nThe de-icing rig : A kind of mechanical arm spraying liquid on the wings to prevent them from icing\nBelt loader : A truck with a rubber belt used to load the luggage in the plane",
+      "content": "We didn't have a course with everybody so we couldn't talk to eachother but basically we had to talk about incident sceanrios happpening on a taxiway or an issue with an unauthorized service vehicle in a restricted area. These scenarios were focusing on technical vocabulary.",
+      "needs": "Well first of all, I'll have to learn and remember all the vocabulary I discovered today. Also it's a good thing we have the possibility to hear the pronunciation of everyone of them, it helps because I still struggle with this. I will also have to get better on the french side of this vocabulary in order to use it in the right situation so I won't be misunderstood. The stress when it comes to certain words is also one of my weaknesses, I need to work on it.",
+      "helpFe": "Once again, the vocabulary I learned will probably help for our evaluation. Learning technical vocabulary and recreating incident scenarios does help with it, it puts us in a realistic situation and allows us to memorize it more easily.",
+      "feScore": 5,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA009",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 13:55:51",
+      "vocab": "Today's topic was overtourism (an excessive amount of tourists that has a negative impact) and I learned a few words like :\nSeasonal compression : The fact that everyone comes at the same time of the year.\nResident Displacement : The fact that some inhabitants are getting out-priced because of tourism\nOr a very interesting one that I've never heard of even in french : \nAuthenticity erosion: Which means the disappearance of residential neighborhoods to tourist commercialization.",
+      "content": "Today we mostly had to debate in groups, we just talked about some linking words like whereas, despite or while, which can be used for comparison or opposition.\nThe biggest exercise asked me to play a Hotel director, fighting to raise his profits on an island prone to overtourism. Three major questions were raised, the use of water, the room capacity and the infrastructure funding.\nWe came to an agreement : I had to give up swimming pools but got a private access to the beach and sea and we cancelled the runway project to keep the same amount of tourists so they will still be able to enjoy their stay, otherwise, there would not be enough food, water or room for all of them.",
+      "needs": "As usual, I need to work on pronunciation and the stress put in certain words. The vocabulary tab helps me because there is a possibility to play the word so I can hear how I'm supposed to say it.",
+      "helpFe": "Once again, I don't really know what is asked here. I will of course try to use linking words in the evaluation. We need to start working on it. The vocabulary and the rules we see in class will surely be part of it.",
+      "feScore": 7,
+      "toeicPrep": "I just finished a 30 questions reading test on Global Exam and got all of them right. It was a pretty simple exercise, the first one on the list, and it talked mostly about prepositions and tenses to use at the right time.",
+      "toeicScore": 8
+    },
+    {
+      "id": "GRPA009",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "4",
+      "timestamp": "11/18/2026 19:58:44",
+      "vocab": "Today I learned a few words and acronyms like : \nTOBT, Target off block time : Tee time to pushback during a turnaround\nBowser : The other name for a refueling truck\nVeer off / Skid off : To change directions / Braking action\nIncursion : A non authorized presence of vehicle on the runway\nOverrun : To go past the end of the runway",
+      "content": "We had a few exercises about aviation jobs, we talked about some on the airside like an aircraft marshaller, the agent guiding planes on their stand with light wands and some on the landside like the passenger service agent who takes care of the document verification and helps with the boarding.\nWe also a game where we were supposed to pick a job and the other had to guess it by asking precise questions. The jobs I picked were the air traffic control officer, the one tasked with giving the clearances and in charge of the traffic in the airport; the aircraft marshaller and the aerodrome flight information service officer, who does not have the same authority as a tower controller but can provide information and alerts to the aircrafts.",
+      "needs": "We learned a lot of vocabulary lately so I think I really need to look at it often in order to memorize all of it. I also need to remember all of their particularities in english AND in french ! Mostly the vehicles ! I tend to mix them all up and forget what they do like a follow me car and a pushback tug ! I also tend to say belt loader instead of baggage tug when the first is used only to load the luggage in the plane and the latter is used to transport them from the airport to the airplane.",
+      "helpFe": "Once again, today we reviewed a lot of interesting vocabulary but also grammar that will help with the evaluation. \nOur last exercise focused more on grammar and which prepositions to use in functionnal formulas like :\nbe responsible for \"ing-verb\", liaise with, report to, be tasked with \"ing-verb\"...\nI will for sure use these formulas in the formative evaluation.",
+      "feScore": 6,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA010",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "10/28/2026 16:51:35",
+      "vocab": "Apron, GPU, APU, there's no \"s\" in luggage as in \"training\", a stand: parking spot of a plane, a turnaround (between flight arriving and departure), disruptive (to behave disruptively), idioms ; word of mouth and get off to a flying spot (meaning to start really well). Formation (like la patrouille de france) is not like training (course)",
+      "content": "We saw the difference between landside (before the safety control) and the airside (after the safety control).",
+      "needs": "grammar : difference between i'm used to verb+ing and i used to + verb",
+      "helpFe": "i learnt a lot of aeronautical vocabulary during this session that will help me carry the formative exam.",
+      "feScore": 3,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA010",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/2/2026 17:59:35",
+      "vocab": "to collocate = to assiocate, to clear customs, a round trip ticket, to take the scenic route (more picturesque route/ not the fastest) to catch the bug, to be in the driver's seat. Reported speech: today turns into that day , now into then, yesterday into the day before.This turns into that ans this into those, (there's something of a distance between this and that, this seems closer than that). Also tenses changes : for example : i am happy : she said she was happy : she said she had been happy, as we report we walk more and more into the past, Pis->PaS->PaPS and for the future: tomorrow she will be happy : She said she would be happy (walk into the future).",
+      "content": "We did a fill the gap exercise : like \"hardly had the client stepped\", No sooner had we clear\" , Hardly had I locked, Rarely do we, not only did she miss, not only did the train. Also, we did a role play in pairs, one had to play a stressed/concerned passenger, and the other a professional wich had to try to convince the client that there was nothing to be worried about.",
+      "needs": "I have to try to remember the hardly/not only/ sooner sentences construction to re use it in the future. Ill try to remember also Itineray is pronounced \"Itenary\". And also learn the vocab.",
+      "helpFe": "Ill try to re-use in sentences what i learnt that day: vocab, sentence construction, tenses.",
+      "feScore": 6,
+      "toeicPrep": "I did not do TOIEC prep this week, ill do a lot the week to come",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPA010",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/6/2026 17:25:57",
+      "vocab": "We leart vocab related to transport and the environment, such as carbon footprint, zero emission transport, direct flights, connecting flights ,SAF, winglets, and seat occupancy. I also learnt expressions to explain causes and consequences, including due to, because of, thanks to, as a result of and lead to. We also learnt double comparatives : the more... the less etc. I also learnt that we use in for the transport if you cannot move or walk inside : you're on the train but you're in the car.",
+      "content": "We started with pictionnary and a vocab quizz about transport. We then discussed different periods (epoch) in transport history and compared the environmental impact of travelling by train or plane. Finally we worked in groups to suggest solutions for reducing emissions (detterents or incentives).",
+      "needs": "I need to improve my fluency when expressing and defeding my opinions. I also want to prative cause and effet  expressions and double comparatives. I will focus on using more precise vocab and speaking more spontaneously during discussions.",
+      "helpFe": "The session of today helped me practice expressing opinions, comparing different transport options ansd discussing environmental issues. This will help by using relevant vocabulary, explaining choices, and defeding arguments about sustainable tourism.",
+      "feScore": 6,
+      "toeicPrep": "This week i practised TOEIC grammar and reading comprehension exercises, i focused on the verb tenses, especially the past simple and present perfect. Also prepositions and vocabulary. I reviewed my mistakes in order to improve my accuracy.",
+      "toeicScore": 8
+    },
+    {
+      "id": "GRPA010",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/6/2026 17:35:36",
+      "vocab": "During this session, I learnt new aviation vocabulary related to airport operations, passenger services and flight disruptions. Airport operations: Apron (aircraft parking area), jet bridge (passenger boarding bridge), pushback tug (vehicle used to push aircraft backwards), baggage carousel (conveyor belt for luggage), to embark, to disembark and to don an oxygen mask. Flight operations: To divert (change destination), alternate aerodrome, to be stranded (unable to continue a journey), long-haul, short-haul, air rage (disruptive passenger behaviour) and SAF (Sustainable Aviation Fuel).\nPassenger services: Refund, compensation, voucher, ancillary revenue (income from additional services), overbooking and seat occupancy.I also learnt the difference between safety (protection against accidental harm) and security (protection against intentional threats), as well as expressions such as get a go-ahead, to go through, to be a rip-off and to be problematic.",
+      "content": "We reviewed aviation vocabulary through quizzs and exercises. We discussed airport operations, passenger handling, flight diversions and compensation. We also explored the difference between aviation safety and security, as well as ground handling procedures.",
+      "needs": "I need to improve my fluency and pronunciation when i use technical aviation vocabulary. I also want to become more confident when i explain operational procedures and describing aviation-related situations clearly and accurately.",
+      "helpFe": "Today's session helped me expand my technical vocabulary and improve my ability to explain aviation procedures. For the oral evaluation, I will focus on speaking clearly, using accurate terminology and giving structured answers with relevant examples.",
+      "feScore": 6,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPA010",
+      "group": "Group A",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 16:56:58",
+      "vocab": "During this session, we learnt new vocabulary about overtourism and its consequences, like tourist tax, resident displacement, infrastructure strain and heritage conservation. And also \"badger\" and Walrus\n\nWe also talked about some solutions to reduce overtourism, for example dynamic pricing, advance reservation and de-marketing.\n\nAbout grammar, studied the difference between despite, in spite of, whereas and while. We also studied how to use make, have and require when we want someone to do something.",
+      "content": "We started the lesson with an animal Pictionary game. After that, we worked on tourism activities and a fictional city.\n\nWe also did an activity about a crisis situation with a water shortage due to drought, environmental problems and money issues. We had to find solutions and explain our choices.\nWe discussed about overtourism and its consequences for local people, historical places and infrastructure. We also talked about different solutions like tourist taxes or limiting the number of visitors.\nWe also did some grammar exercises about \"making someone or something do something\"",
+      "needs": "I need to improve my ability to use more specific vocabulary when discussing tourism and environmental issues, particularly expressions such as *carrying capacity*, *infrastructure strain* and *resident displacement*.\nI also need to practise using *make*, *have* and *require* correctly, as well as linking expressions such as *despite*, *whereas* and *while*.\nMy main objective is to become more fluent when expressing opinions, explaining problems and suggesting solutions without hesitating too much.",
+      "helpFe": "This session helped me prepare for the upcoming oral evaluation by practising how to discuss problems, express opinions and justify decisions.\nThe overtourism and crisis-management activities were particularly useful because they required us to consider different perspectives and suggest realistic solutions.\nDuring the evaluation, I will try to use more precise vocabulary, organise my arguments with linking expressions and to provide examples to support my ideas. I also want to improve my fluency and grammatical accuracy.",
+      "feScore": 8,
+      "toeicPrep": "I did some TOIEC practice about modals",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPA010",
+      "group": "Group A",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/18/2026 12:28:25",
+      "vocab": "During this session, I learnt vocabulary about ground operations and aircraft turnaround.\nTurnaround (time between arrival and next departure), chocks (blocks used to prevent aircraft movement), GSE (Ground Support Equipment), FOD (Foreign Object Debris), pushback tug, belt loader (used to load baggage), GPU (provides electricity to the aircraft), fuel bowser (refueling truck) and CTOT (Calculated Take-Off Time). I also discovered the expression \"critical path\", which refers to the operations that determine the minimum turnaround time, and some useful connectors like \"due to\", \"owing to\" and \"consequently\".",
+      "content": "As this session was during a public holiday, we had to work by ourselves on the online worksheet.\nI studied the different steps of an aircraft turnaround, from chocks-on to pushback. I learnt that several operations such as refueling, cleaning, baggage handling and boarding have to be coordinated to avoid delays.\nThe worksheet also included different safety situations, like hydraulic fluid spills, FOD on taxiways or icing on aircraft wings. I reviewed how these incidents can affect airport operations and what actions should be taken.\nWe couldn't do the speaking activities and group discussions, but I could still review the technical content individually.",
+      "needs": "I need to work on the pronunciation of some words like \"hydraulic\", \"conveyor\" and \"refueling\".\nI also need to improve my use of past simple and present perfect, especially when describing completed operations.\nSince we couldn't practise speaking together, I still need to work on my fluency and explaining operational situations without taking too much time to find my words.",
+      "helpFe": "Even if we worked individually, this session helped me learn more technical vocabulary related to ground operations.\nFor the oral evaluation, I think it will be useful to explain an aircraft turnaround, describe ground equipment and understand operational problems.\nI will try to practise speaking aloud at home, especially describing incidents using expressions like \"due to\" and \"as a result\". I also need to review the vocabulary from the previous sessions to be more comfortable during the evaluation.",
+      "feScore": 7,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB001",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "10/31/2026 10:35:28",
+      "vocab": "I learnt « unruly passenger ». This vocabulary is used to described a passenger with a bad attitude against cabin crew.",
+      "content": "We had to take position on different s :\nLow cost company\nAlcohol during flight\nAllow people in the cockpit during flight",
+      "needs": "",
+      "helpFe": "This classe could help me to use some technical vocabulary to describe situations",
+      "feScore": 5,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB001",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "10/31/2026 10:34:06",
+      "vocab": "I learnt expressions like \"off the beaten track\" which can be used when you prefer to discover places that are not popular with tourits.\nI also learnt \"hit the road\" means \" it's time to go\"",
+      "content": "Today we did differents speaking activities.\nFirst we shared anecdotes, then we debatede on different topics and finally we did a \"role play\"\nThese various exercices allowed us to express ourselves in the past time and also find arguments to defend our position about a topic.",
+      "needs": "i need to work on the past time to know well the rule and choose the right tense instinctively",
+      "helpFe": "Today's lesson could help me to express myself better with past tense.",
+      "feScore": 5,
+      "toeicPrep": "",
+      "toeicScore": 3
+    },
+    {
+      "id": "GRPB001",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/4/2026 17:07:34",
+      "vocab": "I learnt the expression « Dwell Time » which refers to the time spend by the passenger between security checkpoint and boarding",
+      "content": "Today, we talked about e-gates and CT scanners. These topics allowed us to discover vocabulary related to them, such as “tomography” and “carry-on bag”.",
+      "needs": "I don’t have a specific example, but I know that I still need to improve my fluency and grammar",
+      "helpFe": "This session would help me use some technical words about aviation",
+      "feScore": 5,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB001",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/6/2026 17:20:32",
+      "vocab": "Vocabulary learnt today :\n- modal shift with lÃ©ans encourage people to with a less carbon meaning transport",
+      "content": "The topic of the lesson was the environment and transport. We tried to identify some incentives for travelling by train instead of flying",
+      "needs": "I need to improve my capacity to make longer sentences when speaking",
+      "helpFe": "This lesson could be helpful to have vocabulary to prepare a pitch",
+      "feScore": 5,
+      "toeicPrep": "I completed on Global Exam, the test designed to assess my level and create a personalized training program. I also completed the first step of the program",
+      "toeicScore": 4
+    },
+    {
+      "id": "GRPB001",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/11/2026 21:52:30",
+      "vocab": "I learnt vocabulary about ground vehicles like belt loader or dolly tug.",
+      "content": "The lesson was about ground operations and what happens when the plane is at its stand.",
+      "needs": "-",
+      "helpFe": "This lesson could help me to descibe a turn around scene",
+      "feScore": 6,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB001",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 19:22:35",
+      "vocab": "We remembered about « modal shift » « externalities », « decarbonization »",
+      "content": "Today we talked about overtourism, its causes and what cities are doing to try to limit tourism.\nWe also studied grammar points and practicised making sentences like « I went the garage last week to have my car repaired », with despite « Despite the bad weather, I will play outside » and whereas « I like playing football whereas my friend prÃ©fÃ¨re to watch football »",
+      "needs": "I really need to improve my fluency, I’m still looking for my words and I almost used simple words.",
+      "helpFe": "-",
+      "feScore": 6,
+      "toeicPrep": "I Will do somes toeic exercices saturday.",
+      "toeicScore": 4
+    },
+    {
+      "id": "GRPB001",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "4",
+      "timestamp": "11/18/2026 23:05:24",
+      "vocab": "Some vocabulary learnt today is « to cater » and «  a caterer » used to prepare food for someone",
+      "content": "Today’s lesson was about job in aviation. We reviewed diffÃ©rents types of jobs, from the Passenger Service Agent to the ATCO/AFISO but also Turnaround Coordinator and First Officer.",
+      "needs": "I need to consolidate my grammar because I made several mistakes during this lesson. For example, I said “asked to somebody” instead of “asked somebody”, and I used “the last” instead of “the latest”.",
+      "helpFe": "This lesson could help me to explain the job and role of people working at an airport",
+      "feScore": 6,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB002",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "11/3/2026 18:30:59",
+      "vocab": "connection",
+      "content": "Really short session because of the briefing in the beggining of the course.",
+      "needs": "It's hard to find my words, so I'm lacking of fluency.",
+      "helpFe": "I need to learn a lot of vocabulary words in AT. Not knowing a key word can make all the understanding harder, especially in technicals conversations.",
+      "feScore": 2,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB002",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/3/2026 18:36:54",
+      "vocab": "connection",
+      "content": "It was really interesting to debate about aeronautical subjects.",
+      "needs": "I need to find my words quickly in order to improve my fluency.",
+      "helpFe": "I will do more conversations with AI for example to practice outside the english class.",
+      "feScore": 3,
+      "toeicPrep": "I did some grammar quizz",
+      "toeicScore": 4
+    },
+    {
+      "id": "GRPB002",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/11/2026 23:16:17",
+      "vocab": "I tried to learn all the 30 words of the week, using anki to memorize them.",
+      "content": "I debate about 2 Epochs of Transport, Corridor 3: Toulouse to Paris. Choosing and finding arguments for the option 3: Night Sleeper Train + Connecting TGV for a Toulouse - Brussels travel.",
+      "needs": "I have to learn the session words way before the course in order to use them better during the session.",
+      "helpFe": "I",
+      "feScore": 4,
+      "toeicPrep": "I didn't do any TOEIC preparation this week.",
+      "toeicScore": 4
+    },
+    {
+      "id": "GRPB002",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/11/2026 23:21:18",
+      "vocab": "I learnt a lot of airport vocabulary thanks to the drawing we have done. Holding point, Landside, Airside,",
+      "content": "We did a presentation about Biometric e gate.",
+      "needs": "Sometimes I don't even know the french word, so it's hard to learn it in english.",
+      "helpFe": "I",
+      "feScore": 3,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB002",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/19/2026 17:45:15",
+      "vocab": "Tourist Tax\nCruise Ship Ceiling\nShort-Term Vacation Rental",
+      "content": "The DDRS simulation was interesting and fun",
+      "needs": "Working on vocabulary using anki flashcards.",
+      "helpFe": ".",
+      "feScore": 4,
+      "toeicPrep": "I did some grammar practice",
+      "toeicScore": 5
+    },
+    {
+      "id": "GRPB003",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/1/2026 15:20:14",
+      "vocab": "I learnt the difference between a direct flight, which is a flight with the same plane and the same company from the departure to the arrival, even if there can be stops, and a non-stop flight which is a flight without any stop. The first arrival is the destination.\nAlso, I learnt some idioms like to be in the driver's seat, which means to have everything in control, to hit the road, which means to depart, to start the travel, or even to be off the beaten track, which means to stay out of the crowd.",
+      "content": "We did pairs working. At first we had to talk about a past story on a holiday. For my story, I talked about a nightmare that happened to me with the biometric e-gates.\nThen we had to do a role-playing game. We had to play a traveller stressed about missing a connection because of the lateness of his flight, and the desk holder trying to find a solution. I played the passenger and we managed to both find a solution.\nThen with two groups, we played a game to work on the vocabulary. We had to choose a word or a idioms on the today lesson and to make our group guess it. I managed to make my group guess 3 words/idioms",
+      "needs": "It was hard to speak both correctly and fluently. I have to practise a lot more on the speaking at first. The vocabulary learnt was easy to learn and to use.",
+      "helpFe": "I really liked these activities both for the speaking training and for the vocabulary that will useful for the FE.",
+      "feScore": 3,
+      "toeicPrep": "I started the training for the TOEIC but I find myself not ready at all. I did some exercices with word to find, with picture descriptions and the hardest exercice is the reading comprehension where I do most of my mistakes.",
+      "toeicScore": 2
+    },
+    {
+      "id": "GRPB003",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "11/1/2026 15:29:29",
+      "vocab": "We didn't learn a lot of vocabulary as the session was very short. I worked after the class to learn some of the vocabulary as the difference between the airside and the landside of the airport which are the two major zones of an airport. The landside is before security checks, passports control and doors, the airside is after these steps.",
+      "content": "We did a research game to get to know each other and then we did little debates during the left time. I didn't like these and I found them useless. I didn't really learn a lot during this class. I just gave opinion and struggle with English without helps.",
+      "needs": "I think I should work more on the vocabulary for technical English, I think it was the weakest point for me today.",
+      "helpFe": "To be honest, I don't think that today class were helpful for the evaluation. I hope I will enjoy more next classes.",
+      "feScore": 3,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB003",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/9/2026 9:57:57",
+      "vocab": "I learnt a lot of useful vocabulary during this class, especially linked with the airport.\nFor the drop-off, I learn what is a self-service kiosk and an automatic bag drop which is here for the passenger to register and drop their bagages faster with a machine. The passenger can do these things himself now, without the need of someone and without waiting in a queue. Also I learnt the bagage convoyer belt which is a carousel. This is where arrived passengers took their suitcases after landing.\nLinked with the security, we talked about body scanners and we view again biometric e-gates which are also here to improve speed and efficiency in an airport.\nOn the traffic area, I learnt what a apron is, this is a ramp for a plane. Near that, we can find a jet bridge to connect the terminal with a plane, the pushback tug, which push the plane backward on a taxi line as the plane can't do it itself, and we saw the blast fence, which are here to stop the wind from planes' reactors against the airport.",
+      "content": "Today's topics were here to review how important the flow of the crowd and the efficiency inside an airport are. We saw the improvements that can be made with automated steps for passengers that improve the speed, the capacity and reduce bottlenecks, but we also reviewed the impacts of them as it can remove jobs, it can reduce the security or increase discriminations",
+      "needs": "I was really passionate and happy to learn this vocabulary and I know how and when to use them. Now I have to improve on the fluency. The was I was speaking is not natural and I wish with more trainings, to be able to speak more fluently.",
+      "helpFe": "Today's lesson will be really helpful for the evaluation because the specific vocabulary that I learnt is really related to an airport. I know more than before, how to name things on an airport but now I still have to be more natural and fluent when using them.",
+      "feScore": 6,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB003",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/9/2026 19:37:54",
+      "vocab": "The vocabulary learnt is linked with mobility. For example I learnt what is the modal shift. It means to move from a way of transportation to another one, for instance a more ecological one. Linked with ecological transports, we have active mobility, which means to use a self-powered transport like walking or cycling. We can do carpooling which means to share a car with more passengers. With that, everyone can go to their destinations with the use of less cars and shared fees between everyone so it's a more ecological and a more economical way of transportation. Also some places are and will be connected with high-speed rails which offer an sustainable alternative against more polluting transports like cars or planes.",
+      "content": "This lesson allowed us to think about the impact of each way of transportation especially on the climate. That's why we did some debate or some exercices with different scenarios. We saw the difference between a trip with trains, planes, cars... we saw economical, ecological and practical aspects of them. Planes are still my favorite however it's one of the most polluting way. But sometimes we can find compromises.",
+      "needs": "I think that the fluency is still my weakest point. Happily we really have the opportunity to train with these exercices, I think that it's what I need the most to make maximum progresses.",
+      "helpFe": "The vocabulary learnt is helpful and easy to reuse for the evaluation. Now I still have to work on the way to prononce them. Also I would like to learn how is a FE composed. I'm not sure to remember what do I need to prepare so this will be one of my next questions during the next class.",
+      "feScore": 7,
+      "toeicPrep": "I didn't train enough on Global Exam this week. I have to work on my organisation to find more time to do them. However the small exercices in ressources and these classes make me more confident on the progress I can make before the final exam.",
+      "toeicScore": 4
+    },
+    {
+      "id": "GRPB003",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 16:55:32",
+      "vocab": "Today's lesson was about overtourism. Meaning the fact that there can be so many tourism in a place, over it's carrying capcity, that it can even harm the environment and local residents.\nFor that, some cities had campaigns during tourism peak season, like putting a mandatory entry fee, or a tourist tax, to tourists who want to enter inside a city. It can help a bit to reduce overtourism but it also helps to fund monuments for renovation.\nThose crowded places have an impact on residents as we can see a resident displacement. For apartments, we can see that long term rentals is becoming short term rentals.\nAlso for museums, they are all putting advance reservation systems, in order to control hourly crowd and to put a limit on the amount of tourisms.",
+      "content": "To begin with, we started in pairs by thinking about a memory with overcrowd and we saw that everyone once had experienced overtourism and saw the impact of it.\nDuring this lesson, we had the opportunity to make a debate. As tourisms consume waters in hotels, it can sometimes be very low. There were a project to extend an airport to increase tourisms and local economy, however it could have an impact on the primordial resource. So we had to find a compromise and we chose to improve other ways of tourism connectivity instead of the airport extension, to make campaigns about water consumption and with the increase tourism and economy, maybe we will see later to extend the airport.",
+      "needs": "The vocabulary was harder than last times here. It's more unknown words that I used to see since the beginning and I will have to do more efforts to learn them and to reuse them later. I learnt definitions however I don't know if I will be able to use the m naturally for now. I think about making a new way of learning them with papers or maybe an application.\nFor the pronunciation, I feel more at ease speaking English and more confident with my accent compared to the beginning of the year, even if my fluency is still bad.",
+      "helpFe": "The new vocabulary learnt is really specific about overtourism and really linked with the module of AG. I still don't know how my evaluation will be and I'm asking myself few questions, but I see how helpful the vocabulary is.",
+      "feScore": 6,
+      "toeicPrep": "This week, I trained more than usual and I'm happy with all exercises I did, especially with listening comprehension where I took a lot of fun to do it, however my results are not what I expected as I still have not enough to pass the final exam. More work will be necessary.",
+      "toeicScore": 4
+    },
+    {
+      "id": "GRPB003",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/14/2026 18:01:35",
+      "vocab": "After the virtual class, I learnt vocabulary about ground operations. Few vehicles are used for planes during their TAT, meaning the Turn Around Time. It's the time between chocks-on, where the ground crew set chocks after arrival, and chocks-off, where they remove them, before departure.\nThere is for example, the belt loader which is a vehicle used to load baggage inside a plane with a tilted conveyor belt. Also, the refuel truck is called a bowser. It's here to refuel the plane during the TAT.\nI learnt few acronyms like TAT, CTOT, GSE which means Ground Support Equipment and PPE which means Personal Protection Equipments and design high-visibility vests, hearing protections, helmets or boots.",
+      "content": "The lesson wanted us to tackle some scenarios which down GSE and to see how we could react. This showed us the important and the balance between security and efficiency for planes during turn around. Planes need to take off quickly after arrival to not lose too much money, however it's important to guarantee the security like fluids leak.",
+      "needs": "I worked on the ground operations vocabulary and organization that still helped me to learn more about every objects and elements on an airport, but this session is marked with a lack of pronunciation as it's not easy to do that alone during a day-off.",
+      "helpFe": "More and more vocabulary are learnt about airports. I think I can reuse them with ease during the upcoming evaluation.",
+      "feScore": 7,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB004",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/3/2026 15:42:20",
+      "vocab": "A round trip\nOff the beaten track",
+      "content": "We did a little roleplay in which I was an airline employee and my partner Peter was a stressed out traveler",
+      "needs": "I should try using past perfect correctly. (ex : I was late in the morning because there had been an incident on the road.",
+      "helpFe": "Being more invested in the conversation would be an improvement. It's hard to have a good pronunciation when you are speaking live.",
+      "feScore": 7,
+      "toeicPrep": "I did the global exam evaluation test",
+      "toeicScore": 9
+    },
+    {
+      "id": "GRPB004",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/6/2026 14:21:27",
+      "vocab": "Modal shift\nPoint-to-Point transit\nShared mobility\nfleet\nactive mobility",
+      "content": "We had to discuss in pair the evolution of aviation. Then in group of 3 we had to choose a way to travel for a ENAC class.",
+      "needs": "I still have trouble making up english sentences on the spot, and making sure my prononciation is correct. I must continue talking to become more fluent.",
+      "helpFe": "Having knowledge about the history of transport is important to understand the place of aviation today. We need to consider the transition towards a greener transportation system",
+      "feScore": 8,
+      "toeicPrep": "This week, I did the auto-evaluation on global exam.",
+      "toeicScore": 9
+    },
+    {
+      "id": "GRPB004",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/6/2026 14:35:39",
+      "vocab": "dwell time\nairside/landside\npushback tug\nramp",
+      "content": "This week's topic was about the organisation of an airport. We drew a diagram of an airport on the board.",
+      "needs": "I didn't know how the differents part of the airport were called. So learning today's vocabulary will allow me to talk about the airport better.",
+      "helpFe": "This week we got to talk about passenger's journey in the airport and how it could change thanks to new technologies (with biometric e-gates, and body scanners). It is an important and recent topic which could be useful during our final exam.",
+      "feScore": 8,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB004",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/19/2026 14:30:21",
+      "vocab": "overtourism\ncruise ship ceiling\ncommunity stewardship",
+      "content": "This week, we had to do a role play in which I had to pretend I was a town mayor, and we discussed the expansion of an aiport runway to welcome more tourists into a hostel.",
+      "needs": "",
+      "helpFe": "I don't know how we will be evaluated so I can't really answer, but I am sure that overtourism is an important topic which might be useful in the future.",
+      "feScore": 9,
+      "toeicPrep": "None",
+      "toeicScore": 9
+    },
+    {
+      "id": "GRPB004",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "4",
+      "timestamp": "11/19/2026 15:20:35",
+      "vocab": "I learned many acronyms such as ATCO, TRC, and PSA.",
+      "content": "We read the description of different jobs in the airport, and we played a a guess who with these jobs.",
+      "needs": "",
+      "helpFe": "It's important for our exam to explain how the airport works",
+      "feScore": 8,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB005",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/4/2026 2:20:35",
+      "vocab": "Seek assistance,\nTo get upgraded,\nAn entry fee",
+      "content": "I had to argue over several subject and sometimes trying to find arguments over some subjects I would have never thought of. For example, the allowance of taking the plane for flights that are less than 2.5 hours (which is something we already do in France). Another example is to ban or accept drinking alcohol in the airplane.",
+      "needs": "I realised I had some trouble understanding and recognizing the time the verbs were conjugated. I have no idea what past simple, prÃ©sent perfect is, but I can copy the tense in a phrase and understand the meaning of it.",
+      "helpFe": "Maybe give me some vocabulary and make me avoid making some tenses mistakes or at least be aware of them.",
+      "feScore": 6,
+      "toeicPrep": "Nothing done",
+      "toeicScore": 5
+    },
+    {
+      "id": "GRPB005",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "11/13/2026 1:58:03",
+      "vocab": "ATC TOWER a tower where the air trafic controler wor\nTravel Sickness when you get on a boat or a plane and you feel sick\ngo around when the pilot need to go up again to make a round turn to land again\nMiss a flight for some reason you didn't make it in time",
+      "content": "Discussion about the different situation we encountered and we debated on wether it is good or not to have low cost airlines",
+      "needs": "Discovering new words is hard to use when you dont know the prononciation, but we managed to look them up on the internet",
+      "helpFe": "Added some vocabulary and made me understand more words on technical english today",
+      "feScore": 5,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB005",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/13/2026 1:53:54",
+      "vocab": "Seek assistance, when you need help\nTo get upgraded, when you get a better place in the plane\nTo give someone a tip : give someone money for a service he provided",
+      "content": "Past simple phrases : finished action \npast continous action of progress\npast perfect finished action situation that happened before",
+      "needs": "?",
+      "helpFe": "Today's learning session helped me get more words and key phrases to put into a general conversation",
+      "feScore": 5,
+      "toeicPrep": "Listening to english and reading english articles about planes",
+      "toeicScore": 5
+    },
+    {
+      "id": "GRPB005",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/13/2026 2:04:46",
+      "vocab": "bagage conveyor belt\nTaxiway\nCargo\ngate\nterminal\ncheck in desk\nboarding gate\ncustoms\nDuty free",
+      "content": "We read articles and had to summerize them and present them to the class. the articles were talking about some services in the airport like facial scan ID that were supposed to be faster, more efficient and less annoying for the passengers",
+      "needs": "Felt pretty easy on prononciation",
+      "helpFe": "This gave me some key words to use and brought up to my mind some sentenses i could use in the final ET+",
+      "feScore": 6,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB005",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/17/2026 18:48:30",
+      "vocab": "To book a flight: to reserve a seat on a plane in advance.\nAccommodation: a place where you stay during a trip, such as a hotel, hostel or holiday rental.\nDestination: the place you are travelling to.\nSightseeing: visiting famous or interesting places as a tourist.\nTravel itinerary: a plan of your journey, including destinations and activities.\nLuggage: the bags and suitcases you take when travelling",
+      "content": "We explored different ways of travelling, such as travelling by plane, train, car or bus. I learned how to compare different means of transport by considering their advantages and disadvantages. For example, travelling by train can be more comfortable and environmentally friendly, whereas travelling by plane is often faster for long distances.",
+      "needs": "I need to expand my vocabulary related to travel, transport and leisure activities. I would like to learn more synonyms and idiomatic expressions to avoid repeating the same words.",
+      "helpFe": "I will also use linking words and expressions such as \"firstly\", \"Moreover\", \"However\", \"For example\" and \"To conclude\" to organise my ideas and make my answers easier to follow.",
+      "feScore": 5,
+      "toeicPrep": "/",
+      "toeicScore": 5
+    },
+    {
+      "id": "GRPB006",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/18/2026 11:20:27",
+      "vocab": "I learned what it meant to go off the beaten track, wich means to do something less popular in a touristic city in order to have a more legitimate travel in sense of discovering the true culture and not tourist targeted automatised activities, moreover, i liked the expression 'Red eye flight' because you leave late and arrives early and it's like when you don't sleep enough and your eyes are red",
+      "content": "We did a lot of debates, i think it was 2 minutes of speech each then we changed person and theme of debate, i reckon that i have issues with how to make sentences during a debate, sentences that convince the other",
+      "needs": "I need to work on my sentences structure, also grammar to use the correct tense",
+      "helpFe": "",
+      "feScore": 7,
+      "toeicPrep": "",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPB006",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "11/18/2026 11:58:42",
+      "vocab": "i learned about Biometric Screening automated boarding gates, jet bridge is the plateform we walk on to get from the gate to the plane.",
+      "content": "We played a game where ther teacher wrote a technical word on the bord and two people were facing against the board and they had to guess the word written on it with the help of their classmate who had to say synonyms to help",
+      "needs": "",
+      "helpFe": "",
+      "feScore": 8,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB006",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/18/2026 11:27:22",
+      "vocab": "I learned about modal shift, it's an expression that i am not too sure on how i will use it in everyday discussion, what i remember from it, it is that it means to switch from a polluting mode of transportation (car, plane) to greener alternative f.e public transportation, train, etc",
+      "content": "We did a lots of debate we worked on different epoch and it's technological achievement and Person A was for it and Person B against, i worked on the railway and steam engine revolution and the post war jet and automobile boom. Then we went over different corridor and wich was more efficient in terms of times gains and GES emmisions between train and plane",
+      "needs": "Still with the debates sentences, comparaison structure",
+      "helpFe": "",
+      "feScore": 7,
+      "toeicPrep": "",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPB006",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/18/2026 11:55:33",
+      "vocab": "landside is before customs and its less restricted and after security check you are now in the airside, i learned about a pushback tug the car that pushback plane since they can't reverse",
+      "content": "First we had to resume some news article , i did one about automated bag drop and some had body screen and biometric something, and we finished off with a drawing and we put all the vocabulary that we learned  on a airport sketch and we voted for the best one",
+      "needs": "",
+      "helpFe": "",
+      "feScore": 8,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB006",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/18/2026 11:36:47",
+      "vocab": "Tourist levy is a tax from the city for day tripper like in venice, it allows the city to cover the expenses linked to the overcrowding",
+      "content": "Today we got to see different famous touristic cities/countries/locations and we compared the amount of residents and the annual volume of visitors, moreover we are presented the impacts on the fauna flaura and even the social and economic impact of mass tourism, finally we discussed through an animated debate if each countries solutions solved the root of the problem or just the symptom we finished off with another debate, we were put in a water shortage crisis in Isla Serena, we were 4 actors and each exposed it's argument on wether the water distribution system was fair or not, and in the end corruption won.",
+      "needs": "n",
+      "helpFe": "",
+      "feScore": 7,
+      "toeicPrep": "",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPB007",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "10/28/2026 16:25:51",
+      "vocab": "New vocabulary : go-around (remise de gazs), land (atterir), runway (piste), landing gear (trains d'atterissage)",
+      "content": "We have to echange about our aernonautical experiences : visit an ATC Tower, pilot a plane, slept in an airport, watch SULLY, miss a flight, got drunk on a plane...\nAfter, we have to debate per two on 3 topics : should alcohol be allowed on plane? Should we be for or against budget airlines ? Pros and cons of letting passengers into the cockpit ?",
+      "needs": "I need to improve my fluency and my aeronautical vocabulary to speak faster.",
+      "helpFe": "We have learned aeronautical vocabulary.",
+      "feScore": 2,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB007",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/1/2026 9:26:37",
+      "vocab": "We have learnt new idioms and vocabulary in this session like : get upgraded, to give someone a tip, to overbook a flight, an entry fee, in the driver's seat, to hit the road, to clear customs, a go-around, carbon footprint, a non-stop flight, customs dÃ©claration",
+      "content": "First, we were telling to us our travel anecdotes. I explained that during a flight between Paris and NewYork, I get upgraded in the first flight with American Airlines company. \nThen, we played a game like Time's up with some travel idioms and we have to guess the idioms. \nAnd to finish this session, we played an other game, it's a role-play simulation between one passenger with a delayed flight and one crew member of the company. I played the crew member and I like it because it's like a little game of theater.",
+      "needs": "When I speak about a past history, I have to improve my tense syntaxis because I don't know when I have to our which tense. Also, I need to learn more idioms and vocabulary especially in aeronautical topic.",
+      "helpFe": "During this session, we have had several opportunities to speak in english by playing a part, by getting people to guess words and by explaining our travel anecdotes.",
+      "feScore": 4,
+      "toeicPrep": "During the last week, I did some preparation on Globalexam for TOEIC. I did one exercise one each categories of reading and listening, in total it's 8 exercises. I have more difficulties in the reading part.",
+      "toeicScore": 3
+    },
+    {
+      "id": "GRPB007",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/9/2026 16:48:08",
+      "vocab": "During this session, I discovered new aeronautical vocabulary like : biometric e-gate, automated bag drop, landside/airside, pushback tug, apron taxi lane, marshaller.",
+      "content": "Today, the session was divided in 3 parts. \nFirst, we have to explain some situations and some technical vocabulary as : an unruly passenger, the 261 regulations, the \"Ancillary Revenue\" in the low-cost business model and the turnaround time (TAT). \nThen, we have to debate about two dilemmas : Should international airports implement 100% contactless biometric facial recognition ? and Should airports replace traditional staffed check-in counters entirely with automated bag-drop conveyor machines?. \nTo finish this session, we have to draw a diagram of an airport separated in the landside and airside and put the name of all the elements of the airport.",
+      "needs": "I have to improve my fluency and I have to learn the new aeronautical vocabulary to be more comfortable in the next session.",
+      "helpFe": "We have learnt new vocabulary especially during the drawing part, we created a visual diagram that allow us to see clearly the different parts of an airport. It will help me for the techical precision of the AAS formative evaluation.",
+      "feScore": 5,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB007",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/9/2026 19:57:05",
+      "vocab": "During this session, I have learnt new vocabulary words like : modal shift, containerisation, intermodal hub, corridor capacity, fleet, modal split, grid capacity, first mile and congestion charge.",
+      "content": "First, we did a vocabulary quick check with 4 idiomatic expressions : itinerary, layover, off the beaten track, carbon footprint. \nSecondly, we learnt the four epoch of transport from 1830s to the future. With my partner, we worked on the epoch 3 (from 1980s to 2010s) it was the period Containerization & High-Speed Rail. \nThen, we debate about the best solution between the train (cheaper and ecological) and the plane (faster and polluant) to do some travel in European cities. \nAfter, we did a grammar focus on cause, effect, and complex comparison with some modals like : owing to, result in ...\nTo finish, we compared different way to go to Brussels from ENAC campus by train, night train or plane. Thanks to a comparison of travel time, cost and carbon footprint we choose to take the night train.",
+      "needs": "I need to improve my fluency and also my grammar because when I speak, sometimes, I forgot some basic rules like the \"s\" at the end of the verb for \"he/she/it\". I have to review the new vocabulary to be more comfortable on the topic.",
+      "helpFe": "I learnt new vocabulary in the transport domain, it will help me for my AG formative evaluation. During this session, we spoke a lot in pairs or in teams, it allowed me to improve my fluency.",
+      "feScore": 5,
+      "toeicPrep": "This week, I did a white TOEIC exam to evaluate my level. My score was 715 : 375 in listening and 340 in reading. I used 1h35 of the time. I need to improve my method for the different exercises. \nThen, I continue a parcours in global exam to improve.",
+      "toeicScore": 5
+    },
+    {
+      "id": "GRPB007",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/15/2026 22:16:18",
+      "vocab": "During this third session of General English, I have learnt new vocabulary words like : overtourism, cruise ship, peak season, dynamic pricing, visitor dispersal, destination pressure...",
+      "content": "This lesson was separate in 4 parts : \nFirst, we did a little recap about the session 2, we reviewed the vocabulary and the evolution of transport. \nThen, we study four touristic destinations as Venice, Dubrovnik, Amsterdam and Maya Bay in Thailand. All these destinations are very touristic and suffer from overtourism. For example, in Venice, there is 500 times more tourists than residents. Due to this overtourism, the cities need to find some solutions to protect their landscapes, they have created quotas or tax for tourists. \nAfter this, we did a little grammar point on the causative and contrast words like make/have, despite/in spite of and whereas/while. \nThen, we did a simulation with 4 people to decide or not if an island need to extend his runway of the local airport. Personnaly, I was an Hotel association president and I was for this proposition because this project can bring more tourist and give me more money. But, at the end of the debate, we decided to not built this extend to protect the island economically and environementally. \nTo finish this session, we review the new vocabulary.",
+      "needs": "I need to improve my fluency by learning more vocabulary and improve my grammar knowledges.",
+      "helpFe": "Particulary during the debate, I spoke a lot to defend my position. This exercise help me to be more comfortable in oral and it improve my skill of improvisation.",
+      "feScore": 7,
+      "toeicPrep": "During this week, I continue my parcours to prepare the TOEIC exam. I particulary did reading exercises.",
+      "toeicScore": 5
+    },
+    {
+      "id": "GRPB007",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/18/2026 10:25:44",
+      "vocab": "During this third session, I have learnt new aviation terms and technical vocabulary as : turnaroud, refueling, follow-me car, ground power unit, belt loader, catering hi-lift truck, slot adherence, stand clearance.",
+      "content": "This session was separate in 4 parts: \nFisrt, we reviewed the vocabulary of the session 2 : landside, airside, runway numbers, taxiway centerline, personal protective equipment. \nThen, we learnt the turnaroud clock and how it's divided : arrival and ckeck on, parallel ground servicing, aircraft refueling, boarding and final loading, stand clearance and pushback. \nAfter that, we studied the main airside vehicles (GSE) as : pushback tug, ground power unit, belt loader, aviation refueler truck, passenger boarding stairs, catering hi-lift truck, potable water truck, lavatory service truck, de-icing/anti-icing rig, follow me car. \nThen, we did a grammar point to review how to express cause, consequence and operationnal conditions with some examples. \nTo finish, we did a TSEEAC simulation during a turnaroud of an A320. One student is the ramp coordinator and the other one is a TSEEAC aerodrome operations officer.",
+      "needs": "This session was not in class due to a french bank holliday. So, I didn't speak during this session. However, I improve my vocabulary on turnaround subject and on aviation trucks.",
+      "helpFe": "This session helps me to succeed in my AAS formative evaluation because I have learnt new vocabulary and how a turnaroud works. I have more knowledges in the airside subject.",
+      "feScore": 6,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB008",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "11/4/2026 15:00:16",
+      "vocab": "Unruly Passenger :disruptive traveler who refuses to follow crew instructions or threatens cabin safety.\nAir Marshal :An undercover law enforcement officer deployed on flights to prevent hijackings and security threats.\nFlight Deck Security : Physical barriers, reinforced cockpit doors, and strict entry rules that protect pilots from intruders.",
+      "content": "Airport opÃ©rationnal data : The central IT system that stores, manages, and updates real-time flight schedules, stand allocations, and gate changes.\nPassenger Rights : Official rules requiring airlines to give cash compensation, meals, or hotels for long flight delays\nDuty of Care : The statutory legal obligation of airlines under EU261 to provide food, drinks, communication, and hotel accommodation to passengers during prolonged flight delays.",
+      "needs": "I need to improve mây prononciation. I have to learn vocabulary.",
+      "helpFe": "It Helped me master some useful vocabulary",
+      "feScore": 6,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB008",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "11/11/2026 21:14:49",
+      "vocab": "Baggage Allowance : The maximum weight and volume of luggage a passenger can check in or carry on without penalty.\nRound-Trip : A journey to a destination and back to the original starting location.\nExtend a Stay : To prolong the duration of a trip, holiday, or hotel booking beyond the original departure date.\nBoarding Pass : A document or digital barcode permitting a passenger to board an aircraft or vessel\nTravel Glitch : An unexpected minor problem or disruption during a journey that requires an adjustment of plans.\nOut of the Blue : An event, delay, or surprise happening completely unexpectedly and without prior warning.\nBiometric E-Gate : An automated airport border gate using facial recognition scanning to verify travelers quickly.",
+      "content": "We reviewed how we’re supposed To use the diffÃ©rent past : past simple for finished action/situation, past continuous for action in progress and past perfect for finished action that happened before a different action in the past. Then we had To debate about biometric e-gate and fees To visit an historical center. After that, in duo, we did a quick roleplay between an airport passenger service agent and a stressed international passenger. Finally we did a quick game by divising the class in two. Thanks To that we learned idiomatic expression",
+      "needs": "I really need To improve my vocabulary and accent",
+      "helpFe": "We learned a lot about travelling vocabulary and we did a quick review of the past.",
+      "feScore": 7,
+      "toeicPrep": "/",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPB008",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/11/2026 20:48:33",
+      "vocab": "Automated Bag Drop : A conveyor system where ticketed travelers scan luggage tags and deposit checked bags without agent help.\nJet Bridge (Airbridge) : An enclosed, movable telescopic bridge linking the airport departure gate directly to the airplane door.\nPushback Tug : A specialized heavy vehicle used to push aircraft backward out of their parking stands into taxi lanes.\nBaggage Conveyor Belt : A moving belt system that carries checked luggage from the check-in hall to the baggage sorting area.\nBiometric E-Gate : An automated border or boarding gate using facial recognition cameras to verify a traveler's identity.",
+      "content": "We began the class by divising ourself in 2 teams. Each team had To make guess one of the Student the word written by the Teacher on the White board. The words were related To aviation terms and airports. After that I had To read and understand an article from a newspaper related To New TSA airport security scanners. I discovered vocabulary and I had To explain it To the rest of the class. To sum up the class, we draw an airport and we had To Write down vocabulary on the drawing.",
+      "needs": "I need To improve my prononciation on the new vocabulary like Baggage Conveyor Belt",
+      "helpFe": "It really Helped us To learn about new technologies and and vocabulary about what we can see and find inside or outside an airport.",
+      "feScore": 7,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB008",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/18/2026 13:00:36",
+      "vocab": "We learn vocabulary Thanks To the course on e campus, here are a few :\nTurnaround Time : The total duration an aircraft remains stationary on stand between its arrival (chocks-on) and its next departure.\nRefueling Hydrant Dispenser : a ramp vehicle that connects underground fuel pipelines \nForeign Object Debris : a loose item, tool, fragment, or trash on the apron or taxiway that could be ingested by an engine or damage an aircraft tire.\nStand Clearance : The formal safety confirmation that all vehicles, equipment, and ramp personnel have retreated behind safety lines before pushback.",
+      "content": "During this online class, we learn technical content like : \nHow a turnaround work : \n1) Arrival & Chocks-On\n2) Parallel Ground Servicing\n3) Aircraft Refueling\n4) Boarding & Final Loading\n5) Stand Clearance & Pushback\nIn the part 3, we learn about the airside vÃ©hicule also call GSE. Here are a few exemple of GSE : \n-Pushback tug \n- Gpu Ground Power Unit \n- Belt Loader …\nFinally, there were also a part about turnaround critical path dÃ©cisions : \n- refueling hold \n- Aft Belt loader Jam\n- gpu power breaker trip",
+      "needs": "For this class I don’t really know because it was an online class and I ddn’t practise oral much.",
+      "helpFe": "We learn about \n-Formal Prepositional Causes (Due to / Owing to)\n-RÃ©sult verbs \n-transitional connectors",
+      "feScore": 7,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB009",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "1",
+      "timestamp": "10/30/2026 19:48:52",
+      "vocab": "The lesson was a little bit shorter than expected so we didn't see all the vocabulary words. \n- Low Cost Carrier : an Airline which offers cheaper tickets by reducing operational expenses making all services in the aircraft optional. They are often used to travel on short distances while other airlines are used to cross oceans or continents for example.\n- an unruly passenger : a person who don't want to follow the instructions of the steward during a flight. This kind of behavior be really dangerous for the security of the flight and can lead to an emergency landing.",
+      "content": "This session explored the notions of landside and airside. The first one refers to the places in the airport where no travel documents are needed (car parking, arrival hall...) and the second one refers to the part of the airport beyond the security checkpoints. \nWe also talked about the interest of the Low-Cost Carrier. In fact it could be useful for people who cannot buy tickets with big companies to travel without spending to much money.",
+      "needs": "My main problem is the fluency because I am always looking for a word when I am talking to someone. I also need some time to build my sentences, so I think that I have to talk as much as possible to improve myself on these points. Finally, I really need to learn how to use prepositions like \"at\", \"in\" and \"into\" because I always confuse them.",
+      "helpFe": "This course will help me succeed in the formative evaluation because it gives me the vocabulary that I need to speak more fluently and it also forces me to speak in English.",
+      "feScore": 3,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB009",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "1",
+      "timestamp": "10/30/2026 20:36:18",
+      "vocab": "- seek assistance : look for assistance when you have a problem with an automatic machine at an airport\n- to get upgraded : in aviation, to get a business class ticket while you bought an economy class one\n- to overbook a flight : when airlines sell more tickets than available seats in a plane, sometimes leading to denied boarding\n- to extend a stay : to decide to stay longer than expected somewhere because you really like the place for example\n- in the driver's seat : to be in charge or in control of a situation \n- off the beaten track : when you choose a place where few people go, sometimes far from towns and roads \n- to miss a connection : when you have to switch to another plane to go somewhere, this is a connection. But if the first plane is late, you can miss this connection.\n- to hit the road : to leave a place, to start a journey\n- a direct flight : a flight which operates under the same flight number but can do some stops, unlike a non-stop flight \n- to clear customs : when you officially go through a country's border with the permission of the customs authority \n- a round trip : when you buy tickets to flight to a destination and return to your starting point (with a return ticket), unlike a single ticket\n- an itinerary : it is a planned route for a journey or trip, it is the path you follow\n- a boarding pass : travel document essential to go through the boarding gate \n- carbon footprint : amount of greenhouse gases released in the atmosphere. It's different depending on the transport you use\n- all-inclusive : when the price of your ticket covers every accommodation in the plane such as meals, drinks...\nThe words we learned today are mainly used in aviation and vacation contexts.",
+      "content": "Today, we spoke about our personal experiences and anecdotes during vacation, especially at the airport or in a plane. We saw how to use past tenses depending on the situation. There is the past simple, the past continuous and the past perfect. The goal today was also to speak a lot using these tenses and the vocabulary we learned at the beginning of the lecture. To finish the session, we had to explain to our classmates a word without saying it in our definition. It was a way to find synonyms and to improve our fluency because it was timed.",
+      "needs": "I have to improve my fluency and to learn more vocabulary because I am often looking for my words and I need time to build my sentence. I also often confuse prepositions like \"in\", \"into\" or \"at\". To finish, I think that I have to learn better the tenses.",
+      "helpFe": "I think sessions like this one will help me a lot for the formative evaluation because we speak almost during 2 hours which is great to make me more confident for an oral presentation. It's also great to discover a lot of useful vocabulary during these sessions.",
+      "feScore": 3,
+      "toeicPrep": "I am quite confident for the TOEIC test because I already passed the exam last year and I reached 900 points. However, I do training tests on global exam every day to continue learning new vocabulary.",
+      "toeicScore": 7
+    },
+    {
+      "id": "GRPB009",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "2",
+      "timestamp": "11/4/2026 19:46:27",
+      "vocab": "We learnt a lot of vocabulary today :\n- push-back tug : the vehicle which push the aircraft outside the parking stand. It's also known as a tug.\n- jet bridge : a telescopic bridge linking the airport (the boarding gate) to the aircraft (the airplane door). It's mainly used for big airplanes while we use moving stairs for the others.\n- apron/ramp : the parking area where the aircraft wait during the turnaround time. It's located in the airside.\n- windsock : fabric tube which shows both the direction and the speed of the wind. This is essential for any aerodrome in the world.\n- duty free : buying something without paying local or national import duties. This is common in the international transit areas such as airports.\n- dwell time : the time passengers spend in the terminal (security and boarding check-in...). New technologies like bio-metric e-gate, facial recognition and automated bag drop are useful to reduce this time.\n- automated bag drop : a way to register and drop your luggage by yourself  \n- runway-holding position : a specific place (a big line on the floor) where the aircraft has to stop and wait for instructions. This is like a border between the taxiway and the runway.\n- baggage conveyor belt : moving track which transports checked luggage automatically between different points in the airport. It's also known as a baggage carousel.",
+      "content": "We talked about some new technologies like the bio-metric e-gates, automated bag drop and facial recognition because this is more and more used in the airports to reduce the dwell time. We saw that these solutions are interesting but there are some concerns about it. For example, a lot of people wonder if their personal data are really deleted after a check-in with a bio-metric or facial recognition gate. We also highlighted the impact of these new solutions on the world of work. In fact, it could lead to the disappearance of some jobs. \nFinally, we learnt how to use prepositions of place, direction and movement depending on the situation.",
+      "needs": "Today's session was great to learn new vocabulary but I still need to improve my fluency and my pronunciation for some words (I can't say words like throughout, bought etc).",
+      "helpFe": "Today's session brought us a lot of vocabulary which is a great thing. It helps us to understand better the airport environment and it allows us to speak about really specific topics in aviation without always looking for a specific word.",
+      "feScore": 4,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB009",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "2",
+      "timestamp": "11/6/2026 14:15:59",
+      "vocab": "- short-haul flight : a flight which covers short distances (between 500 and 800 km) and can be replaced by rail connections. This was a dilemma during the debates because the flight is faster and cheaper than train but its carbon footprint is huge compared to high-speed rail connections.\n- cycling infrastructure : it refers to all the infrastructures dedicated to people who use bikes in cities. It can be bike lanes, secured parking etc.\n- shared mobility : act of sharing transportation services and vehicles with other users to reduce their individual carbon footprint. Carpooling is an example of shared mobility and can be used to go to the airport.\n- door-to-door travel time : total time required for a complete journey, between your house and your final destination for example. This time can be quit long for a flight because you spend a lot of time at the airport to complete all the security check-points.\n- night train : a rail connection which departs in the evening and arrives later in the night or in the morning. There are sleeping berths inside these trains. It can be a good alternative to short-haul flights.\n- micro mobility : it refers to small and slow vehicles such as bikes, scooters (electric or not). It is really useful and efficient for short routes because it doesn't pollutes.\n- Sustainable Aviation Fuel (SAF) : a new type of fuel made with waste oils and plants. It is already used by some airlines but it is still more expensive than usual fuel and the retrofit for the engines is sometimes complicated.\n- fleet modernization : act of replacing old vehicles by more efficient and low-emission ones. Some people want the aircraft to be removed from service when they fly since at least 15 years but this idea is really appreciate.\n- active mobility : human-powered travel modes like walking and cycling. It remains the best way to reduce our daily carbon footprint (by biking to work for example).\n- electrification : the act of converting public transportation and other vehicles to an electric propulsion (buses in Toulouse for example)\n- High-speed rail : electrified passenger trains which operates over 250 km/h. This is, with night trains, a good alternative to short-haul flights.",
+      "content": "We spoke a lot during today's session and the main topic was the dilemma between train and plane. We saw that trains can be a really interesting alternative for short routes because the carbon footprint's difference is huge between these two travel modes. It was a great occasion to speak using the vocabulary we learnt.\nWe also learnt words and idiomatic phrases to enrich our arguments (owing to, due to, double comparatives...).",
+      "needs": "I think I am more confident when I speak in English now thanks to the vocabulary I learnt and the little debates we did. However, my fluency is still bad and I struggle to pronounce some words. Sessions like today will be perfect to improve myself on these points.",
+      "helpFe": "Today's session was a perfect training for the formative evaluation because we spoke a lot together and the debates have allowed us to use well-structured sentences to expose our arguments clearly. The vocabulary is still really helpful.",
+      "feScore": 5,
+      "toeicPrep": "I continue to do TOEIC exercises every day and I have always a score of 80% or more. I am more confident for the reading than the listening part but I am making good progress.",
+      "toeicScore": 8
+    },
+    {
+      "id": "GRPB009",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "3",
+      "timestamp": "11/11/2026 11:58:35",
+      "vocab": "The vocabulary in this session was mainly focused on the Ground Support Equipment :\n- chocks-on/chocks-off : Chocks are wedges placed against aircraft landing wheels to prevent the aircraft from moving while parked at the apron. They are installed after arrival (Chocks-On) and removed before departure (Chocks-Off), when authorized.\n- Pushback Tug : specialized vehicle used to push an aircraft backwards from its parking stand. It is also known as a tractor.\n- GPU : external power source that supplies electricity to an aircraft while its engines are switched off. It is used during aircraft parking and turnaround time to power onboard systems such as light and ventilation.\n- Belt loader : mobile conveyor belt used to load and unload baggage and cargo from the aircraft hold. It is used during baggage handling operations.\n- Hydrant dispenser : vehicle that transfers fuel from the airport's underground hydrant system to the aircraft. It is used during aircraft refueling at airports equipped with a hydrant network.\n- Catering hi-lift truck : specialized vehicle with an elevated platform used to deliver food and beverages to an aircraft. It is used during catering operations to load and unload meal carts through the aircraft cabin door.\n- Potable water truck : specialized vehicle that supplies fresh drinking water to the aircraft. It is used during ground servicing to refill the aircraft's water tanks.\n- Lavatory service unit : vehicle used to empty and service aircraft toilet waste tanks. It is used during aircraft turnaround to remove waste and replenish the lavatory servicing system as required.\n- De-icing/anti-icing rig : specialized vehicle that sprays fluids onto aircraft surfaces to remove ice and protect against further ice accumulation. It is used in cold weather conditions before departure when icing or frost is present or expected.\n- Follow-Me car : high-visibility airport vehicle used to guide aircraft on the airport movement area. It is used when an aircraft needs assistance following an authorized taxi route to its assigned stand or another location.\n- Baggage tug and dolly train : small towing vehicle pulling several baggage carts. It is used to transport luggage between the terminal, baggage handling area and aircraft stand.\n- CTOT : stands for Calculated Take-Off Time, which is the assigned take-off time for a flight subject to air traffic flow management restrictions.\n- Stand clearance : confirmation that the aircraft parking stand is clear of personnel and equipment as required for a safe departure. It is confirmed before pushback to make sure that the aircraft can leave its stand safely.\nThere are also some other words that we had already learnt like Turnaround Time.",
+      "content": "In this session we learnt more about the ground operations, especially during the turnaround time. It was the occasion to learn a lot of vocabulary to describe many Ground Support Equipment (pushback tug, potable water and lavatory service truck...), but also to understand how the time is managed during these operations. In fact shorter is the turnaround time, more efficient are both the airline and the airport operator. We also discovered how to explain briefly and clearly causes and consequences when there is a problem during the ground operations. Furthermore we saw the four steps of the briefing : Identification, Operational Status, Root cause and delay, Action and revised Estimated Time of Departure.",
+      "needs": "This session had to be done by our-self so I didn't speak like in the other sessions. However I still think that I need to improve my pronunciation and my fluency. On the other, I have made progress with the vocabulary because I don't need to look for all my words like before.",
+      "helpFe": "This session was really helpful because it was directly linked to the other sessions and it allows me to reuse old notions while learning new ones. I have now a lot of useful vocabulary which will be crucial for the formative evaluation. Finally this session was great to understand the airside environment and it gave me good operational knowledge.",
+      "feScore": 5,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    },
+    {
+      "id": "GRPB009",
+      "group": "Group B",
+      "track": "AG",
+      "module": "Travel, Transport and Leisure",
+      "session": "3",
+      "timestamp": "11/13/2026 21:42:12",
+      "vocab": "Today's lesson was about overtourism, which refers to an excessive tourist number in some famous places in the world like Venice or Amsterdam. It can lead to really bad effects on the environment and the life the local residents. We also learnt other words linked to this notion :\n- tourist tax : a tax for day visitors to avoid overtourism. This system is currently tested in Venice where tourism become a real problem but it doesn't seem to be the right solution.\n- cruise ship ceiling : a limit about the number of cruise ship allowed in a port. This is currently tested in Amsterdam where the number of cruise ships increase each year.\n- heritage conservation : preservation of historical monuments and archaeological sites, sometimes by charging tourist to access to it. This is the case in Rome for the Trevi fountain.\n- resident displacement : owing to short-term vacation rental, local resident are struggling to find housing in their own cities.",
+      "content": "Firstly, we saw different cases of overtourism in the world such as Venice and Amsterdam. Then we argued about potential solutions and their real impact on the problem.\nSecondly, we learnt some notions in grammar, especially how to use causative verbs. This is useful to enrich our arguments.\nFinally, we made a debate about a concrete situation allowing us to understand why it could be so difficult to find a solution for the overtourism concerns. In fact, it is essential to find a balance between tourism and well-being of the population. However, tourism often represents an economical opportunity and it could be difficult for the governments to reduce it.",
+      "needs": "This session allowed me to speak a lot and to expose arguments. However, I still have to improve my fluency because I can't speak during to much time without searching for a word or an expression. To improve it I started a series and I hope it will bring me some useful expressions in the daily life.",
+      "helpFe": "Today's session was a good training for the formative evaluation due to the debates we made. It was a great occasion to use well-built sentences in order to explain an opinion. We also learnt some vocabulary, which will be useful to speak about a specific subject during the evaluation.",
+      "feScore": 5,
+      "toeicPrep": "I did a mock exam on Wednesday and I reached the B2 level with 860 points over 990. Now I keep training but I think that I've made some progress since the beginning of the year.",
+      "toeicScore": 8
+    },
+    {
+      "id": "GRPB009",
+      "group": "Group B",
+      "track": "AT",
+      "module": "Aerodrome",
+      "session": "4",
+      "timestamp": "11/19/2026 9:41:31",
+      "vocab": "- Aerodrome Flight Information Service Officer (AFISO) : officer who provides traffic advisories aerodrome conditions at non-controlled aerodromes without separation authority. They are often TSEEAC and their job is different from Air Traffic Control Officer's job. \n- Air Traffic Control Officer (ATCO) : officer who issues mandatory control clearances and maintains safe tactical separation between aircraft in flight and maneuvering on active airport surfaces. They are ICNA in France.\n- Turnaround Coordinator (TRC) : person who handles ground operations on the apron during the turnaround time. He is responsible for orchestrating servicing teams, monitoring crucial operations and ensuring punctual departure.\n- Ramp Agent : airside ground handler responsible for loading and unloading baggage and cargo, positioning ground support equipment, and securing the aircraft servicing envelope. He works with the TRC to provide efficient services during the turnaround time.\n- Marshaller : ground handler who uses illuminated wands to guide the pilot perfectly on the apron. This is crucial to make sure any GSE will be able to maneuver around the aircraft during the turnaround time.\n- Flight Dispatcher : person tasked with preparing the flight plan, sometimes some months before it takes off. He checks a lot of information such as weather, NOTAM's...\n- Passenger Service Agent (PSA) : landside handler who assists travelers at check-in desks and guide them to their boarding gates if necessary. \n- First Officer : second-in-command pilot on the flight deck who shares flight navigation, radio communications, and system monitoring duties with the Captain. A more informal term for this job is copilot.\n- Security Screening Officer : person in charge of the security in the airside. He operates X-ray scanners, millimeter-wave body scanners, and explosive trace detectors to screen passengers and carry-on luggage. \n- Security VS Safety : security's goal is to protect people against intentional threats (with screening and cameras for example) while safety's goal is to prevent from unintentional hazards like failures, accident...",
+      "content": "We mainly explored aviation's jobs during this session and we linked them with some notions like ground operations. It was the occasion to see the diversity of professions in aviation world. The role plays were useful to understand some differences between these jobs. For example, AFISO and ATCO are often mixed together but in reality, there are operational differences between these 2 professions. \nWe also learnt formulas to express responsibilities, duties & authority. This is really useful to explain clearly the role of each person in the airport.",
+      "needs": "This session brought me a lot of useful technical vocabulary and grammar formulas. However, I'm still struggling with my fluency but I know that I've made some progress in this communication area since the first lesson. I think that the debates and spoken tasks we make in the sessions are great to help me improve this point.",
+      "helpFe": "Today's session was great to make us ready for the formative evaluation because it linked all the notions we learnt in the previous sessions. Thanks to the vocabulary and grammar points covered during the past weeks, I think that we will be able to speak clearly about operational operations during the FE.",
+      "feScore": 7,
+      "toeicPrep": "N/A (AT Track)",
+      "toeicScore": 10
+    }
+  ],
+  "topBuzzwords": [
+    {
+      "term": "Safety vs. Security",
+      "track": "at",
+      "category": "Aviation Protection",
+      "frequency": "90% of cohort",
+      "definition": "French 'Sécurité' splits in English: Safety = protection from unintentional hazards and system failures; Security = protection against intentional threats, unlawful acts, and terrorism."
+    },
+    {
+      "term": "Airside vs. Landside",
+      "track": "at",
+      "category": "Aerodrome Zones",
+      "frequency": "85% of cohort",
+      "definition": "Landside = public areas before security (check-in, arrivals hall). Airside = strictly secured operations areas beyond security (gates, apron, taxiways, runways)."
+    },
+    {
+      "term": "Concourse vs. Bottleneck",
+      "track": "at",
+      "category": "Terminal Navigation",
+      "frequency": "75% of cohort",
+      "definition": "Concourse = large, open public hall where passengers circulate and relax. Bottleneck = narrow transit corridor or checkpoint causing localized movement congestion."
+    },
+    {
+      "term": "Dwell Time & Smart Terminals",
+      "track": "at",
+      "category": "Passenger Flow",
+      "frequency": "70% of cohort",
+      "definition": "Dwell time = elapsed time passengers spend in the terminal between security screening and boarding. Reduced via automated bag drop, e-gates, CT scanners, and facial recognition."
+    },
+    {
+      "term": "Apron / Ramp & Stands",
+      "track": "at",
+      "category": "Movement Area",
+      "frequency": "75% of cohort",
+      "definition": "The designated paved area where aircraft park at designated stands to board/deboard, refuel, load baggage, and undergo ground servicing (called 'Ramp' in the US, 'Apron' in the UK)."
+    },
+    {
+      "term": "Travel Collocations & Booking",
+      "track": "ag",
+      "category": "Travel Operations",
+      "frequency": "70% of cohort",
+      "definition": "Essential communicative collocations: to book a flight, to board a plane, to check in, to clear customs, and to travel with carry-on luggage."
+    },
+    {
+      "term": "GPU vs. APU",
+      "track": "at",
+      "category": "Electrical Power Systems",
+      "frequency": "55% of cohort",
+      "definition": "GPU (Ground Power Unit) = mobile ground generator supplying electricity at the gate. APU (Auxiliary Power Unit) = small gas turbine in the aircraft tail used when engines and GPU are off."
+    },
+    {
+      "term": "Travel Idioms (Scenic Route, Hit the Road)",
+      "track": "ag",
+      "category": "Spoken Idioms",
+      "frequency": "65% of cohort",
+      "definition": "Conversational storytelling idioms: to hit the road (depart), to take the scenic route (longer picturesque path), and to be in the driver's seat (in control)."
+    },
+    {
+      "term": "TRC & AODB",
+      "track": "at",
+      "category": "Ground Operations",
+      "frequency": "45% of cohort",
+      "definition": "TRC = Turnaround Coordinator supervising ramp tasks between flight arrival and departure. AODB = Airport Operational Database managing flight schedules, gate changes, and allocated stands."
+    },
+    {
+      "term": "Unruly / Disruptive Passenger",
+      "track": "ag",
+      "category": "Cabin Safety & Rights",
+      "frequency": "60% of cohort",
+      "definition": "A traveler who refuses to follow crew instructions or behaves disruptively, risking flight diversions, police arrest, and heavy airline costs."
+    },
+    {
+      "term": "Low-Cost Carrier (LCC) & Ancillary Revenue",
+      "track": "at",
+      "category": "Airline Economics",
+      "frequency": "40% of cohort",
+      "definition": "LCC = budget airline offering cheap baseline tickets. Ancillary Revenue = extra income from non-ticket sales (carry-on bags, seat selection, on-board meals)."
+    },
+    {
+      "term": "Get Off to a Flying Start & Word of Mouth",
+      "track": "ag",
+      "category": "High-Impact Idioms",
+      "frequency": "65% of cohort",
+      "definition": "Get off to a flying start = beginning a semester or project with immediate success and momentum. Word of mouth = organic communication from person to person."
+    },
+    {
+      "term": "Direct vs. Non-Stop Flight",
+      "track": "ag",
+      "category": "Travel Operations",
+      "frequency": "45% of cohort",
+      "definition": "Direct flight = keeps the same single flight number but may include intermediate tech stops. Non-stop flight = flies between origin and destination with zero stops."
+    },
+    {
+      "term": "Overbooked Flight & Denied Boarding",
+      "track": "ag",
+      "category": "Airline Regulations",
+      "frequency": "50% of cohort",
+      "definition": "When an airline sells more tickets than available seats in anticipation of no-shows, risking involuntary denied boarding and statutory compensation obligations."
+    },
+    {
+      "term": "Ground Support Equipment (GSE)",
+      "track": "at",
+      "category": "Ramp Operations",
+      "frequency": "65% of cohort",
+      "definition": "Specialized ground vehicle fleet servicing aircraft at the stand: pushback tugs, belt loaders, catering hi-lift trucks, lavatory service units, potable water trucks, and refueler bowsers."
+    },
+    {
+      "term": "Turnaround Time (TAT) & Chocks On/Off",
+      "track": "at",
+      "category": "Ground Operations",
+      "frequency": "60% of cohort",
+      "definition": "Turnaround Time (TAT) = total duration an aircraft remains at the gate between arrival (chocks on) and departure (chocks off) for unloading, servicing, refueling, and boarding."
+    },
+    {
+      "term": "De-icing Rig & Glycol Fluid",
+      "track": "at",
+      "category": "Cold Weather Operations",
+      "frequency": "50% of cohort",
+      "definition": "Specialized mobile boom rig spraying heated glycol fluid to remove snow/frost and prevent critical aerofoil icing before departure."
+    },
+    {
+      "term": "Overtourism & Carrying Capacity",
+      "track": "ag",
+      "category": "Destination Management",
+      "frequency": "65% of cohort",
+      "definition": "When visitor numbers exceed an ecosystem's or historic site's physical, ecological, or social carrying capacity, causing environmental damage and resident backlash."
+    },
+    {
+      "term": "Visitor Dispersal & Tourist Levies",
+      "track": "ag",
+      "category": "Policy & Sustainability",
+      "frequency": "55% of cohort",
+      "definition": "Strategic destination management: de-marketing over-visited hotspots, redirecting visitor flows to lesser-known regions, and charging targeted day-tripper entry taxes (e.g. Venice)."
+    },
+    {
+      "term": "Modal Shift & Decarbonization",
+      "track": "ag",
+      "category": "Environmental Economics",
+      "frequency": "50% of cohort",
+      "definition": "Encouraging passengers to switch from carbon-intensive short-haul flights to electrified high-speed rail networks, decoupling economic tourism growth from environmental impact."
+    }
+  ],
+  "grammarTrapsCaught": [
+    {
+      "title": "🛡️ Safety vs. Security in English",
+      "track": "at",
+      "rule": "French 'Sécurité' splits into two distinct operational English terms. Never confuse them: 'Safety' prevents unintentional accidents and hazards; 'Security' protects against intentional human threats and attacks.",
+      "correctExample": "✅ \"Aviation safety deals with bird strikes and de-icing; aviation security handles passenger screening, CT scanners, and hijackings.\""
+    },
+    {
+      "title": "❌ 'Luggages' and 'Trainings' do NOT exist!",
+      "track": "ag",
+      "rule": "Both 'luggage' and 'training' are uncountable nouns in English. Never add an 's'. Use 'pieces of luggage' or 'training courses'.",
+      "correctExample": "✅ \"We checked three pieces of luggage and completed our training course on ramp safety.\""
+    },
+    {
+      "title": "📍 Spatial Prepositions: At vs. In vs. On vs. Through",
+      "track": "all",
+      "rule": "Use 'at' for specific nodes and facilities (at the gate, at the checkpoint), 'in' for enclosed spaces (in the concourse, in the cabin), 'on' for pavement surfaces (on the apron, on Runway 14L), and 'through/along' for movement.",
+      "correctExample": "✅ \"Passengers wait in the concourse, board at gate 12, walk along the jet bridge, while the aircraft holds on taxiway Bravo.\""
+    },
+    {
+      "title": "🗣️ Pronunciation Trap: Alternate (Verb vs. Noun)",
+      "track": "at",
+      "rule": "Word stress changes with grammatical function: the verb 'to alternate' is stressed /ˈɔːl.tər.neɪt/, but the noun/adjective 'an alternate airport' is pronounced /ɔːlˈtɜː.nət/.",
+      "correctExample": "✅ \"If weather drops below minimums at Toulouse, the captain will divert to an alternate airport.\""
+    },
+    {
+      "title": "🗣️ Pronunciation Trap: Itinerary",
+      "track": "ag",
+      "rule": "Multiple students flagged pronunciation difficulty with 'itinerary'. Stress is on the second syllable: /aɪˈtɪn.ər.ər.i/ (eye-TIN-er-uh-ree).",
+      "correctExample": "✅ \"Could you please confirm our flight itinerary before we head to the boarding gate?\""
+    },
+    {
+      "title": "⏱️ Reported Speech Backshift & Time References",
+      "track": "ag",
+      "rule": "When reporting past dialogue, tenses shift back (present -> past, past -> past perfect; will -> would), and time adverbs shift ('today' -> 'that day', 'yesterday' -> 'the day before', 'tomorrow' -> 'the following day').",
+      "correctExample": "✅ \"He said he was running on empty that day and would take the train the following morning.\""
+    },
+    {
+      "title": "⚙️ Causative Verbs: Make vs. Have vs. Get vs. Require",
+      "track": "ag",
+      "rule": "When causing or assigning an action: 'make + person + bare infinitive' (compulsory requirement), 'have + person + bare infinitive' (standard task assignment), 'get + person + TO infinitive' (persuasion), and 'require + person + TO infinitive' (official policy).",
+      "correctExample": "✅ \"The port authority made cruise lines cap passenger numbers, and got local operators to stagger their excursions.\""
+    },
+    {
+      "title": "⏱️ Past Simple vs. Present Perfect in Operational Reports",
+      "track": "at",
+      "rule": "Use Past Simple for completed past events at a specific time ('the flight landed at 14:15'); use Present Perfect when the completed event has a direct operational result on current apron status ('the aircraft has landed, so the pushback tug can connect').",
+      "correctExample": "✅ \"The refueler has finished servicing the aircraft, so the ground crew can remove the chocks.\""
+    }
+  ],
+  "cohortReflections": {
+    "strengths": [
+      "Cumulative Operational Vocabulary: Fast command of aerodrome zones, ground support equipment (GSE), and turnaround sequencing (TAT, chocks on/off).",
+      "Policy & Scenario Debating: Confident presentation of sustainable tourism solutions, visitor caps, and passenger rights in structured pair discussions.",
+      "Grammatical Precision: Rapid adoption of reported speech backshifting and causative sentence structures."
+    ],
+    "growthAreas": [
+      "Spoken Fluency Under Time Pressure: Reducing hesitation and sentence-building delays during fast-paced pair simulations and debates.",
+      "Spatial Preposition Automaticity: Consolidating 'at' (nodes), 'in' (enclosed spaces), and 'on' (apron/taxiways/runways) without hesitation.",
+      "Phonetics & Word Stress: Drilling multi-syllable terms ('itinerary', 'alternate', 'carrying capacity', 'de-icing') to eliminate French false-stress patterns."
+    ],
+    "feAdvice": "Students unanimously report that knowing exact technical equipment (pushback tug, belt loader, GPU) and spatial zones (airside, concourse, apron, stands), paired with linking expressions for polite disagreement ('while I see your point, we must consider...'), gives immediate fluency and authority during the 30-minute Formative Evaluation."
+  },
+  "verbatimQuotes": [
+    {
+      "track": "at",
+      "session": "Mod 1 • Session 1",
+      "topic": "Infrastructure & Presentation Readiness",
+      "quote": "Knowing the different geographical parts of an airport, as well as the jobs, will be very important in the airport presentation. The oral presentation won't be possible without being able to name the different parts.",
+      "takeaway": "Mastering aerodrome spatial vocabulary is non-negotiable for FE1."
+    },
+    {
+      "track": "ag",
+      "session": "Mod 1 • Session 1",
+      "topic": "Spoken Fluency & Hesitation",
+      "quote": "My main problem is fluency because I am always looking for a word when talking to someone. I also need some time to build my sentences, so I think that I have to talk as much as possible to improve on these points.",
+      "takeaway": "Regular communicative pairwork reduces hesitation and builds sentence speed."
+    },
+    {
+      "track": "at",
+      "session": "Mod 1 • Session 2",
+      "topic": "Safety vs. Security & Spatial Prepositions",
+      "quote": "We talked mostly about security and safety and I was surprised to discover the difference with the French words since 'Sécurité' doesn't mean 'Security' but 'Safety'. Today we also talked about prepositions: 'in' when it's in an enclosed space, 'at' when it's a specific location, and 'on' when it's on a surface.",
+      "takeaway": "Mastering the Safety/Security distinction and spatial prepositions prevents operational ambiguity."
+    },
+    {
+      "track": "ag",
+      "session": "Mod 1 • Session 2",
+      "topic": "Customer Scenarios & Reported Speech",
+      "quote": "Communicative skills, arguments and vocabulary explored in this session will all help me to improve my AG formative evaluation by giving me tools to speak about stressful passenger situations and structure my thoughts with accurate reported speech.",
+      "takeaway": "Practicing passenger mediation scenarios prepares directly for FE1 interactive roleplays."
+    },
+    {
+      "track": "at",
+      "session": "Mod 1 • Session 3",
+      "topic": "Turnaround Operations & Ground Support Equipment",
+      "quote": "Learning technical vocabulary like pushback tugs, belt loaders, and glycol de-icing rigs, and recreating turnaround incident scenarios puts us in a realistic operational situation and allows us to memorize terms much more easily than traditional lists.",
+      "takeaway": "Ground support equipment and turnaround sequencing turn abstract terms into fluent spoken descriptions."
+    },
+    {
+      "track": "at",
+      "session": "Mod 1 • Session 3",
+      "topic": "Tense Selection in Technical Incident Reporting",
+      "quote": "In this lesson we focused on the difference between past simple and present perfect: past simple when an action happened at a specific completed time, and present perfect when the event has a direct operational result on the present moment ('the plane has landed, so passengers can disembark').",
+      "takeaway": "Precise tense distinction ensures clear cause-and-effect incident reporting."
+    },
+    {
+      "track": "ag",
+      "session": "Mod 1 • Session 3",
+      "topic": "Debating Overtourism & Fragile Sites",
+      "quote": "Today's session was a good training for the formative evaluation due to the debates we held on overtourism, tourist taxes, and visitor dispersal. It was a great occasion to use well-built sentences, defend a position, and practice polite disagreement.",
+      "takeaway": "Policy debates build fluency, active listening, and persuasive speaking under time pressure."
+    },
+    {
+      "track": "ag",
+      "session": "Mod 1 • Session 3",
+      "topic": "Paraphrasing Under Time Pressure",
+      "quote": "The overtourism and crisis-management activities were particularly useful because they required us to consider different perspectives and suggest realistic solutions. I want to improve my paraphrasing speed under time pressure so I don't pause when searching for expressions.",
+      "takeaway": "Fast paraphrasing and structured linking expressions prevent mid-sentence hesitation."
+    }
+  ]
+};
+/* --- PORTFOLIO_DATA_S1_END --- */
+
+    /* --- PORTFOLIO_DATA_S2_START --- */
+    const PORTFOLIO_DATA_S2 = null;
+    /* --- PORTFOLIO_DATA_S2_END --- */
+
+    /* --- PORTFOLIO_DATA_S3_START --- */
+    const PORTFOLIO_DATA_S3 = null;
+    /* --- PORTFOLIO_DATA_S3_END --- */
+
+    /* --- PORTFOLIO_DATA_S4_START --- */
+    const PORTFOLIO_DATA_S4 = null;
+    /* --- PORTFOLIO_DATA_S4_END --- */
+
+    let activeMatrixGroupFilter = 'Group A';
+    let activePortfolioModule = 1;
+
+    function setMatrixGroupFilter(grp) {
+      activeMatrixGroupFilter = grp;
+      renderCurrentView();
+    }
+
+    function setPortfolioModule(mod) {
+      activePortfolioModule = parseInt(mod, 10) || 1;
+      renderCurrentView();
+    }
+
+    function getRecordModuleNum(record) {
+      if (!record) return 1;
+      const modStr = (record.module || "").toLowerCase().trim();
+      if (modStr === "1" || modStr.includes("module 1")) return 1;
+      if (modStr === "2" || modStr.includes("module 2")) return 2;
+      if (modStr === "3" || modStr.includes("module 3")) return 3;
+
+      // Module 1 keywords (S1 & beyond)
+      if (modStr.includes("aerodrome") || modStr.includes("travel") || modStr.includes("transport") || modStr.includes("leisure") || modStr.includes("society")) {
+        return 1;
+      }
+      // Module 2 keywords
+      if (modStr.includes("anatomy") || modStr.includes("aircraft architecture") || modStr.includes("weather") || modStr.includes("climate") || modStr.includes("hazard") || modStr.includes("environmental")) {
+        return 2;
+      }
+      // Module 3 keywords
+      if (modStr.includes("human factor") || modStr.includes("safety") || modStr.includes("incident") || modStr.includes("future") || modStr.includes("tech") || modStr.includes("citizenship") || modStr.includes("horizon")) {
+        return 3;
+      }
+      return 1;
+    }
+
+    function copyIndividualMissingReminder(studentId) {
+      const semData = SEMESTERS_DATA[activeSemester];
+      const pData = getPortfolioDataForSemester(activeSemester);
+      const records = pData ? (pData.studentRecords || []) : [];
+      const sEntries = records.filter(r => r.id === studentId && getRecordModuleNum(r) === activePortfolioModule);
+
+      const isDualTrack = activeSemester === 1 || activeSemester === 2;
+      const atTrackLabel = activeSemester === 2 ? "AAS" : (activeSemester === 4 ? "AP" : "AT");
+
+      const missing = [];
+      [1, 2, 3, 4].forEach(sNum => {
+        if (!sEntries.some(r => r.track && r.track.toUpperCase() === atTrackLabel.toUpperCase() && String(r.session) === String(sNum))) {
+          missing.push(`${atTrackLabel} Session ${sNum}`);
+        }
+      });
+
+      if (isDualTrack) {
+        [1, 2, 3, 4].forEach(sNum => {
+          if (!sEntries.some(r => r.track && r.track.toUpperCase() === "AG" && String(r.session) === String(sNum))) {
+            missing.push(`AG Session ${sNum}`);
+          }
+        });
+      }
+
+      const sName = formatStudentName(studentId);
+      const text = `Dear ${sName},\n\nYou currently have ${missing.length} missing portfolio reflection(s) for Module ${activePortfolioModule}:\n` +
+        missing.map(m => `• ${m}`).join("\n") +
+        `\n\nPlease submit these entries on the student portal before your Formative Evaluation oral exam for your continuous portfolio assessment (Criterion 6 / 2.5 pts).`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          alert(`✓ Copied Module ${activePortfolioModule} reminder for ${sName} to clipboard!`);
+        }).catch(() => {
+          prompt(`Copy student reminder (Module ${activePortfolioModule}):`, text);
+        });
+      } else {
+        prompt(`Copy student reminder (Module ${activePortfolioModule}):`, text);
+      }
+    }

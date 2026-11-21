@@ -22,6 +22,9 @@ const path = require('path');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const INDEX_HTML_PATH = path.join(ROOT_DIR, 'index.html');
+const TAB_OVERVIEW_JS_PATH = path.join(ROOT_DIR, 'src', 'js', '04-tab-overview.js');
+const MEDIA_ARCHIVE_JS_PATH = path.join(ROOT_DIR, 'src', 'js', '10-media-archive.js');
+const buildHtml = require('./build-html');
 const DEFAULT_CSV_PATH = path.join(ROOT_DIR, 'data', 'media-latest.csv');
 const EXAMPLE_CSV_PATH = path.join(ROOT_DIR, 'data', 'media-latest.example.csv');
 const ARCHIVE_JSON_PATH = path.join(ROOT_DIR, 'data', 'media-archive.json');
@@ -506,8 +509,38 @@ function main() {
     process.exit(1);
   }
 
-  fs.writeFileSync(INDEX_HTML_PATH, indexHTML, 'utf8');
-  console.log('✅ index.html media sections and archive data updated successfully!');
+  // Synchronize src/js/04-tab-overview.js
+  if (fs.existsSync(TAB_OVERVIEW_JS_PATH)) {
+    let tabOverview = fs.readFileSync(TAB_OVERVIEW_JS_PATH, 'utf8');
+    const sIdx = tabOverview.indexOf(startMarker);
+    const eIdx = tabOverview.indexOf(endMarker);
+    if (sIdx !== -1 && eIdx !== -1) {
+      tabOverview = tabOverview.slice(0, sIdx) + replacementHTML + tabOverview.slice(eIdx + endMarker.length);
+      fs.writeFileSync(TAB_OVERVIEW_JS_PATH, tabOverview, 'utf8');
+      console.log('  ✓ Synchronized src/js/04-tab-overview.js');
+    }
+  }
+
+  // Synchronize src/js/10-media-archive.js
+  if (fs.existsSync(MEDIA_ARCHIVE_JS_PATH)) {
+    let mediaArchive = fs.readFileSync(MEDIA_ARCHIVE_JS_PATH, 'utf8');
+    const aSIdx = mediaArchive.indexOf(archiveStartMarker);
+    const aEIdx = mediaArchive.indexOf(archiveEndMarker);
+    if (aSIdx !== -1 && aEIdx !== -1) {
+      const archiveScript = `${archiveStartMarker}\nwindow.MEDIA_ARCHIVE_DATA = ${JSON.stringify(
+        { news: archive.newsArchive, films: archive.filmsArchive },
+        null,
+        2
+      )};\n${archiveEndMarker}`;
+      mediaArchive = mediaArchive.slice(0, aSIdx) + archiveScript + mediaArchive.slice(aEIdx + archiveEndMarker.length);
+      fs.writeFileSync(MEDIA_ARCHIVE_JS_PATH, mediaArchive, 'utf8');
+      console.log('  ✓ Synchronized src/js/10-media-archive.js');
+    }
+  }
+
+  // Recompile index.html from modular source modules
+  buildHtml();
+  console.log('✅ index.html media sections and archive data updated successfully via build-html!');
   console.log(`📌 Up Next Notice: "${noticeHeadline}"`);
   console.log(`📰 BBC Articles: "${bbc1.title}" & "${bbc2.title}"`);
   console.log(`🎬 IMDb Films: "${imdb1.title}", "${imdb2.title}", "${imdb3.title}"`);

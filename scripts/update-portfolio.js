@@ -470,21 +470,29 @@ fs.writeFileSync(outputJsonPath, JSON.stringify(portfolioData, null, 2), 'utf8')
 console.log(`✅ Portfolio JSON generated successfully!`);
 console.log(`📍 Output: ${outputJsonPath}`);
 
-// Inject into index.html
-const indexHtmlPath = path.join(rootDir, 'index.html');
-if (fs.existsSync(indexHtmlPath)) {
-  let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-  const startTag = `/* --- PORTFOLIO_DATA_S${sem}_START --- */`;
-  const endTag = `/* --- PORTFOLIO_DATA_S${sem}_END --- */`;
+// Inject into src/js/08-portfolio-data.js and recompile index.html
+const startTag = `/* --- PORTFOLIO_DATA_S${sem}_START --- */`;
+const endTag = `/* --- PORTFOLIO_DATA_S${sem}_END --- */`;
+const replacement = `${startTag}\nconst PORTFOLIO_DATA_S${sem} = ${JSON.stringify(portfolioData, null, 2)};\n${endTag}`;
+const regex = new RegExp(`${startTag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[\\s\\S]*?${endTag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`);
 
+if (fs.existsSync(portfolioJsPath)) {
+  let portJs = fs.readFileSync(portfolioJsPath, 'utf8');
+  if (portJs.includes(startTag) && portJs.includes(endTag)) {
+    portJs = portJs.replace(regex, replacement);
+    fs.writeFileSync(portfolioJsPath, portJs, 'utf8');
+    console.log(`✓ Synchronized PORTFOLIO_DATA_S${sem} in src/js/08-portfolio-data.js`);
+  }
+}
+
+if (typeof buildHtml === 'function') {
+  buildHtml();
+} else if (fs.existsSync(indexHtmlPath)) {
+  let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
   if (indexHtml.includes(startTag) && indexHtml.includes(endTag)) {
-    const replacement = `${startTag}\nconst PORTFOLIO_DATA_S${sem} = ${JSON.stringify(portfolioData, null, 2)};\n${endTag}`;
-    const regex = new RegExp(`${startTag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[\\s\\S]*?${endTag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`);
     indexHtml = indexHtml.replace(regex, replacement);
     fs.writeFileSync(indexHtmlPath, indexHtml, 'utf8');
     console.log(`✓ Synchronized PORTFOLIO_DATA_S${sem} in index.html`);
-  } else {
-    console.log(`ℹ️ Tags ${startTag} / ${endTag} not yet present in index.html (will be added during template setup).`);
   }
 }
 
