@@ -199,12 +199,7 @@
           </span>
         </div>
 
-        <!-- Right Side: ENAC Logo with eCampus Link -->
-        <div class="flex items-center gap-2 shrink-0">
-          <a id="header-ecampus-link" href="https://e-campus.enac.fr/moodle/pluginfile.php/542566/mod_resource/content/33/index.html#ag-module1-card1" target="_blank" rel="noopener noreferrer" class="opacity-90 hover:opacity-100 transition-opacity shrink-0 flex items-center gap-2" title="Open ENAC eCampus Course Space (Semester 1) ↗">
-            <img src="images/enac_logo_white.png" alt="ENAC" class="h-5 sm:h-6 w-auto object-contain">
-          </a>
-        </div>
+
       </header>
 
       <!-- Master Semester Selection Strip (Flush Left with Title Above) -->
@@ -286,10 +281,14 @@
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
             <span class="font-bold text-slate-200">ENAC • Département LH / LAN</span>
           </div>
-          <div class="flex items-center gap-2.5 text-[11px] text-slate-400">
+          <div class="flex items-center gap-3 text-[11px] text-slate-400">
             <span class="font-mono text-slate-300 text-[10.5px]">Phil PARRIS</span>
             <span class="text-slate-600 hidden sm:inline">•</span>
             <span class="font-mono text-slate-400 text-[10.5px]">v1.2.0</span>
+            <span class="text-slate-600 hidden sm:inline">•</span>
+            <a id="footer-ecampus-link" href="https://e-campus.enac.fr/moodle/pluginfile.php/542566/mod_resource/content/33/index.html#ag-module1-card1" target="_blank" rel="noopener noreferrer" class="opacity-80 hover:opacity-100 transition-opacity inline-flex items-center shrink-0" title="Open ENAC eCampus Course Space (Semester 1) ↗">
+              <img src="images/enac_logo_white.png" alt="ENAC" class="h-4 sm:h-5 w-auto object-contain">
+            </a>
           </div>
         </div>
       </footer>
@@ -1309,8 +1308,8 @@
       if (mainTitle) {
         mainTitle.textContent = 'GSEA TEACHERS HUB';
       }
-      // Update top-right ENAC eCampus crest link
-      const ecampusLink = document.getElementById('header-ecampus-link');
+      // Update footer ENAC eCampus crest link
+      const ecampusLink = document.getElementById('footer-ecampus-link') || document.getElementById('header-ecampus-link');
       if (ecampusLink && SEMESTERS_DATA[num]) {
         ecampusLink.href = SEMESTERS_DATA[num].ecampusUrl || 'https://e-campus.enac.fr/moodle/my/';
         ecampusLink.title = `Open ENAC eCampus Course Space (${SEMESTERS_DATA[num].title}) ↗`;
