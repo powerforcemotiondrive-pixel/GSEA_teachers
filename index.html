@@ -189,17 +189,14 @@
 
       <!-- Executive Header (Compact Cockpit Header - Flush Left) -->
       <header id="portal-header" class="textured-surface text-white px-4 sm:px-6 py-2.5 sm:py-3 border-b border-slate-900/60 flex items-center justify-between gap-3 shrink-0 relative overflow-hidden">
-        <!-- Brand & Title Block (Flush Left, No Icon) -->
+        <!-- Brand & Title Block (Flush Left) -->
         <div class="min-w-0">
-          <div class="flex items-center gap-1.5">
-            <span class="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-400 text-slate-900 shadow-xs shrink-0">
-              TEACHERS HUB
-            </span>
-            <span class="text-[10px] sm:text-xs text-slate-300 font-mono truncate hidden sm:inline">ENAC • DÉPARTEMENT LH / LAN</span>
-          </div>
-          <h1 id="header-main-title" class="text-xs sm:text-base font-bold tracking-tight text-white mt-0.5 truncate">
-            GSEA Teachers Hub: Semester 1
+          <h1 id="header-main-title" class="text-xs sm:text-base font-bold tracking-tight text-white uppercase truncate">
+            GSEA TEACHERS HUB
           </h1>
+          <span class="text-[10px] sm:text-xs text-slate-300 font-mono truncate block mt-0.5">
+            ENAC • DÉPARTEMENT LH / LAN
+          </span>
         </div>
 
         <!-- Right Side: ENAC Logo with eCampus Link -->
@@ -283,20 +280,16 @@
       </main>
 
       <!-- Status Footer (Flush integrated at bottom of hub card) -->
-      <footer class="textured-surface bg-[#1e293b] border-t border-slate-900/60 py-3 px-4 sm:px-6 text-xs text-slate-400 shadow-inner shrink-0 no-print">
-        <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-2.5 text-center sm:text-left">
+      <footer class="textured-surface bg-[#1e293b] border-t border-slate-900/60 py-2.5 sm:py-3 px-4 sm:px-6 text-xs text-slate-400 shadow-inner shrink-0 no-print">
+        <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           <div class="flex items-center gap-2 text-[11px]">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
             <span class="font-bold text-slate-200">ENAC • Département LH / LAN</span>
-            <span class="text-slate-600 hidden sm:inline">•</span>
-            <span class="text-slate-400">GSEA English Teachers Hub &amp; Academic Portal</span>
           </div>
-          <div class="flex items-center gap-3 text-[11px] text-slate-400">
-            <span class="font-mono text-slate-300 text-[10.5px]">Phil PARRIS LH / LAN</span>
+          <div class="flex items-center gap-2.5 text-[11px] text-slate-400">
+            <span class="font-mono text-slate-300 text-[10.5px]">Phil PARRIS</span>
             <span class="text-slate-600 hidden sm:inline">•</span>
-            <span class="font-mono text-emerald-400/90 font-bold bg-black/30 px-2 py-0.5 rounded border border-white/10 text-[10px]">
-              100% Offline Capable &amp; Cloud Sync
-            </span>
+            <span class="font-mono text-slate-400 text-[10.5px]">v1.2.0</span>
           </div>
         </div>
       </footer>
@@ -1311,10 +1304,10 @@
       if (SEMESTERS_DATA[num]?.promotion) {
         activeAbsPromo = SEMESTERS_DATA[num].promotion;
       }
-      // Update dynamic header title
+      // Header title
       const mainTitle = document.getElementById('header-main-title');
       if (mainTitle) {
-        mainTitle.textContent = `GSEA Teachers Hub: Semester ${num}`;
+        mainTitle.textContent = 'GSEA TEACHERS HUB';
       }
       // Update top-right ENAC eCampus crest link
       const ecampusLink = document.getElementById('header-ecampus-link');
@@ -1465,10 +1458,10 @@
       const container = document.getElementById('portal-content');
       const sem = SEMESTERS_DATA[activeSemester] || SEMESTERS_DATA[1];
 
-      // Keep dynamic header title synchronized with active semester
+      // Header title
       const mainTitle = document.getElementById('header-main-title');
       if (mainTitle) {
-        mainTitle.textContent = `GSEA Teachers Hub: Semester ${activeSemester}`;
+        mainTitle.textContent = 'GSEA TEACHERS HUB';
       }
 
       // Background cockpit workspace ALWAYS displays Overview
