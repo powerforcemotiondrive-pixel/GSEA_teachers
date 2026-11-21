@@ -1,5 +1,5 @@
 // <!-- MEDIA_ARCHIVE_DATA_START -->
-    window.MEDIA_ARCHIVE_DATA = {
+window.MEDIA_ARCHIVE_DATA = {
   "news": [
     {
       "title": "Airlines Face New Flight Deck Audio Rules",
@@ -33,7 +33,7 @@
     }
   ]
 };
-    // <!-- MEDIA_ARCHIVE_DATA_END -->
+// <!-- MEDIA_ARCHIVE_DATA_END -->
 
     function openMediaArchiveModal(type) {
       const modal = document.getElementById("media-archive-modal");

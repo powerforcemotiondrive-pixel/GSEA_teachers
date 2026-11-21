@@ -1,3 +1,57 @@
+/* --- WEEKLY_NOTICEBOARD_DATA_START --- */
+const WEEKLY_NOTICEBOARD_DATA = {
+  "upNext": {
+    "week": "Week 47 • Notice",
+    "tag": "Teaching Note",
+    "headline": "Oral Fluency & FE1 Mock Evaluations",
+    "statement": "Week 47: Oral fluency practice and FE1 mock evaluations."
+  },
+  "articles": [
+    {
+      "source": "BBC NEWS",
+      "sourceBg": "bg-[#bb1919]",
+      "category": "Aviation Safety (AT)",
+      "tag": "News Article",
+      "title": "Spate of Bomb Threats Poses Serious Challenge to Airline Industry",
+      "summary": "After a week of disruption, airlines are facing both safety and financial concerns as civil aviation authorities respond to wave of disruptions.",
+      "url": "https://www.bbc.com/news/articles/cv8ezz9yn6pyo"
+    },
+    {
+      "source": "BBC TRAVEL",
+      "sourceBg": "bg-[#004f71]",
+      "category": "Tourism & Leisure (AG)",
+      "tag": "Travel Feature",
+      "title": "Top Five 'Chippies' in London",
+      "summary": "An undercover reviewer rates traditional UK fish and chip shops, highlighting five classic London spots preserving culinary heritage.",
+      "url": "https://www.bbc.com/travel/article/20261106-where-to-get-the-best-fish-and-chips-in-london"
+    }
+  ],
+  "films": [
+    {
+      "badge": "🇫🇷 FRENCH CINEMA",
+      "title": "Le Corset (Iron Boy) (2026)",
+      "credits": "Dir. Louis Clichy • Beauce, France",
+      "desc": "An 11-year-old boy in rural Beauce navigates scoliosis and medical isolation, finding his voice and connection through music.",
+      "url": "https://www.imdb.com/title/tt36639956/"
+    },
+    {
+      "badge": "🇬🇧 BRITISH / AMERICAN CINEMA",
+      "title": "Wild Horse Nine (2026)",
+      "credits": "Dir. Martin McDonagh • Starring John Malkovich & Sam Rockwell",
+      "desc": "A dark comedy crime thriller following an eccentric ensemble facing escalating tensions in a high-stakes standoff.",
+      "url": "https://www.imdb.com/title/tt15799564/"
+    },
+    {
+      "badge": "🇰🇷 INTERNATIONAL CINEMA",
+      "title": "Possible Love (가능한 사랑) (2026)",
+      "credits": "Dir. Lee Chang-dong • Starring Jeon Do-yeon & Sol Kyung-gu",
+      "desc": "An emotional Korean drama tracing past bonds and unspoken regrets between two longtime acquaintances.",
+      "url": "https://www.imdb.com/title/tt37803364/"
+    }
+  ]
+};
+/* --- WEEKLY_NOTICEBOARD_DATA_END --- */
+
 // ============================================================================
     function renderOverviewTab(sem) {
       const allStudentsCount = ((sem.students?.groupA || []).length) + 
@@ -90,8 +144,7 @@
             </div>
           </div>
 
-          <!-- MEDIA_UPDATE_START -->
-          <!-- Unified Weekly Operational Briefings & Cultural Media Panel -->
+          <!-- Unified Weekly Noticeboard and Culture / Media Panel -->
           <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
             <!-- Panel Header Ribbon with Purpose Banner -->
             <div class="px-4 py-3 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-2 border-b border-slate-800">
@@ -115,7 +168,7 @@
                 >
                   <span>📁</span>
                   <span>Past Articles</span>
-                  <span id="news-archive-badge" class="px-1.5 py-0.2 bg-slate-700 text-slate-200 rounded-full font-mono text-[9.5px]">2</span>
+                  <span id="news-archive-badge" class="px-1.5 py-0.2 bg-slate-700 text-slate-200 rounded-full font-mono text-[9.5px]">${(window.MEDIA_ARCHIVE_DATA?.news || []).length}</span>
                 </button>
                 <button 
                   type="button" 
@@ -125,7 +178,7 @@
                 >
                   <span>📁</span>
                   <span>Past Films</span>
-                  <span id="films-archive-badge" class="px-1.5 py-0.2 bg-slate-700 text-slate-200 rounded-full font-mono text-[9.5px]">5</span>
+                  <span id="films-archive-badge" class="px-1.5 py-0.2 bg-slate-700 text-slate-200 rounded-full font-mono text-[9.5px]">${(window.MEDIA_ARCHIVE_DATA?.films || []).length}</span>
                 </button>
               </div>
             </div>
@@ -149,79 +202,49 @@
                   <div class="p-3 bg-amber-50/90 border border-amber-200/90 rounded-xl flex flex-col gap-1.5">
                     <div class="flex items-center justify-between">
                       <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-mono shadow-2xs">
-                        <span>📌</span> Week 47 • Notice
+                        <span>📌</span> ${escapeHtml(WEEKLY_NOTICEBOARD_DATA.upNext?.week || 'Week Notice')}
                       </span>
-                      <span class="text-[10px] text-amber-800 font-bold uppercase tracking-wider font-mono">Teaching Note</span>
+                      <span class="text-[10px] text-amber-800 font-bold uppercase tracking-wider font-mono">${escapeHtml(WEEKLY_NOTICEBOARD_DATA.upNext?.tag || 'Teaching Note')}</span>
                     </div>
                     <div class="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
-                      Oral Fluency &amp; FE1 Mock Evaluations
+                      ${escapeHtml(WEEKLY_NOTICEBOARD_DATA.upNext?.headline || 'Weekly Teaching Focus')}
                     </div>
                     <p class="text-[11px] text-slate-600 leading-relaxed">
-                      Week 47: Oral fluency practice and FE1 mock evaluations.
+                      ${escapeHtml(WEEKLY_NOTICEBOARD_DATA.upNext?.statement || '')}
                     </p>
                   </div>
 
-                  <!-- BBC Article 1 -->
+                  <!-- BBC Articles List -->
+                  ${(WEEKLY_NOTICEBOARD_DATA.articles || []).map(a => `
                   <div class="group p-3 bg-slate-50/80 rounded-xl border border-slate-200/70 hover:border-slate-300 transition-all flex flex-col justify-between space-y-1.5">
                     <div class="space-y-1">
                       <div class="flex items-center justify-between">
-                        <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#bb1919] text-white font-mono">
-                          BBC NEWS
+                        <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded ${a.sourceBg || 'bg-[#bb1919]'} text-white font-mono">
+                          ${escapeHtml(a.source || 'BBC NEWS')}
                         </span>
-                        <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Aviation Safety (AT)</span>
+                        <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">${escapeHtml(a.category || '')}</span>
                       </div>
                       <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-2">
-                        Spate of Bomb Threats Poses Serious Challenge to Airline Industry
+                        ${escapeHtml(a.title || '')}
                       </h4>
                       <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
-                        After a week of disruption, airlines are facing both safety and financial concerns as civil aviation authorities respond to wave of disruptions.
+                        ${escapeHtml(a.summary || '')}
                       </p>
                     </div>
                     <div class="pt-1 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
-                      <span class="text-[10px] text-slate-400 font-mono">News Article</span>
+                      <span class="text-[10px] text-slate-400 font-mono">${escapeHtml(a.tag || 'News Article')}</span>
                       <a 
-                        href="https://www.bbc.com/news/articles/cv8ezz9yn6pyo" 
+                        href="${escapeHtml(a.url || '#')}" 
                         target="_blank" 
                         rel="noopener noreferrer" 
                         class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                        title="Read on BBC News ↗"
+                        title="Read on ${escapeHtml(a.source || 'BBC')} ↗"
                       >
-                        <span>Read on BBC News</span>
+                        <span>Read on ${escapeHtml(a.source || 'BBC')}</span>
                         <span class="text-[10px]">↗</span>
                       </a>
                     </div>
-                  </div>
-
-                  <!-- BBC Article 2 -->
-                  <div class="group p-3 bg-slate-50/80 rounded-xl border border-slate-200/70 hover:border-slate-300 transition-all flex flex-col justify-between space-y-1.5">
-                    <div class="space-y-1">
-                      <div class="flex items-center justify-between">
-                        <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#004f71] text-white font-mono">
-                          BBC TRAVEL
-                        </span>
-                        <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Tourism &amp; Leisure (AG)</span>
-                      </div>
-                      <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-2">
-                        Top Five 'Chippies' in London
-                      </h4>
-                      <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
-                        An undercover reviewer rates traditional UK fish and chip shops, highlighting five classic London spots preserving culinary heritage.
-                      </p>
-                    </div>
-                    <div class="pt-1 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
-                      <span class="text-[10px] text-slate-400 font-mono">Travel Feature</span>
-                      <a 
-                        href="https://www.bbc.com/travel/article/20261106-where-to-get-the-best-fish-and-chips-in-london" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                        title="Read on BBC Travel ↗"
-                      >
-                        <span>Read on BBC Travel</span>
-                        <span class="text-[10px]">↗</span>
-                      </a>
-                    </div>
-                  </div>
+                  </div>`).join('')}
 
                 </div>
               </div>
@@ -238,21 +261,22 @@
                     </p>
                   </div>
 
-                  <!-- Film Card -->
+                  <!-- Film Cards List -->
+                  ${(WEEKLY_NOTICEBOARD_DATA.films || []).map(f => `
                   <div class="group p-3 bg-slate-50/80 rounded-xl border border-slate-200/70 hover:border-slate-300 transition-all flex flex-col justify-between space-y-1.5">
                     <div class="space-y-1">
                       <div class="flex items-center justify-between">
                         <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-900 text-amber-300 font-mono">
-                          🇫🇷 FRENCH CINEMA
+                          ${escapeHtml(f.badge || 'CINEMA')}
                         </span>
                         <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Curated Cinema</span>
                       </div>
                       <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-1">
-                        Le Corset (Iron Boy) (2026)
+                        ${escapeHtml(f.title || '')}
                       </h4>
-                      <p class="text-[10px] text-slate-500 font-mono">Dir. Louis Clichy • Beauce, France</p>
+                      ${f.credits ? `<p class="text-[10px] text-slate-500 font-mono">${escapeHtml(f.credits)}</p>` : ''}
                       <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
-                        An 11-year-old boy in rural Beauce navigates scoliosis and medical isolation, finding his voice and connection through music.
+                        ${escapeHtml(f.desc || '')}
                       </p>
                     </div>
                     <div class="pt-1 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
@@ -260,7 +284,7 @@
                         IMDb
                       </span>
                       <a 
-                        href="https://www.imdb.com/title/tt36639956/" 
+                        href="${escapeHtml(f.url || '#')}" 
                         target="_blank" 
                         rel="noopener noreferrer" 
                         class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
@@ -270,82 +294,13 @@
                         <span class="text-[10px]">↗</span>
                       </a>
                     </div>
-                  </div>
-
-                  <!-- Film Card -->
-                  <div class="group p-3 bg-slate-50/80 rounded-xl border border-slate-200/70 hover:border-slate-300 transition-all flex flex-col justify-between space-y-1.5">
-                    <div class="space-y-1">
-                      <div class="flex items-center justify-between">
-                        <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-900 text-amber-300 font-mono">
-                          🇬🇧 BRITISH / AMERICAN CINEMA
-                        </span>
-                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Curated Cinema</span>
-                      </div>
-                      <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-1">
-                        Wild Horse Nine (2026)
-                      </h4>
-                      <p class="text-[10px] text-slate-500 font-mono">Dir. Martin McDonagh • Starring John Malkovich &amp; Sam Rockwell</p>
-                      <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
-                        A dark comedy crime thriller following an eccentric ensemble facing escalating tensions in a high-stakes standoff.
-                      </p>
-                    </div>
-                    <div class="pt-1 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
-                      <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#f5c518] text-slate-950 font-black font-mono text-[9px] tracking-tight">
-                        IMDb
-                      </span>
-                      <a 
-                        href="https://www.imdb.com/title/tt15799564/" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                        title="View on IMDb ↗"
-                      >
-                        <span>View on IMDb</span>
-                        <span class="text-[10px]">↗</span>
-                      </a>
-                    </div>
-                  </div>
-
-                  <!-- Film Card -->
-                  <div class="group p-3 bg-slate-50/80 rounded-xl border border-slate-200/70 hover:border-slate-300 transition-all flex flex-col justify-between space-y-1.5">
-                    <div class="space-y-1">
-                      <div class="flex items-center justify-between">
-                        <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-900 text-amber-300 font-mono">
-                          🇰🇷 INTERNATIONAL CINEMA
-                        </span>
-                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Curated Cinema</span>
-                      </div>
-                      <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-1">
-                        Possible Love (가능한 사랑) (2026)
-                      </h4>
-                      <p class="text-[10px] text-slate-500 font-mono">Dir. Lee Chang-dong • Starring Jeon Do-yeon &amp; Sol Kyung-gu</p>
-                      <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
-                        An emotional Korean drama tracing past bonds and unspoken regrets between two longtime acquaintances.
-                      </p>
-                    </div>
-                    <div class="pt-1 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
-                      <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#f5c518] text-slate-950 font-black font-mono text-[9px] tracking-tight">
-                        IMDb
-                      </span>
-                      <a 
-                        href="https://www.imdb.com/title/tt37803364/" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                        title="View on IMDb ↗"
-                      >
-                        <span>View on IMDb</span>
-                        <span class="text-[10px]">↗</span>
-                      </a>
-                    </div>
-                  </div>
+                  </div>`).join('')}
 
                 </div>
               </div>
 
             </div>
           </div>
-          <!-- MEDIA_UPDATE_END -->
 
           <!-- Section: Recent Aviation Live Traffic -->
           <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">

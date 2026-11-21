@@ -6,16 +6,7 @@ function getPortfolioDataForSemester(num) {
       return null;
     }
 
-    // HTML sanitizer to prevent quotes or brackets from breaking DOM attributes
-    function escapeHtml(str) {
-      if (!str) return "";
-      return String(str)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
+    // escapeHtml is globally defined in 01-auth-engine.js
 
     function renderPortfolioInsightsCard(pData, sem) {
       if (!pData || !pData.totalSubmissions) return "";

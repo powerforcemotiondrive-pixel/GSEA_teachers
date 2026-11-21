@@ -268,260 +268,77 @@ function main() {
   const bbc1IsTravel = (bbc1.category || '').toLowerCase().includes('travel') || (bbc1.content || '').includes('/travel/');
   const bbc2IsTravel = (bbc2.category || '').toLowerCase().includes('travel') || (bbc2.content || '').includes('/travel/');
 
-  const replacementHTML = `<!-- MEDIA_UPDATE_START -->
-          <!-- Unified Weekly Noticeboard and Culture / Media Panel -->
-          <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-            <!-- Panel Header Ribbon with Purpose Banner -->
-            <div class="px-4 py-3 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-2 border-b border-slate-800">
-              <div class="flex items-center gap-2.5">
-                <span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
-                <div>
-                  <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
-                    WEEKLY NOTICEBOARD AND CULTURE / MEDIA
-                  </h3>
-                  <p class="text-[11px] text-slate-300 font-normal">
-                    Weekly teaching focus, short conversational warm-ups for the start of class, and independent cultural listening recommendations.
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-center gap-2">
-                <button 
-                  type="button" 
-                  onclick="openMediaArchiveModal('news')" 
-                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-bold transition-colors cursor-pointer border border-slate-700"
-                  title="View previous articles"
-                >
-                  <span>📁</span>
-                  <span>Past Articles</span>
-                  <span id="news-archive-badge" class="px-1.5 py-0.2 bg-slate-700 text-slate-200 rounded-full font-mono text-[9.5px]">${newsCount}</span>
-                </button>
-                <button 
-                  type="button" 
-                  onclick="openMediaArchiveModal('films')" 
-                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-bold transition-colors cursor-pointer border border-slate-700"
-                  title="View previous film recommendations"
-                >
-                  <span>📁</span>
-                  <span>Past Films</span>
-                  <span id="films-archive-badge" class="px-1.5 py-0.2 bg-slate-700 text-slate-200 rounded-full font-mono text-[9.5px]">${filmsCount}</span>
-                </button>
-              </div>
-            </div>
+  // Construct structured weekly noticeboard data object
+  const noticeboardData = {
+    upNext: {
+      week: noticeWeek,
+      tag: noticeTag,
+      headline: noticeHeadline,
+      statement: noticeStatement
+    },
+    articles: [
+      {
+        source: bbc1IsTravel ? 'BBC TRAVEL' : 'BBC NEWS',
+        sourceBg: bbc1IsTravel ? 'bg-[#004f71]' : 'bg-[#bb1919]',
+        category: bbc1.category || 'Aviation Safety (AT)',
+        tag: bbc1IsTravel ? 'Travel Feature' : 'News Article',
+        title: bbc1.title || 'BBC Article',
+        summary: bbc1.summary || '',
+        url: bbc1.content || '#'
+      },
+      {
+        source: bbc2IsTravel ? 'BBC TRAVEL' : 'BBC NEWS',
+        sourceBg: bbc2IsTravel ? 'bg-[#004f71]' : 'bg-[#bb1919]',
+        category: bbc2.category || 'Tourism & Leisure (AG)',
+        tag: bbc2IsTravel ? 'Travel Feature' : 'News Article',
+        title: bbc2.title || 'BBC Article',
+        summary: bbc2.summary || '',
+        url: bbc2.content || '#'
+      }
+    ],
+    films: [imdb1, imdb2, imdb3].map((film, fIdx) => {
+      const fullSummary = film.summary || '';
+      let credits = '';
+      let desc = fullSummary;
+      if (fullSummary.includes('|')) {
+        const parts = fullSummary.split('|');
+        credits = parts[0].trim();
+        desc = parts.slice(1).join('|').trim();
+      }
+      const defaultBadges = ['🇫🇷 FRENCH CINEMA', '🇬🇧 BRITISH / AMERICAN CINEMA', '🇰🇷 INTERNATIONAL CINEMA'];
+      const badge = film.category || defaultBadges[fIdx] || defaultBadges[0];
+      return {
+        badge: badge,
+        title: film.title || 'Film Recommendation',
+        credits: credits,
+        desc: desc,
+        url: film.content || '#'
+      };
+    })
+  };
 
-            <!-- Two-Column Briefing Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-200">
-              
-              <!-- Left Column: Noticeboard & Speaking Warm-ups -->
-              <div class="p-4 sm:p-5 flex flex-col justify-between space-y-4">
-                <div class="space-y-3.5">
-                  <div class="pb-1.5 border-b border-slate-100">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
-                      <span>📌</span> Classroom Speaking Warm-ups (AT &amp; AG)
-                    </span>
-                    <p class="text-[11px] text-slate-500 mt-0.5">
-                      Weekly teaching priorities and 5-minute BBC topical articles to activate student speaking at the beginning of each session.
-                    </p>
-                  </div>
+  // 1. Synchronize structured data in src/js/04-tab-overview.js
+  const nbStart = '/* --- WEEKLY_NOTICEBOARD_DATA_START --- */';
+  const nbEnd = '/* --- WEEKLY_NOTICEBOARD_DATA_END --- */';
 
-                  <!-- Up Next Notice Banner -->
-                  <div class="p-3 bg-amber-50/90 border border-amber-200/90 rounded-xl flex flex-col gap-1.5">
-                    <div class="flex items-center justify-between">
-                      <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-mono shadow-2xs">
-                        <span>📌</span> ${escapeHtml(noticeWeek)}
-                      </span>
-                      <span class="text-[10px] text-amber-800 font-bold uppercase tracking-wider font-mono">${escapeHtml(noticeTag)}</span>
-                    </div>
-                    <div class="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
-                      ${escapeHtml(noticeHeadline)}
-                    </div>
-                    <p class="text-[11px] text-slate-600 leading-relaxed">
-                      ${escapeHtml(noticeStatement)}
-                    </p>
-                  </div>
-
-                  <!-- BBC Article 1 -->
-                  <div class="group p-3 bg-slate-50/80 rounded-xl border border-slate-200/70 hover:border-slate-300 transition-all flex flex-col justify-between space-y-1.5">
-                    <div class="space-y-1">
-                      <div class="flex items-center justify-between">
-                        <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded ${bbc1IsTravel ? 'bg-[#004f71]' : 'bg-[#bb1919]'} text-white font-mono">
-                          ${bbc1IsTravel ? 'BBC TRAVEL' : 'BBC NEWS'}
-                        </span>
-                        <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">${escapeHtml(bbc1.category || 'Aviation Safety (AT)')}</span>
-                      </div>
-                      <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-2">
-                        ${escapeHtml(bbc1.title || 'BBC Article')}
-                      </h4>
-                      <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
-                        ${escapeHtml(bbc1.summary || '')}
-                      </p>
-                    </div>
-                    <div class="pt-1 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
-                      <span class="text-[10px] text-slate-400 font-mono">${bbc1IsTravel ? 'Travel Feature' : 'News Article'}</span>
-                      <a 
-                        href="${escapeHtml(bbc1.content || '#')}" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                        title="Read on ${bbc1IsTravel ? 'BBC Travel' : 'BBC News'} ↗"
-                      >
-                        <span>Read on ${bbc1IsTravel ? 'BBC Travel' : 'BBC News'}</span>
-                        <span class="text-[10px]">↗</span>
-                      </a>
-                    </div>
-                  </div>
-
-                  <!-- BBC Article 2 -->
-                  <div class="group p-3 bg-slate-50/80 rounded-xl border border-slate-200/70 hover:border-slate-300 transition-all flex flex-col justify-between space-y-1.5">
-                    <div class="space-y-1">
-                      <div class="flex items-center justify-between">
-                        <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded ${bbc2IsTravel ? 'bg-[#004f71]' : 'bg-[#bb1919]'} text-white font-mono">
-                          ${bbc2IsTravel ? 'BBC TRAVEL' : 'BBC NEWS'}
-                        </span>
-                        <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">${escapeHtml(bbc2.category || 'Tourism &amp; Leisure (AG)')}</span>
-                      </div>
-                      <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-2">
-                        ${escapeHtml(bbc2.title || 'BBC Article')}
-                      </h4>
-                      <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
-                        ${escapeHtml(bbc2.summary || '')}
-                      </p>
-                    </div>
-                    <div class="pt-1 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
-                      <span class="text-[10px] text-slate-400 font-mono">${bbc2IsTravel ? 'Travel Feature' : 'News Article'}</span>
-                      <a 
-                        href="${escapeHtml(bbc2.content || '#')}" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                        title="Read on ${bbc2IsTravel ? 'BBC Travel' : 'BBC News'} ↗"
-                      >
-                        <span>Read on ${bbc2IsTravel ? 'BBC Travel' : 'BBC News'}</span>
-                        <span class="text-[10px]">↗</span>
-                      </a>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Right Column: Curated Cultural Cinema & Listening -->
-              <div class="p-4 sm:p-5 flex flex-col justify-between space-y-4">
-                <div class="space-y-3">
-                  <div class="pb-1.5 border-b border-slate-100">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
-                      <span>🎬</span> Cultural Cinema &amp; Independent Listening
-                    </span>
-                    <p class="text-[11px] text-slate-500 mt-0.5">
-                      Curated weekly film suggestions (French, British/American, and International) for students to practice listening comprehension outside class.
-                    </p>
-                  </div>
-
-                  ${[imdb1, imdb2, imdb3].map((film, fIdx) => {
-                    const fullSummary = film.summary || '';
-                    let credits = '';
-                    let desc = fullSummary;
-                    if (fullSummary.includes('|')) {
-                      const parts = fullSummary.split('|');
-                      credits = parts[0].trim();
-                      desc = parts.slice(1).join('|').trim();
-                    }
-                    const defaultBadges = ['🇫🇷 FRENCH CINEMA', '🇬🇧 BRITISH / AMERICAN CINEMA', '🇰🇷 INTERNATIONAL CINEMA'];
-                    const badge = film.category || defaultBadges[fIdx] || defaultBadges[0];
-
-                    return `<!-- Film Card -->
-                  <div class="group p-3 bg-slate-50/80 rounded-xl border border-slate-200/70 hover:border-slate-300 transition-all flex flex-col justify-between space-y-1.5">
-                    <div class="space-y-1">
-                      <div class="flex items-center justify-between">
-                        <span class="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-900 text-amber-300 font-mono">
-                          ${escapeHtml(badge)}
-                        </span>
-                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Curated Cinema</span>
-                      </div>
-                      <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-600 transition-colors line-clamp-1">
-                        ${escapeHtml(film.title || 'Film Recommendation')}
-                      </h4>
-                      ${credits ? `<p class="text-[10px] text-slate-500 font-mono">${escapeHtml(credits)}</p>` : ''}
-                      <p class="text-[11px] text-slate-600 leading-relaxed line-clamp-2">
-                        ${escapeHtml(desc)}
-                      </p>
-                    </div>
-                    <div class="pt-1 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
-                      <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#f5c518] text-slate-950 font-black font-mono text-[9px] tracking-tight">
-                        IMDb
-                      </span>
-                      <a 
-                        href="${escapeHtml(film.content || '#')}" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        class="text-xs font-bold text-slate-800 group-hover:text-amber-600 inline-flex items-center gap-1 underline transition-colors cursor-pointer"
-                        title="View on IMDb ↗"
-                      >
-                        <span>View on IMDb</span>
-                        <span class="text-[10px]">↗</span>
-                      </a>
-                    </div>
-                  </div>`;
-                  }).join('\n\n                  ')}
-
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <!-- MEDIA_UPDATE_END -->`;
-
-  const startMarker = '<!-- MEDIA_UPDATE_START -->';
-  const endMarker = '<!-- MEDIA_UPDATE_END -->';
-
-  const startIndex = indexHTML.indexOf(startMarker);
-  const endIndex = indexHTML.indexOf(endMarker);
-
-  if (startIndex === -1 || endIndex === -1) {
-    console.error(`❌ Error: Could not locate ${startMarker} or ${endMarker} markers in ${INDEX_HTML_PATH}`);
-    process.exit(1);
-  }
-
-  indexHTML = indexHTML.slice(0, startIndex) +
-              replacementHTML +
-              indexHTML.slice(endIndex + endMarker.length);
-
-  // Update embedded archive data
-  const archiveStartMarker = '// <!-- MEDIA_ARCHIVE_DATA_START -->';
-  const archiveEndMarker = '// <!-- MEDIA_ARCHIVE_DATA_END -->';
-
-  const archiveStartIndex = indexHTML.indexOf(archiveStartMarker);
-  const archiveEndIndex = indexHTML.indexOf(archiveEndMarker);
-
-  if (archiveStartIndex !== -1 && archiveEndIndex !== -1) {
-    const archiveScript = `${archiveStartMarker}\n    window.MEDIA_ARCHIVE_DATA = ${JSON.stringify(
-      { news: archive.newsArchive, films: archive.filmsArchive },
-      null,
-      2
-    )};\n    ${archiveEndMarker}`;
-    indexHTML = indexHTML.slice(0, archiveStartIndex) +
-                archiveScript +
-                indexHTML.slice(archiveEndIndex + archiveEndMarker.length);
-  }
-
-  // Safety check: ensure forbidden word "faculty" is not introduced
-  if (replacementHTML.toLowerCase().includes('faculty')) {
-    console.error('❌ Prohibited term "faculty" detected in replacement HTML! Aborting update.');
-    process.exit(1);
-  }
-
-  // Synchronize src/js/04-tab-overview.js
   if (fs.existsSync(TAB_OVERVIEW_JS_PATH)) {
     let tabOverview = fs.readFileSync(TAB_OVERVIEW_JS_PATH, 'utf8');
-    const sIdx = tabOverview.indexOf(startMarker);
-    const eIdx = tabOverview.indexOf(endMarker);
+    const sIdx = tabOverview.indexOf(nbStart);
+    const eIdx = tabOverview.indexOf(nbEnd);
     if (sIdx !== -1 && eIdx !== -1) {
-      tabOverview = tabOverview.slice(0, sIdx) + replacementHTML + tabOverview.slice(eIdx + endMarker.length);
+      const nbReplacement = `${nbStart}\nconst WEEKLY_NOTICEBOARD_DATA = ${JSON.stringify(noticeboardData, null, 2)};\n${nbEnd}`;
+      tabOverview = tabOverview.slice(0, sIdx) + nbReplacement + tabOverview.slice(eIdx + nbEnd.length);
       fs.writeFileSync(TAB_OVERVIEW_JS_PATH, tabOverview, 'utf8');
-      console.log('  ✓ Synchronized src/js/04-tab-overview.js');
+      console.log('  ✓ Synchronized WEEKLY_NOTICEBOARD_DATA in src/js/04-tab-overview.js');
+    } else {
+      console.warn('  ⚠️ Could not find WEEKLY_NOTICEBOARD_DATA tags in src/js/04-tab-overview.js');
     }
   }
 
-  // Synchronize src/js/10-media-archive.js
+  // 2. Synchronize archive data in src/js/10-media-archive.js
+  const archiveStartMarker = '// <!-- MEDIA_ARCHIVE_DATA_START -->';
+  const archiveEndMarker = '// <!-- MEDIA_ARCHIVE_DATA_END -->';
+
   if (fs.existsSync(MEDIA_ARCHIVE_JS_PATH)) {
     let mediaArchive = fs.readFileSync(MEDIA_ARCHIVE_JS_PATH, 'utf8');
     const aSIdx = mediaArchive.indexOf(archiveStartMarker);
@@ -534,13 +351,13 @@ function main() {
       )};\n${archiveEndMarker}`;
       mediaArchive = mediaArchive.slice(0, aSIdx) + archiveScript + mediaArchive.slice(aEIdx + archiveEndMarker.length);
       fs.writeFileSync(MEDIA_ARCHIVE_JS_PATH, mediaArchive, 'utf8');
-      console.log('  ✓ Synchronized src/js/10-media-archive.js');
+      console.log('  ✓ Synchronized window.MEDIA_ARCHIVE_DATA in src/js/10-media-archive.js');
     }
   }
 
-  // Recompile index.html from modular source modules
+  // 3. Recompile index.html from modular source modules
   buildHtml();
-  console.log('✅ index.html media sections and archive data updated successfully via build-html!');
+  console.log('✅ Modular source and index.html media sections updated successfully!');
   console.log(`📌 Up Next Notice: "${noticeHeadline}"`);
   console.log(`📰 BBC Articles: "${bbc1.title}" & "${bbc2.title}"`);
   console.log(`🎬 IMDb Films: "${imdb1.title}", "${imdb2.title}", "${imdb3.title}"`);
