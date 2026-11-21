@@ -266,14 +266,14 @@ function main() {
   const bbc2IsTravel = (bbc2.category || '').toLowerCase().includes('travel') || (bbc2.content || '').includes('/travel/');
 
   const replacementHTML = `<!-- MEDIA_UPDATE_START -->
-          <!-- Unified Weekly Operational Briefings & Cultural Media Panel -->
+          <!-- Unified Weekly Noticeboard and Culture / Media Panel -->
           <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
             <!-- Panel Header Ribbon -->
             <div class="px-4 py-3 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-2 border-b border-slate-800">
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-amber-400"></span>
                 <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
-                  Weekly Operational Briefings &amp; Cultural Media
+                  WEEKLY NOTICEBOARD AND CULTURE / MEDIA
                 </h3>
               </div>
               <div class="flex items-center gap-2">
