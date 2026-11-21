@@ -166,7 +166,6 @@ const WEEKLY_NOTICEBOARD_DATA = {
                   class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-bold transition-colors cursor-pointer border border-slate-700"
                   title="View previous articles"
                 >
-                  <span>📁</span>
                   <span>Past Articles</span>
                   <span id="news-archive-badge" class="px-1.5 py-0.2 bg-slate-700 text-slate-200 rounded-full font-mono text-[9.5px]">${(window.MEDIA_ARCHIVE_DATA?.news || []).length}</span>
                 </button>
@@ -176,7 +175,6 @@ const WEEKLY_NOTICEBOARD_DATA = {
                   class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-bold transition-colors cursor-pointer border border-slate-700"
                   title="View previous film recommendations"
                 >
-                  <span>📁</span>
                   <span>Past Films</span>
                   <span id="films-archive-badge" class="px-1.5 py-0.2 bg-slate-700 text-slate-200 rounded-full font-mono text-[9.5px]">${(window.MEDIA_ARCHIVE_DATA?.films || []).length}</span>
                 </button>
@@ -190,21 +188,21 @@ const WEEKLY_NOTICEBOARD_DATA = {
               <div class="p-4 sm:p-5 flex flex-col justify-between space-y-4">
                 <div class="space-y-3.5">
                   <div class="pb-1.5 border-b border-slate-100">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
-                      <span>📌</span> Classroom Speaking Warm-ups (AT &amp; AG)
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-900 font-mono">
+                      Classroom Speaking Warm-ups (AT &amp; AG)
                     </span>
                     <p class="text-[11px] text-slate-500 mt-0.5">
                       Weekly teaching priorities and 5-minute BBC topical articles to activate student speaking at the beginning of each session.
                     </p>
                   </div>
 
-                  <!-- Up Next Notice Banner -->
-                  <div class="p-3 bg-amber-50/90 border border-amber-200/90 rounded-xl flex flex-col gap-1.5">
+                  <!-- Up Next Notice Banner (Quiet Amber Left-Rail Highlight) -->
+                  <div class="p-3.5 bg-white border border-slate-200 border-l-4 border-l-amber-400 rounded-xl flex flex-col gap-1.5 shadow-2xs">
                     <div class="flex items-center justify-between">
-                      <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-mono shadow-2xs">
-                        <span>📌</span> ${escapeHtml(WEEKLY_NOTICEBOARD_DATA.upNext?.week || 'Week Notice')}
+                      <span class="text-[9.5px] font-bold uppercase tracking-wider text-slate-700 font-mono">
+                        ${escapeHtml(WEEKLY_NOTICEBOARD_DATA.upNext?.week || 'Weekly Notice')}
                       </span>
-                      <span class="text-[10px] text-amber-800 font-bold uppercase tracking-wider font-mono">${escapeHtml(WEEKLY_NOTICEBOARD_DATA.upNext?.tag || 'Teaching Note')}</span>
+                      <span class="text-[9.5px] text-amber-700 font-bold uppercase tracking-wider font-mono">${escapeHtml(WEEKLY_NOTICEBOARD_DATA.upNext?.tag || 'Teaching Focus')}</span>
                     </div>
                     <div class="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
                       ${escapeHtml(WEEKLY_NOTICEBOARD_DATA.upNext?.headline || 'Weekly Teaching Focus')}
@@ -253,8 +251,8 @@ const WEEKLY_NOTICEBOARD_DATA = {
               <div class="p-4 sm:p-5 flex flex-col justify-between space-y-4">
                 <div class="space-y-3">
                   <div class="pb-1.5 border-b border-slate-100">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
-                      <span>🎬</span> Cultural Cinema &amp; Independent Listening
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-900 font-mono">
+                      Cultural Cinema &amp; Independent Listening
                     </span>
                     <p class="text-[11px] text-slate-500 mt-0.5">
                       Curated weekly film suggestions (French, British/American, and International) for students to practice listening comprehension outside class.
@@ -331,8 +329,8 @@ const WEEKLY_NOTICEBOARD_DATA = {
                 <!-- Video Player Column (Deep 16:9 on Desktop) -->
                 <div class="lg:col-span-7 flex flex-col space-y-2.5">
                   <div class="flex items-center justify-between gap-2">
-                    <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/80 font-mono">
-                      🔴 CASE 1: ACTIVE RUNWAY EVACUATION
+                    <span class="inline-flex items-center gap-1 text-[9.5px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-900 text-rose-300 border border-slate-800 font-mono">
+                      CASE 01 • ACTIVE RUNWAY EVACUATION
                     </span>
                     <span class="text-[10.5px] text-slate-500 font-mono">Dallas/Fort Worth (DFW) • Rwy 17L</span>
                   </div>
@@ -374,12 +372,12 @@ const WEEKLY_NOTICEBOARD_DATA = {
                       </p>
                     </div>
 
-                    <!-- Classroom Discussion Box -->
-                    <div class="p-3 bg-amber-50/90 border border-amber-200 rounded-lg space-y-1.5">
-                      <div class="flex items-center gap-1.5 text-amber-900 font-bold text-[11px] uppercase tracking-wide">
-                        <span>💬</span> Suggested Classroom Speaking Prompts
+                    <!-- Classroom Discussion Box (Quiet Amber Left-Rail) -->
+                    <div class="p-3 bg-white border border-slate-200 border-l-3 border-l-amber-400 rounded-lg space-y-1.5 shadow-2xs">
+                      <div class="text-[10px] font-bold text-slate-800 uppercase tracking-wider font-mono">
+                        Classroom Discussion Prompts
                       </div>
-                      <ul class="text-[11.5px] text-amber-950/90 space-y-1 list-disc list-inside">
+                      <ul class="text-[11.5px] text-slate-600 space-y-1 list-disc list-inside">
                         <li>How does the local controller prioritize workload between the emergency aircraft and trailing traffic?</li>
                         <li>Listen to the readbacks: what standard phraseology ensures ARFF vehicles enter the active runway safely?</li>
                       </ul>
@@ -398,8 +396,8 @@ const WEEKLY_NOTICEBOARD_DATA = {
                 <!-- Video Player Column (Deep 16:9 on Desktop) -->
                 <div class="lg:col-span-7 flex flex-col space-y-2.5">
                   <div class="flex items-center justify-between gap-2">
-                    <span class="inline-flex items-center gap-1 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/80 font-mono">
-                      ⚠️ CASE 2: APRON &amp; TAXIWAY GROUND COLLISION
+                    <span class="inline-flex items-center gap-1 text-[9.5px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-900 text-amber-300 border border-slate-800 font-mono">
+                      CASE 02 • APRON &amp; TAXIWAY COLLISION
                     </span>
                     <span class="text-[10.5px] text-slate-500 font-mono">Ground Movement Incident &amp; Damage</span>
                   </div>
@@ -441,12 +439,12 @@ const WEEKLY_NOTICEBOARD_DATA = {
                       </p>
                     </div>
 
-                    <!-- Classroom Discussion Box -->
-                    <div class="p-3 bg-amber-50/90 border border-amber-200 rounded-lg space-y-1.5">
-                      <div class="flex items-center gap-1.5 text-amber-900 font-bold text-[11px] uppercase tracking-wide">
-                        <span>💬</span> Suggested Classroom Speaking Prompts
+                    <!-- Classroom Discussion Box (Quiet Amber Left-Rail) -->
+                    <div class="p-3 bg-white border border-slate-200 border-l-3 border-l-amber-400 rounded-lg space-y-1.5 shadow-2xs">
+                      <div class="text-[10px] font-bold text-slate-800 uppercase tracking-wider font-mono">
+                        Classroom Discussion Prompts
                       </div>
-                      <ul class="text-[11.5px] text-amber-950/90 space-y-1 list-disc list-inside">
+                      <ul class="text-[11.5px] text-slate-600 space-y-1 list-disc list-inside">
                         <li>Where did the miscommunication or spatial assumption occur between pilots and ground control?</li>
                         <li>What standard phraseology should a flight crew use if wingtip clearance behind or beside another taxiing aircraft appears doubtful?</li>
                       </ul>
