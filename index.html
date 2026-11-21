@@ -187,26 +187,19 @@
     <!-- Unified Deck Canvas Enclosure (690px Fixed Height Desktop Parity) -->
     <div class="moodle-deck-canvas bg-white rounded-2xl shadow-xl border border-slate-300 flex flex-col overflow-hidden">
 
-      <!-- Executive Header (Compact Single-Row Cockpit Header) -->
-      <header id="portal-header" class="textured-surface text-white px-3 sm:px-6 py-2.5 sm:py-3 border-b border-slate-900/60 flex items-center justify-between gap-3 shrink-0 relative overflow-hidden">
-        <!-- Brand & Title Block -->
-        <div class="flex items-center space-x-2.5 sm:space-x-3 min-w-0">
-          <div class="w-8 h-8 rounded-lg bg-slate-950/45 border border-white/20 flex items-center justify-center shrink-0 shadow-inner text-amber-400">
-            <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-            </svg>
+      <!-- Executive Header (Compact Cockpit Header - Flush Left) -->
+      <header id="portal-header" class="textured-surface text-white px-4 sm:px-6 py-2.5 sm:py-3 border-b border-slate-900/60 flex items-center justify-between gap-3 shrink-0 relative overflow-hidden">
+        <!-- Brand & Title Block (Flush Left, No Icon) -->
+        <div class="min-w-0">
+          <div class="flex items-center gap-1.5">
+            <span class="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-400 text-slate-900 shadow-xs shrink-0">
+              TEACHERS HUB
+            </span>
+            <span class="text-[10px] sm:text-xs text-slate-300 font-mono truncate hidden sm:inline">ENAC • DÉPARTEMENT LH / LAN</span>
           </div>
-          <div class="min-w-0">
-            <div class="flex items-center gap-1.5">
-              <span class="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-400 text-slate-900 shadow-xs shrink-0">
-                TEACHERS HUB
-              </span>
-              <span class="text-[10px] sm:text-xs text-slate-300 font-mono truncate hidden sm:inline">ENAC • DÉPARTEMENT LH / LAN</span>
-            </div>
-            <h1 id="header-main-title" class="text-xs sm:text-base font-bold tracking-tight text-white mt-0.5 truncate">
-              GSEA Teachers Hub: Semester 1
-            </h1>
-          </div>
+          <h1 id="header-main-title" class="text-xs sm:text-base font-bold tracking-tight text-white mt-0.5 truncate">
+            GSEA Teachers Hub: Semester 1
+          </h1>
         </div>
 
         <!-- Right Side: ENAC Logo with eCampus Link -->
@@ -217,11 +210,8 @@
         </div>
       </header>
 
-      <!-- Master Semester Selection Strip (Left-Justified Scope Bar) -->
-      <div id="semester-nav-bar" class="bg-slate-950/90 border-b border-slate-800 px-3 sm:px-6 py-1.5 sm:py-2 flex items-center gap-2 sm:gap-3 overflow-x-auto shrink-0 no-print">
-        <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 font-mono shrink-0 hidden sm:inline">
-          SEMESTER:
-        </span>
+      <!-- Master Semester Selection Strip (Flush Left with Title Above) -->
+      <div id="semester-nav-bar" class="bg-slate-950/90 border-b border-slate-800 px-4 sm:px-6 py-1.5 sm:py-2 flex items-center overflow-x-auto shrink-0 no-print">
         <div class="inline-flex items-center p-0.5 sm:p-1 rounded-xl bg-slate-900 border border-white/10 shadow-inner" id="semester-selector-group">
           <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer bg-amber-400 text-slate-950 shadow-xs" title="Switch to Semester 1">
             <span class="w-1.5 h-1.5 rounded-full bg-slate-950 shrink-0"></span>
@@ -250,29 +240,29 @@
         </div>
       </div>
 
-      <!-- Main Navigation Tab Strip (Seamlessly docked under header) -->
-      <nav id="main-nav-tabs" class="bg-slate-900/95 border-b border-slate-700/80 px-3 sm:px-6 py-2 flex items-center gap-1.5 sm:gap-2 overflow-x-auto text-xs shrink-0 no-print">
-        <button type="button" onclick="switchTab('overview')" id="tab-btn-overview" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold transition-all bg-white/25 text-white shadow-xs cursor-pointer">
+      <!-- Main Navigation Tab Strip (Light/White Ribbon Docked Over Dashboard) -->
+      <nav id="main-nav-tabs" class="bg-white border-b border-slate-200/90 px-4 sm:px-6 py-2 flex items-center gap-1.5 sm:gap-2 overflow-x-auto text-xs shrink-0 shadow-2xs z-10 no-print">
+        <button type="button" onclick="switchTab('overview')" id="tab-btn-overview" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg font-bold transition-all bg-slate-900 text-white shadow-xs cursor-pointer">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
           <span>Overview</span>
         </button>
-        <button type="button" onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
+        <button type="button" onclick="switchTab('calendar')" id="tab-btn-calendar" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.253 3.75m3 2.25a2.25 2.25 0 012.25 2.25v7.5A2.25 2.25 0 0121 21H3a2.25 2.25 0 01-2.25-2.25v-7.5A2.25 2.25 0 013 9.75h18z"/></svg>
           <span>Programme &amp; Calendar</span>
         </button>
-        <button type="button" onclick="switchTab('rotas')" id="tab-btn-rotas" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
+        <button type="button" onclick="switchTab('rotas')" id="tab-btn-rotas" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <span>FE Tutorial Rotas</span>
         </button>
-        <button type="button" onclick="switchTab('groups')" id="tab-btn-groups" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
+        <button type="button" onclick="switchTab('groups')" id="tab-btn-groups" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
           <span>Groups &amp; Absences</span>
         </button>
-        <button type="button" onclick="switchTab('evaluations')" id="tab-btn-evaluations" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
+        <button type="button" onclick="switchTab('evaluations')" id="tab-btn-evaluations" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <span>Formative Evaluations</span>
         </button>
-        <button type="button" onclick="switchTab('portfolio')" id="tab-btn-portfolio" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer">
+        <button type="button" onclick="switchTab('portfolio')" id="tab-btn-portfolio" class="nav-tab-btn whitespace-nowrap shrink-0 flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg font-bold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 cursor-pointer">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
           <span>Learning Portfolios</span>
         </button>
