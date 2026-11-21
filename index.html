@@ -188,7 +188,7 @@
     <div class="moodle-deck-canvas bg-white rounded-2xl shadow-xl border border-slate-300 flex flex-col overflow-hidden">
 
       <!-- Executive Header (Compact Single-Row Cockpit Header) -->
-      <header id="portal-header" class="textured-surface text-white px-3 sm:px-6 py-2.5 sm:py-3 border-b border-slate-900/60 flex flex-wrap items-center justify-between gap-3 shrink-0 relative overflow-hidden">
+      <header id="portal-header" class="textured-surface text-white px-3 sm:px-6 py-2.5 sm:py-3 border-b border-slate-900/60 flex items-center justify-between gap-3 shrink-0 relative overflow-hidden">
         <!-- Brand & Title Block -->
         <div class="flex items-center space-x-2.5 sm:space-x-3 min-w-0">
           <div class="w-8 h-8 rounded-lg bg-slate-950/45 border border-white/20 flex items-center justify-center shrink-0 shadow-inner text-amber-400">
@@ -209,40 +209,46 @@
           </div>
         </div>
 
-        <!-- Right Side: Master Semester Selection Capsule & ENAC Logo -->
-        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-          <div class="grid grid-cols-4 sm:inline-flex items-center p-0.5 sm:p-1 rounded-xl bg-slate-950/50 border border-white/15 shadow-inner" id="semester-selector-group">
-            <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-center gap-1.5 px-2 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer bg-amber-400 text-slate-950 shadow-xs" title="Switch to Semester 1">
-              <span class="w-1.5 h-1.5 rounded-full bg-slate-950 shrink-0"></span>
-              <span class="sm:hidden font-mono text-[11px]">S1</span>
-              <span class="hidden sm:inline truncate">Semester 1</span>
-              <span class="text-[9px] font-mono font-bold bg-slate-950/15 text-slate-950 px-1 py-0.5 rounded hidden md:inline shrink-0">AG + AT</span>
-            </button>
-            <button type="button" onclick="selectSemester(2)" id="sem-btn-2" class="sem-btn flex items-center justify-center gap-1.5 px-2 sm:px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10" title="Switch to Semester 2">
-              <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
-              <span class="sm:hidden font-mono text-[11px]">S2</span>
-              <span class="hidden sm:inline truncate">Semester 2</span>
-              <span class="text-[9px] font-mono text-slate-400 bg-white/5 px-1 py-0.5 rounded hidden md:inline shrink-0">AG + AAS</span>
-            </button>
-            <button type="button" onclick="selectSemester(3)" id="sem-btn-3" class="sem-btn flex items-center justify-center gap-1.5 px-2 sm:px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10" title="Switch to Semester 3">
-              <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
-              <span class="sm:hidden font-mono text-[11px]">S3</span>
-              <span class="hidden sm:inline truncate">Semester 3</span>
-              <span class="text-[9px] font-mono text-slate-400 bg-white/5 px-1 py-0.5 rounded hidden md:inline shrink-0">AT</span>
-            </button>
-            <button type="button" onclick="selectSemester(4)" id="sem-btn-4" class="sem-btn flex items-center justify-center gap-1.5 px-2 sm:px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10" title="Switch to Semester 4">
-              <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
-              <span class="sm:hidden font-mono text-[11px]">S4</span>
-              <span class="hidden sm:inline truncate">Semester 4</span>
-              <span class="text-[9px] font-mono text-slate-400 bg-white/5 px-1 py-0.5 rounded hidden md:inline shrink-0">AP</span>
-            </button>
-          </div>
-
-          <a id="header-ecampus-link" href="https://e-campus.enac.fr/moodle/pluginfile.php/542566/mod_resource/content/33/index.html#ag-module1-card1" target="_blank" rel="noopener noreferrer" class="opacity-90 hover:opacity-100 transition-opacity shrink-0 ml-1" title="Open ENAC eCampus Course Space (Semester 1) ↗">
+        <!-- Right Side: ENAC Logo with eCampus Link -->
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="header-ecampus-link" href="https://e-campus.enac.fr/moodle/pluginfile.php/542566/mod_resource/content/33/index.html#ag-module1-card1" target="_blank" rel="noopener noreferrer" class="opacity-90 hover:opacity-100 transition-opacity shrink-0 flex items-center gap-2" title="Open ENAC eCampus Course Space (Semester 1) ↗">
             <img src="images/enac_logo_white.png" alt="ENAC" class="h-5 sm:h-6 w-auto object-contain">
           </a>
         </div>
       </header>
+
+      <!-- Master Semester Selection Strip (Left-Justified Scope Bar) -->
+      <div id="semester-nav-bar" class="bg-slate-950/90 border-b border-slate-800 px-3 sm:px-6 py-1.5 sm:py-2 flex items-center gap-2 sm:gap-3 overflow-x-auto shrink-0 no-print">
+        <span class="text-[10px] font-black uppercase tracking-wider text-slate-400 font-mono shrink-0 hidden sm:inline">
+          SEMESTER:
+        </span>
+        <div class="inline-flex items-center p-0.5 sm:p-1 rounded-xl bg-slate-900 border border-white/10 shadow-inner" id="semester-selector-group">
+          <button type="button" onclick="selectSemester(1)" id="sem-btn-1" class="sem-btn flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer bg-amber-400 text-slate-950 shadow-xs" title="Switch to Semester 1">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-950 shrink-0"></span>
+            <span class="sm:hidden font-mono text-[11px]">S1</span>
+            <span class="hidden sm:inline truncate">Semester 1</span>
+            <span class="text-[9px] font-mono font-bold bg-slate-950/15 text-slate-950 px-1 py-0.5 rounded hidden md:inline shrink-0">AG + AT</span>
+          </button>
+          <button type="button" onclick="selectSemester(2)" id="sem-btn-2" class="sem-btn flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10" title="Switch to Semester 2">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+            <span class="sm:hidden font-mono text-[11px]">S2</span>
+            <span class="hidden sm:inline truncate">Semester 2</span>
+            <span class="text-[9px] font-mono text-slate-400 bg-white/5 px-1 py-0.5 rounded hidden md:inline shrink-0">AG + AAS</span>
+          </button>
+          <button type="button" onclick="selectSemester(3)" id="sem-btn-3" class="sem-btn flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10" title="Switch to Semester 3">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+            <span class="sm:hidden font-mono text-[11px]">S3</span>
+            <span class="hidden sm:inline truncate">Semester 3</span>
+            <span class="text-[9px] font-mono text-slate-400 bg-white/5 px-1 py-0.5 rounded hidden md:inline shrink-0">AT</span>
+          </button>
+          <button type="button" onclick="selectSemester(4)" id="sem-btn-4" class="sem-btn flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-white/10" title="Switch to Semester 4">
+            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+            <span class="sm:hidden font-mono text-[11px]">S4</span>
+            <span class="hidden sm:inline truncate">Semester 4</span>
+            <span class="text-[9px] font-mono text-slate-400 bg-white/5 px-1 py-0.5 rounded hidden md:inline shrink-0">AP</span>
+          </button>
+        </div>
+      </div>
 
       <!-- Main Navigation Tab Strip (Seamlessly docked under header) -->
       <nav id="main-nav-tabs" class="bg-slate-900/95 border-b border-slate-700/80 px-3 sm:px-6 py-2 flex items-center gap-1.5 sm:gap-2 overflow-x-auto text-xs shrink-0 no-print">
