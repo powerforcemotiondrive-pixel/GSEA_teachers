@@ -275,12 +275,21 @@
       </main>
 
       <!-- Status Footer (Flush integrated at bottom of hub card) -->
-      <footer class="textured-surface bg-[#1e293b] border-t border-slate-900/60 py-2.5 sm:py-3 px-4 sm:px-6 text-xs text-slate-400 shadow-inner shrink-0 no-print">
+      <footer class="textured-surface bg-[#1e293b] border-t border-slate-900/60 py-2.5 sm:py-3 px-4 sm:px-6 text-xs text-slate-400 shadow-inner shrink-0 no-print relative">
         <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           <div class="flex items-center gap-2 text-[11px]">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
             <span class="font-bold text-slate-200">ENAC • Département LH / LAN</span>
           </div>
+
+          <!-- Bottom Center: Fullscreen Toggle Button -->
+          <div class="sm:absolute sm:left-1/2 sm:-translate-x-1/2 flex items-center justify-center">
+            <button id="portal-fullscreen-btn" type="button" onclick="togglePortalFullScreen()" class="w-7 h-7 inline-flex items-center justify-center rounded-lg bg-slate-800 hover:bg-slate-700 active:bg-slate-900 text-slate-300 hover:text-white border border-slate-700 shadow-inner transition-all duration-150 cursor-pointer select-none" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">
+              <svg id="portal-fs-expand-icon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+              <svg id="portal-fs-compress-icon" class="w-3.5 h-3.5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 4v4H5M9 8L4 3m11 1v4h4m-4 0l5-5M9 20v-4H5m4 0l-5 5m11-5h-4v4m0-4l5 5"/></svg>
+            </button>
+          </div>
+
           <div class="flex items-center gap-3 text-[11px] text-slate-400">
             <span class="font-mono text-slate-300 text-[10.5px]">Phil PARRIS</span>
             <span class="text-slate-600 hidden sm:inline">•</span>

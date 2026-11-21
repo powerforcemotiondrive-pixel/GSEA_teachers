@@ -283,3 +283,35 @@ function selectSemester(num) {
 
     // ============================================================================
     // TAB 0: OVERVIEW & WELCOME LANDING PAGE
+
+    // Fullscreen API controller (matching Semesters 1, 2, and 3)
+    function togglePortalFullScreen() {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+    }
+    window.togglePortalFullScreen = togglePortalFullScreen;
+
+    function updatePortalFsIcons() {
+      const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      const expIcon = document.getElementById('portal-fs-expand-icon');
+      const compIcon = document.getElementById('portal-fs-compress-icon');
+      const btn = document.getElementById('portal-fullscreen-btn');
+      if (expIcon && compIcon) {
+        expIcon.classList.toggle('hidden', isFs);
+        compIcon.classList.toggle('hidden', !isFs);
+      }
+      if (btn) btn.title = isFs ? "Exit Fullscreen" : "Toggle Fullscreen";
+    }
+    document.addEventListener('fullscreenchange', updatePortalFsIcons);
+    document.addEventListener('webkitfullscreenchange', updatePortalFsIcons);
