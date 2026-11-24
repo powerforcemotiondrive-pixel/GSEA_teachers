@@ -123,3 +123,36 @@ This repository houses the official **ENAC GSEA English Teachers Hub & Grading P
 
 ### P. Cross-Project Rule, Feature & Tooling Synchronization (Quad-Project Invariant)
 - **Mandatory Quad-Project Propagation**: Whenever an architectural rule, governance guideline, operational command (e.g. `backup1`–`backup3`, `backupt`, `backup all`), utility script, **shared platform feature, portfolio enhancement, or UI workflow improvement** is created or updated in any semester or the Teachers Hub, the assistant MUST automatically evaluate and synchronize that improvement across all four repositories (`GSEA_semester_1`, `GSEA_semester_2`, `GSEA_semester_3`, and `GSEA_teachers`) within the same session.
+
+### AC. Non-Destructive Data Merging & Curriculum Schema Protection (Zero Curriculum Erasure — Quad-Project Invariant)
+- **Strict Non-Destructive Deep-Merge Requirement**: Scripts or tools modifying `data/course-data.js` must **NEVER** assign or replace session objects wholesale (e.g. `cd.ag['2'].sessions['1'] = { ... }`). They must strictly perform deep, non-destructive property merges that preserve all existing fields.
+- **Mandatory Curriculum Schema Floors**: Every session across all modules (1–3) and tracks (AT & AG) must permanently maintain:
+  - `materials.videos`: At least 1 (typically 3) verified video with an active 11-character YouTube video ID, watch URL, and operational caption.
+  - `materials.toeicQuestions`: Exactly 5 (or more) complete TOEIC Part 5 practice questions with stems, 4 options (A–D), and validated correct answers with explanations.
+  - `revision.keyTerms`: 10 vocabulary terms with phonetic IPA and concise definitions.
+- **Automated Rejection Gate**: Enforced permanently by Check 9 in `scripts/bug-check.js`. Any update that erodes or drops curriculum schema floors immediately halts packaging.
+
+---
+
+### AD. Mandatory `image-generator` Subagent for Educational Visuals (Zero Web Scraping / Stock Guessing)
+- **Strict Prohibition of Web Scraping & URL Guessing**: The assistant is strictly prohibited from guessing external image URLs, curling third-party stock photo websites (Unsplash, Wikimedia, etc.), or scraping live image endpoints. This prevents broken 400 errors, rate-limiting, copyright risks, and mismatched visuals (e.g., green canyons for drought, tornados for wildfire).
+- **Mandatory Bespoke Generation via `image-generator`**: All bespoke pedagogical visual assets, 4-photo debate panels, and card artwork must be produced directly using the workspace's dedicated **`image-generator`** subagent with precise, photorealistic prompts tailored to the educational topic.
+- **Image Asset Sanity Verification**: All generated visual assets must be valid binary images ($\ge 10\text{ KB}$, verified JPEG `FF D8 FF` or PNG `89 50 4E 47` magic bytes) as enforced by Check 12 of `bug-check.js`.
+
+---
+
+### AE. Universal Session Briefing & Roadmap Banner Invariant (Quad-Project Permanent Invariant)
+- **Mandatory Briefing Banner on Every Worksheet**: Every single session template across all modules and tracks (AG & AT Sessions 1–4) must call `${renderSessionBriefingBanner(sessionData, theme)}` immediately below the session overview/hero banner in `src/js/` and `index.html`.
+- **Zero Worksheet Omission**: No communicative digital worksheet may omit the Operational Context briefing, Core Spoken B2 Objectives, Spoken Focus & Teacher Pacing guidance, or Stage Progression badges.
+- **Automated Verification**: Enforced permanently by Check 11 in `scripts/bug-check.js`. Any session template missing this component causes the build to fail immediately.
+
+---
+
+### AF. Mandatory 12-Point Automated Defense Scanner & Release Gate (`npm run bug1 / bug2 / bug3`)
+- **Mandatory Pre-Release Simulation Gate**: No code, template, or data changes may be packaged, committed, or pushed without running the 12-point automated bug check (`npm run bug1` for Semester 1, `npm run bug2` for Semester 2, `npm run bug3` for Semester 3).
+- **Full Headless E2E Tab & Session Simulation (Check 10)**:
+  - Check 10 executes **all 1,248 live rendering paths** (all 26 modal tabs $\times$ 3 modules $\times$ 2 tracks $\times$ 8 sessions) in a headless Node environment.
+  - Asserts that every single modal tab (`portfolio_summary`, `student_guide`, `content`, `materials`, `admin_refonte`, etc.) has an active rendering function, produces valid non-empty markup, and throws zero runtime exceptions.
+- **Zero-Bypass Policy**: If any of the 12 checks fails, packaging and deployment are strictly blocked until all reported errors are resolved.
+
+---
