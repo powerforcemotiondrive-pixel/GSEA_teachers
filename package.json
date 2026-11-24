@@ -20,7 +20,14 @@
     "serve": "python3 -m http.server 8080",
     "test": "node scripts/validate-syntax.js",
     "bug": "node scripts/validate-syntax.js",
-    "build:html": "node scripts/build-html.js"
+    "build:html": "node scripts/build-html.js",
+    "backupt": "node scripts/backup.js teachers",
+    "backup:teachers": "node scripts/backup.js teachers",
+    "backup:all": "node scripts/backup.js all",
+    "backup1": "node scripts/backup.js semester1",
+    "backup2": "node scripts/backup.js semester2",
+    "backup3": "node scripts/backup.js semester3",
+    "bug:check": "node scripts/validate-syntax.js"
   },
   "repository": {
     "type": "git",
