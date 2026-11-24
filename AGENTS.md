@@ -22,6 +22,11 @@ This repository houses the official **ENAC GSEA English Teachers Hub & Grading P
 - **No Direct Changes Without Prior Response**: ALL questions, requests, or suggested modifications from the user require a thorough review, report, and recommendation from the AI assistant **BEFORE** implementing any changes.
 - **Proceed / Ignore Prompt**: Every proposal or review must conclude with an explicit prompt asking the user whether to proceed or ignore/adjust.
 - **Explicit Confirmation Required**: The assistant must wait for explicit approval before modifying any codebase files.
+- **Tiered On-Demand Detail Protocol (Default Ultra-Concise)**:
+  - **Level 1 (Default — Ultra-Concise)**: Default to brief, 1–3 line confirmations for routine actions, builds, backups, or approvals (e.g. *"Completed for S1, S2, and S3."* or *"Proposal ready for S1, S2, S3. Ready to proceed?"*). Omit large markdown tables, diff logs, and repetitive file lists unless requested.
+  - **Level 2 ("More detail" / "Expand" / "Detail")**: When requested, expand with exact file paths, size metrics, key differences, and summary tables.
+  - **Level 3 ("Full detail" / "Deep dive")**: Full technical breakdowns, line diffs, architectural analyses, and test logs.
+  - **Explicit User Directives**: Strictly follow user directives requesting custom detail levels (e.g. *"brief"*, *"summary only"*, *"detailed"*).
 
 ### D. Automatic Atomic Commit & Push Protocol
 - **Single-Step Remote Synchronization**: Whenever the user instructs the assistant to `"Commit"` or `"Commit changes"`, the assistant MUST automatically execute **both** `git commit` AND `git push origin main` together in one seamless step, ensuring GitHub and GitHub Pages stay continuously synchronized with local progress.
