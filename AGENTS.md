@@ -156,3 +156,10 @@ This repository houses the official **ENAC GSEA English Teachers Hub & Grading P
 - **Zero-Bypass Policy**: If any of the 12 checks fails, packaging and deployment are strictly blocked until all reported errors are resolved.
 
 ---
+
+---
+
+### AG. Drawer Tab Typography & Zero Emoji Clutter Invariant (Quad-Project Permanent Invariant)
+- **Zero Decorative Emojis or Flags in Drawer Tabs**: All slide-over drawer and modal navigation tab strips must strictly use clean, authoritative text labels without novelty emojis, flags, or icons (e.g. `Student Guide`, `Objectives (EN)`, `Objectives (FR)`, `Portfolio Summary`, `FE1 Quick-Prep`, `GSEA 2027 Refonte`).
+- **Cockpit Typography Standard**: Drawer tab navigation must maintain uniform text sizing (`text-xs font-bold`), equal vertical rhythm, and compact horizontal density to prevent line wrapping and horizontal scroll clutter across desktop and mobile devices.
+
