@@ -165,16 +165,24 @@ This repository houses the official **ENAC GSEA English Teachers Hub & Grading P
 
 ---
 
-### AH. Cockpit Clarity 2-Tone Card Architecture & Badge Hierarchy Invariant (Quad-Project Permanent Invariant)
-- **The 2-Tone Accent Discipline (Zero Rainbow Spines)**:
-  - Multi-card dashboards, noticeboards, and activity feeds must NEVER use competing multi-colored left-rail accents (e.g., mixing blue, orange, green, lilac, and yellow side-by-side).
-  - All standard information cards (schedules, summaries, class rotas, habitual reminders, reading picks) must strictly use **Aviation Cockpit Slate rails** (`border-l-4 border-l-slate-300` or `border-l-slate-400`).
-  - The **Aviation Amber / Gold rail** (`border-l-4 border-l-amber-400`) is strictly reserved for the **Active Primary Focal Point** (e.g., *Jump to Today's Active Lesson*, active *Evaluation in Progress*, or current live mission).
-- **Uniform Monospace Pill Badges**:
-  - Eyebrows, category headers, and day/topic tags must strictly use neutral, high-legibility monospace pill badges (`bg-slate-100 text-slate-700 border border-slate-200 font-mono text-[10px] uppercase tracking-wider`).
-  - No decorative toy emojis in category tags (e.g. `TECHNICAL ENGLISH (AT)` and `GENERAL CULTURE & FILM (AG)`, never `🗣️` or `✈️` in eyebrow pills).
-- **Authoritative Cockpit Action Buttons**:
-  - Primary interactive callouts and modal launch buttons must use solid, disciplined cockpit buttons (`bg-slate-900 hover:bg-slate-800 text-white font-mono uppercase tracking-wider text-[11px]`) rather than conflicting saturated color blocks (avoid competing bright blue vs. bright orange buttons).
-- **Phased Rollout Protocol**:
-  - This styling standard applies as the permanent benchmark across all projects (`GSEA_semester_1`, `GSEA_semester_2`, `GSEA_semester_3`, and `GSEA_teachers`), rolled out progressively session-by-session to ensure complete visual fidelity.
+### AH. Clean Content Architecture: Zero Decorative Icons & Protected Pastel Separation (Quad-Project Permanent Invariant)
+- **Zero Decorative Icons & Emojis (Strict Permanent Invariant)**:
+  - Decorative emojis and illustrative clipart SVGs (e.g., 🎧, 🗣️, ✈️, 📝, 💡, 🎯, 📌, 🎬, 💬) are strictly forbidden across all lesson worksheets, card heroes, eyebrows, activity pills, headers, modal dialogues, tabs, and noticeboards.
+  - All section headings, activity mode pills, and category tags must rely exclusively on clean typography, neutral monospace badges, and clear text labels.
+  - Only essential functional micro-controls are permitted (audio play/pause `▶`/`⏸`, modal close `✕`, deck/carousel navigation arrows `‹` `›`, print action buttons).
+- **Protected Pastel Content Separation (Calm Classroom Tinting)**:
+  - Subtle pastel background tints (e.g. `bg-amber-50/70`, `bg-sky-50/70`, `bg-emerald-50/70`, `bg-slate-50/80`) with soft matching borders (`border-amber-200/80`, `border-sky-200/80`, `border-emerald-200/80`, `border-slate-200/90`) are fully authorized, protected, and encouraged to provide clear visual separation between pedagogical stages, speaking roles, and activity zones.
+  - Visual structure and hierarchy rely on clean border styling, soft pastel zoning, and generous whitespace rather than decorative icons or toy emojis.
+- **Card Accent Rails & Badge Hierarchy**:
+  - Dashboards, noticeboards, and multi-card feeds maintain the 2-tone accent discipline: neutral Slate rails (`border-l-4 border-l-slate-300` / `border-l-slate-400`) for standard information cards, and the Amber rail (`border-l-4 border-l-amber-400`) strictly reserved for the active focal point.
+  - Eyebrows, category headers, and day/topic tags must strictly use neutral monospace pill badges (`bg-slate-100 text-slate-700 border border-slate-200 font-mono text-[10px] uppercase tracking-wider`).
+
+---
+
+### AI. `Strip` Decorative Icon & Emoji Purge Protocol (Strip Semester X ...)
+- **`Strip` Operational Trigger**: Whenever the user sends `Strip Semester [1|2|3] [AG|AT|AAS|all] [session X | module Y | all]` or `Strip all`:
+  1. Runs `npm run strip -- <semester> <track> <session>` (or `node scripts/strip-icons.js ...`) to systematically purge decorative emojis and illustrative icons from titles, badges, activity labels, instructions, and worksheets while preserving essential interactive controls and protected pastel background styling.
+  2. Runs `npm run build && npm run bug1 && npm run package` (or corresponding semester checks) to verify 12/12 defense checks.
+  3. Automatically executes `git commit && git push origin main` in the same step.
+- **Cockpit Clarity Invariant**: Decorative emojis must be replaced with crisp, adult typographic headings, monospace badges, or clean text labels to eliminate cognitive visual noise for B2 learners worldwide.
 
