@@ -27,7 +27,8 @@
     "backup1": "node scripts/backup.js semester1",
     "backup2": "node scripts/backup.js semester2",
     "backup3": "node scripts/backup.js semester3",
-    "bug:check": "node scripts/validate-syntax.js"
+    "bug:check": "node scripts/validate-syntax.js",
+    "strip": "node scripts/strip-icons.js"
   },
   "repository": {
     "type": "git",

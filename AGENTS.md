@@ -163,3 +163,18 @@ This repository houses the official **ENAC GSEA English Teachers Hub & Grading P
 - **Zero Decorative Emojis or Flags in Drawer Tabs**: All slide-over drawer and modal navigation tab strips must strictly use clean, authoritative text labels without novelty emojis, flags, or icons (e.g. `Student Guide`, `Objectives (EN)`, `Objectives (FR)`, `Portfolio Summary`, `FE1 Quick-Prep`, `GSEA 2027 Refonte`).
 - **Cockpit Typography Standard**: Drawer tab navigation must maintain uniform text sizing (`text-xs font-bold`), equal vertical rhythm, and compact horizontal density to prevent line wrapping and horizontal scroll clutter across desktop and mobile devices.
 
+---
+
+### AH. Cockpit Clarity 2-Tone Card Architecture & Badge Hierarchy Invariant (Quad-Project Permanent Invariant)
+- **The 2-Tone Accent Discipline (Zero Rainbow Spines)**:
+  - Multi-card dashboards, noticeboards, and activity feeds must NEVER use competing multi-colored left-rail accents (e.g., mixing blue, orange, green, lilac, and yellow side-by-side).
+  - All standard information cards (schedules, summaries, class rotas, habitual reminders, reading picks) must strictly use **Aviation Cockpit Slate rails** (`border-l-4 border-l-slate-300` or `border-l-slate-400`).
+  - The **Aviation Amber / Gold rail** (`border-l-4 border-l-amber-400`) is strictly reserved for the **Active Primary Focal Point** (e.g., *Jump to Today's Active Lesson*, active *Evaluation in Progress*, or current live mission).
+- **Uniform Monospace Pill Badges**:
+  - Eyebrows, category headers, and day/topic tags must strictly use neutral, high-legibility monospace pill badges (`bg-slate-100 text-slate-700 border border-slate-200 font-mono text-[10px] uppercase tracking-wider`).
+  - No decorative toy emojis in category tags (e.g. `TECHNICAL ENGLISH (AT)` and `GENERAL CULTURE & FILM (AG)`, never `🗣️` or `✈️` in eyebrow pills).
+- **Authoritative Cockpit Action Buttons**:
+  - Primary interactive callouts and modal launch buttons must use solid, disciplined cockpit buttons (`bg-slate-900 hover:bg-slate-800 text-white font-mono uppercase tracking-wider text-[11px]`) rather than conflicting saturated color blocks (avoid competing bright blue vs. bright orange buttons).
+- **Phased Rollout Protocol**:
+  - This styling standard applies as the permanent benchmark across all projects (`GSEA_semester_1`, `GSEA_semester_2`, `GSEA_semester_3`, and `GSEA_teachers`), rolled out progressively session-by-session to ensure complete visual fidelity.
+
