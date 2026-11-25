@@ -186,3 +186,11 @@ This repository houses the official **ENAC GSEA English Teachers Hub & Grading P
   3. Automatically executes `git commit && git push origin main` in the same step.
 - **Cockpit Clarity Invariant**: Decorative emojis must be replaced with crisp, adult typographic headings, monospace badges, or clean text labels to eliminate cognitive visual noise for B2 learners worldwide.
 
+
+
+---
+
+### AJ. Uniform Card Chassis & Badge-Driven Hierarchy Invariant (Quad-Project Permanent Invariant)
+- **Zero Asymmetric Left Borders**: Never use `border-l-4` or heavy vertical left-stripe accents on cards, announcements, quick-jump tiles, or callout containers. This eliminates the "zebra bar" distortion and asymmetric corner taper across grids.
+- **Uniform 1px Chassis**: All cards, announcements, and quick-navigation tiles must share a balanced, uniform 1px slate frame (`border border-slate-200/90 bg-white shadow-2xs`).
+- **Badge-Driven Status**: Status hierarchy, activity states, and track tagging are indicated exclusively by structured micro-badges/pills (`bg-amber-100 text-amber-900 border border-amber-300/60 font-mono` for active items; `bg-slate-100 text-slate-700 border border-slate-200 font-mono` for standard items).

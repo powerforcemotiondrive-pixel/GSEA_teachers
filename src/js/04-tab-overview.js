@@ -197,7 +197,7 @@ const WEEKLY_NOTICEBOARD_DATA = {
                   </div>
 
                   <!-- Up Next Notice Banner (Quiet Amber Left-Rail Highlight) -->
-                  <div class="p-3.5 bg-white border border-slate-200 border-l-4 border-l-amber-400 rounded-xl flex flex-col gap-1.5 shadow-2xs">
+                  <div class="p-3.5 bg-white border border-slate-200/90 rounded-xl flex flex-col gap-1.5 shadow-2xs">
                     <div class="flex items-center justify-between">
                       <span class="text-[9.5px] font-bold uppercase tracking-wider text-slate-700 font-mono">
                         ${escapeHtml(WEEKLY_NOTICEBOARD_DATA.upNext?.week || 'Weekly Notice')}
@@ -373,7 +373,7 @@ const WEEKLY_NOTICEBOARD_DATA = {
                     </div>
 
                     <!-- Classroom Discussion Box (Quiet Amber Left-Rail) -->
-                    <div class="p-3 bg-white border border-slate-200 border-l-3 border-l-amber-400 rounded-lg space-y-1.5 shadow-2xs">
+                    <div class="p-3 bg-white border border-slate-200/90 rounded-lg space-y-1.5 shadow-2xs">
                       <div class="text-[10px] font-bold text-slate-800 uppercase tracking-wider font-mono">
                         Classroom Discussion Prompts
                       </div>
@@ -440,7 +440,7 @@ const WEEKLY_NOTICEBOARD_DATA = {
                     </div>
 
                     <!-- Classroom Discussion Box (Quiet Amber Left-Rail) -->
-                    <div class="p-3 bg-white border border-slate-200 border-l-3 border-l-amber-400 rounded-lg space-y-1.5 shadow-2xs">
+                    <div class="p-3 bg-white border border-slate-200/90 rounded-lg space-y-1.5 shadow-2xs">
                       <div class="text-[10px] font-bold text-slate-800 uppercase tracking-wider font-mono">
                         Classroom Discussion Prompts
                       </div>
