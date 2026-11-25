@@ -88,12 +88,12 @@
               <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-white">
                 ${sem.rotas.ag ? `
                   <button type="button" onclick="setRotaTrack('ag')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'ag' ? 'bg-amber-400 text-slate-950 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
-                    🗣️ General English (AG • ${sem.rotas.ag.code || 'LV101E'})
+                    General English (AG • ${sem.rotas.ag.code || 'LV101E'})
                   </button>
                 ` : ''}
                 ${sem.rotas.at ? `
                   <button type="button" onclick="setRotaTrack('at')" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeRotaTrack === 'at' ? 'bg-amber-400 text-slate-950 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
-                    ✈️ Technical English (AT • ${sem.rotas.at.code || 'LV125E'})
+                    Technical English (AT • ${sem.rotas.at.code || 'LV125E'})
                   </button>
                 ` : ''}
               </div>
@@ -251,12 +251,12 @@
               <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-white">
                 ${sem.calendar.ag ? `
                   <button type="button" onclick="setCalendarTrack('ag')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'ag' ? 'bg-amber-400 text-slate-950 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
-                    🗣️ General English (AG • ${sem.calendar.ag.code || 'LV101E'})
+                    General English (AG • ${sem.calendar.ag.code || 'LV101E'})
                   </button>
                 ` : ''}
                 ${sem.calendar.at ? `
                   <button type="button" onclick="setCalendarTrack('at')" class="px-3.5 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${activeCalendarTrack === 'at' ? 'bg-amber-400 text-slate-950 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'}">
-                    ✈️ Technical English (AT • ${sem.calendar.at.code || 'LV125E'})
+                    Technical English (AT • ${sem.calendar.at.code || 'LV125E'})
                   </button>
                 ` : ''}
               </div>
@@ -294,7 +294,7 @@
                           `;
                         }
                         return `
-                          <tr class="${s.isFe ? 'bg-amber-50/70 font-semibold border-l-4 border-amber-500' : 'hover:bg-slate-50/70'} transition-colors">
+                          <tr class="${s.isFe ? 'bg-amber-50/70 font-semibold ' : 'hover:bg-slate-50/70'} transition-colors">
                             <td class="py-2.5 px-3 font-mono font-bold ${s.isFe ? 'text-amber-900' : 'text-slate-700'}">${s.week || '—'}</td>
                             <td class="py-2.5 px-3 font-medium text-slate-600 whitespace-nowrap">${s.date || '—'}</td>
                             <td class="py-2.5 px-3">

@@ -35,8 +35,7 @@ function getPortfolioDataForSemester(num) {
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2.5">
             <div class="flex items-center gap-2.5">
               <div class="w-8 h-8 rounded-xl bg-amber-100 border border-amber-200 text-amber-900 flex items-center justify-center text-sm shadow-2xs font-bold">
-                💡
-              </div>
+                </div>
               <div>
                 <h3 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-2">
                   Cohort Insights &amp; Reflections
@@ -172,7 +171,7 @@ function getPortfolioDataForSemester(num) {
                 <div class="space-y-2 text-xs">
                   <div>
                     <span class="font-bold text-slate-900 flex items-center gap-1.5">
-                      <span class="text-amber-500">⚡</span> Fluency &amp; Word Retrieval
+                      <span class="text-amber-500"></span> Fluency &amp; Word Retrieval
                     </span>
                     <p class="text-[11px] text-slate-600 leading-snug">
                       Students report mid-sentence hesitation searching for technical terms. Prioritize rapid pair debates and role-plays to build retrieval speed.
@@ -180,7 +179,7 @@ function getPortfolioDataForSemester(num) {
                   </div>
                   <div>
                     <span class="font-bold text-slate-900 flex items-center gap-1.5">
-                      <span class="text-emerald-500">🎯</span> FE Presentation Readiness
+                      <span class="text-emerald-500"></span> FE Presentation Readiness
                     </span>
                     <p class="text-[11px] text-slate-600 leading-snug">
                       Strong student consensus: mastering exact aerodrome zones and personnel roles is essential for the 30-minute oral evaluation.
@@ -188,7 +187,7 @@ function getPortfolioDataForSemester(num) {
                   </div>
                   <div>
                     <span class="font-bold text-slate-900 flex items-center gap-1.5">
-                      <span class="text-sky-500">🎧</span> Self-Directed Study Habits
+                      <span class="text-sky-500"></span> Self-Directed Study Habits
                     </span>
                     <p class="text-[11px] text-slate-600 leading-snug">
                       Heavy student engagement with original-version movies, podcasts, and digital micro-quizzing rather than passive rote memorization.
@@ -359,7 +358,7 @@ function getPortfolioDataForSemester(num) {
                 class="px-3.5 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 active:bg-amber-500 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-2xs transition-all cursor-pointer border border-amber-400 shrink-0"
                 title="Generate Official Student Portfolio Compliance & Reflection Digest (PDF)"
               >
-                <span>📊</span>
+                <span></span>
                 <span>Compliance Report (PDF)</span>
               </button>
               <button 
@@ -368,7 +367,7 @@ function getPortfolioDataForSemester(num) {
                 class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:bg-slate-900 text-white font-bold text-xs flex items-center gap-1.5 shadow-2xs transition-all cursor-pointer border border-slate-700 shrink-0"
                 title="Generate Complete PDF of All Student Portfolio Entries by Group & Track (e.g. GSEA26A AG GRP A)"
               >
-                <span>📝</span>
+                <span></span>
                 <span>Group Entries Dossier (PDF)</span>
               </button>
             </div>
@@ -520,8 +519,7 @@ function getPortfolioDataForSemester(num) {
             <div class="no-print p-4 sm:p-5 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-lg shadow-inner">
-                  📝
-                </div>
+                  </div>
                 <div>
                   <h3 class="text-sm sm:text-base font-bold text-slate-900">Student Portfolio Entries Dossier</h3>
                   <p class="text-xs text-slate-500">ENAC Official Academic Digest • Complete Verbatim Student Reflections</p>
@@ -758,7 +756,7 @@ function getPortfolioDataForSemester(num) {
           <div class="space-y-2">
             <div class="flex items-center justify-between">
               <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2">
-                <span>📊</span>
+                <span></span>
                 <span>Candidate Reflection Compliance &amp; Progress (Target: ${totalExpected} Sessions)</span>
               </h3>
               <span class="text-[11px] text-slate-500 font-mono">${completedCandidates} of ${displayedStudents.length} Complete (${complianceRate}%)</span>
@@ -828,7 +826,7 @@ function getPortfolioDataForSemester(num) {
           <div class="space-y-3 pt-2 border-t border-slate-200">
             <div class="flex items-center justify-between">
               <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2">
-                <span>💡</span>
+                <span></span>
                 <span>Cohort Reflection Highlights &amp; Target Consensus</span>
               </h3>
               <span class="text-[11px] text-slate-500 font-mono">B2 Spoken Communication Benchmark</span>
@@ -839,7 +837,7 @@ function getPortfolioDataForSemester(num) {
               <!-- High Frequency Terminology -->
               <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
                 <h4 class="text-[11px] font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                  <span>🎯</span>
+                  <span></span>
                   <span>Core Spoken Vocabulary (High Consensus)</span>
                 </h4>
                 <div class="space-y-1.5 text-xs">
@@ -1104,7 +1102,7 @@ function getPortfolioDataForSemester(num) {
             ${groupsToRender.length > 1 ? `
               <div class="pb-2 border-b-2 border-slate-800 flex items-center justify-between">
                 <h3 class="text-base font-black text-slate-900 uppercase tracking-wider font-mono">
-                  📂 ${promoName} • ${group.name}
+                  ${promoName} • ${group.name}
                 </h3>
                 <span class="text-xs text-slate-500 font-mono">${group.ids.length} Candidates</span>
               </div>
@@ -1172,7 +1170,7 @@ function getPortfolioDataForSemester(num) {
                               <span class="text-emerald-800 font-bold">🗣️ FE Readiness: ${entry.feScore}/10</span>
                             ` : ''}
                             ${entry.toeicScore !== null && entry.toeicScore !== undefined ? `
-                              <span class="text-indigo-800 font-bold">🎧 TOEIC: ${entry.toeicScore}/10</span>
+                              <span class="text-indigo-800 font-bold">TOEIC: ${entry.toeicScore}/10</span>
                             ` : ''}
                           </div>
                         </div>
@@ -1180,21 +1178,21 @@ function getPortfolioDataForSemester(num) {
                         <!-- Clean Structured Text Blocks (Zero Boxes) -->
                         <div class="space-y-3 text-xs text-slate-800 leading-relaxed">
                           <div>
-                            <span class="font-bold text-amber-900 uppercase tracking-wider text-[10.5px] block mb-0.5">🎯 Key Spoken Vocabulary</span>
+                            <span class="font-bold text-amber-900 uppercase tracking-wider text-[10.5px] block mb-0.5">Key Spoken Vocabulary</span>
                             <p class="whitespace-pre-line pl-3 border-l-2 border-amber-400 text-slate-700">
                               ${escapeHtml(entry.vocab) || '<span class="text-slate-400 italic">None logged</span>'}
                             </p>
                           </div>
 
                           <div>
-                            <span class="font-bold text-slate-800 uppercase tracking-wider text-[10.5px] block mb-0.5">📖 Lesson Content Review (What I Learnt)</span>
+                            <span class="font-bold text-slate-800 uppercase tracking-wider text-[10.5px] block mb-0.5">Lesson Content Review (What I Learnt)</span>
                             <p class="whitespace-pre-line pl-3 border-l-2 border-slate-400 text-slate-700">
                               ${escapeHtml(entry.content) || '<span class="text-slate-400 italic">None logged</span>'}
                             </p>
                           </div>
 
                           <div>
-                            <span class="font-bold text-rose-900 uppercase tracking-wider text-[10.5px] block mb-0.5">🛠️ What I Need to Work On (Weaknesses)</span>
+                            <span class="font-bold text-rose-900 uppercase tracking-wider text-[10.5px] block mb-0.5">What I Need to Work On (Weaknesses)</span>
                             <p class="whitespace-pre-line pl-3 border-l-2 border-rose-400 text-slate-700">
                               ${escapeHtml(entry.needs) || '<span class="text-slate-400 italic">None logged</span>'}
                             </p>
@@ -1209,7 +1207,7 @@ function getPortfolioDataForSemester(num) {
 
                           ${entry.toeicPrep && !entry.toeicPrep.startsWith("N/A") && entry.toeicPrep.trim().length > 0 ? `
                             <div>
-                              <span class="font-bold text-indigo-900 uppercase tracking-wider text-[10.5px] block mb-0.5">🎧 Independent Study &amp; TOEIC Practice This Week</span>
+                              <span class="font-bold text-indigo-900 uppercase tracking-wider text-[10.5px] block mb-0.5">Independent Study &amp; TOEIC Practice This Week</span>
                               <p class="whitespace-pre-line pl-3 border-l-2 border-indigo-400 text-slate-700">
                                 ${escapeHtml(entry.toeicPrep)}
                               </p>

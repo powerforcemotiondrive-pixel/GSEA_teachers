@@ -205,7 +205,7 @@ const SEMESTERS_DATA = {
                 sessions: [
                   { week: "W49", date: "Fri 04 Dec", title: "Session 1 — Extreme Weather & Atmospheric Hazards", tag: "Teaching Session", isFe: false },
                   { week: "W50", date: "Fri 11 Dec", title: "Session 2 — Sustainable Cities & Low-Emission Mobility", tag: "Teaching Session", isFe: false },
-                  { isHoliday: true, text: "🎄 Weeks 51 & 52 — Christmas & Winter Vacation (No Classes)" },
+                  { isHoliday: true, text: "Weeks 51 & 52 — Christmas & Winter Vacation (No Classes)" },
                   { week: "W01", date: "Fri 08 Jan", title: "Session 3 — Building & Supporting Environmental Arguments", tag: "Teaching Session", isFe: false },
                   { week: "W02", date: "Fri 15 Jan", title: "Session 4 — Biodiversity in Urban Areas & Transport Hubs", tag: "Teaching Session • Prep FE2", isFe: false },
                   { week: "W03", date: "Fri 22 Jan", title: "FORMATIVE EVALUATION 2 (FE2) — Climate Resilience Redesign (Airport / City)", subtitle: "Fri 22 Jan • 30-min evaluation slots (Geri MIDDLETON / Penny WRIGHT)", tag: "Grade /20", isFe: true }
@@ -250,7 +250,7 @@ const SEMESTERS_DATA = {
                 sessions: [
                   { week: "W49", date: "Wed 02 Dec", title: "Session 1 — Aerodynamics & Flight Principles", tag: "Teaching Session", isFe: false },
                   { week: "W50", date: "Wed 09 Dec", title: "Session 2 — Aircraft Anatomy: Structure & Systems", tag: "Teaching Session", isFe: false },
-                  { isHoliday: true, text: "🎄 Weeks 51 & 52 — Christmas & Winter Vacation (No Classes)" },
+                  { isHoliday: true, text: "Weeks 51 & 52 — Christmas & Winter Vacation (No Classes)" },
                   { week: "W01", date: "Wed 06 Jan", title: "Session 3 — Commercial Aircraft & Airlines", tag: "Teaching Session", isFe: false },
                   { week: "W02", date: "Wed 13 Jan", title: "Session 4 — Significant Aviation Accidents & Aircraft Types", tag: "Teaching Session • Prep FE2", isFe: false },
                   { week: "W03", date: "Wed 20 Jan", title: "FORMATIVE EVALUATION 2 (FE2) — Aircraft & Airlines Profile", subtitle: "Wed 20 Jan • 30-min evaluation slots (Tracy NEILL / Ally HEWETT)", tag: "Grade /20", isFe: true }

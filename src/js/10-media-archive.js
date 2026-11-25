@@ -43,7 +43,7 @@ window.MEDIA_ARCHIVE_DATA = {
       if (!modal || !listEl) return;
 
       const isNews = type === "news";
-      if (iconEl) iconEl.textContent = isNews ? "📰" : "🎬";
+      if (iconEl) iconEl.textContent = isNews ? "" : "";
       if (titleEl) titleEl.textContent = isNews ? "Previous News Articles" : "Previous Film Recommendations";
 
       const items = isNews ? (window.MEDIA_ARCHIVE_DATA?.news || []) : (window.MEDIA_ARCHIVE_DATA?.films || []);
