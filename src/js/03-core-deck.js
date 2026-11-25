@@ -116,12 +116,12 @@ function selectSemester(num) {
         const btn = document.getElementById(`drawer-nav-${k}`);
         if (!btn) return;
         if (k === tabKey || (k === 'evaluations' && (tabKey === 'grading' || tabKey === 'rubrics'))) {
-          btn.className = "drawer-nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold transition-all bg-white/20 text-white shadow-xs cursor-pointer";
+          btn.className = "drawer-nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold transition-all bg-amber-600 text-white shadow-xs cursor-pointer";
           try {
             btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
           } catch (_) {}
         } else {
-          btn.className = "drawer-nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold transition-all text-white/75 hover:text-white hover:bg-white/10 cursor-pointer";
+          btn.className = "drawer-nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold transition-all text-slate-200 hover:text-white hover:bg-white/10 cursor-pointer";
         }
       });
     }
